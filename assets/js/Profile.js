@@ -11,7 +11,11 @@
 
 
 function UpdateInformation(results) {
-    var t = results;
+
+    results = JSON.parse(results.d);
+    var user = document.getElementById("uID");
+    user.innerHTML = results.Name;
+    alert(user.Name);
 }
 
 
