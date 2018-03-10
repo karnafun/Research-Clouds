@@ -21,7 +21,7 @@ function UpdateInformation(results) {
 
 
 function errorCB(error) {
-    alert ( "Error: " + error)
+    alert( "Error: " + error)
 }
 
 
