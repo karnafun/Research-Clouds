@@ -20,7 +20,28 @@ public class Article
     public string Link { get { return link; } }
     
 
-
+    public List<User> Users
+    {
+        get
+        {
+            if (users==null)
+            {
+                users = db.GetArticleUsers(id);
+            }
+            return users;
+        }
+    }
+    public List<Keyword> Keywords
+    {
+        get
+        {
+            if (keywords==null)
+            {
+                keywords = db.GetArticleKeywords(id);
+            }
+            return keywords;
+        }
+    }
 
     public Article()
     {
@@ -46,32 +67,15 @@ public class Article
         return db.GetArticleById(aId);
     }
 
-    public List<Keyword> GetArticleKeywordsById(int aId)
-    {
-        return db.GetArticleKeywords(aId);
-    }
-    public List<User> GetArticleUsersById(int uId)
-    {
-        return db.GetArticleUsers(uId);
-
-    }
+   
 
     public override string ToString()
     {
         string info = "Id: " + id + "<br>";
-
         info += "Title: " + title + "<br>";
         info += "Link: " + link + "<br>";
-
         return info;
     }
 
-    public List<User> Users()
-    {
-        return users;
-    }
-    public List<Keyword> Keywords()
-    {
-        return keywords;
-    }
+    
 }

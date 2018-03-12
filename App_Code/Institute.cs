@@ -19,9 +19,20 @@ public class Institute
     //Props
     public int Id { get { return id; } }
     public string Name { get { return name; } }
-   
+    public List<User> Users
+    {
+        get
+        {
+            if (users==null)
+            {
+                users = db.GetInstituteUsers(id);
+            }
+            return users;
+        }
+    }
 
-    //Ctors
+
+    //Constructors
     public Institute()
     {
         db = new DBServices();
@@ -57,8 +68,5 @@ public class Institute
         return info;
     }
 
-    public List<User> Users()
-    {
-        return users;
-    }
+    
 }

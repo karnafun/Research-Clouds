@@ -18,10 +18,30 @@ public class Keyword
     //Props:
     public int Id { get { return id; } }
     public string Phrase { get { return phrase; } }
-  
+    public List<Cluster> Clusters {
+        get
+        {
+            if (clusters == null)
+            {
+                clusters = db.GetKeywordClusters(id);
+            }
+            return clusters;
+        }
+    }
+    public List<Article> Articles {
+        get
+        {
+            if (articles ==null)
+            {
+                articles = db.GetKeywordArticles(id);
+            }
+            return articles;
+        }
+    }
 
 
-    //Ctors
+
+    //Constructors
     public Keyword()
     {
 
@@ -35,31 +55,21 @@ public class Keyword
         this.phrase = phrase;
     }
 
-    //Methods
+
+    /// <summary>
+    /// Gets all the keywords from the database
+    /// </summary>
+    /// <returns>List of all keywords</returns>
     public List<Keyword> GetAllKeywords()
     {
         return db.GetAllKeywords();
     }
-    public Keyword GetKeywordById(int kId)
-    {
-        return db.GetKeywordById(kId);
-    }
-    public List<Cluster> GetKeywordClustersById(int kId)
-    {
-        return db.GetKeywordClusters(kId);
-    }
+   
     public override string ToString()
     {
         string info = "ID: " + id + "<br>";
         info += "Pharse: " + "<br>";
         return info;
     }
-    public List<Cluster> Clusters()
-    {
-        return clusters;
-    }
-    public List<Article> Articles()
-    {
-        return articles;
-    }
+ 
 }

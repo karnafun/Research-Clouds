@@ -44,6 +44,29 @@ public class User
         }
     }
 
+    public List<Cluster> Clusters
+    {
+        get
+        {
+            if (clusters==null)
+            {
+                clusters = db.GetUserClusters(id);
+            }
+            return clusters;
+        }
+    }
+
+    public List<Institute> Affiliations
+    {
+        get
+        {
+            if (affiliations==null)
+            {
+                affiliations = db.GetUserAffiliations(id);
+            }
+            return affiliations;
+        }
+    }
 
     //Constructors:
     public User()
@@ -103,17 +126,5 @@ public class User
     }
 
 
-    //public List<Article> GetArticles()
-    //{        
-    //    return articles;
-    //}
-    public List<Cluster> GetClusters()
-    {
-        return clusters;
-    }
-    public List<Institute> GetAffiliations()
-    {
-        return affiliations;
-    }
 
 }

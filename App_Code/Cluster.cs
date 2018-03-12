@@ -22,6 +22,26 @@ public class Cluster
     public int Id { get { return id; } }
     public string Name { get { return name; } }
   
+    public List<User> Users {
+        get
+        {
+            if (users==null)
+            {
+                users = db.GetClusterUsers(id);
+            }
+                return users;
+        }
+    }
+    public List<Keyword> Keywords {
+        get
+        {
+            if (keywords==null)
+            {
+                keywords = db.GetClusterKeywords(id);
+            }
+            return keywords;
+        }
+    }
 
 
     //Constructors:
@@ -34,9 +54,7 @@ public class Cluster
     {
         db = new DBServices();
         this.id = id;
-        this.name = name;
-        keywords = db.GetClusterKeywords(id);
-        users = db.GetClusterUsers(id);
+        this.name = name;      
     }
 
     //Methods:
@@ -49,15 +67,7 @@ public class Cluster
     {
         return db.GetClusterById(_id);
     }
-    public List<User> GetClusterUsersById(int cId)
-    {
-        return db.GetClusterUsers(cId);
-    }
    
-    public List<Keyword> GetClusterKeywordsById(int cId)
-    {
-        return db.GetClusterKeywords(cId);
-    }
 
     public override string ToString()
     {
@@ -66,15 +76,5 @@ public class Cluster
 
         return base.ToString();
     }
-    public List<Keyword> Keywords()
-    {
-        return keywords;
-    }
-
-    public List<User> Users()
-    {
-
-        return users;
-
-    }
+    
 }
