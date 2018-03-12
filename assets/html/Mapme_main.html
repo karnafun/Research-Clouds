@@ -58,41 +58,82 @@
             width: 570px;
             height: 100%;
             background-color: #7ae582;
-            float: left
+            float: left;
+            transition-property: background;
+            transition-duration: 1s;
+            transition-timing-function: linear;
         }
+
+
 
         #right {
             width: 570px;
             height: 100%;
             background-color: #c9f2c7;
             float: left;
+            transition-property: background;
+            transition-duration: 1s;
+            transition-timing-function: linear;
+        }
+
+        #animation:hover #right {
+            background-color: #F8FCF7;
+        }
+
+        #animation:hover #left {
+            background-color: #F8FCF7;
         }
         h1{
             position:absolute;
 
         }
+        li {
+            margin-left: 13px;
+        }
+        
+       img {
+           align-content:center;
+       }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 33px;
+            width:250px;
+            height:250px;
+        }
+
+        #animation{
+            margin-top:16px;
+            margin-bottom:100px;
+            padding-bottom:50px;
+        }
+        footer{
+            margin-top:50px;
+        }
     </style>
 
 </head>
-<body>
+<body class="BBg">
     <nav class="navbar navbar-expand-lg russian">
         <div class="container">
-            <div class="navbar-translate">
-                <a class="navbar-brand" href="#">
-                    <img src="assets/img/hero-image-2.png" height="50" width="50" />
-                </a>
-                <button class="navbar-toggler navbar-toggler-right hidden-sm-up bg-dark" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation"></button>
+            <a class="navbar-brand" href="#">
+                <img src="../img/Screenshot_3_burned2 - Copy.png" height="50" width="50" class="d-none d-md-block" />
+            </a>
+            <div class="ml-auto">
+                <button class="navbar-toggler d-lg-none d-md-block BBg" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
             </div>
 
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav align-items-end">
                     <li class="nav-item">
-                        <a class="nav-link aColor" href="#">
+                        <a class="aColor" href="#">
                             Clouds view
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link aColor" href="#">Settings</a>
+                        <a class="aColor" href="#">Settings</a>
                     </li>
                 </ul>
             </div>
@@ -101,11 +142,13 @@
     <!--------------------------------------------------------Content starts here------------------------------------------->
     <div class="container">
         <div class="row">
-            <input type="button" class="btn granny" value="Map me" style="margin:50px auto" onclick="move()" />
+            <!--<input type="button" class="btn granny" value="Map me" style="margin:50px auto" onclick="move()" />-->
+            <img src="../img/Screenshot_3_burned.png" class="center" />
+
 
         </div>
-        <div class="row" >
-            <div style="width:100%; height:400px">
+        <div class="row">
+            <div id="animation" style="width:100%; height:400px">
                 <h1>Here goes the animation</h1>
                 <div id="left">
 
@@ -117,5 +160,17 @@
         </div>
 
     </div>
+
+
+    <footer class="footer russian">
+        <div class="container">
+            <center>
+                <span class="text-white">
+                    &copy; Karnafun & Friends
+                </span>
+            </center>
+        </div>
+    </footer>
+
 </body>
 </html>
