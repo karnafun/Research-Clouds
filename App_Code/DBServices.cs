@@ -30,7 +30,47 @@ public class DBServices
     /// <returns>User if true, null if false</returns>
     public User Login(string email, string password)
     {
-        return null;
+        string cmdStr = "select * from users where email=@email and hash=@password";
+        con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        cmd.Parameters.AddWithValue("@email", email);
+        cmd.Parameters.AddWithValue("@password", password);
+
+        try
+        {
+            cmd.Connection.Open();
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+
+
+                string fName = reader["firstName"].ToString();
+                string mName = reader["middleName"].ToString();
+                string lName = reader["lastName"].ToString();
+                string degree = reader["degree"].ToString();
+                string imgPath = reader["imgPath"].ToString();
+                DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
+                DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
+                bool administrator = Convert.ToBoolean(reader["administrator"]);
+                int id = (int)reader["uId"];
+                string summery = reader["summery"].ToString();
+
+
+                return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+
+
+            return null;
+        }
+        finally
+        {
+            con.Close();
+        }
     }
     /// <summary>
     /// Gets all users from the database 
@@ -43,7 +83,7 @@ public class DBServices
         cmd = new SqlCommand(cmdStr, con);
         try
         {
-            
+
             cmd.Connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             List<User> users = new List<User>();
@@ -91,30 +131,30 @@ public class DBServices
         {
             cmd.Connection.Open();
             reader = cmd.ExecuteReader();
-           
+
             while (reader.Read())
             {
 
-            
-            string fName = reader["firstName"].ToString();
-            string mName = reader["middleName"].ToString();
-            string lName = reader["lastName"].ToString();
-            string degree = reader["degree"].ToString();
-            string imgPath = reader["imgPath"].ToString();
-            DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
-            DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
-            bool administrator = Convert.ToBoolean(reader["administrator"]);
-            string email = reader["email"].ToString();
-            string summery = reader["summery"].ToString();
+
+                string fName = reader["firstName"].ToString();
+                string mName = reader["middleName"].ToString();
+                string lName = reader["lastName"].ToString();
+                string degree = reader["degree"].ToString();
+                string imgPath = reader["imgPath"].ToString();
+                DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
+                DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
+                bool administrator = Convert.ToBoolean(reader["administrator"]);
+                string email = reader["email"].ToString();
+                string summery = reader["summery"].ToString();
 
 
-            return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
+                return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
             }
             return null;
         }
         catch (Exception ex)
         {
-           // LogManager.Logerror("DBServices", "GetUserById(" + id + ")", ex.Message);
+            // LogManager.Logerror("DBServices", "GetUserById(" + id + ")", ex.Message);
             return null;
 
         }
@@ -156,7 +196,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-           // LogManager.Logerror("DBServices", "GetUserByEmail(" + email + ")", ex.Message);
+            // LogManager.Logerror("DBServices", "GetUserByEmail(" + email + ")", ex.Message);
             return null;
 
         }
@@ -192,7 +232,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-           // LogManager.Logerror("DBServices", "GetUserClusters(" + uId + ")", ex.Message);
+            // LogManager.Logerror("DBServices", "GetUserClusters(" + uId + ")", ex.Message);
             return null;
         }
         finally
@@ -228,7 +268,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-           // LogManager.Logerror("DBServices", "GetUserArticles(" + uId + ")", ex.Message);
+            // LogManager.Logerror("DBServices", "GetUserArticles(" + uId + ")", ex.Message);
             return null;
         }
         finally
@@ -365,7 +405,8 @@ public class DBServices
         {
             //LogManager.Logerror("DBServices", "GetClusterKeywords(" + cId+ ")", ex.Message);
             return null;
-        } finally
+        }
+        finally
         {
             cmd.Connection.Close();
         }
@@ -410,7 +451,8 @@ public class DBServices
         {
             //LogManager.Logerror("DBServices", "GetUserClusters(" + cId + ")", ex.Message);
             return null;
-        }finally
+        }
+        finally
         {
             cmd.Connection.Close();
         }
@@ -805,6 +847,6 @@ public class DBServices
         }
     }
 
-   
+
 
 }
