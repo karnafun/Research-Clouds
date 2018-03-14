@@ -1,7 +1,7 @@
 ﻿//---------------------------------------------------------------------------
 // 
 //---------------------------------------------------------------------------
-function GetUserByIdFromDb(request, successCB, failureCB) {
+function GetUserById(request, successCB, failureCB) {
 
     dataString = JSON.stringify(request);
     $.ajax({ // ajax call starts
