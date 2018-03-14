@@ -2,13 +2,11 @@
 
 $(document).ready(function () {
 
-    //Insert uId, Summery, and uImg
+    //Insert uId, Summery, and uImg, articles
     var request = { Id: "1" };
     GetUserById(request, UpdateUserInfo, errorCB);
 
-    //TODO:
-    //Insert Articles
-    
+    //TODO:    
     //Insert Affiliations
     //Insert Clusters
 })
@@ -39,6 +37,19 @@ function UpdateUserInfo(results) {
     });
 
     $("#articleList").html(resString);
+
+    resString = "";
+    $.each(results.Affiliations, function (index, value) {
+
+        /*
+        TODO:
+        Build an html li article using value (it has the users in it )
+        */
+        resString += " <li><a href='#'>" + value.Name + "</a>, " + value.Users[0].Name + "</li>";
+        resString += "<br>"; //to understand the raw results meanwhile
+    });
+
+    $("#affiliationsList").html(resString);
 }
 
 function UpdateUserArticles(results) {
@@ -49,6 +60,6 @@ function UpdateUserArticles(results) {
 }
 
 function errorCB(error) {
-    alert( "Error: " + error.responseText)
+    alert("Error: " + error.responseText);
 }
 

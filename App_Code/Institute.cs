@@ -13,20 +13,19 @@ public class Institute
     DBServices db;
     int id;
     string name;
+    string imgPath;
+    
     List<User> users;
 
 
     //Props
     public int Id { get { return id; } }
     public string Name { get { return name; } }
+    public string ImgPath { get { return imgPath; } }
     public List<User> Users
     {
         get
         {
-            //if (users==null)
-            //{
-            //    users = db.GetInstituteUsers(id);
-            //}
             return users;
         }
     }
@@ -68,5 +67,9 @@ public class Institute
         return info;
     }
 
+    public void FillObject()
+    {
+        users = db.GetInstituteUsers(id);
+    }
     
 }

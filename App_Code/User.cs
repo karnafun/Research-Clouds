@@ -55,17 +55,17 @@ public class User
     //    }
     //}
 
-    //public List<Institute> Affiliations
-    //{
-    //    get
-    //    {
-    //        if (affiliations == null)
-    //        {
-    //            affiliations = db.GetUserAffiliations(id);
-    //        }
-    //        return affiliations;
-    //    }
-    //}
+    public List<Institute> Affiliations
+    {
+        get
+        {
+            if (affiliations == null)
+            {
+                affiliations = db.GetUserAffiliations(id);
+            }
+            return affiliations;
+        }
+    }
 
     //Constructors:
     public User()
@@ -125,13 +125,6 @@ public class User
     }
 
 
-    //public List<Article> Articles (){
-
-    //    if (articles==null)
-    //    {
-    //        articles = db.GetUserArticles(id);
-    //    }
-    //    return articles;
-    //}
+  
     
 }

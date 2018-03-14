@@ -31,18 +31,18 @@ public class AjaxServices : System.Web.Services.WebService
     public string GetUserById(int Id)
     {
             User user = new User().GetUserById(Id);
-        //var txt =  user.Articles;
-        string v = "";
         try
-        {
-            
+        {            
             JavaScriptSerializer js = new JavaScriptSerializer();
-            //var verify = user.Articles[0].Users;
-            foreach (Article item in user.Articles) //Get users for each article
+            foreach (Article article in user.Articles) //Get users for each article
             {
-                item.FillObject();  
+                article.FillObject();  
             }
-            return js.Serialize(user);            
+            foreach (Institute institute in user.Affiliations)
+            {
+                institute.FillObject();
+            }
+            return js.Serialize(user);    
         }
         catch (Exception ex)
         {
