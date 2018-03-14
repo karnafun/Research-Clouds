@@ -18,27 +18,20 @@ public class Article
     public int Id { get { return id; } }
     public string Title { get { return title; } }
     public string Link { get { return link; } }
-    
+
 
     public List<User> Users
     {
         get
         {
-            if (users==null)
-            {
-                users = db.GetArticleUsers(id);
-            }
             return users;
         }
     }
+
     public List<Keyword> Keywords
     {
         get
         {
-            if (keywords==null)
-            {
-                keywords = db.GetArticleKeywords(id);
-            }
             return keywords;
         }
     }
@@ -78,4 +71,9 @@ public class Article
     }
 
     
+    public void FillObject()
+    {
+        users = db.GetArticleUsers(id);
+        keywords = db.GetArticleKeywords(id);
+    }
 }

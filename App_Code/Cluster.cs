@@ -25,10 +25,6 @@ public class Cluster
     public List<User> Users {
         get
         {
-            if (users==null)
-            {
-                users = db.GetClusterUsers(id);
-            }
                 return users;
         }
     }

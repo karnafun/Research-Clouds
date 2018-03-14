@@ -28,19 +28,26 @@ public class AjaxServices : System.Web.Services.WebService
     //--------------------------------------------------------------------------
     // Get the distance of the point for a specific group from the target point
     //--------------------------------------------------------------------------
-    public string GetUserById(int uId)
+    public string GetUserById(int Id)
     {
-            User user = new User().GetUserById(uId);
+            User user = new User().GetUserById(Id);
+        //var txt =  user.Articles;
+        string v = "";
         try
         {
             
             JavaScriptSerializer js = new JavaScriptSerializer();
+            //var verify = user.Articles[0].Users;
+            foreach (Article item in user.Articles) //Get users for each article
+            {
+                item.FillObject();  
+            }
             return js.Serialize(user);            
         }
         catch (Exception ex)
         {
             var t = 0;
-            return "";
+            return ex.ToString();
         }
     }
 

@@ -35,38 +35,37 @@ public class User
     {
         get
         {
-            if (articles==null)
+            if (articles == null)
             {
                 articles = db.GetUserArticles(id);
-               
             }
             return articles;
         }
     }
 
-    public List<Cluster> Clusters
-    {
-        get
-        {
-            if (clusters==null)
-            {
-                clusters = db.GetUserClusters(id);
-            }
-            return clusters;
-        }
-    }
+    //public List<Cluster> Clusters
+    //{
+    //    get
+    //    {
+    //        if (clusters == null)
+    //        {
+    //            clusters = db.GetUserClusters(id);
+    //        }
+    //        return clusters;
+    //    }
+    //}
 
-    public List<Institute> Affiliations
-    {
-        get
-        {
-            if (affiliations==null)
-            {
-                affiliations = db.GetUserAffiliations(id);
-            }
-            return affiliations;
-        }
-    }
+    //public List<Institute> Affiliations
+    //{
+    //    get
+    //    {
+    //        if (affiliations == null)
+    //        {
+    //            affiliations = db.GetUserAffiliations(id);
+    //        }
+    //        return affiliations;
+    //    }
+    //}
 
     //Constructors:
     public User()
@@ -126,5 +125,13 @@ public class User
     }
 
 
+    //public List<Article> Articles (){
 
+    //    if (articles==null)
+    //    {
+    //        articles = db.GetUserArticles(id);
+    //    }
+    //    return articles;
+    //}
+    
 }

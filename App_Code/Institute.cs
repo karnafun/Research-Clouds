@@ -23,10 +23,10 @@ public class Institute
     {
         get
         {
-            if (users==null)
-            {
-                users = db.GetInstituteUsers(id);
-            }
+            //if (users==null)
+            //{
+            //    users = db.GetInstituteUsers(id);
+            //}
             return users;
         }
     }
@@ -42,7 +42,7 @@ public class Institute
         db = new DBServices();
         this.id = id;
         this.name = name;
-        users = db.GetInstituteUsers(id);
+       
     }
 
 
