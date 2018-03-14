@@ -125,6 +125,16 @@ public class User
     }
 
 
-  
+  public void GetFullInfo()
+    {
+        foreach (Article article in Articles) //Get users for each article
+        {
+            article.GetFullInfo();
+        }
+        foreach (Institute institute in Affiliations)
+        {
+            institute.GetFullInfo();
+        }
+    }
     
 }

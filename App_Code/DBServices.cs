@@ -30,7 +30,7 @@ public class DBServices
     /// <returns>User if true, null if false</returns>
     public User Login(string email, string password)
     {
-        string cmdStr = "select * from users where email=@email and hash=@password";
+        string cmdStr = "select * from users where email=@email and uHash=@password";
         con = new SqlConnection(connectionString);
         cmd = new SqlCommand(cmdStr, con);
         cmd.Parameters.AddWithValue("@email", email);
@@ -69,7 +69,7 @@ public class DBServices
         }
         finally
         {
-            con.Close();
+            cmd.Connection.Close();
         }
     }
     /// <summary>

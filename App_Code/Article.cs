@@ -71,7 +71,7 @@ public class Article
     }
 
     
-    public void FillObject()
+    public void GetFullInfo()
     {
         users = db.GetArticleUsers(id);
         keywords = db.GetArticleKeywords(id);

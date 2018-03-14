@@ -1,14 +1,27 @@
 ﻿
+User = localStorage.getItem("User");
 
-$(document).ready(function () {
+      try {
+          User = JSON.parse(User);
+          var request = { Id: User.Id };
 
-    //Insert uId, Summery, and uImg, articles
-    var request = { Id: "1" };
-    GetUserById(request, UpdateUserInfo, errorCB);
+          //Insert uId, Summery, and uImg, articles
+          GetUserById(request, UpdateUserInfo, errorCB);
 
     //TODO:    
     //Insert Affiliations
     //Insert Clusters
+
+} catch (e) {
+          alert("No User");
+}
+
+
+
+
+$(document).ready(function () {
+    //Running before ready 
+  
 })
 
 
@@ -63,3 +76,7 @@ function errorCB(error) {
     alert("Error: " + error.responseText);
 }
 
+function Logout() {
+    localStorage.setItem('User', null);
+    window.location.replace("../html/LoginTesting.html");
+}

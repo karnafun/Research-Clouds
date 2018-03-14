@@ -67,7 +67,7 @@ public class Institute
         return info;
     }
 
-    public void FillObject()
+    public void GetFullInfo()
     {
         users = db.GetInstituteUsers(id);
     }

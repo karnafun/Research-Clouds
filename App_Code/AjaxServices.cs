@@ -31,17 +31,11 @@ public class AjaxServices : System.Web.Services.WebService
     public string GetUserById(int Id)
     {
             User user = new User().GetUserById(Id);
+        
         try
         {            
             JavaScriptSerializer js = new JavaScriptSerializer();
-            foreach (Article article in user.Articles) //Get users for each article
-            {
-                article.FillObject();  
-            }
-            foreach (Institute institute in user.Affiliations)
-            {
-                institute.FillObject();
-            }
+            user.GetFullInfo();
             return js.Serialize(user);    
         }
         catch (Exception ex)
@@ -51,4 +45,25 @@ public class AjaxServices : System.Web.Services.WebService
         }
     }
 
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // Get the distance of the point for a specific group from the target point
+    //--------------------------------------------------------------------------
+    public string Login(string email, string password)
+    {
+        User user = new User().Login(email, password);
+       
+        try
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            user.GetFullInfo();
+            return js.Serialize(user);
+        }
+        catch (Exception ex)
+        {
+
+            return null;
+        }
+    }
 }

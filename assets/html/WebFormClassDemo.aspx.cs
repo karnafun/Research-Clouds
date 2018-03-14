@@ -9,6 +9,8 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        User user = new User();
+        user = user.Login("emailaddress", "password");
+  
     }
 }

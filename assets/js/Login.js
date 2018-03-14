@@ -2,19 +2,30 @@
 
 
 function CheckCredentials() {
+    var t = $("#title");
     var request = {
-        email: $("#username").text,
-        password: $("#password").text
+        email: $("#username").val(),
+        password: $("#password").val()
     };
-
+    LoginAjax(request,Login,errorCB)
 
 }
 
 function Login(results) {
+    results = JSON.parse(results.d);
+    if (results!=null && results.Name!=null) {
+        localStorage.setItem('User', JSON.stringify(results))
+        window.location.replace("../html/Researcher-Profile.html");
 
+    } else {
+        // TODO: Implement login fail logic
+        alert("Failed");
+    }
+    
 }
 
-function erroCB(error) {
+function errorCB(error) {
     console.log(error);
     alert("Error:" + error.status);
 }
+
