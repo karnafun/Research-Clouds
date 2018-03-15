@@ -21,6 +21,9 @@ public class DBServices
         //
     }
 
+
+    #region Get Commands
+
     /// <summary>
     /// NOT IMPLEMENTED CURRECTLY - NOT USING HASH AND SALT!!
     /// Checkes if email and password combination exists in the database
@@ -847,6 +850,46 @@ public class DBServices
         }
     }
 
+    #endregion
 
+
+    public int CreateUser(User user)
+    {
+        con = new SqlConnection(connectionString);
+
+        string cmdStr = "insert into users values";
+        cmdStr += "(@firstName,@middleName,@lastName,@degree,@imgPath,@birthDate, @registrationDate,@administrator,@email,@uHash,";
+        cmdStr +="@uSALT,@summery)";
+        cmd = new SqlCommand(cmdStr, con);
+        cmd.Parameters.AddWithValue("@firstName", user.FirstName);
+        cmd.Parameters.AddWithValue("@middleName", user.MiddleName); //nullable
+        cmd.Parameters.AddWithValue("@lastName", user.LastName);
+        cmd.Parameters.AddWithValue("@degree", user.Degree);
+        cmd.Parameters.AddWithValue("@imgPath", user.ImgPath);
+        cmd.Parameters.AddWithValue("@birthDate", user.BirthDate); //nullable - but i wont allow
+        cmd.Parameters.AddWithValue("@registrationDate", user.RegistrationDate);
+        cmd.Parameters.AddWithValue("@administrator", user.IsAdmin);
+        cmd.Parameters.AddWithValue("@email", user.Email);
+        cmd.Parameters.AddWithValue("@uHash", user.Hash); //nullable - but i wont allow
+        cmd.Parameters.AddWithValue("@uSALT", user.Salt); //nullable - but i wont allow
+        cmd.Parameters.AddWithValue("@summery", user.Summery);
+       
+       
+        try
+        {
+            cmd.Connection.Open();
+            int res = cmd.ExecuteNonQuery();
+            return res;
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
 
 }

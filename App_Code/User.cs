@@ -23,13 +23,19 @@ public class User
 
     //Properties:
     public int Id { get { return id; } }
+    public string FirstName { get{ return fName; } }
+    public string MiddleName { get { return mName; } }
+    public string LastName { get { return lName; } }
     public string Name { get { return string.Format("{0} {1} {2}", fName, mName, lName); } }
     public string ImgPath { get { return imgPath; } }
+    public string Degree { get { return degree; } }
     public bool IsAdmin { get { return administrator; } }
     public string Email { get { return email; } }
     public string Summery { get { return summery; } }
-    public DateTime BirthDate { get { return bdate; } }
-    public DateTime RegistrationDate { get { return registrationDate; } }
+    public DateTime BirthDate { get { return bdate; } set { bdate = value; } }
+    public DateTime RegistrationDate { get { return registrationDate; } set { registrationDate= value; } }
+    public string Hash { get { return hash; } }
+    public string Salt { get { return salt; } }
 
     public List<Article> Articles
     {
@@ -72,7 +78,9 @@ public class User
     {
         db = new DBServices();
     }
-    public User(int id, string fName, string mName, string lName, string imgPath, string degree, string email, string summery, bool administrator)
+    public User(int id, string fName, string mName, string lName, string imgPath, string degree,
+        string email, string summery, bool administrator,
+        string hash=null, string salt=null)
     {
         db = new DBServices();
         this.id = id;
@@ -84,8 +92,10 @@ public class User
         this.email = email;
         this.summery = summery;
         this.administrator = administrator;
-
+        this.hash = hash;
+        this.salt = salt;
     }
+   
 
 
     //Methods:

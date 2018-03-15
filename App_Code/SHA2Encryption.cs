@@ -14,10 +14,10 @@ public static class SHA2
     
 
 
-    public static string GenerateSHA256String(string inputString)
+    public static string GenerateSHA256String(string password,string salt)
     {
         SHA256 sha256 = SHA256Managed.Create();
-        byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+        byte[] bytes = Encoding.UTF8.GetBytes(salt+password);
         byte[] hash = sha256.ComputeHash(bytes);
         return GetStringFromHash(hash);
         
@@ -34,10 +34,9 @@ public static class SHA2
     }
 
 
-    public static string CustomSALTGenerator()
+    public static string GenerateSALT()
     {
         //TODO: check that salt doesnt exist in the database
-
         Random rand = new Random();
         string salt = rand.Next().ToString("X")+rand.Next().ToString("X");
         return salt;
