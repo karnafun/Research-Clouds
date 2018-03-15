@@ -43,17 +43,17 @@ public class User
         }
     }
 
-    //public List<Cluster> Clusters
-    //{
-    //    get
-    //    {
-    //        if (clusters == null)
-    //        {
-    //            clusters = db.GetUserClusters(id);
-    //        }
-    //        return clusters;
-    //    }
-    //}
+    public List<Cluster> Clusters
+    {
+        get
+        {
+            if (clusters == null)
+            {
+                clusters = db.GetUserClusters(id);
+            }
+            return clusters;
+        }
+    }
 
     public List<Institute> Affiliations
     {

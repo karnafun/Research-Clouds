@@ -1,7 +1,8 @@
 ﻿
-User = localStorage.getItem("User");
 
-      try {
+
+try {
+    User = localStorage.getItem("User");
           User = JSON.parse(User);
           var request = { Id: User.Id };
 
@@ -34,6 +35,7 @@ function UpdateUserInfo(results) {
     uId, uSummery, uImg
     */
     results = JSON.parse(results.d);
+    User = results;
     $("#uId").text(results.Name);
     $("#uImg").attr("src", results.ImgPath);
     $("#uSummery").text(results.Summery);
@@ -61,8 +63,19 @@ function UpdateUserInfo(results) {
         resString += " <li><a href='#'>" + value.Name + "</a>, " + value.Users[0].Name + "</li>";
         resString += "<br>"; //to understand the raw results meanwhile
     });
-
+  
     $("#affiliationsList").html(resString);
+   
+    resString = "";
+    $.each(results.Clusters, function (index, value) {
+
+        /*
+        TODO: Build cluster buttons based on value info
+            
+        */
+        resString += '<span class="btn russian" id="uCluster'+(index+1)+'">'+value.Name+'</span>'
+    });
+    $("#clusters").html(resString);
 }
 
 function UpdateUserArticles(results) {
