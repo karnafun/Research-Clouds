@@ -67,7 +67,7 @@ public static class LogManager
         catch (Exception)
         {
             
-            throw;
+            throw new SystemException();
         }
     }
 }

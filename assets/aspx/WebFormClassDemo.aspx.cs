@@ -12,7 +12,14 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
         var hash = SHA2.GenerateSHA256String("hazan123", "66C26C8D58996B8F");
 
     }
+    private void LoadUserToTable(User user)
+    {
 
+    }
+    private void UpdateCommand()
+    {
+
+    }
     private void HowInsertUserWorks()
     {
         User user = new User(0, "dor", "test", "danai", @"https://goo.gl/GMts4T", "El Doctore", "Pizdaput@gmail.hotdog", "you cannot sum me !", true);
@@ -35,5 +42,6 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
         res += "hazan: " + hazan + "\r\n";
         res += "ronaldo: " + ronaldo + "\r\n";
         res += "bale: " + bale + "\r\n";
+        Response.Write(res);
     }
 }
