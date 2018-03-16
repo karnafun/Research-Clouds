@@ -39,52 +39,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="../css/MainStyle.css" rel="stylesheet" />
     <style type="text/css">
 
 
-        .BBg {
-            background-color: #F8FCF7;
-        }
-
-        .russian {
-            background-color: #37956f;
-        }
-
-        .aColor {
-            color: lightgray;
-        }
-
-        hr {
-            width: 80%;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Fjalla One', sans-serif;
-            display: table;
-        }
-
-        .col-lg-6 h3 {
-            text-align: center;
-        }
-
-        p {
-            font-family: 'Nunito', sans-serif;
-        }
-
-        button {
-            float: right;
-        }
-
-        li {
-            margin-left: 13px;
-        }
-
-        .btn:hover {
-            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-        }
 
         .Cedit {
-            cursor:pointer;
+            cursor: pointer;
             display: inline;
             opacity: 0.8;
             float: right;
@@ -97,9 +58,26 @@
             top: 90px;
         }
 
-        /*#uID {
+        .CeditCheck {
+            cursor: pointer;
+            position: relative;
+            left: 60px;
+            top: 90px;
+            display:none;
+        }
+
+        .CeditBack {
+            cursor: pointer;
+            position: relative;
+            left: 60px;
+            top: 90px;
+            display: none;
+        }
+
+
+            #uID {
             display: table;
-        }*/
+        }
 
 
 
@@ -114,8 +92,6 @@
             display: none;
             width: 280px;
         }
-
-
     </style>
 
 
@@ -154,7 +130,7 @@
             <center id="1stCenter">
                 <img src="../img/avatar.jpg" name="aboutme" width="140" height="140" border="0" class="img-circle">
                 <span class="fa fa-edit Cedit1 "></span>
-                <h3 class="media-heading" id="uID">Dor Danai  <small>USA </small></h3>
+                <h3 class="media-heading" id="uID">Dor Danai<small>USA </small></h3>
                 <input type="text" value="Click The Pencil Icon to Edit Me" />
                 <span class="btn russian col-xs-6">big data</span>
                 <span class="btn russian col-xs-6">social media </span>
@@ -238,7 +214,7 @@
 
 
     <footer class="footer russian">
-        <div class="container">
+        <div contenteditable="true" class="container">
             <center>
                 <span class="text-white">
                     &copy; Karnafun & Friends
@@ -249,10 +225,11 @@
 
     <script>
         $(document).ready(function () {
-
-            $('.Cedit1').click(function () {
+                        $('.Cedit1').click(function () {
                 $(this).hide();
-                $(this).next().hide();
+                $(this).next().hide();//hides #uID
+                $(".CeditCheck").show().attr("style", "display: block !important;");
+                $(".CeditBack").show().attr("style", "display: block !important;");
                 $(this).next().next().show().attr("style", "display: block !important;");
                 $(this).next().next().select();
             });
@@ -265,7 +242,11 @@
                 else {
                     $(this).prev().html(this.value);
                 }
-
+                $(this).attr("style", "display: none");
+                $(".CeditCheck").show().attr("style", "display: none");
+                $(".CeditBack").show().attr("style", "display: none");
+                $(".CeditBack").hide();
+                $(".CeditCheck").hide();
                 $(this).hide();
                 $(this).prev().show();
                 $(this).prev().prev().show();
@@ -286,9 +267,15 @@
                 }
             });
 
+
+
+
+
         });
+       
     </script>
 
 
 </body>
 </html>
+

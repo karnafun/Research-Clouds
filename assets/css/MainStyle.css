@@ -1,0 +1,39 @@
+﻿.BBg {
+	background-color: #F8FCF7;
+}
+
+.russian {
+	background-color: #37956f;
+}
+.aColor {
+	color: lightgray;
+}
+
+hr {
+	width: 80%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Fjalla One', sans-serif;
+	display: table;
+}
+
+.col-lg-6 h3 {
+	text-align: center;
+}
+
+p {
+	font-family: 'Nunito', sans-serif;
+}
+
+button {
+	float: right;
+}
+
+li {
+	margin-left: 13px;
+}
+
+.btn:hover {
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
