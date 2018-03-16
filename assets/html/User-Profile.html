@@ -63,7 +63,7 @@
             position: relative;
             left: 60px;
             top: 90px;
-            display:none;
+            display: none;
         }
 
         .CeditBack {
@@ -75,7 +75,7 @@
         }
 
 
-            #uID {
+        #uID {
             display: table;
         }
 
@@ -124,7 +124,7 @@
     </nav>
 
     <!--------------------------------------------------------Profile Details------------------------------------------------->
-    
+
     <div class="container" style="margin-top:23px">
         <div class="section BBg">
             <center id="1stCenter">
@@ -144,8 +144,10 @@
                 </p>
             </div>
             <hr>
+
+            <!----------------------------------------------------------Summary----------------------------------------------->
+
             <center>
-                <!----------------------------------------------------------Summary----------------------------------------------->
                 <h3>Summary</h3>
                 <div class="jumbotron">
                     <span class="fa fa-edit Cedit "></span>
@@ -154,11 +156,12 @@
                         <br />
                         Cannabis legalization activist - weed is the shit
                     </p>
+
                     <small>by <cite>Ilya kolker</cite></small>
                 </div>
-                </center>
+            </center>
 
-                <!----------------------------------------------------------Articles----------------------------------------------->
+            <!----------------------------------------------------------Articles----------------------------------------------->
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                     <h3>Articles</h3>
@@ -195,7 +198,7 @@
                 <div class="col-lg-6 col-md-12">
                     <h3>Affiliations</h3>
                     <div class="jumbotron">
-                        <span class="fa fa-edit Cedit "></span>                        
+                        <span class="fa fa-edit Cedit "></span>
                         <ul class="list-unstyled text-left">
                             <li class="media">
                                 <img class="d-flex mr-3" src="../img/bg3.jpg" alt="Generic placeholder image" height="64" width="64">
@@ -225,7 +228,7 @@
 
     <script>
         $(document).ready(function () {
-                        $('.Cedit1').click(function () {
+            $('.Cedit1').click(function () {
                 $(this).hide();
                 $(this).next().hide();//hides #uID
                 $(".CeditCheck").show().attr("style", "display: block !important;");
@@ -272,7 +275,7 @@
 
 
         });
-       
+
     </script>
 
 
