@@ -6,13 +6,11 @@ using System.Web;
 /// <summary>
 /// Summary description for Users
 /// </summary>
-public class User
+public class User :RCEntity
 {
 
 
     //Fields:
-    DBServices db;
-    int id;
     string fName, mName, lName;
     string imgPath, degree, hash, salt, email, summery;
     string password; //Not in the constructor, only for creating users
@@ -22,8 +20,7 @@ public class User
     List<Institute> affiliations;
     List<Cluster> clusters;
 
-    //Properties:
-    public int Id { get { return id; } }
+    //Properties:    
     public string FirstName { get { return fName; } set { fName = value; } }
     public string MiddleName { get { return mName; } set { mName = value; } }
     public string LastName { get { return lName; } set { lName = value; } }
@@ -168,6 +165,15 @@ public class User
             registrationDate = DateTime.Now;
         }
         return db.UpdateUser(this);
+    }
+    public int RemoveUserFromDatabase()
+    {
+        if (id<0)
+        {
+            LogManager.Report("tried to delete a user with invalid id",this);
+            return -1;
+        }
+        return db.RemoveEntity(this);
     }
 
 

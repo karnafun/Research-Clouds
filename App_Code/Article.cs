@@ -6,17 +6,16 @@ using System.Web;
 /// <summary>
 /// Summary description for Article
 /// </summary>
-public class Article
+public class Article : RCEntity
 {
     //Fields
-    DBServices db;
-    int id;
+    //DBServices db;
+    //int id;
     string title, link;
     List<User> users;
     List<Keyword> keywords;
 
     //Properties
-    public int Id { get { return id; } }
     public string Title { get { return title; } set { title = value; } }
     public string Link { get { return link; } set { link = value; } }
     public List<User> Users { get { return users; } }
@@ -77,5 +76,13 @@ public class Article
         }
         return db.UpdateArticle(this);
     }
-
+    public int DeleteArticleFromDatabase()
+    {
+        if (id < 0)
+        {
+            LogManager.Report("tried to delete an article with invalid id", this);
+            return -1;
+        }
+        return db.RemoveEntity(this);
+    }
 }

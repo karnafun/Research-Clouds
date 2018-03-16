@@ -6,18 +6,15 @@ using System.Web;
 /// <summary>
 /// Summary description for Institute
 /// </summary>
-public class Institute
+public class Institute :RCEntity
 {
 
     //Fields
-    DBServices db;
-    int id;
     string name;
     string imgPath;
     List<User> users;
 
     //Properties
-    public int Id { get { return id; } }
     public string Name { get { return name; } set { name = value; } }
     public string ImgPath { get { return imgPath; } set { imgPath = value; } }
     public List<User> Users { get { return users; } }
@@ -79,6 +76,14 @@ public class Institute
         }
         return db.UpdateInstitute(this);
     }
-
+    public int DeleteInstituteFromDatabase()
+    {
+        if (id < 0)
+        {
+            LogManager.Report("tried to delete an institute with invalid id", this);
+            return -1;
+        }
+        return db.RemoveEntity(this);
+    }
 
 }

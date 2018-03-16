@@ -11,7 +11,7 @@ using System.Web.Configuration;
 /// Summary description for DBServices
 /// </summary>
 public class DBServices
-{
+{    
     string connectionString = WebConfigurationManager.ConnectionStrings["Test1DB"].ConnectionString;
     SqlCommand cmd;
     SqlConnection con;
@@ -940,11 +940,37 @@ public class DBServices
     #endregion
 
     #region Remove Methods
-    public int RemoveUser(int id)
+    public int RemoveEntity(RCEntity entity)
     {
-        cmd = new SqlCommand("p_removeUser", con);
+        
+        string cmdStr = "";
+        if (entity is User)
+        {
+            cmdStr = "p_deleteUser";
+        }
+        else if (entity is Article)
+        {
+            cmdStr = "p_deleteArticle";
+        }
+        else if (entity is Cluster)
+        {
+            cmdStr = "p_deleteCluster";
+        }
+        else if (entity is Institute)
+        {
+            cmdStr = "p_deleteInstitute";
+        }
+        else if (entity is Keyword)
+        {
+            cmdStr = "p_deleteKeyword";
+        }else
+        {
+            LogManager.Report("trying to remove an unknown RCEntity", entity);
+            return -1;
+        }
+        cmd = new SqlCommand(cmdStr, con);
         cmd.CommandType = CommandType.StoredProcedure;
-        cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+        cmd.Parameters.Add("@id", SqlDbType.Int).Value = entity.Id;
         try
         {
             cmd.Connection.Open();
@@ -952,13 +978,15 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            LogManager.Report(ex, id);
+            LogManager.Report(ex, entity);
             return -1;
-        } finally
+        }
+        finally
         {
             cmd.Connection.Close();
         }
     }
+    
     #endregion
 
     #region Utility Methods

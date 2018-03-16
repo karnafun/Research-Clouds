@@ -6,17 +6,14 @@ using System.Web;
 /// <summary>
 /// Summary description for Keywords
 /// </summary>
-public class Keyword
+public class Keyword :RCEntity
 {
     //Fields:
-    DBServices db;
-    int id;
     string phrase;
     List<Cluster> clusters;
     List<Article> articles;
 
     //Properties:
-    public int Id { get { return id; } }
     public string Phrase { get { return phrase; }  set { phrase = value; } }
     public List<Cluster> Clusters { get { return clusters; } }
     public List<Article> Articles { get { return articles; } }
@@ -77,5 +74,13 @@ public class Keyword
         }
         return db.UpdateKeyword(this);
     }
-    
+    public int DeleteKeywordFromDatabase()
+    {
+        if (id < 0)
+        {
+            LogManager.Report("tried to delete a keyword with invalid id", this);
+            return -1;
+        }
+        return db.RemoveEntity(this);
+    }
 }

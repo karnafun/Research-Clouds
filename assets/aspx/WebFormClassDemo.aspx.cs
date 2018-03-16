@@ -11,7 +11,7 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.Write( new DBServices().RemoveUser(1));
+
     }
 
     //user demo
@@ -29,7 +29,12 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
         user.MiddleName = "";
         int effected = user.UpdateUserInDatabase();
     }
-
+    private void DeleteUserDemo()
+    {
+        User user = new User().GetUserById(1);
+        int effected = user.RemoveUserFromDatabase();
+        Response.Write(effected);
+    }
     //article demo
     private void InsertArticleDemo()
     {
@@ -45,7 +50,13 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
         Response.Write(effected);
 
     }
+    private void DeleteArticleDemo()
+    {
+        Article article = new Article().GetAllArticles()[0];
+        int effected = article.DeleteArticleFromDatabase();
+        Response.Write(effected);
 
+    }
     //cluster demo
     private void InsertClusterDemo()
     {
@@ -60,7 +71,12 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
         int effected = cluster.UpdateClusterInDatabase();
         Response.Write(effected);
     }
-
+    private void DeleteClusterDemo()
+    {
+        Cluster cluster = new Cluster().GetAllClusters()[0];
+        int effected = cluster.DeleteClusterFromDatabase();
+        Response.Write(effected);
+    }
     //institute demo
     private void InsertInstituteDemo()
     {
@@ -76,7 +92,12 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
         int effected = institute.UpdateInstituteInDatabase();
         Response.Write(effected);
     }
-
+    private void DeleteInstituteDemo()
+    {
+        Institute institute = new Institute().GetAllInstitutes()[0];
+        int effected = institute.DeleteInstituteFromDatabase();
+        Response.Write(effected);
+    }
     //keyword demo
     private void InsertKeywordDemo()
     {
@@ -91,7 +112,12 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
         int effected = keyword.UpdateKeywordInDatabase();
         Response.Write(effected);
     }
-
+    private void DeleteKeywordDemo()
+    {
+        Keyword keyword = new Keyword().GetAllKeywords()[0];
+        int effected = keyword.DeleteKeywordFromDatabase();
+        Response.Write(effected);
+    }
     //Encryption demo
     private void GenerateHashDemo()
     {

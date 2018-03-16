@@ -6,19 +6,16 @@ using System.Web;
 /// <summary>
 /// Summary description for Cluster
 /// </summary>
-public class Cluster
+public class Cluster : RCEntity
 {
 
 
-    //Fields:
-    DBServices db;
-    int id;
+    //Fields:    
     string name;
     List<Keyword> keywords;
     List<User> users;
 
-    //Properties:
-    public int Id { get { return id; } }
+    //Properties:    
     public string Name { get { return name; } set { name = value; } }
     public List<User> Users { get { return users; } }
     public List<Keyword> Keywords { get { return keywords; } }
@@ -71,6 +68,14 @@ public class Cluster
         }
         return db.UpdateCluster(this);
     }
-
+    public int DeleteClusterFromDatabase()
+    {
+        if (id < 0)
+        {
+            LogManager.Report("tried to delete a cluster with invalid id", this);
+            return -1;
+        }
+        return db.RemoveEntity(this);
+    }
 
 }
