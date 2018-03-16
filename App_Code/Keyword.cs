@@ -17,7 +17,7 @@ public class Keyword
 
     //Properties:
     public int Id { get { return id; } }
-    public string Phrase { get { return phrase; } }
+    public string Phrase { get { return phrase; }  set { phrase = value; } }
     public List<Cluster> Clusters { get { return clusters; } }
     public List<Article> Articles { get { return articles; } }
 
@@ -70,7 +70,7 @@ public class Keyword
     }
     public int UpdateKeywordInDatabase()
     {
-        if (id>0)
+        if (id<0)
         {
             LogManager.Report("tried to update a keyword with invalid id", this);
             return -1;

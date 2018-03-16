@@ -1046,7 +1046,7 @@ public class DBServices
         {
             cmdStr.Append(" update articles set ");
             cmdStr.Append("title = @title,");
-            cmdStr.Append("aLink= @link,");           
+            cmdStr.Append("aLink= @link");           
             cmdStr.Append(" where aId = @id ");
         }
         _cmd = new SqlCommand(cmdStr.ToString(), con);
@@ -1068,7 +1068,7 @@ public class DBServices
         else
         {
             cmdStr.Append(" update Clusters set ");
-            cmdStr.Append("cName = @name,");
+            cmdStr.Append("cName = @name");
             cmdStr.Append(" where cId = @id ");
         }
         _cmd = new SqlCommand(cmdStr.ToString(), con);
@@ -1090,7 +1090,7 @@ public class DBServices
         else
         {
             cmdStr.Append(" update AcademicInstitutes set ");
-            cmdStr.Append("iName = @name,");
+            cmdStr.Append("iName = @name ");
             cmdStr.Append(" where iId = @id ");
         }
         _cmd = new SqlCommand(cmdStr.ToString(), con);
@@ -1111,8 +1111,8 @@ public class DBServices
         }
         else
         {
-            cmdStr.Append(" update AcademicInstitutes set ");
-            cmdStr.Append("phrase = @phrase,");
+            cmdStr.Append(" update Keywords set ");
+            cmdStr.Append("phrase = @phrase ");
             cmdStr.Append(" where kId = @id ");
         }
         _cmd = new SqlCommand(cmdStr.ToString(), con);

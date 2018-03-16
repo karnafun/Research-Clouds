@@ -19,7 +19,7 @@ public class Cluster
 
     //Properties:
     public int Id { get { return id; } }
-    public string Name { get { return name; } }
+    public string Name { get { return name; } set { name = value; } }
     public List<User> Users { get { return users; } }
     public List<Keyword> Keywords { get { return keywords; } }
     

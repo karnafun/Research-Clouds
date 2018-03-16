@@ -17,8 +17,8 @@ public class Article
 
     //Properties
     public int Id { get { return id; } }
-    public string Title { get { return title; } }
-    public string Link { get { return link; } }
+    public string Title { get { return title; } set { title = value; } }
+    public string Link { get { return link; } set { link = value; } }
     public List<User> Users { get { return users; } }
     public List<Keyword> Keywords { get { return keywords; } }
 

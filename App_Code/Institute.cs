@@ -18,8 +18,8 @@ public class Institute
 
     //Properties
     public int Id { get { return id; } }
-    public string Name { get { return name; } }
-    public string ImgPath { get { return imgPath; } }
+    public string Name { get { return name; } set { name = value; } }
+    public string ImgPath { get { return imgPath; } set { imgPath = value; } }
     public List<User> Users { get { return users; } }
 
     //Constructors
