@@ -76,4 +76,13 @@ public class Article
         users = db.GetArticleUsers(id);
         keywords = db.GetArticleKeywords(id);
     }
+
+    public int InsertArticleToDatabase()
+    {
+        if (id>0) //it means you tried to insert an article with a valid id ! you CANNOT choose the id yourself
+        {
+            //LogManager.Report()
+        }
+        return db.InsertArticle(this);
+    }
 }

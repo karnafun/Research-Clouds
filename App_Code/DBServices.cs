@@ -25,11 +25,10 @@ public class DBServices
     #region Get Commands
 
     /// <summary>
-    /// NOT IMPLEMENTED CURRECTLY - NOT USING HASH AND SALT!!
-    /// Checkes if email and password combination exists in the database
+    /// Validates users credentials based on email and password
     /// </summary>
-    /// <param name="email">the email address for login</param>
-    /// <param name="hash">the password for login</param>
+    /// <param name="email">Users login string, usually the email address</param>
+    /// <param name="password">Users password</param>
     /// <returns>User if true, null if false</returns>
     public User Login(string email, string password)
     {
@@ -904,6 +903,7 @@ public class DBServices
     public int InsertArticle(Article article)
     {
         string cmdStr = "insert into Articles values (@title,@link)";
+        con = new SqlConnection(connectionString);
         cmd = new SqlCommand(cmdStr, con);
         cmd.Parameters.AddWithValue("@title", article.Title);
         cmd.Parameters.AddWithValue("@link", article.Link);

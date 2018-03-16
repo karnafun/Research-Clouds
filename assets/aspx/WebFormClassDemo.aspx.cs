@@ -9,17 +9,12 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        var hash = SHA2.GenerateSHA256String("hazan123", "66C26C8D58996B8F");
-
+        LogManager.Report("test");
+        //var hash = SHA2.GenerateSHA256String("hazan123", "66C26C8D58996B8F");
+        Article article = new Article(-1,"Testing Article","None");
+        new DBServices().InsertArticle(article);
     }
-    private void LoadUserToTable(User user)
-    {
-
-    }
-    private void UpdateCommand()
-    {
-
-    }
+    
     private void HowInsertUserWorks()
     {
         User user = new User(0, "dor", "test", "danai", @"https://goo.gl/GMts4T", "El Doctore", "Pizdaput@gmail.hotdog", "you cannot sum me !", true);
