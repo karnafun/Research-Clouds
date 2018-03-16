@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Configuration;
 
@@ -16,20 +17,16 @@ public class DBServices
     SqlDataReader reader;
     public DBServices()
     {
-        //
-        // TODO: Add constructor logic here
-        //
+        con = new SqlConnection(connectionString);
     }
-
 
     #region Get Commands
 
     /// <summary>
-    /// NOT IMPLEMENTED CURRECTLY - NOT USING HASH AND SALT!!
-    /// Checkes if email and password combination exists in the database
+    /// Validates users credentials based on email and password
     /// </summary>
-    /// <param name="email">the email address for login</param>
-    /// <param name="hash">the password for login</param>
+    /// <param name="email">Users login string, usually the email address</param>
+    /// <param name="password">Users password</param>
     /// <returns>User if true, null if false</returns>
     public User Login(string email, string password)
     {
@@ -47,28 +44,14 @@ public class DBServices
             while (reader.Read())
             {
                 string hash = SHA2.GenerateSHA256String(password, reader["uSALT"].ToString());
-                if (hash!=reader["uHash"].ToString())
+                if (hash != reader["uHash"].ToString())
                 {
                     continue;
                 }
                 else
                 {
-                    string fName = reader["firstName"].ToString();
-                    string mName = reader["middleName"].ToString();
-                    string lName = reader["lastName"].ToString();
-                    string degree = reader["degree"].ToString();
-                    string imgPath = reader["imgPath"].ToString();
-                    DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
-                    DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
-                    bool administrator = Convert.ToBoolean(reader["administrator"]);
-                    int id = (int)reader["uId"];
-                    string summery = reader["summery"].ToString();
-
-
-                    return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
+                    return CurrentLineUser(reader);
                 }
-
-              
             }
             return null;
         }
@@ -100,20 +83,7 @@ public class DBServices
             List<User> users = new List<User>();
             while (reader.Read())
             {
-                int id = (int)reader["uId"];
-                string fName = reader["firstName"].ToString();
-                string mName = reader["middleName"].ToString();
-                string lName = reader["lastName"].ToString();
-                string degree = reader["degree"].ToString();
-                string imgPath = reader["imgPath"].ToString();
-                DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
-                DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
-                bool administrator = Convert.ToBoolean(reader["administrator"]);
-                string email = reader["email"].ToString();
-                string summery = reader["summery"].ToString();
-
-
-                users.Add(new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator));
+                users.Add(CurrentLineUser(reader));
             }
             return users;
         }
@@ -145,21 +115,7 @@ public class DBServices
 
             while (reader.Read())
             {
-
-
-                string fName = reader["firstName"].ToString();
-                string mName = reader["middleName"].ToString();
-                string lName = reader["lastName"].ToString();
-                string degree = reader["degree"].ToString();
-                string imgPath = reader["imgPath"].ToString();
-                DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
-                DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
-                bool administrator = Convert.ToBoolean(reader["administrator"]);
-                string email = reader["email"].ToString();
-                string summery = reader["summery"].ToString();
-
-
-                return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
+                return CurrentLineUser(reader);
             }
             return null;
         }
@@ -191,17 +147,7 @@ public class DBServices
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                int id = (int)reader["uId"];
-                string fName = reader["firstName"].ToString();
-                string mName = reader["middleName"].ToString();
-                string lName = reader["lastName"].ToString();
-                string degree = reader["degree"].ToString();
-                string imgPath = reader["imgPath"].ToString();
-                DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
-                DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
-                bool administrator = Convert.ToBoolean(reader["administrator"]);
-                string summery = reader["summery"].ToString();
-                return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
+                return CurrentLineUser(reader);
             }
             return null;
         }
@@ -440,20 +386,7 @@ public class DBServices
             List<User> users = new List<User>();
             while (reader.Read())
             {
-                int id = (int)reader["uId"];
-                string fName = reader["firstName"].ToString();
-                string mName = reader["middleName"].ToString();
-                string lName = reader["lastName"].ToString();
-                string degree = reader["degree"].ToString();
-                string imgPath = reader["imgPath"].ToString();
-                DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
-                DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
-                bool administrator = Convert.ToBoolean(reader["administrator"]);
-                string email = reader["email"].ToString();
-                string summery = reader["summery"].ToString();
-
-
-                users.Add(new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator));
+                users.Add(CurrentLineUser(reader));
             }
             return users;
 
@@ -553,20 +486,7 @@ public class DBServices
             List<User> users = new List<User>();
             while (reader.Read())
             {
-                int id = (int)reader["uId"];
-                string fName = reader["firstName"].ToString();
-                string mName = reader["middleName"].ToString();
-                string lName = reader["lastName"].ToString();
-                string degree = reader["degree"].ToString();
-                string imgPath = reader["imgPath"].ToString();
-                DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
-                DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
-                bool administrator = Convert.ToBoolean(reader["administrator"]);
-                string email = reader["email"].ToString();
-                string summery = reader["summery"].ToString();
-
-
-                users.Add(new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator));
+                users.Add(CurrentLineUser(reader));
             }
             return users;
         }
@@ -865,25 +785,7 @@ public class DBServices
     public int InsertUser(User user)
     {
         con = new SqlConnection(connectionString);
-
-        string cmdStr = "insert into users values";
-        cmdStr += "(@firstName,@middleName,@lastName,@degree,@imgPath,@birthDate, @registrationDate,@administrator,@email,@uHash,";
-        cmdStr += "@uSALT,@summery)";
-        cmd = new SqlCommand(cmdStr, con);
-        cmd.Parameters.AddWithValue("@firstName", user.FirstName);
-        cmd.Parameters.AddWithValue("@middleName", user.MiddleName); //nullable
-        cmd.Parameters.AddWithValue("@lastName", user.LastName);
-        cmd.Parameters.AddWithValue("@degree", user.Degree);
-        cmd.Parameters.AddWithValue("@imgPath", user.ImgPath);
-        cmd.Parameters.AddWithValue("@birthDate", user.BirthDate); //nullable - but i wont allow
-        cmd.Parameters.AddWithValue("@registrationDate", user.RegistrationDate);
-        cmd.Parameters.AddWithValue("@administrator", user.IsAdmin);
-        cmd.Parameters.AddWithValue("@email", user.Email);
-        cmd.Parameters.AddWithValue("@uHash", user.Hash); //nullable - but i wont allow
-        cmd.Parameters.AddWithValue("@uSALT", user.Salt); //nullable - but i wont allow
-        cmd.Parameters.AddWithValue("@summery", user.Summery);
-
-
+        cmd = UserCommand(user, true);
         try
         {
             cmd.Connection.Open();
@@ -900,10 +802,10 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
-
     public int InsertArticle(Article article)
     {
         string cmdStr = "insert into Articles values (@title,@link)";
+        con = new SqlConnection(connectionString);
         cmd = new SqlCommand(cmdStr, con);
         cmd.Parameters.AddWithValue("@title", article.Title);
         cmd.Parameters.AddWithValue("@link", article.Link);
@@ -916,10 +818,103 @@ public class DBServices
         {
             LogManager.Report(ex);
             return -1;
-        }finally
+        }
+        finally
         {
             cmd.Connection.Close();
         }
+    }
+    #endregion
+
+
+    #region Update Methods
+    public int UpdateUser(User user)
+    {
+        cmd = UserCommand(user, false);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+
+    }
+    #endregion
+
+
+    #region Utility Methods
+    private User CurrentLineUser(SqlDataReader reader)
+    {
+        int id = (int)reader["uId"];
+        string fName = reader["firstName"].ToString();
+        string mName = reader["middleName"].ToString();
+        string lName = reader["lastName"].ToString();
+        string degree = reader["degree"].ToString();
+        string imgPath = reader["imgPath"].ToString();
+        DateTime birthDate = reader["birthDate"] != null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
+        DateTime registrationDate = reader["registrationDate"] != null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
+        bool administrator = Convert.ToBoolean(reader["administrator"]);
+        string email = reader["email"].ToString();
+        string summery = reader["summery"].ToString();
+        var t = (DateTime)reader["birthDate"];
+        return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
+    }
+    private SqlCommand UserCommand(User user, bool isNewUser)
+    {
+        SqlCommand _cmd = new SqlCommand();
+        StringBuilder cmdStr = new StringBuilder();
+
+        if (isNewUser)
+        {
+            cmdStr.Append("insert into users values");
+            cmdStr.Append("(@firstName,@middleName,@lastName,@degree,@imgPath,@birthDate, @registrationDate,");
+            cmdStr.Append("@administrator,@email,@uHash,@uSALT,@summery)");
+        }
+        else
+        {
+            cmdStr.Append(" update users set ");
+            cmdStr.Append("firstName = @firstName,");
+            cmdStr.Append("middleName = @middleName,");
+            cmdStr.Append("lastName = @lastName,");
+            cmdStr.Append("degree = @degree,");
+            cmdStr.Append("imgPath = @imgPath,");
+            cmdStr.Append("birthDate = @birthDate,");
+            cmdStr.Append("registrationDate = @registrationDate, ");
+            cmdStr.Append("administrator = @administrator,");
+            cmdStr.Append("email = @email,");
+            cmdStr.Append("summery = @summery ");
+            cmdStr.Append(" where uId = @id ");
+        }
+        _cmd = new SqlCommand(cmdStr.ToString(), con);
+        _cmd.Parameters.AddWithValue("@firstName", user.FirstName);
+        _cmd.Parameters.AddWithValue("@middleName", user.MiddleName); //nullable
+        _cmd.Parameters.AddWithValue("@lastName", user.LastName);
+        _cmd.Parameters.AddWithValue("@degree", user.Degree);
+        _cmd.Parameters.AddWithValue("@imgPath", user.ImgPath);
+        _cmd.Parameters.AddWithValue("@birthDate", user.BirthDate); //nullable - but i wont allow
+        _cmd.Parameters.AddWithValue("@registrationDate", user.RegistrationDate);
+        _cmd.Parameters.AddWithValue("@administrator", user.IsAdmin);
+        _cmd.Parameters.AddWithValue("@email", user.Email);
+        _cmd.Parameters.AddWithValue("@summery", user.Summery);
+        if (isNewUser)
+        {
+            _cmd.Parameters.AddWithValue("@uHash", user.Hash); //nullable - but i wont allow
+            _cmd.Parameters.AddWithValue("@uSALT", user.Salt); //nullable - but i wont allow
+        }
+        else
+        {
+            _cmd.Parameters.AddWithValue("@id", user.Id);
+        }
+
+        return _cmd;
     }
 
     #endregion

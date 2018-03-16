@@ -24,15 +24,15 @@ public class User
 
     //Properties:
     public int Id { get { return id; } }
-    public string FirstName { get { return fName; } }
-    public string MiddleName { get { return mName; } }
-    public string LastName { get { return lName; } }
+    public string FirstName { get { return fName; } set { fName = value; } }
+    public string MiddleName { get { return mName; }  set { mName = value; } }
+    public string LastName { get { return lName; } set { lName = value; } }
     public string Name { get { return string.Format("{0} {1} {2}", fName, mName, lName); } }
-    public string ImgPath { get { return imgPath; } }
-    public string Degree { get { return degree; } }
+    public string ImgPath { get { return imgPath; } set { imgPath = value; } }
+    public string Degree { get { return degree; } set { degree = value; } }
     public bool IsAdmin { get { return administrator; } }
-    public string Email { get { return email; } }
-    public string Summery { get { return summery; } }
+    public string Email { get { return email; } set { email = value; } }
+    public string Summery { get { return summery; } set { summery = value; } }
     public DateTime BirthDate { get { return bdate; } set { bdate = value; } }
     public DateTime RegistrationDate { get { return registrationDate; } set { registrationDate = value; } }
     public string Hash { get { return hash; } }
@@ -124,6 +124,19 @@ public class User
         salt = SHA2.GenerateSALT();
         hash = SHA2.GenerateSHA256String(password, salt);
         return db.InsertUser(this);
+    }
+    public int UpdateUserInDatabase()
+    {
+        DateTime sqlMinDate = new DateTime(1800, 1, 1);
+        if (BirthDate<sqlMinDate)
+        {
+            bdate = sqlMinDate;
+        }
+        if (RegistrationDate<sqlMinDate)
+        {
+            registrationDate = DateTime.Now;
+        }
+        return db.UpdateUser(this);
     }
 
     //Utilities

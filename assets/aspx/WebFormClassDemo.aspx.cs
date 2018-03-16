@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -9,17 +10,13 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        var hash = SHA2.GenerateSHA256String("hazan123", "66C26C8D58996B8F");
+        User user = new DBServices().GetUserByEmail("messi@ruppin.ac.il");
+        user.MiddleName = "";
+        int effected = user.UpdateUserInDatabase();
 
+        Response.Write(effected+"\r\n User is "+user.Name);
     }
-    private void LoadUserToTable(User user)
-    {
-
-    }
-    private void UpdateCommand()
-    {
-
-    }
+    
     private void HowInsertUserWorks()
     {
         User user = new User(0, "dor", "test", "danai", @"https://goo.gl/GMts4T", "El Doctore", "Pizdaput@gmail.hotdog", "you cannot sum me !", true);
