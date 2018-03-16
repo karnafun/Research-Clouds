@@ -8,10 +8,10 @@ using System.Web;
 /// </summary>
 public class User
 {
-    //Utility:
-    private DBServices db;
+
 
     //Fields:
+    DBServices db;
     int id;
     string fName, mName, lName;
     string imgPath, degree, hash, salt, email, summery;
@@ -25,7 +25,7 @@ public class User
     //Properties:
     public int Id { get { return id; } }
     public string FirstName { get { return fName; } set { fName = value; } }
-    public string MiddleName { get { return mName; }  set { mName = value; } }
+    public string MiddleName { get { return mName; } set { mName = value; } }
     public string LastName { get { return lName; } set { lName = value; } }
     public string Name { get { return string.Format("{0} {1} {2}", fName, mName, lName); } }
     public string ImgPath { get { return imgPath; } set { imgPath = value; } }
@@ -49,7 +49,6 @@ public class User
             return articles;
         }
     }
-
     public List<Cluster> Clusters
     {
         get
@@ -61,7 +60,6 @@ public class User
             return clusters;
         }
     }
-
     public List<Institute> Affiliations
     {
         get
@@ -98,48 +96,7 @@ public class User
     }
 
 
-
-    //Methods:
-    public User Login(string email, string password)
-    {
-        return db.Login(email, password);
-    }
-    public User GetUserById(int id)
-    {
-        return db.GetUserById(id);
-    }
-    public User GetUserByEmail(string email)
-    {
-        return db.GetUserByEmail(email);
-    }
-    public List<User> GetAllUsers()
-    {
-        return db.GetAllUsers();
-
-    }
-    
-    public int InsertUserToDatabase()
-    {
-        registrationDate = DateTime.Now;
-        salt = SHA2.GenerateSALT();
-        hash = SHA2.GenerateSHA256String(password, salt);
-        return db.InsertUser(this);
-    }
-    public int UpdateUserInDatabase()
-    {
-        DateTime sqlMinDate = new DateTime(1800, 1, 1);
-        if (BirthDate<sqlMinDate)
-        {
-            bdate = sqlMinDate;
-        }
-        if (RegistrationDate<sqlMinDate)
-        {
-            registrationDate = DateTime.Now;
-        }
-        return db.UpdateUser(this);
-    }
-
-    //Utilities
+    //Methods
     public void GetFullInfo()
     {
         foreach (Article article in Articles) //Get users for each article
@@ -164,4 +121,54 @@ public class User
 
         return info;
     }
+
+    //Databse Related Methods
+    public User Login(string email, string password)
+    {
+        return db.Login(email, password);
+    }
+    public User GetUserById(int id)
+    {
+        return db.GetUserById(id);
+    }
+    public User GetUserByEmail(string email)
+    {
+        return db.GetUserByEmail(email);
+    }
+    public List<User> GetAllUsers()
+    {
+        return db.GetAllUsers();
+
+    }
+    public int InsertUserToDatabase()
+    {
+        registrationDate = DateTime.Now;
+        salt = SHA2.GenerateSALT();
+        hash = SHA2.GenerateSHA256String(password, salt);
+        if (id > 0)
+        {
+            LogManager.Report("trying to insert a user with a valid ID", this);
+        }
+        return db.InsertUser(this);
+    }
+    public int UpdateUserInDatabase()
+    {
+        if (id < 0)
+        {
+            LogManager.Report("tried to update user with invalid id", this);
+            return -1;
+        }
+        DateTime sqlMinDate = new DateTime(1800, 1, 1);
+        if (BirthDate < sqlMinDate)
+        {
+            bdate = sqlMinDate;
+        }
+        if (RegistrationDate < sqlMinDate)
+        {
+            registrationDate = DateTime.Now;
+        }
+        return db.UpdateUser(this);
+    }
+
+
 }

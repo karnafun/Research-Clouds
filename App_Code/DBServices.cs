@@ -180,9 +180,8 @@ public class DBServices
             List<Cluster> clusters = new List<Cluster>();
             while (reader.Read())
             {
-                int cId = (int)reader["cId"];
-                string name = reader["cName"].ToString();
-                clusters.Add(new Cluster(cId, name));
+               
+                clusters.Add(CurrentLineCluster(reader));
             }
             return clusters;
 
@@ -215,10 +214,8 @@ public class DBServices
             List<Article> articles = new List<Article>();
             while (reader.Read())
             {
-                int aId = (int)reader["aId"];
-                string title = reader["title"].ToString();
-                string link = reader["aLink"].ToString();
-                articles.Add(new Article(aId, title, link));
+
+                articles.Add(CurrentLineArticle(reader));
             }
             return articles;
 
@@ -251,10 +248,8 @@ public class DBServices
             SqlDataReader reader = cmd.ExecuteReader();
             List<Institute> institutes = new List<Institute>();
             while (reader.Read())
-            {
-                int iId = (int)reader["iId"];
-                string name = reader["iName"].ToString();
-                institutes.Add(new Institute(iId, name));
+            {               
+                institutes.Add(CurrentLineInstitute(reader));
             }
             return institutes;
 
@@ -285,9 +280,7 @@ public class DBServices
             List<Cluster> clusters = new List<Cluster>();
             while (reader.Read())
             {
-                int id = (int)reader["cId"];
-                string name = reader["cName"].ToString();
-                clusters.Add(new Cluster(id, name));
+                clusters.Add(CurrentLineCluster(reader));
             }
             return clusters;
         }
@@ -318,8 +311,7 @@ public class DBServices
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                string name = reader["cName"].ToString();
-                return new Cluster(id, name);
+                return CurrentLineCluster(reader);
             }
             return null;
         }
@@ -352,9 +344,8 @@ public class DBServices
             List<Keyword> keywords = new List<Keyword>();
             while (reader.Read())
             {
-                int kId = (int)reader["kId"];
-                string phrase = reader["phrase"].ToString();
-                keywords.Add(new Keyword(kId, phrase));
+                
+                keywords.Add(CurrentLineKeyword(reader));
             }
             return keywords;
         }
@@ -417,10 +408,7 @@ public class DBServices
             List<Article> articles = new List<Article>();
             while (reader.Read())
             {
-                int id = (int)reader["aId"];
-                string title = reader["title"].ToString();
-                string link = reader["aLink"].ToString();
-                articles.Add(new Article(id, title, link));
+                articles.Add(CurrentLineArticle(reader));
             }
             return articles;
         }
@@ -451,9 +439,7 @@ public class DBServices
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                string title = reader["title"].ToString();
-                string link = reader["aLink"].ToString();
-                return new Article(id, title, link);
+                return CurrentLineArticle(reader);
             }
             return null;
         }
@@ -519,9 +505,7 @@ public class DBServices
             List<Keyword> keywords = new List<Keyword>();
             while (reader.Read())
             {
-                int id = (int)reader["aId"];
-                string phrase = reader["phrase"].ToString();
-                keywords.Add(new Keyword(id, phrase));
+                keywords.Add(CurrentLineKeyword(reader));
             }
             return keywords;
         }
@@ -551,10 +535,8 @@ public class DBServices
             SqlDataReader reader = cmd.ExecuteReader();
             List<Keyword> keywords = new List<Keyword>();
             while (reader.Read())
-            {
-                int id = (int)reader["iId"];
-                string name = reader["iName"].ToString();
-                keywords.Add(new Keyword(id, name));
+            {                          
+                keywords.Add(CurrentLineKeyword(reader));
             }
             return keywords;
         }
@@ -585,8 +567,7 @@ public class DBServices
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                string phrase = reader["phrase"].ToString();
-                return new Keyword(id, phrase);
+                return CurrentLineKeyword(reader);
             }
             return null;
         }
@@ -618,10 +599,8 @@ public class DBServices
             List<Cluster> clusters = new List<Cluster>();
             while (reader.Read())
             {
-
-                int cId = (int)reader["cId"];
-                string name = reader["name"].ToString();
-                clusters.Add(new Cluster(cId, name));
+                
+                clusters.Add(CurrentLineCluster(reader));
             }
             return clusters;
 
@@ -651,10 +630,8 @@ public class DBServices
             SqlDataReader reader = cmd.ExecuteReader();
             List<Institute> institutes = new List<Institute>();
             while (reader.Read())
-            {
-                int id = (int)reader["iId"];
-                string name = reader["iName"].ToString();
-                institutes.Add(new Institute(id, name));
+            {       
+                institutes.Add(CurrentLineInstitute(reader));
             }
             return institutes;
         }
@@ -685,8 +662,7 @@ public class DBServices
             reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                string phrase = reader["iName"].ToString();
-                return new Institute(id, phrase);
+                return CurrentLineInstitute(reader);
             }
             return null;
         }
@@ -759,10 +735,7 @@ public class DBServices
             List<Article> articles = new List<Article>();
             while (reader.Read())
             {
-                int id = (int)reader["aId"];
-                string title = reader["title"].ToString();
-                string link = reader["aLink"].ToString();
-                articles.Add(new Article(id, title, link));
+                articles.Add(CurrentLineArticle(reader));
             }
             return articles;
         }
@@ -781,7 +754,6 @@ public class DBServices
     #endregion
 
     #region Insert Methods
-
     public int InsertUser(User user)
     {
         con = new SqlConnection(connectionString);
@@ -804,11 +776,7 @@ public class DBServices
     }
     public int InsertArticle(Article article)
     {
-        string cmdStr = "insert into Articles values (@title,@link)";
-        con = new SqlConnection(connectionString);
-        cmd = new SqlCommand(cmdStr, con);
-        cmd.Parameters.AddWithValue("@title", article.Title);
-        cmd.Parameters.AddWithValue("@link", article.Link);
+        cmd = ArticleCommand(article, true);
         try
         {
             cmd.Connection.Open();
@@ -824,6 +792,57 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+    public int InsertCluster(Cluster cluster)
+    {
+        cmd = ClusterCommand(cluster, true);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, cluster);
+            return -1;
+        }finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+    public int InsertInstitute(Institute institute)
+    {
+        cmd = InstituteCommand(institute, true);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, institute);
+            return -1;            
+        }finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+    public int InsertKeyword(Keyword keyword)
+    {
+        cmd = KeywordCommand(keyword, true);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }finally
+        {
+            cmd.Connection.Close();
+        }
+    }  
     #endregion
 
 
@@ -847,6 +866,76 @@ public class DBServices
         }
 
     }
+    public int UpdateArticle(Article article)
+    {
+        cmd = ArticleCommand(article,false);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, article);
+            return -1;
+        }finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+    public int UpdateCluster (Cluster cluster)
+    {
+        cmd = ClusterCommand(cluster, false);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, cluster);
+            return -1;
+        }finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+    public int UpdateInstitute(Institute institute)
+    {
+        cmd = InstituteCommand(institute, false);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, institute);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+    public int UpdateKeyword(Keyword keyword)
+    {
+        cmd = KeywordCommand(keyword, false);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
     #endregion
 
 
@@ -867,6 +956,33 @@ public class DBServices
         var t = (DateTime)reader["birthDate"];
         return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
     }
+    private Article CurrentLineArticle(SqlDataReader reader)
+    {
+        int id = (int)reader["aId"];
+        string title = reader["title"].ToString();
+        string link = reader["aLink"].ToString();
+        return new Article(id, title, link);
+    }
+    private Cluster CurrentLineCluster(SqlDataReader reader)
+    {
+        int id = (int)reader["cId"];
+        string name = reader["cName"].ToString();
+        return new Cluster(id,name);
+    }
+    private Institute CurrentLineInstitute(SqlDataReader reader)
+    {
+        int id = (int)reader["iId"];
+        string name = reader["iName"].ToString();
+        return new Institute(id, name);
+    }
+    private Keyword CurrentLineKeyword(SqlDataReader reader )
+    {
+        int id = (int)reader["kId"];
+        string phrase = reader["phrase"].ToString();
+        return new Keyword(id, phrase);
+        
+    }
+
     private SqlCommand UserCommand(User user, bool isNewUser)
     {
         SqlCommand _cmd = new SqlCommand();
@@ -916,6 +1032,94 @@ public class DBServices
 
         return _cmd;
     }
+    private SqlCommand ArticleCommand(Article article, bool isNewArticle)
+    {
+        SqlCommand _cmd = new SqlCommand();
+        StringBuilder cmdStr = new StringBuilder();
 
+        if (isNewArticle)
+        {
+            cmdStr.Append("insert into articles values");
+            cmdStr.Append("(@title,@link)");            
+        }
+        else
+        {
+            cmdStr.Append(" update articles set ");
+            cmdStr.Append("title = @title,");
+            cmdStr.Append("aLink= @link,");           
+            cmdStr.Append(" where aId = @id ");
+        }
+        _cmd = new SqlCommand(cmdStr.ToString(), con);
+        _cmd.Parameters.AddWithValue("@id", article.Id);
+        _cmd.Parameters.AddWithValue("@title", article.Title);
+        _cmd.Parameters.AddWithValue("@link", article.Link);
+        return _cmd;
+    }
+    private SqlCommand ClusterCommand(Cluster cluster, bool isNewCluster)
+    {
+        SqlCommand _cmd = new SqlCommand();
+        StringBuilder cmdStr = new StringBuilder();
+
+        if (isNewCluster)
+        {
+            cmdStr.Append("insert into Clusters values");
+            cmdStr.Append("(@name)");
+        }
+        else
+        {
+            cmdStr.Append(" update Clusters set ");
+            cmdStr.Append("cName = @name,");
+            cmdStr.Append(" where cId = @id ");
+        }
+        _cmd = new SqlCommand(cmdStr.ToString(), con);
+        _cmd.Parameters.AddWithValue("@id", cluster.Id);
+        _cmd.Parameters.AddWithValue("@name", cluster.Name);
+        
+        return _cmd;
+    }
+    private SqlCommand InstituteCommand(Institute institute, bool isNewInstitute)
+    {
+        SqlCommand _cmd = new SqlCommand();
+        StringBuilder cmdStr = new StringBuilder();
+
+        if (isNewInstitute)
+        {
+            cmdStr.Append("insert into AcademicInstitutes values");
+            cmdStr.Append("(@name)");
+        }
+        else
+        {
+            cmdStr.Append(" update AcademicInstitutes set ");
+            cmdStr.Append("iName = @name,");
+            cmdStr.Append(" where iId = @id ");
+        }
+        _cmd = new SqlCommand(cmdStr.ToString(), con);
+        _cmd.Parameters.AddWithValue("@id", institute.Id);
+        _cmd.Parameters.AddWithValue("@name", institute.Name);
+        
+        return _cmd;
+    }
+    private SqlCommand KeywordCommand(Keyword keyword, bool isNewKeyword)
+    {
+        SqlCommand _cmd = new SqlCommand();
+        StringBuilder cmdStr = new StringBuilder();
+
+        if (isNewKeyword)
+        {
+            cmdStr.Append("insert into Keywords values");
+            cmdStr.Append("(@phrase)");
+        }
+        else
+        {
+            cmdStr.Append(" update AcademicInstitutes set ");
+            cmdStr.Append("phrase = @phrase,");
+            cmdStr.Append(" where kId = @id ");
+        }
+        _cmd = new SqlCommand(cmdStr.ToString(), con);
+        _cmd.Parameters.AddWithValue("@id", keyword.Id);
+        _cmd.Parameters.AddWithValue("@phrase", keyword.Phrase);
+
+        return _cmd;
+    }
     #endregion
 }
