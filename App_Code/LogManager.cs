@@ -17,7 +17,7 @@ public static class LogManager
     private static string gmailSmtpAddress = "smtp.gmail.com";
     const string logFilePath = "";
 
-    public static void Report(Exception ex)
+    public static void Report(Exception ex, Object _obj =null)
     {       
         string message = "Message: "+ex.Message+"\r\n";
         message += "ToString: \r\n"+ex.ToString() + "\r\n";
@@ -30,16 +30,20 @@ public static class LogManager
             }
         }
         StackTrace stackTrace = new StackTrace();
-        string res = String.Format("Calling Method:{0}\r\nException Info:\r\n{1}\r\n\r\nStackTraceInfo:\r\n{2}\r\n",
+        string res = String.Format("from {0}\r\nException Info:\r\n{1}\r\n\r\nStackTraceInfo:\r\n{2}\r\n",
             stackTrace.GetFrame(1).GetMethod().Name, message, stackTrace.ToString());
-        SendEmail(res);
+        if(_obj!=null)
+            res += "Attached Object Information: \r\n" + _obj.ToString();        
+        SendEmail(res,"Exception Report");
     }
-    public static void Report(string message)
+    public static void Report(string message, Object _obj=null)
     {
         StackTrace stackTrace = new StackTrace();
-        string res = String.Format("Calling Method: {0}\r\nCustom Message:{1} \r\n\r\nStackTraceInfo:{2}\r\n",
+        string res = String.Format("from:{0}\r\n{1}\r\n\r\nStackTraceInfo:{2}\r\n",
             stackTrace.GetFrame(1).GetMethod().Name, message, stackTrace.ToString());
-        SendEmail(res);
+        if (_obj != null)
+            res += "Attached Object Information: \r\n" + _obj.ToString();
+        SendEmail(res,"System Report");
     }
 
 
@@ -57,7 +61,7 @@ public static class LogManager
 
 
 
-    private static void SendEmail(string message)
+    private static void SendEmail(string message,string subject)
     {
         try
         {
@@ -66,7 +70,7 @@ public static class LogManager
 
             mail.From = new MailAddress(RCEmailAddress);
             mail.To.Add(RCEmailAddress);
-            mail.Subject = "Exception Notification";
+            mail.Subject = subject;
             mail.Body = message;
             SmtpServer.Port = 587;
             SmtpServer.Credentials = networkCredentials;
