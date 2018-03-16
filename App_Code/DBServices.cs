@@ -29,15 +29,15 @@ public class DBServices
     /// Checkes if email and password combination exists in the database
     /// </summary>
     /// <param name="email">the email address for login</param>
-    /// <param name="password">the password for login</param>
+    /// <param name="hash">the password for login</param>
     /// <returns>User if true, null if false</returns>
     public User Login(string email, string password)
     {
-        string cmdStr = "select * from users where email=@email and uHash=@password";
+        string cmdStr = "select * from users where email=@email";
         con = new SqlConnection(connectionString);
         cmd = new SqlCommand(cmdStr, con);
-        cmd.Parameters.AddWithValue("@email", email);
-        cmd.Parameters.AddWithValue("@password", password);
+        cmd.Parameters.AddWithValue("@email", email.ToLower());
+        //cmd.Parameters.AddWithValue("@hash", hash);
 
         try
         {
@@ -46,21 +46,29 @@ public class DBServices
 
             while (reader.Read())
             {
+                string hash = SHA2.GenerateSHA256String(password, reader["uSALT"].ToString());
+                if (hash!=reader["uHash"].ToString())
+                {
+                    continue;
+                }
+                else
+                {
+                    string fName = reader["firstName"].ToString();
+                    string mName = reader["middleName"].ToString();
+                    string lName = reader["lastName"].ToString();
+                    string degree = reader["degree"].ToString();
+                    string imgPath = reader["imgPath"].ToString();
+                    DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
+                    DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
+                    bool administrator = Convert.ToBoolean(reader["administrator"]);
+                    int id = (int)reader["uId"];
+                    string summery = reader["summery"].ToString();
 
 
-                string fName = reader["firstName"].ToString();
-                string mName = reader["middleName"].ToString();
-                string lName = reader["lastName"].ToString();
-                string degree = reader["degree"].ToString();
-                string imgPath = reader["imgPath"].ToString();
-                DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
-                DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
-                bool administrator = Convert.ToBoolean(reader["administrator"]);
-                int id = (int)reader["uId"];
-                string summery = reader["summery"].ToString();
+                    return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
+                }
 
-
-                return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
+              
             }
             return null;
         }

@@ -9,16 +9,8 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
-        {
-            string a = "s";
-            var t = int.Parse(a);
-        }
-        catch (Exception ex)
-        {
-            LogManager.Report(ex);
+        var hash = SHA2.GenerateSHA256String("hazan123", "66C26C8D58996B8F");
 
-        }
     }
 
     private void HowInsertUserWorks()
@@ -28,5 +20,20 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
         user.RegistrationDate = DateTime.Now;
         user.BirthDate = DateTime.Now;
         user.InsertUserToDatabase();        
+    }
+
+    private void GenerateSoccerDataBaseHashes()
+    {
+        string messi = SHA2.GenerateSHA256String("messi123", "20E6494B4207A90D");
+        string neymar = SHA2.GenerateSHA256String("neymar123", "3C3C58961451D04");
+        string hazan = SHA2.GenerateSHA256String("hazan123", "66C26C8D58996B8F");
+        string ronaldo = SHA2.GenerateSHA256String("ronaldo123", "7EE9BB521CE704BA");
+        string bale = SHA2.GenerateSHA256String("bale123", "2813B5F0BA1E74");
+
+        string res = "messi: " + messi + "\r\n";
+        res += "neymar: " + neymar + "\r\n";
+        res += "hazan: " + hazan + "\r\n";
+        res += "ronaldo: " + ronaldo + "\r\n";
+        res += "bale: " + bale + "\r\n";
     }
 }

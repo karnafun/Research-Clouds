@@ -41,4 +41,10 @@ public static class SHA2
         string salt = rand.Next().ToString("X")+rand.Next().ToString("X");
         return salt;
     }
+    public static string GenerateSALT(Random rand)
+    {
+        //TODO: check that salt doesnt exist in the database        
+        string salt = rand.Next().ToString("X") + rand.Next().ToString("X");
+        return salt;
+    }
 }
