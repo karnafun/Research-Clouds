@@ -40,7 +40,7 @@ public class AjaxServices : System.Web.Services.WebService
         }
         catch (Exception ex)
         {
-            var t = 0;
+            LogManager.Report(ex);
             return ex.ToString();
         }
     }
@@ -62,7 +62,7 @@ public class AjaxServices : System.Web.Services.WebService
         }
         catch (Exception ex)
         {
-
+            LogManager.Report(ex);
             return null;
         }
     }

@@ -15,6 +15,7 @@ public class User
     int id;
     string fName, mName, lName;
     string imgPath, degree, hash, salt, email, summery;
+    string password; //Not in the constructor, only for creating users
     bool administrator;
     DateTime bdate, registrationDate;
     List<Article> articles;
@@ -23,7 +24,7 @@ public class User
 
     //Properties:
     public int Id { get { return id; } }
-    public string FirstName { get{ return fName; } }
+    public string FirstName { get { return fName; } }
     public string MiddleName { get { return mName; } }
     public string LastName { get { return lName; } }
     public string Name { get { return string.Format("{0} {1} {2}", fName, mName, lName); } }
@@ -33,10 +34,10 @@ public class User
     public string Email { get { return email; } }
     public string Summery { get { return summery; } }
     public DateTime BirthDate { get { return bdate; } set { bdate = value; } }
-    public DateTime RegistrationDate { get { return registrationDate; } set { registrationDate= value; } }
+    public DateTime RegistrationDate { get { return registrationDate; } set { registrationDate = value; } }
     public string Hash { get { return hash; } }
     public string Salt { get { return salt; } }
-
+    public string Password { set { password = value; } }
     public List<Article> Articles
     {
         get
@@ -80,7 +81,7 @@ public class User
     }
     public User(int id, string fName, string mName, string lName, string imgPath, string degree,
         string email, string summery, bool administrator,
-        string hash=null, string salt=null)
+        string hash = null, string salt = null)
     {
         db = new DBServices();
         this.id = id;
@@ -95,7 +96,7 @@ public class User
         this.hash = hash;
         this.salt = salt;
     }
-   
+
 
 
     //Methods:
@@ -111,12 +112,31 @@ public class User
     {
         return db.GetUserByEmail(email);
     }
-
-
     public List<User> GetAllUsers()
     {
         return db.GetAllUsers();
 
+    }
+    
+    public int InsertUserToDatabase()
+    {
+        registrationDate = DateTime.Now;
+        salt = SHA2.GenerateSALT();
+        hash = SHA2.GenerateSHA256String(password, salt);
+        return db.InsertUser(this);
+    }
+
+    //Utilities
+    public void GetFullInfo()
+    {
+        foreach (Article article in Articles) //Get users for each article
+        {
+            article.GetFullInfo();
+        }
+        foreach (Institute institute in Affiliations)
+        {
+            institute.GetFullInfo();
+        }
     }
     public override string ToString()
     {
@@ -129,22 +149,6 @@ public class User
         info += "Birth Date: " + bdate + "<br>";
         info += "Registration Date: " + registrationDate + "<br>";
 
-
-
         return info;
     }
-
-
-  public void GetFullInfo()
-    {
-        foreach (Article article in Articles) //Get users for each article
-        {
-            article.GetFullInfo();
-        }
-        foreach (Institute institute in Affiliations)
-        {
-            institute.GetFullInfo();
-        }
-    }
-    
 }

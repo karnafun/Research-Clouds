@@ -67,7 +67,7 @@ public class DBServices
         catch (Exception ex)
         {
 
-
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -111,7 +111,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            //LogManager.Logerror("DBServices", "GetAllUsers", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -157,7 +157,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            // LogManager.Logerror("DBServices", "GetUserById(" + id + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
 
         }
@@ -199,7 +199,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            // LogManager.Logerror("DBServices", "GetUserByEmail(" + email + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
 
         }
@@ -235,7 +235,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            // LogManager.Logerror("DBServices", "GetUserClusters(" + uId + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -271,7 +271,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            // LogManager.Logerror("DBServices", "GetUserArticles(" + uId + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -307,7 +307,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            //LogManager.Logerror("DBServices", "GetUserAffiliations(" + uId + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -339,7 +339,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            // LogManager.Logerror("DBServices", "GetAllClusters", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -371,7 +371,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            //LogManager.Logerror("DBServices", "GetClusterById(" + id + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
 
         }
@@ -406,7 +406,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            //LogManager.Logerror("DBServices", "GetClusterKeywords(" + cId+ ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -452,7 +452,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            //LogManager.Logerror("DBServices", "GetUserClusters(" + cId + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -485,7 +485,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            // LogManager.Logerror("DBServices", "GetAllArticles", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -518,7 +518,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            //LogManager.Logerror("DBServices", "GetArticleById(" + id + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
 
         }
@@ -565,7 +565,7 @@ public class DBServices
         catch (Exception ex)
         {
 
-            //LogManager.Logerror("DBServices", "GetArticleUsers(" + aId + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -600,7 +600,7 @@ public class DBServices
         catch (Exception ex)
         {
 
-            //LogManager.Logerror("DBServices", "GetKeywordArticles(" + aId + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -632,7 +632,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            // LogManager.Logerror("DBServices", "GetAllKeywords", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -664,7 +664,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            //LogManager.Logerror("DBServices", "GetKeywordById(" + id + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -700,7 +700,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            //LogManager.Logerror("DBServices", "GetKeywordClusters(" + kId + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -732,7 +732,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            // LogManager.Logerror("DBServices", "GetAllInstitutes", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -764,7 +764,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            //LogManager.Logerror("DBServices", "GetInstituteById(" + id + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -810,7 +810,7 @@ public class DBServices
         catch (Exception ex)
         {
 
-            //LogManager.Logerror("DBServices", "GetInstituteUsers(" + iId + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -841,7 +841,7 @@ public class DBServices
         catch (Exception ex)
         {
 
-            //LogManager.Logerror("DBServices", "GetKeywordArticles(" + kId + ")", ex.Message);
+            LogManager.Report(ex);
             return null;
         }
         finally
@@ -852,14 +852,15 @@ public class DBServices
 
     #endregion
 
+    #region Insert Methods
 
-    public int CreateUser(User user)
+    public int InsertUser(User user)
     {
         con = new SqlConnection(connectionString);
 
         string cmdStr = "insert into users values";
         cmdStr += "(@firstName,@middleName,@lastName,@degree,@imgPath,@birthDate, @registrationDate,@administrator,@email,@uHash,";
-        cmdStr +="@uSALT,@summery)";
+        cmdStr += "@uSALT,@summery)";
         cmd = new SqlCommand(cmdStr, con);
         cmd.Parameters.AddWithValue("@firstName", user.FirstName);
         cmd.Parameters.AddWithValue("@middleName", user.MiddleName); //nullable
@@ -873,8 +874,8 @@ public class DBServices
         cmd.Parameters.AddWithValue("@uHash", user.Hash); //nullable - but i wont allow
         cmd.Parameters.AddWithValue("@uSALT", user.Salt); //nullable - but i wont allow
         cmd.Parameters.AddWithValue("@summery", user.Summery);
-       
-       
+
+
         try
         {
             cmd.Connection.Open();
@@ -883,8 +884,8 @@ public class DBServices
         }
         catch (Exception ex)
         {
-
-            throw;
+            LogManager.Report(ex);
+            return -1;
         }
         finally
         {
@@ -892,4 +893,26 @@ public class DBServices
         }
     }
 
+    public int InsertArticle(Article article)
+    {
+        string cmdStr = "insert into Articles values (@title,@link)";
+        cmd = new SqlCommand(cmdStr, con);
+        cmd.Parameters.AddWithValue("@title", article.Title);
+        cmd.Parameters.AddWithValue("@link", article.Link);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+    #endregion
 }

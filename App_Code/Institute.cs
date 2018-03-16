@@ -17,7 +17,6 @@ public class Institute
     
     List<User> users;
 
-
     //Props
     public int Id { get { return id; } }
     public string Name { get { return name; } }
@@ -36,11 +35,12 @@ public class Institute
     {
         db = new DBServices();
     }
-    public Institute(int id, string name)
+    public Institute(int id, string name, string imgPath = null)
     {
         db = new DBServices();
         this.id = id;
         this.name = name;
+        this.imgPath = imgPath;
        
     }
 
