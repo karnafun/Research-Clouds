@@ -1,6 +1,6 @@
 
 
---all passwords are messi123, neymar123, hazan123, bale123, ronaldo123
+--all passwords are messi123, neymar123, hazan123, bale123, ronaldo123 etc..
 
 insert into users values
 ('Lionel', '', 'Messi','Degree','https://cdn.images.express.co.uk/img/dynamic/67/590x/Lionel-Messi-Barcelona-778351.jpg',
@@ -68,6 +68,8 @@ insert into Articles values
 
 
 
+
+
 --insert Keywords:
 insert into Keywords values('Soccer Offence')
 insert into Keywords values('Fatigue')
@@ -87,35 +89,67 @@ insert into Keywords values('Top Strikers')
 
 
 
---create clusters with users in them
-
+--Clusters
 insert into Clusters values('Top Athletes') 
+insert into Clusters values('Soccer Training') 
+insert into Clusters values('Game Analysis') 
+insert into Clusters values('Soccer') 
+insert into Clusters values('Fatigue Development') 
+
+
+
+
+--Institutes
+insert into AcademicInstitutes values ('Ruppin Academic Center')
+insert into AcademicInstitutes values ('Camp Nou')
+
+
+
+--ClusterUsers
 insert into UsersInCluster values (1,1,1) --uId, cId, visible
 insert into UsersInCluster values (2,1,1) --uId, cId, visible
 insert into UsersInCluster values (4,1,1) --uId, cId, visible
 insert into UsersInCluster values (5,1,1) --uId, cId, visible
-
-insert into Clusters values('Soccer Training') 
 insert into UsersInCluster values (1,2,1) --uId, cId, visible
 insert into UsersInCluster values (2,2,1) --uId, cId, visible
 insert into UsersInCluster values (4,2,1) --uId, cId, visible
 insert into UsersInCluster values (5,2,1) --uId, cId, visible
-
-insert into Clusters values('Game Analysis') 
 insert into UsersInCluster values (4,3,1) --uId, cId, visible
 insert into UsersInCluster values (3,3,1) --uId, cId, visible
 insert into UsersInCluster values (5,3,1) --uId, cId, visible
-
-insert into Clusters values('Soccer') 
 insert into UsersInCluster values (1,4,1) --uId, cId, visible
 insert into UsersInCluster values (2,4,1) --uId, cId, visible
 insert into UsersInCluster values (3,4,1) --uId, cId, visible
 insert into UsersInCluster values (4,4,1) --uId, cId, visible
 insert into UsersInCluster values (5,4,1) --uId, cId, visible
-
-insert into Clusters values('Fatigue Development') 
 insert into UsersInCluster values (1,5,1) --uId, cId, visible
 insert into UsersInCluster values (3,5,1) --uId, cId, visible
 insert into UsersInCluster values (2,5,1) --uId, cId, visible
 
+--Connect users to articles
+insert into UsersInArticle values (1,2) --uId, aId
+insert into UsersInArticle values (1,4)
+insert into UsersInArticle values (1,2)
+insert into UsersInArticle values (2,1)
+insert into UsersInArticle values (2,11)
+insert into UsersInArticle values (2,5)
+insert into UsersInArticle values (2,7)
+insert into UsersInArticle values (3,8)
+insert into UsersInArticle values (3,3)
+insert into UsersInArticle values (4,6)
+insert into UsersInArticle values (4,9)
+insert into UsersInArticle values (4,10)
+insert into UsersInArticle values (5,4)
+insert into UsersInArticle values (5,10)
+insert into UsersInArticle values (5,3)
+insert into UsersInArticle values (5,1)
 
+
+--Affiliations
+insert into Affiliations values (1,1) --uId iId
+insert into Affiliations values (2,1)
+insert into Affiliations values (3,1)
+insert into Affiliations values (4,1)
+insert into Affiliations values (5,1)
+insert into Affiliations values (1,2)
+insert into Affiliations values (2,2)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -938,6 +939,27 @@ public class DBServices
     }
     #endregion
 
+    #region Remove Methods
+    public int RemoveUser(int id)
+    {
+        cmd = new SqlCommand("p_removeUser", con);
+        cmd.CommandType = CommandType.StoredProcedure;
+        cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, id);
+            return -1;
+        } finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+    #endregion
 
     #region Utility Methods
     private User CurrentLineUser(SqlDataReader reader)
