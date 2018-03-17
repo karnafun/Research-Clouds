@@ -1,5 +1,7 @@
 ﻿window.onload = function () {
-
+    var userimg = document.getElementById("uImg");
+    var file = document.getElementById("file1");
+    $(file).hide()
     ///Catch Modale save button//////
 
     var Savebtn = document.getElementById("btnModalSave")
@@ -15,22 +17,22 @@
     var stringTemp = div.innerHTML;
     var summeryTemp = summery.innerHTML;
     ////////////////////////////Changing User Img/////////////////////////////////////
+
+
     edit[0].onclick = function (e) {
-
-        var userimg = document.getElementById("uImg");
-        var file = document.getElementById("file1");
-
-        //var selectDialogueLink = $('<a href="">Select files</a>');
-        var fileSelector = $('<input type="file">');
-
-        file.click(function () {
-            userimg.click()
-            return false;
-        });
-
-        userimg.src = file.nodeValue;
-
+        $(check[0]).show();
+        $(this).hide();
+        file.click();
+        x = file.value;
     }
+
+        check[0].onclick = function (e) {
+            $(edit[0]).show();
+            $(this).hide();
+            alert(file.value);
+            //var tmppath = URL.createObjectURL(event.target.file[0]);
+            // userimg.setAttribute("src", String(x));
+        }
 
 
 
