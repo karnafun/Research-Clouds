@@ -123,22 +123,45 @@ public class AjaxServices : System.Web.Services.WebService
     // Returns all clusters for a specific user by user id
     // each cluster has users information in it 
     //--------------------------------------------------------------------------
-    public string GetUserClusters(string Id)
-    {
-        
-        Cluster cluster = new Cluster().GetClusterById(int.Parse(Id));
+    public string GetUserFullClusters(string Id)
+    {        
+        List<Cluster> clusters = new User().GetUserFullClusters(int.Parse(Id));
         try
         {
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            //cluster.GetFullInfo();
-            //return js.Serialize(cluster);
+            JavaScriptSerializer js = new JavaScriptSerializer();            
+            return js.Serialize(clusters);
         }
         catch (Exception ex)
         {
-            LogManager.Report(ex);
-           // return null;
+            LogManager.Report(ex,clusters);
+           return null;
         }
-        return "";
+        
+    }
+
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // Returns a users with all needed information for the map-me animation
+    // each one of users clusters has full information (has users in it)
+    //--------------------------------------------------------------------------
+    public string GetUserForAnimation(string Id)
+    {
+        User user = new User().GetUserById(int.Parse(Id));
+        user.GetUserFullClusters();
+        try
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            return js.Serialize(user);
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, user);
+            return null;
+        }
+
     }
 
 }
