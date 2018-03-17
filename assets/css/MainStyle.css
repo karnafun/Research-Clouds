@@ -60,3 +60,8 @@ a {
 .light-russian {
 	background-color: rgba(55, 149, 111,0.2);
 }
+#uImg {
+	border-radius: 33%;
+	margin-bottom: 4px;
+	opacity:0.6;
+}

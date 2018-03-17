@@ -153,7 +153,7 @@
 
     Savebtn.onclick = function (e) {
         var modaleArtical = document.getElementById("uArticleModale");
-        var articleUl = document.getElementById("articLelist");
+        var articleUl = document.getElementById("articleList");
         var articletitle = document.getElementById("Modal-articleName");
         var articleSummery = document.getElementById("Modal-articleSummery");
         var articleAuthor = document.getElementById("Modal-articleAuthors");
@@ -166,6 +166,5 @@
 
 
     }
-
-
+    
 }
