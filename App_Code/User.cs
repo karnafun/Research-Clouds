@@ -139,6 +139,18 @@ public class User :RCEntity
         return db.GetAllUsers();
 
     }
+    public List<Cluster> GetUserFullClusters(int _id = -1)
+    {
+        
+        User _user = _id > 0 ? GetUserById(_id) : this; //If i get an ID, i return results for that id. else, i give results for this user
+        _user.clusters = _user.Clusters; //Gets clusters from db if this.clusters==null
+        foreach (Cluster cluster in _user.clusters)
+        {
+            cluster.GetFullInfo(); //filling cluster with users and keywords
+        }
+        return _user.clusters;
+
+    }
     public int InsertUserToDatabase()
     {
         registrationDate = DateTime.Now;
@@ -178,5 +190,5 @@ public class User :RCEntity
         return db.RemoveEntity(this);
     }
 
-
+   
 }

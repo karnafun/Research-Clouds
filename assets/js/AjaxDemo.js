@@ -1,5 +1,12 @@
 ﻿User = {};
 
+
+GetClusterById({ Id: 1 }, function (results) {
+    results = JSON.parse(results.d);
+    alert(results.Users[1].Name);
+}, errorCB);
+
+
 $(document).ready(function () {
     GetUserById({ Id: 1 }, FillUserInformation, errorCB);
     $("#btn_panel_getUser").click(function () {
@@ -9,7 +16,6 @@ $(document).ready(function () {
         GetUserById(request, FillUserInformation, errorCB);
         log("GetUserById() with Id:" + request.Id);
     });
-
 
     $("#btn_panel_updateUser").click(function () {
         log("Updating JSON user from the table");

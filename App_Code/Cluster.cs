@@ -41,6 +41,11 @@ public class Cluster : RCEntity
 
         return base.ToString();
     }
+    public void GetFullInfo()
+    {
+        users = db.GetClusterUsers(id);
+        keywords = db.GetClusterKeywords(id);
+    }
 
     //Database Related Methods
     public List<Cluster> GetAllClusters()
