@@ -11,7 +11,18 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        List<Cluster> clusters = new User().GetUserFullClusters(1);
+        string res = "";
+        foreach (Cluster cluster in clusters)
+        {
+            res += "Cluster: " + cluster.Name+"<br>";
+            foreach (User user in cluster.Users)
+            {
+                res += user.ToString() + "<br>";
+            }
+            res += "<br><br>";
+        }
+        Response.Write(res);
     }
 
     //user demo

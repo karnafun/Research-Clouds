@@ -79,9 +79,6 @@ public class AjaxServices : System.Web.Services.WebService
     //--------------------------------------------------------------------------
     public string UpdateUser(string userString)
     {
-
-        //User user = new User().GetUserById(Id);
-
         try
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
@@ -95,4 +92,53 @@ public class AjaxServices : System.Web.Services.WebService
             return ex.ToString();
         }
     }
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // 
+    //--------------------------------------------------------------------------
+    public string GetClusterById(string Id)
+    {
+        Cluster cluster = new Cluster().GetClusterById(int.Parse(Id));
+        try
+        {            
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            cluster.GetFullInfo();
+            return js.Serialize(cluster);
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return null;
+        }
+    }
+
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // Returns all clusters for a specific user by user id
+    // each cluster has users information in it 
+    //--------------------------------------------------------------------------
+    public string GetUserClusters(string Id)
+    {
+        
+        Cluster cluster = new Cluster().GetClusterById(int.Parse(Id));
+        try
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            //cluster.GetFullInfo();
+            //return js.Serialize(cluster);
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+           // return null;
+        }
+        return "";
+    }
+
 }
