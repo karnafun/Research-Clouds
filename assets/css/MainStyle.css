@@ -49,3 +49,14 @@ a {
 		color: #7ae582;
 		
 	}
+
+
+.jumbotron {
+	/*background-color: rgba(233, 236, 239,0.6);*/
+	/*background-color: rgba(172, 236, 161,0.3);*/
+	background-color: rgba(55, 149, 111,0.2);
+}
+
+.light-russian {
+	background-color: rgba(55, 149, 111,0.2);
+}
