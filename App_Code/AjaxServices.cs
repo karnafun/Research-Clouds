@@ -164,4 +164,29 @@ public class AjaxServices : System.Web.Services.WebService
 
     }
 
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // Inserts a user to the database
+    // returns the created user from the database via login
+    //--------------------------------------------------------------------------
+    public string InsertUser(string userString)
+    {
+        try
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            User user = js.Deserialize<User>(userString);
+            string res = user.InsertUserToDatabase().ToString();
+            user = user.Relog();           
+            return js.Serialize(user);
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return ex.ToString();
+        }
+
+    }
+
 }

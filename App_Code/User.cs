@@ -6,7 +6,7 @@ using System.Web;
 /// <summary>
 /// Summary description for Users
 /// </summary>
-public class User :RCEntity
+public class User : RCEntity
 {
 
 
@@ -24,7 +24,21 @@ public class User :RCEntity
     public string FirstName { get { return fName; } set { fName = value; } }
     public string MiddleName { get { return mName; } set { mName = value; } }
     public string LastName { get { return lName; } set { lName = value; } }
-    public string Name { get { return string.Format("{0} {1} {2}", fName, mName, lName); } }
+    public string Name
+    {
+        get
+        {
+            if (!String.IsNullOrWhiteSpace(mName) &&  mName.Length > 2)
+            {
+                return string.Format("{0} {1} {2}", fName, mName, lName);
+            }
+            else
+            {
+                mName = " ";
+                return string.Format("{0} {1}", fName, lName);
+            }
+        }
+    }
     public string ImagePath { get { return imgPath; } set { imgPath = value; } }
     public string Degree { get { return degree; } set { degree = value; } }
     public bool IsAdmin { get { return administrator; } }
@@ -75,7 +89,7 @@ public class User :RCEntity
         db = new DBServices();
     }
     public User(int id, string fName, string mName, string lName, string imgPath, string degree,
-        string email, string summery, bool administrator,DateTime bdate,DateTime registrationDate,
+        string email, string summery, bool administrator, DateTime bdate, DateTime registrationDate,
         string hash = null, string salt = null)
     {
         db = new DBServices();
@@ -126,6 +140,10 @@ public class User :RCEntity
     {
         return db.Login(email, password);
     }
+    public User Relog()
+    {
+        return db.Login(email, password);
+    }
     public User GetUserById(int id)
     {
         return db.GetUserById(id);
@@ -141,7 +159,7 @@ public class User :RCEntity
     }
     public List<Cluster> GetUserFullClusters(int _id = -1)
     {
-        
+
         User _user = _id > 0 ? GetUserById(_id) : this; //If i get an ID, i return results for that id. else, i give results for this user
         _user.clusters = _user.Clusters; //Gets clusters from db if this.clusters==null
         foreach (Cluster cluster in _user.clusters)
@@ -149,9 +167,9 @@ public class User :RCEntity
             cluster.GetFullInfo(); //filling cluster with users and keywords
         }
 
-        if (_id <0)        
+        if (_id < 0)
             clusters = _user.clusters;
-        
+
 
         return _user.clusters;
 
@@ -164,6 +182,15 @@ public class User :RCEntity
         if (id > 0)
         {
             LogManager.Report("trying to insert a user with a valid ID", this);
+        }
+        DateTime sqlMinDate = new DateTime(1800, 1, 1);
+        if (BirthDate < sqlMinDate)
+        {
+            bdate = sqlMinDate;
+        }
+        if (RegistrationDate < sqlMinDate)
+        {
+            registrationDate = DateTime.Now;
         }
         return db.InsertUser(this);
     }
@@ -187,13 +214,13 @@ public class User :RCEntity
     }
     public int RemoveUserFromDatabase()
     {
-        if (id<0)
+        if (id < 0)
         {
-            LogManager.Report("tried to delete a user with invalid id",this);
+            LogManager.Report("tried to delete a user with invalid id", this);
             return -1;
         }
         return db.RemoveEntity(this);
     }
 
-   
+
 }

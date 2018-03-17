@@ -1,5 +1,5 @@
-﻿
-try {
+﻿try {
+   
     User = localStorage.getItem("User");
           User = JSON.parse(User);
           var request = { Id: User.Id };
@@ -12,15 +12,8 @@ try {
     //Insert Clusters
 
 } catch (e) {
-          alert("No User");
+    RedirectToLogin();
 }
-
-
-
-
-
-
-
 
 
 
@@ -29,7 +22,12 @@ function UpdateUserInfo(results) {
     Filling:
     uId, uSummery, uImg
     */
-    results = JSON.parse(results.d);
+    try {
+
+        results = JSON.parse(results.d);
+    } catch (e) {
+        RedirectToLogin();
+    }
     User = results;
     $("#uID").html(results.Name);
     $("#uImg").attr("src", results.ImagePath);
@@ -90,6 +88,13 @@ function errorCB(error) {
 function Logout() {
     localStorage.setItem('User', null);
     window.location.replace("../html/LoginTesting.html");
+}
+
+function RedirectToLogin() {
+    var message = "You should be redirected to login, are you fucking with me on purpose? \r\nOK to continue, \r\nCancel to go back.";
+    if (!confirm(message)) {
+        window.location.replace("../html/Login.html");
+    }
 }
 
 

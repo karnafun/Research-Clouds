@@ -1048,7 +1048,7 @@ public class DBServices
             cmdStr.Append("summery = @summery ");
             cmdStr.Append(" where uId = @id ");
         }
-        _cmd = new SqlCommand(cmdStr.ToString(), con);
+        _cmd = new SqlCommand(cmdStr.ToString(), con);         
         _cmd.Parameters.AddWithValue("@firstName", user.FirstName);
         _cmd.Parameters.AddWithValue("@middleName", user.MiddleName); //nullable
         _cmd.Parameters.AddWithValue("@lastName", user.LastName);
