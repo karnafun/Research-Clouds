@@ -46,11 +46,15 @@ function UpdateUserInfo(results) {
         TODO:
         Build an html li article using value (it has the users in it )
         */
-        resString += "<li class='media' style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Name + "</a></h5><small> " + value.Users[0].Name + "</small></li>";
-        resString += "<br>"; //to understand the raw results meanwhile
+        //resString += "<li class='media' style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Title + "</a></h5><p><small> " + value.Users[0].Name + "</small></p></li > ";
+         //to understand the raw results meanwhile
+        resString += "<li class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Title + "</a></h5><br /><p>" + value.Users[0].Name + "</p></div></li > ";
+        resString += "<br>";
+        
     });
-
-    $("#articleList").html(resString);
+    $("#articleList").empty();
+    $("#articleList").append(resString);
+    
 
     resString = "";
     $.each(results.Affiliations, function (index, value) {
@@ -61,11 +65,14 @@ function UpdateUserInfo(results) {
         " <li class='media style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Name + "</a></h5><small> " + value.Users[0].Name + "</small></li>"
         " <li><a href='#'>" + value.Name + "</a>, " + value.Users[0].Name + "</li>"
         */
-        resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Name + "</a></h5><br/><small> " + value.Users[0].Name + "</small></li>";
+       // resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Name + "</a></h5><br>,<p>" + value.Users[0].Name + "</p></li>";
+        resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /><p><small>" + value.Users[0].Name + "</small></p></div></li>";
         resString += "<br>"; //to understand the raw results meanwhile
+        
+        
     });
-  
-    $("#affiliationsList").html(resString);
+    $("#affiliationsList").empty();
+    $("#affiliationsList").append(resString);
    
     resString = "";
     $.each(results.Clusters, function (index, value) {
