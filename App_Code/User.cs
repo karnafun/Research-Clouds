@@ -148,6 +148,11 @@ public class User :RCEntity
         {
             cluster.GetFullInfo(); //filling cluster with users and keywords
         }
+
+        if (_id <0)        
+            clusters = _user.clusters;
+        
+
         return _user.clusters;
 
     }

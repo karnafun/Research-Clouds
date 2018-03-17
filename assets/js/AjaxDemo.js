@@ -1,6 +1,6 @@
 ﻿User = {};
-
-
+GetAnimationReadyUser(1);
+callingGetUserFullClustersAjax();
 
 $(document).ready(function () {
     GetUserById({ Id: 1 }, FillUserInformation, errorCB);
@@ -16,7 +16,7 @@ $(document).ready(function () {
         log("Updating JSON user from the table");
         UpdateUserFromTable();
         //{"FirstName":"Lionel",
-        var jsonString = JSON.stringify(User);       
+        var jsonString = JSON.stringify(User);
         var request = {
             userString: jsonString
         }
@@ -27,7 +27,7 @@ $(document).ready(function () {
 
 function UserUpdated(results) {
     var effected = results.d;
-    if (effected<0) {
+    if (effected < 0) {
         alert(effected + " Rows Effected");
         return;
     }
@@ -37,7 +37,7 @@ function UserUpdated(results) {
 
 function FillUserInformation(results) {
     User = JSON.parse(results.d);
-    log("Recivied User Information for Id: "+User.Id);
+    log("Recivied User Information for Id: " + User.Id);
     DisplayTableInfo();
 }
 
@@ -48,7 +48,7 @@ function DisplayTableInfo() {
     $("#txt_middleName").val(User.MiddleName);
     $("#txt_lastName").val(User.LastName);
     $("#txt_degree").val(User.Degree);
-    $("#txt_imagePath").val(User.ImagePath);    
+    $("#txt_imagePath").val(User.ImagePath);
     if (User.IsAdmin) {
         $("#cb_administrator").attr('checked', true);
     } else {
@@ -66,25 +66,25 @@ function DisplayTableInfo() {
 function UpdateUserFromTable() {
     User.Id = $("#txt_id").val();
     User.FirstName = $("#txt_firstName").val();
-    User.MiddleName= $("#txt_middleName").val();
-    User.LastName= $("#txt_lastName").val();
-    User.Degree= $("#txt_degree").val();
-    User.ImagePath= $("#txt_imagePath").val();
+    User.MiddleName = $("#txt_middleName").val();
+    User.LastName = $("#txt_lastName").val();
+    User.Degree = $("#txt_degree").val();
+    User.ImagePath = $("#txt_imagePath").val();
     if ($('#check_id').is(":checked")) {
         User.IsAdmin = true;
     } else {
         User.IsAdmin = false;
     }
-    User.Email= $("#txt_email").val();
-    User.Hash= $("#txt_hash").val();
-    User.Salt= $("#txt_salt").val();
+    User.Email = $("#txt_email").val();
+    User.Hash = $("#txt_hash").val();
+    User.Salt = $("#txt_salt").val();
     User.Summery = $("#txt_summery").val();
 
     //alert(GetDateObject(User.BirthDate));
     User.BirthDate = GetDateObject(User.BirthDate)
     User.RegistrationDate = GetDateObject(User.RegistrationDate);
-   // User.BirthDate=  $("#txt_birthDate").val();
-   // User.RegistrationDate = $("#txt_registrationDate").val();
+    // User.BirthDate=  $("#txt_birthDate").val();
+    // User.RegistrationDate = $("#txt_registrationDate").val();
 }
 function StringInformation() {
     var info = "Id: " + User.Id;
@@ -109,11 +109,11 @@ function errorCB(error) {
     console.log(error.responseText);
 }
 
-function log(str) {   
+function log(str) {
     $("#logs").html(function (i, val) {
         return val + str + "<br>";
     });
-    
+
 }
 
 
@@ -126,7 +126,15 @@ function callingGetClusterById() {
 }
 function callingGetUserFullClustersAjax() {
     GetUserFullClustersAjax({ Id: 1 }, function (results) {
+        console.log(results.d);
         results = JSON.parse(results.d);
-        alert(results[0].Name + ' ' + results[0].Users[0].Name);
+        //alert(results[0].Name + ' ' + results[0].Users[0].Name);
+    }, errorCB);
+}
+
+function GetAnimationReadyUser(_id) {
+    GetUserForAnimationAjax({ Id: 1 }, function (results) {
+        var str = results.d;
+        User = JSON.parse(results.d);
     }, errorCB);
 }

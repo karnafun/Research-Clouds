@@ -124,8 +124,7 @@ public class AjaxServices : System.Web.Services.WebService
     // each cluster has users information in it 
     //--------------------------------------------------------------------------
     public string GetUserFullClusters(string Id)
-    {
-        
+    {        
         List<Cluster> clusters = new User().GetUserFullClusters(int.Parse(Id));
         try
         {
@@ -138,6 +137,31 @@ public class AjaxServices : System.Web.Services.WebService
            return null;
         }
         
+    }
+
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // Returns a users with all needed information for the map-me animation
+    // each one of users clusters has full information (has users in it)
+    //--------------------------------------------------------------------------
+    public string GetUserForAnimation(string Id)
+    {
+        User user = new User().GetUserById(int.Parse(Id));
+        user.GetUserFullClusters();
+        try
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            return js.Serialize(user);
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, user);
+            return null;
+        }
+
     }
 
 }
