@@ -1,67 +1,75 @@
-﻿.BBg {
-	background-color: #F8FCF7;
+﻿/*
+    Brand Colors:
+    1 - #c9f2c7 - tea-green
+    2 - #37956f - russian-green
+    3 - #7ae582 - pastel-green
+    4 - #00bfb3 - amazonite
+    5 - #aceca1 - granny-smith-apple
+ */
+.BBg {
+    background-color: #F8FCF7;
 }
 
 .russian {
-	background-color: #37956f;
+    background-color: #37956f;
 }
+
 .aColor {
-	color: lightgray;
+    color: lightgray;
 }
 
 hr {
-	width: 80%;
+    width: 80%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Fjalla One', sans-serif;
-	display: table;
+    font-family: 'Fjalla One', sans-serif;
+    display: table;
 }
 
 .col-lg-6 h3 {
-	text-align: center;
+    text-align: center;
 }
 
 p {
-	font-family: 'Nunito', sans-serif;
-
+    font-family: 'Nunito', sans-serif;
 }
 
 button {
-	float: right;
+    float: right;
 }
 
 li {
-	margin-left: 13px;
+    margin-left: 13px;
 }
 
 .btn:hover {
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 a {
-	cursor: pointer;
-	font-family: 'Nunito', sans-serif;
-	color: #37956f;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    color: #37956f;
 }
 
-	a:hover {
-		color: #7ae582;
-		
-	}
+    a:hover {
+        color: #7ae582;
+    }
 
 
 .jumbotron {
-	/*background-color: rgba(233, 236, 239,0.6);*/
-	/*background-color: rgba(172, 236, 161,0.3);*/
-	background-color: rgba(55, 149, 111,0.2);
+    /*background-color: rgba(233, 236, 239,0.6);*/
+    /*background-color: rgba(172, 236, 161,0.3);*/
+    background-color: rgba(55, 149, 111,0.2);
 }
 
 .light-russian {
-	background-color: rgba(55, 149, 111,0.2);
+    background-color: rgba(55, 149, 111,0.2);
 }
+
 #uImg {
-	border-radius: 33%;
-	margin-bottom: 4px;
-	opacity:0.6;
+    border-radius: 33%;
+    margin-bottom: 4px;
+    opacity: 0.6;
 }

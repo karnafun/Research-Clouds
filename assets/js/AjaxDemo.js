@@ -1,12 +1,5 @@
 ﻿User = {};
-<<<<<<< HEAD
 
-
-
-=======
-GetAnimationReadyUser(1);
-callingGetUserFullClustersAjax();
->>>>>>> 2649933cc834b86b10621363842c2a32d02e67fd
 
 $(document).ready(function () {
     GetUserById({ Id: 1 }, FillUserInformation, errorCB);
