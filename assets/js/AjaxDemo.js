@@ -1,10 +1,6 @@
 ﻿User = {};
 
 
-GetClusterById({ Id: 1 }, function (results) {
-    results = JSON.parse(results.d);
-    alert(results.Users[1].Name);
-}, errorCB);
 
 
 $(document).ready(function () {

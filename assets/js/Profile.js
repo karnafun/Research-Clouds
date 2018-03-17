@@ -1,6 +1,4 @@
 ﻿
-
-
 try {
     User = localStorage.getItem("User");
           User = JSON.parse(User);
@@ -96,9 +94,9 @@ function Logout() {
 
 
 
-
-/////////////////////////////////// Editing Profile (Ilya Testing) ////////////////////////////////
-
+//***************************************************************************************************//
+//***************************** Editing Profile (Ilya Testing) *************************************
+//**************************************************************************************************//
 $(document).ready(function () {
     //Running before ready 
 
@@ -121,11 +119,64 @@ $(document).ready(function () {
     var check = document.getElementsByClassName('fa-check');
     var undo = document.getElementsByClassName('fa-undo');
     var summery = document.getElementById("uSummery");
+    var editProfile = document.getElementById("editProfile");
+    var doneEdit = document.getElementsByClassName("fa-check-square");
+    var cancelEdite = document.getElementsByClassName("fa-times");
+    $(doneEdit).hide();
+    $(cancelEdite).hide();
     $(check).hide();
     $(undo).hide();
+    $(edit).hide();
     var stringTemp = div.innerHTML;
     var summeryTemp = summery.innerHTML;
 
+
+    //Show edit button
+    editProfile.onclick = function (e) {
+        $(edit).show();
+    }
+
+
+    cancelEdite[0].onclick = function () {
+
+        $(edit).hide();
+        $(doneEdit).hide();
+        $(cancelEdite).hide();
+        $(check).hide();
+        $(undo).hide();
+
+        if (div.contentEditable = true) {
+            div.contentEditable = false;
+        }
+        else {
+            return null;
+        }
+    }
+
+
+
+
+    ///////// Add to body article ////////////////////////////
+
+    Savebtn.onclick = function (e) {
+        var modaleArtical = document.getElementById("uArticleModale");
+        var articleUl = document.getElementById("articleList");
+        var articletitle = document.getElementById("Modal-articleName");
+        var articleLink = document.getElementById("Modal-articleLink");
+        var articleAuthor = document.getElementById("Modal-articleAuthors");
+        if (articletitle.value == '' || articleLink.value == '' || articleAuthor.value == '') {
+            return null;
+        }
+        else {
+
+            articleUl.innerHTML += "<li class='media my-4' style='border-bottom:2px solid #F8FCF7'> <div class='media-body'><h5 class='mt-0 mb-1'><a href='" + articleLink.value + "'>" + articletitle.value + "</a></h5><small>" + articleAuthor.value + "<cite> PHD</cite></small></div></li>";
+            ArticleDetails = { Id: User.Id, Keywords: [], Link: articleLink.value, Title: articletitle.value, Users: [User] };
+            User.Articles.push(ArticleDetails);
+
+        }
+
+
+    }
 
 
     /////////////////////////////////////////////////////////////////////Changing User Img///////////////////////////////////////////////////////////
@@ -133,6 +184,8 @@ $(document).ready(function () {
 
     edit[0].onclick = function (e) {
         $(check[0]).show();
+        $(doneEdit).show();
+        $(cancelEdite).show();
         $(this).hide();
         file.click();
         x = file.value;
@@ -155,17 +208,23 @@ $(document).ready(function () {
     edit[1].onclick = function (e) {
         stringTemp = div.innerHTML;
         $(this).hide();
+        $(doneEdit).show();
+        $(cancelEdite).show();
         $(check[1]).show();
         $(undo[1]).show();
         div.contentEditable = true;
         div.focus();
         div.setAttribute("class", "edeting");
+        $(doneEdit).show();
+        $(cancelEdite).show();
     }
 
 
     //confirmiing chenges
     check[1].onclick = function (e) {
         var string = div.innerHTML;
+        $(doneEdit).show();
+        $(cancelEdite).show();
         $(check[1]).hide();
         $(undo[1]).hide();
         if (string == '') {
@@ -193,6 +252,8 @@ $(document).ready(function () {
         $(this).hide();
         $(check[1]).hide();
         $(edit[1]).show();
+        $(doneEdit).show();
+        $(cancelEdite).show();
         div.innerHTML = stringTemp.trim();
         div.contentEditable = false;
         div.className = "endEdeting";
@@ -201,7 +262,7 @@ $(document).ready(function () {
 
     }
 
-    ////////////////////////////////////////////////////////End Name changing////////////////////////////////////////////////////
+ 
 
 
     /////////////////////////////////////////////////////////Canging Summery////////////////////////////////////////////////////
@@ -211,6 +272,8 @@ $(document).ready(function () {
         $(this).hide();
         $(check[2]).show();
         $(undo[2]).show();
+        $(doneEdit).show();
+        $(cancelEdite).show();
         summery.contentEditable = true;
         summery.focus();
         summery.setAttribute("class", "edeting");
@@ -222,6 +285,8 @@ $(document).ready(function () {
         var summeryString = summery.innerHTML;
         $(check[2]).hide();
         $(undo[2]).hide();
+        $(doneEdit).show();
+        $(cancelEdite).show();
         if (summeryString == '') {
             summery.innerHTML = "Add Summery";
             $(edit[2]).show();
@@ -255,29 +320,30 @@ $(document).ready(function () {
 
     }
 
-    ///////// Add to body article ////////////////////////////
 
-    Savebtn.onclick = function (e) {
-        var modaleArtical = document.getElementById("uArticleModale");
-        var articleUl = document.getElementById("articleList");
-        var articletitle = document.getElementById("Modal-articleName");
-        var articleLink = document.getElementById("Modal-articleLink");
-        var articleAuthor = document.getElementById("Modal-articleAuthors");
-        if (articletitle.value == '' || articleLink.value == '' || articleAuthor.value == '') {
-            return null;
+
+
+
+
+    doneEdit[0].onclick = function () {
+        User.Name = div.innerHTML;
+        if (ArticleDetails = ! null) {
+            User.Articles.push(ArticleDetails);
         }
-        else {
-
-            articleUl.innerHTML += "<li class='media my-4' style='border-bottom:2px solid #F8FCF7'> <div class='media-body'><h5 class='mt-0 mb-1'><a href='" + articleLink.value + "'>"+ articletitle.value + "</a></h5><small>" + articleAuthor.value + "<cite> PHD</cite></small></div></li>";
-            User.Articles.push({ Id: User.Id, Keywords: [], Link: articleLink.value, Title: articletitle.value, Users: [] });
-
+        var jsonString = JSON.stringify(User);
+        var request = {
+            userString: jsonString
         }
-
+        UpdateUserAjax(request, UserUpdated, errorCB);
 
     }
 
 
-
-
+    function UserUpdated(results) {
+        alert("OK");
+    }
+    function errorCB(error) {
+        console.log(error.responseText);
+    }
 
 })
