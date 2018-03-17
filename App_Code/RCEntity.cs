@@ -9,7 +9,7 @@ using System.Web;
 public abstract class RCEntity
 {
     protected  int id;
-    public int Id { get { return id; } }
+    public int Id { get { return id; } set { id = value; } }
     protected DBServices db;
     public RCEntity()
     {

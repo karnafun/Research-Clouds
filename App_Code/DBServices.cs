@@ -841,6 +841,7 @@ public class DBServices
         try
         {
             cmd.Connection.Open();
+            var t = cmd.CommandText;
             return cmd.ExecuteNonQuery();
         }
         catch (Exception ex)

@@ -2,19 +2,41 @@
 
 $(document).ready(function () {
     GetUserById({ Id: 1 }, FillUserInformation, errorCB);
-
     $("#btn_panel_getUser").click(function () {
         var request = {
             Id: $("#txt_panel_id").val()
         }
         GetUserById(request, FillUserInformation, errorCB);
+        log("GetUserById() with Id:" + request.Id);
+    });
+
+
+    $("#btn_panel_updateUser").click(function () {
+        log("Updating JSON user from the table");
+        UpdateUserFromTable();
+        //{"FirstName":"Lionel",
+        var jsonString = JSON.stringify(User);       
+        var request = {
+            userString: jsonString
+        }
+        UpdateUserAjax(request, UserUpdated, errorCB);
+        log("UpdateUserAjax() with user Id:" + User.Id);
     });
 });
 
-
+function UserUpdated(results) {
+    var effected = results.d;
+    if (effected<0) {
+        alert(effected + " Rows Effected");
+        return;
+    }
+    GetUserById({ Id: User.Id }, FillUserInformation, errorCB);
+    log("GetUserById() with Id:" + User.Id);
+}
 
 function FillUserInformation(results) {
     User = JSON.parse(results.d);
+    log("Recivied User Information for Id: "+User.Id);
     DisplayTableInfo();
 }
 
@@ -36,8 +58,8 @@ function DisplayTableInfo() {
     $("#txt_salt").val(User.Salt);
     $("#txt_summery").val(User.Summery);
 
-    $("#txt_birthDate").val(GetNormalDate(User.BirthDate));
-    $("#txt_registrationDate").val(GetNormalDate(User.RegistrationDate));
+    $("#txt_birthDate").val(GetDisplayDate(User.BirthDate));
+    $("#txt_registrationDate").val(GetDisplayDate(User.RegistrationDate));
 
 }
 function UpdateUserFromTable() {
@@ -47,8 +69,6 @@ function UpdateUserFromTable() {
     User.LastName= $("#txt_lastName").val();
     User.Degree= $("#txt_degree").val();
     User.ImagePath= $("#txt_imagePath").val();
-    User.BirthDate= $("#txt_birthDate").val();
-    User.RegistrationDate = $("#txt_registrationDate").val();
     if ($('#check_id').is(":checked")) {
         User.IsAdmin = true;
     } else {
@@ -57,7 +77,13 @@ function UpdateUserFromTable() {
     User.Email= $("#txt_email").val();
     User.Hash= $("#txt_hash").val();
     User.Salt= $("#txt_salt").val();
-    User.Summery =$("#txt_summery").val();
+    User.Summery = $("#txt_summery").val();
+
+    //alert(GetDateObject(User.BirthDate));
+    User.BirthDate = GetDateObject(User.BirthDate)
+    User.RegistrationDate = GetDateObject(User.RegistrationDate);
+   // User.BirthDate=  $("#txt_birthDate").val();
+   // User.RegistrationDate = $("#txt_registrationDate").val();
 }
 function StringInformation() {
     var info = "Id: " + User.Id;
@@ -72,10 +98,20 @@ function StringInformation() {
 
 
 //Utilities
-function GetNormalDate(dateInMillisec) {
-    return new Date(parseInt(dateInMillisec.substr(6))).toLocaleDateString();
+function GetDisplayDate(myDate) {
+    return new Date(parseInt(myDate.substr(6))).toLocaleDateString();
+}
+function GetDateObject(myDate) {
+    return new Date(parseInt(myDate.substr(6)));
 }
 
 function errorCB(error) {
     console.log(error.responseText);
+}
+
+function log(str) {   
+    $("#logs").html(function (i, val) {
+        return val + str + "<br>";
+    });
+    
 }

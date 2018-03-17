@@ -77,7 +77,7 @@ public class AjaxServices : System.Web.Services.WebService
     //--------------------------------------------------------------------------
     // 
     //--------------------------------------------------------------------------
-    public string UpdateUser(string userStr)
+    public string UpdateUser(string userString)
     {
 
         //User user = new User().GetUserById(Id);
@@ -85,9 +85,9 @@ public class AjaxServices : System.Web.Services.WebService
         try
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
-            User user = js.Deserialize<User>(userStr);
-            
-            return user.UpdateUserInDatabase().ToString();
+            User user = js.Deserialize<User>(userString);
+            string res = user.UpdateUserInDatabase().ToString();
+            return res;
         }
         catch (Exception ex)
         {
