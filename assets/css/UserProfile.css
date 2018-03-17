@@ -1,0 +1,93 @@
+﻿.Cedit {
+    cursor: pointer;
+    display: inline;
+    opacity: 0.8;
+    float: right;
+}
+
+.Cedit1 {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 13px;
+}
+
+.CeditCheck {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.CeditBack {
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+#uID {
+    align-content: center;
+    display: inline-block;
+}
+
+#uImg {
+    border-radius: 33%;
+    margin-bottom: 4px;
+}
+
+
+input[type=text] {
+    margin-top: 8px;
+    font-size: 18px;
+    color: #545454;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    display: none;
+    width: 280px;
+}
+
+#1stCenter {
+    align-content: center;
+}
+
+
+/**************
+            classes for testing
+
+        ***************/
+
+
+.edeting {
+    border-bottom: 2px solid #37956f;
+    background-color: #ffffff;
+}
+
+.endEdeting {
+    background-color: #F8FCF7;
+}
+
+.Dnone {
+    display: none
+}
+
+.Endsummery {
+    background-color: rgba(55, 149, 111,0.0);
+}
+
+
+/***********************
+            CSS For Modal
+
+        **********************/
+
+
+
+.modal-footer .btn {
+    margin-left: 13px;
+}
+
+.fa-times {
+    cursor: pointer;
+}
+
+.fa-check-square {
+    cursor: pointer;
+}

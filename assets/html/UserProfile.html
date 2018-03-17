@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Research Clouds</title>
+    <!-------------------------->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Research Clouds JS -->
+    <script src="../js/AjaxCalls.js"></script>
+    <script src="../js/Profile.js"></script>
+    <!--  Style-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="../css/MainStyle.css" rel="stylesheet" />
+    <link href="../css/UserProfile.css" rel="stylesheet" />
+
+</head>
+<body class="BBg">
+    <!--------------------------------------Nav bar------------------------------------------------------>
+
+    <nav class="navbar navbar-expand-lg russian">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img  height="50" width="50" class="d-none d-md-block" />
+            </a>
+            <div class="ml-auto">
+                <button class="navbar-toggler d-lg-none d-md-block BBg" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+            </div>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                <ul class="navbar-nav align-items-end">
+                    <li class="nav-item">
+                        <a class="aColor" href="#">
+                            Clouds view
+                        </a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle aColor" data-toggle="dropdown" href="#">Settings<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id="editProfile" href="#">Edit profile</a></li>
+                            <li><a id="logout" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--------------------------------------------------------Profile Details------------------------------------------------->
+
+    <div class="container" style="margin-top:23px">
+        <div class="section BBg ">
+            <span class="fa fa-check-square"></span>
+            <span class="fa fa-times"></span>
+            <center>
+                <img id="uImg"  width="140" height="140" />
+                <input type="file" id="file1">
+                <div class="Cedit1">
+                    <span id="Ilya" class="fa fa-edit"></span>
+                    <span class="fa fa-check"></span>
+                    <span class="fa fa-undo"></span>
+                </div>
+                <div>
+                    <h3 id="uID">Dor Danai<small> PHD </small></h3>
+                    <div class="Cedit1">
+                        <span class="fa fa-edit"></span>
+                        <span class="fa fa-check"></span>
+                        <span class="fa fa-undo"></span>
+                    </div>
+                </div>
+                <input type="text" value="Click The Pencil Icon to Edit Me" />
+                <span class="btn light-russian col-xs-6" id="uCluster1">big data</span>
+                <span class="btn light-russian col-xs-6" id="uCluster2">social media </span>
+                <span class="btn light-russian col-xs-6" id="uCluster3">data mining</span>
+                <span class="btn light-russian col-xs-6" id="uCluster4">cyber security</span>
+                <div hidden id="Cluster_explanation">
+                    <p>
+                        sdgsadfgdfgbhdafbv;jsdafhpuisad<br />
+                        sdfs\dgsafdbgdsfgbfgb
+                    </p>
+                </div>
+            </center>
+            <hr>
+            <!--------------------------------------------------------Summery------------------------------------------------------------------->
+            <center>
+                <h3>Summary</h3>
+                <div class="jumbotron">
+                    <div class="Cedit">
+                        <span class="fa fa-edit"></span>
+                        <span class="fa fa-check"></span>
+                        <span class="fa fa-undo"></span>
+                    </div>
+                    <p id="uSummery" class="text-left" data-placement="top">
+                        This is a summary paragraph
+                        <br />
+                        Cannabis legalization activist - weed is the shit
+                    </p>
+                </div>
+            </center>
+            <!----------------------------------------End Summery Editing------------------------------------------------------------>
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <h3>Articles</h3>
+                    <div class="jumbotron">
+                        <div class="Cedit">
+                            <span class="fa fa-edit" data-target="#uArticleModale" data-toggle="modal"></span>
+                            <span class="fa fa-check"></span>
+                            <span class="fa fa-undo"></span>
+                        </div>
+                        <ul id="articleList" class="list-unstyled text-left">
+                            <li class="media my-4" style="border-bottom:2px solid #F8FCF7">
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">Some crazy text header</h5>
+                                    <p>  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                    <small> Dor Danai<cite> PHD</cite></small>
+                                </div>
+                            </li>
+                            <li class="media my-4" style="border-bottom:2px solid #F8FCF7">
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                    <small> Dor Danai<cite> PHD</cite></small>
+                                </div>
+                            </li>
+                            <li class="media my-4" style="border-bottom:2px solid #F8FCF7">
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                    <p> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                    <small> Dor Danai<cite> PHD</cite></small>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--Model for adding articles-->
+
+
+                        <div class="modal" id="uArticleModale" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">
+                                            Add Article
+                                        </h4>
+                                        <button class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Article name" id="Modal-articleName" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Article Link" id="Modal-articleLink" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Authors" id="Modal-articleAuthors" />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="btnModalSave" data-dismiss="modal" class="btn russian col-xs-6" onclick="Save();">Save</button>
+                                                <button id="btnModalCancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--End Model for adding articles-->
+
+                    </div>
+                </div>
+                <!----------------------------------------------------------Affiliations----------------------------------------------->
+                <div class="col-lg-6 col-md-12">
+                    <h3>Affiliations</h3>
+                    <div class="jumbotron">
+                        <ul id="affiliationsList" class="list-unstyled text-left">
+                            <li class="media">
+                                <img class="d-flex mr-3" src="../img/bg3.jpg" alt="Generic placeholder image" height="64" width="64">
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </div><!--Secction end-->
+    </div> <!--container End-->
+    <!----------------------------------------Footer------------------------------->
+    <footer class="footer russian">
+        <div class="container">
+            <center>
+                <span class="text-white">
+                    &copy; Karnafun & Friends
+                </span>
+            </center>
+        </div>
+    </footer>
+
+
+</body>
+</html>
+
