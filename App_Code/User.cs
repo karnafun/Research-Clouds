@@ -75,7 +75,7 @@ public class User :RCEntity
         db = new DBServices();
     }
     public User(int id, string fName, string mName, string lName, string imgPath, string degree,
-        string email, string summery, bool administrator,
+        string email, string summery, bool administrator,DateTime bdate,DateTime registrationDate,
         string hash = null, string salt = null)
     {
         db = new DBServices();
@@ -88,6 +88,8 @@ public class User :RCEntity
         this.email = email;
         this.summery = summery;
         this.administrator = administrator;
+        this.bdate = bdate;
+        this.registrationDate = registrationDate;
         this.hash = hash;
         this.salt = salt;
     }

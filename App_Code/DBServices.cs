@@ -694,21 +694,8 @@ public class DBServices
             reader = cmd.ExecuteReader();
             List<User> users = new List<User>();
             while (reader.Read())
-            {
-                int id = (int)reader["uId"];
-                string fName = reader["firstName"].ToString();
-                string mName = reader["middleName"].ToString();
-                string lName = reader["lastName"].ToString();
-                string degree = reader["degree"].ToString();
-                string imgPath = reader["imgPath"].ToString();
-                DateTime birthDate = reader["birthDate"] == null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
-                DateTime registrationDate = reader["registrationDate"] == null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
-                bool administrator = Convert.ToBoolean(reader["administrator"]);
-                string email = reader["email"].ToString();
-                string summery = reader["summery"].ToString();
-
-
-                users.Add(new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator));
+            {                
+                users.Add(CurrentLineUser(reader));
             }
             return users;
         }
@@ -998,15 +985,14 @@ public class DBServices
         string lName = reader["lastName"].ToString();
         string degree = reader["degree"].ToString();
         string imgPath = reader["imgPath"].ToString();
-        DateTime birthDate = reader["birthDate"] != null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
+        DateTime bdate = reader["birthDate"] != null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
         DateTime registrationDate = reader["registrationDate"] != null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
         bool administrator = Convert.ToBoolean(reader["administrator"]);
         string email = reader["email"].ToString();
-        string summery = reader["summery"].ToString();
-        var t = (DateTime)reader["birthDate"];
+        string summery = reader["summery"].ToString();        
         string hash = reader["uHash"].ToString();
         string salt = reader["uSALT"].ToString();
-        return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator,hash,salt);
+        return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator,bdate,registrationDate,hash,salt);
     }
     private Article CurrentLineArticle(SqlDataReader reader)
     {

@@ -17,7 +17,8 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
     //user demo
     private void InsertUserDemo()
     {
-        User user = new User(0, "dor", "test", "danai", @"https://goo.gl/GMts4T", "El Doctore", "Pizdaput@gmail.hotdog", "you cannot sum me !", true);
+        User user = new User(0, "dor", "test", "danai", @"https://goo.gl/GMts4T", "El Doctore", "Pizdaput@gmail.hotdog", "you cannot sum me !", true,
+            DateTime.MinValue,DateTime.MinValue);
         user.Password = "hotdog";
         user.RegistrationDate = DateTime.Now;
         user.BirthDate = DateTime.Now;
