@@ -25,7 +25,7 @@ public class User :RCEntity
     public string MiddleName { get { return mName; } set { mName = value; } }
     public string LastName { get { return lName; } set { lName = value; } }
     public string Name { get { return string.Format("{0} {1} {2}", fName, mName, lName); } }
-    public string ImgPath { get { return imgPath; } set { imgPath = value; } }
+    public string ImagePath { get { return imgPath; } set { imgPath = value; } }
     public string Degree { get { return degree; } set { degree = value; } }
     public bool IsAdmin { get { return administrator; } }
     public string Email { get { return email; } set { email = value; } }

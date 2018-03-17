@@ -1004,7 +1004,9 @@ public class DBServices
         string email = reader["email"].ToString();
         string summery = reader["summery"].ToString();
         var t = (DateTime)reader["birthDate"];
-        return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator);
+        string hash = reader["uHash"].ToString();
+        string salt = reader["uSALT"].ToString();
+        return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator,hash,salt);
     }
     private Article CurrentLineArticle(SqlDataReader reader)
     {
@@ -1064,7 +1066,7 @@ public class DBServices
         _cmd.Parameters.AddWithValue("@middleName", user.MiddleName); //nullable
         _cmd.Parameters.AddWithValue("@lastName", user.LastName);
         _cmd.Parameters.AddWithValue("@degree", user.Degree);
-        _cmd.Parameters.AddWithValue("@imgPath", user.ImgPath);
+        _cmd.Parameters.AddWithValue("@imgPath", user.ImagePath);
         _cmd.Parameters.AddWithValue("@birthDate", user.BirthDate); //nullable - but i wont allow
         _cmd.Parameters.AddWithValue("@registrationDate", user.RegistrationDate);
         _cmd.Parameters.AddWithValue("@administrator", user.IsAdmin);

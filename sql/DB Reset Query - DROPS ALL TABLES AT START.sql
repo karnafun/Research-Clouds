@@ -1,10 +1,38 @@
+/*
+	Part 1: Drop Data
+	Part 2: Tables
+	Part 3: Relationship Tables
+	Part 4: Primary Keys
+	Part 5: Foreign Keys
+	Part 6: Views
+	Part 7: Procedures
+	Part 8: User Data
+	Part 9: Article Data (Soccer DB)
+	Part 10: Keywords Data (Soccer DB)
+	Part 11: Cluster Data (Soccer DB)
+	Part 12: Institutes data  (Soccer DB)
+	Part 13: User-Clusters Relationship Data (Soccer DB)
+	Part 14: Users-Articles Relationship Data (Soccer DB)
+	Part 15: Users-AcademicInstitutes Relationship Data (Soccer DB) 
 
+*/
+
+
+/****************************************************************************************************************************
+	Part 1: Drop Data.
+	Droping all Research clouds related tables, views and procedures ordered by foreign keys constraints
+*****************************************************************************************************************************/
 
 drop table Affiliations, UsersInCluster, usersInArticle,KeywordsInCluster,KeywordsInArticle
 drop table users, Clusters, Articles, Keywords, AcademicInstitutes
 drop view [dbo].[v_ArticleKeywords],[dbo].[v_ClusterKeywords],[dbo].[v_InstituteUsers],[dbo].[v_UserAffiliations],[dbo].[v_UserArticles],[dbo].[v_UserClusters]
+drop proc p_deleteUser, p_deleteArticle, p_deleteCluster, p_deleteInstitute,p_deleteKeyword
 
-
+/****************************************************************************************************************************
+	Part 2: Tables
+	Creating tables for all entities
+	Users, Clusters, Articles, Keywords, AcademicInstitutes
+*****************************************************************************************************************************/
 
 create table Users(
 [uId] int identity not null,
@@ -48,7 +76,12 @@ iName nvarchar(500) not null
 )
 
 
---Create Connection Tables:
+/****************************************************************************************************************************
+	Part 3:Relationship Tables
+	Creating all the entities relashionship tables
+
+*****************************************************************************************************************************/
+
 create table KeywordsInCluster(
 kId int not null,
 cId int not null
@@ -81,7 +114,11 @@ visible bit not null,
 )
 go
 
---Create primary keys
+/****************************************************************************************************************************
+	Part 4: Primary Keys
+	Entering primary keys to all entity and entity relashionship tables
+*****************************************************************************************************************************/
+
 
 alter table Users
 add constraint Users_id_PK primary key ([uId])
@@ -120,7 +157,12 @@ go
 alter table UsersInCluster
 add constraint UsersInCluster_uid_PK primary key ([uId],cId)
 go
---Creating foreign keys
+
+/****************************************************************************************************************************
+	Part 5: Foreign Keys
+	Creating foreign keys for every table
+*****************************************************************************************************************************/
+
 
 
 alter table KeywordsInCluster
@@ -161,9 +203,12 @@ go
 
 
 
+/****************************************************************************************************************************
+	Part 6: Views
+	Creating all relevent views
+	all view names starts with v_
+*****************************************************************************************************************************/
 
-
--- Create Views:
 
 create view v_UserClusters
 as
@@ -220,9 +265,68 @@ go
 
 
 
+/****************************************************************************************************************************
+	Part 7: Procedures
+	Creating all the procedures, starting with deleting procedures only.
+	all procedure names starts with p_
+*****************************************************************************************************************************/
 
 
---all passwords are messi123, neymar123, hazan123, bale123, ronaldo123
+create proc p_deleteUser
+@id int
+as
+delete from UsersInCluster where [uId] =@id
+delete from UsersInArticle where [uId] = @id
+delete from Affiliations where [uId] = @id
+delete from users where [uId] =@id
+go
+
+
+create proc p_deleteArticle
+@id int
+as
+delete from KeywordsInArticle where aId = @id
+delete from UsersInArticle where aId =@id
+delete from articles where aId=@id
+go
+
+create proc p_deleteCluster
+@id int
+as
+delete from KeywordsInCluster where cId = @id
+delete  from UsersInCluster where cId = @id
+delete  from clusters where cId = @id
+go
+
+
+create proc p_deleteInstitute
+@id int
+as
+delete  from Affiliations where iId = @id
+delete  from AcademicInstitutes where iId = @id
+go
+
+
+create proc p_deleteKeyword
+@id int
+as
+delete  from KeywordsInCluster where kId = @id
+delete  from KeywordsInArticle where kId = @id
+delete  from Keywords where kId = @id
+go
+
+
+
+
+/****************************************************************************************************************************
+	
+	Part 8: Soccer Users Table Information
+	Inserting hard coded data into Users table based on Benney's personal preferences.
+	All passwords are 'lastname123' i.e: messi123, neymar123, hazan123, bale123, ronaldo123	
+											
+*****************************************************************************************************************************/
+
+
 
 insert into users values
 ('Lionel', '', 'Messi','Degree','https://cdn.images.express.co.uk/img/dynamic/67/590x/Lionel-Messi-Barcelona-778351.jpg',
@@ -251,8 +355,15 @@ insert into users values
 'Gareth Bale Summery, Somthing unique and long enough to make your HTML wonder if he is ready for somthing heavy like this.')
 go
 
-select * from users where email='messi@ruppin.ac.il'and uHash = '1145FA52010BB26C17C6FC854BEAA21FA41E7943C8B079E4D02671DF03273214'
---Insert All Articles:
+
+/****************************************************************************************************************************
+	
+	Part 9: Soccer Article Table Information
+	Inserting soccer related articles found randomly on google scholar using "soccer"....	
+											
+*****************************************************************************************************************************/
+
+
 insert into Articles values
 ('Match performance of high-standard soccer players with special reference to development of fatigue',
 'http://www.academia.edu/download/41464251/Mohr_M_Krustrup_P_Bangsbo_J._Match_perfo20160123-13511-12u6xhn.pdf')
@@ -290,9 +401,14 @@ insert into Articles values
 
 
 
+/****************************************************************************************************************************
+	
+	Part 10: Soccer Keywords Data
+	Inserting soccer related keywords made up based on the article titles previously added	
+											
+*****************************************************************************************************************************/
 
 
---insert Keywords:
 insert into Keywords values('Soccer Offence')
 insert into Keywords values('Fatigue')
 insert into Keywords values('Elite Soccer')
@@ -311,7 +427,14 @@ insert into Keywords values('Top Strikers')
 
 
 
---Clusters
+
+/****************************************************************************************************************************
+	
+	Part 11: Soccer Cluster Data
+	Inserting hard coded soccer related clusters made up based on the keyword phrases previously added	
+											
+*****************************************************************************************************************************/
+
 insert into Clusters values('Top Athletes') 
 insert into Clusters values('Soccer Training') 
 insert into Clusters values('Game Analysis') 
@@ -321,13 +444,27 @@ insert into Clusters values('Fatigue Development')
 
 
 
---Institutes
+
+/****************************************************************************************************************************
+	
+	Part 12: Soccer Institutes data 
+	Inserting institutes data. 
+	Rupping is there for obvious reasons, Camp Nou was added based on the users previously added
+											
+*****************************************************************************************************************************/
+
 insert into AcademicInstitutes values ('Ruppin Academic Center')
 insert into AcademicInstitutes values ('Camp Nou')
 
 
 
---ClusterUsers
+/****************************************************************************************************************************
+	
+	Part 13: Soccer User and Cluster Relashionship Data 
+	Inserting hard coded users and clusters relationship
+											
+*****************************************************************************************************************************/
+
 insert into UsersInCluster values (1,1,1) --uId, cId, visible
 insert into UsersInCluster values (2,1,1) --uId, cId, visible
 insert into UsersInCluster values (4,1,1) --uId, cId, visible
@@ -348,7 +485,14 @@ insert into UsersInCluster values (1,5,1) --uId, cId, visible
 insert into UsersInCluster values (3,5,1) --uId, cId, visible
 insert into UsersInCluster values (2,5,1) --uId, cId, visible
 
---Connect users to articles
+
+/****************************************************************************************************************************
+	
+	Part 14: Users and Articles Relationship Data 
+	Inserting hard coded relationships between users and articles based on divine guidence
+											
+*****************************************************************************************************************************/
+
 insert into UsersInArticle values (1,2) --uId, aId
 insert into UsersInArticle values (1,4)
 insert into UsersInArticle values (1,2)
@@ -367,7 +511,13 @@ insert into UsersInArticle values (5,3)
 insert into UsersInArticle values (5,1)
 
 
---Affiliations
+/****************************************************************************************************************************
+	
+	Part 15: Users and Academic Institutes Relationship Data 
+	Inserting hard coded relationships between users and Institutes randomly
+											
+*****************************************************************************************************************************/
+
 insert into Affiliations values (1,1) --uId iId
 insert into Affiliations values (2,1)
 insert into Affiliations values (3,1)
