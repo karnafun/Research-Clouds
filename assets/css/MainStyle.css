@@ -22,9 +22,9 @@ h1, h2, h3, h4, h5, h6 {
 	text-align: center;
 }
 
-/*p {
+p {
 	font-family: 'Nunito', sans-serif;
-}*/
+}
 
 button {
 	float: right;
@@ -37,3 +37,13 @@ li {
 .btn:hover {
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
+a {
+	cursor: pointer;
+	font-family: 'Nunito', sans-serif;
+	color: #37956f;
+}
+
+	a:hover {
+		color: #7ae582;
+	}

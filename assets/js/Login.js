@@ -16,6 +16,7 @@ function Login(results) {
     if (results!=null && results.Name!=null) {
         localStorage.setItem('User', JSON.stringify(results))
         window.location.replace("../html/Researcher-Profile.html");
+        
 
     } else {
         // TODO: Implement login fail logic

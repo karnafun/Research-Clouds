@@ -36,10 +36,9 @@ function UpdateUserInfo(results) {
     */
     results = JSON.parse(results.d);
     User = results;
-    $("#uId").text(results.Name);
+    $("#uId").html(results.Name);
     $("#uImg").attr("src", results.ImgPath);
-    $("#uSummery").text(results.Summery);
-
+    $("#uSummery").html(results.Summery);
     var resString = "";
     $.each(results.Articles, function (index, value) {
 
@@ -47,7 +46,7 @@ function UpdateUserInfo(results) {
         TODO:
         Build an html li article using value (it has the users in it )
         */
-        resString += " <li><a href='#'>" + value.Title + "</a>, " + value.Users[0].Name + "</li>";
+        resString += "<li class='media' style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Name + "</a></h5><small> " + value.Users[0].Name + "</small></li>";
         resString += "<br>"; //to understand the raw results meanwhile
     });
 
@@ -59,8 +58,10 @@ function UpdateUserInfo(results) {
         /*
         TODO:
         Build an html li article using value (it has the users in it )
+        " <li class='media style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Name + "</a></h5><small> " + value.Users[0].Name + "</small></li>"
+        " <li><a href='#'>" + value.Name + "</a>, " + value.Users[0].Name + "</li>"
         */
-        resString += " <li><a href='#'>" + value.Name + "</a>, " + value.Users[0].Name + "</li>";
+        resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Name + "</a></h5><br/><small> " + value.Users[0].Name + "</small></li>";
         resString += "<br>"; //to understand the raw results meanwhile
     });
   
@@ -73,7 +74,7 @@ function UpdateUserInfo(results) {
         TODO: Build cluster buttons based on value info
             
         */
-        resString += '<span class="btn russian" id="uCluster'+(index+1)+'">'+value.Name+'</span>'
+        resString += '<span class="btn russian col-xs-6" id="uCluster'+(index+1)+'">'+value.Name+'</span>'
     });
     $("#clusters").html(resString);
 }
