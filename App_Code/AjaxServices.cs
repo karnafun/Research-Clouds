@@ -123,22 +123,21 @@ public class AjaxServices : System.Web.Services.WebService
     // Returns all clusters for a specific user by user id
     // each cluster has users information in it 
     //--------------------------------------------------------------------------
-    public string GetUserClusters(string Id)
+    public string GetUserFullClusters(string Id)
     {
         
-        Cluster cluster = new Cluster().GetClusterById(int.Parse(Id));
+        List<Cluster> clusters = new User().GetUserFullClusters(int.Parse(Id));
         try
         {
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            //cluster.GetFullInfo();
-            //return js.Serialize(cluster);
+            JavaScriptSerializer js = new JavaScriptSerializer();            
+            return js.Serialize(clusters);
         }
         catch (Exception ex)
         {
-            LogManager.Report(ex);
-           // return null;
+            LogManager.Report(ex,clusters);
+           return null;
         }
-        return "";
+        
     }
 
 }

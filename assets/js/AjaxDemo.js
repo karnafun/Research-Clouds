@@ -1,11 +1,6 @@
 ﻿User = {};
 
 
-GetClusterById({ Id: 1 }, function (results) {
-    results = JSON.parse(results.d);
-    alert(results.Users[1].Name);
-}, errorCB);
-
 
 $(document).ready(function () {
     GetUserById({ Id: 1 }, FillUserInformation, errorCB);
@@ -102,7 +97,6 @@ function StringInformation() {
 }
 
 
-
 //Utilities
 function GetDisplayDate(myDate) {
     return new Date(parseInt(myDate.substr(6))).toLocaleDateString();
@@ -120,4 +114,19 @@ function log(str) {
         return val + str + "<br>";
     });
     
+}
+
+
+
+//Examples:
+function callingGetClusterById() {
+    GetClusterById({ Id: 1 }, function (results) {
+        results = JSON.parse(results.d);
+    }, errorCB);
+}
+function callingGetUserFullClustersAjax() {
+    GetUserFullClustersAjax({ Id: 1 }, function (results) {
+        results = JSON.parse(results.d);
+        alert(results[0].Name + ' ' + results[0].Users[0].Name);
+    }, errorCB);
 }
