@@ -40,6 +40,7 @@
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="../css/MainStyle.css" rel="stylesheet" />
+    <script src="../js/User-Profile-editing.js"></script>
     <style type="text/css">
 
 
@@ -54,9 +55,7 @@
         .Cedit1 {
             cursor: pointer;
             display: inline-block;
-
-            margin-left:13px;
-
+            margin-left: 13px;
         }
 
         .CeditCheck {
@@ -67,16 +66,18 @@
         .CeditBack {
             cursor: pointer;
             display: inline-block;
-
         }
 
 
-            #uID {
-            align-content:center;
-            display:inline-block;
+        #uID {
+            align-content: center;
+            display: inline-block;
         }
 
-
+        #uImg {
+            border-radius: 33%;
+            margin-bottom: 4px;
+        }
 
 
         input[type=text] {
@@ -91,7 +92,7 @@
         }
 
         #1stCenter {
-            align-content:center;
+            align-content: center;
         }
 
 
@@ -110,14 +111,25 @@
             background-color: #F8FCF7;
         }
 
-        .Dnone{
-            display:none
+        .Dnone {
+            display: none
         }
 
         .Endsummery {
             background-color: #e9ecef;
         }
 
+
+        /***********************
+            CSS For Modal
+
+        **********************/
+
+
+
+        .modal-footer .btn {
+            margin-left: 13px;
+        }
     </style>
 
 
@@ -162,7 +174,7 @@
                     <span class="fa fa-undo"></span>
                 </div>
                 <div>
-                    <h3 id="uID">Dor Danai<small>USA </small></h3>
+                    <h3 id="uID">Dor Danai<small> PHD </small></h3>
                     <div class="Cedit1">
                         <span class="fa fa-edit"></span>
                         <span class="fa fa-check"></span>
@@ -212,29 +224,34 @@
                             <span class="fa fa-check"></span>
                             <span class="fa fa-undo"></span>
                         </div>
-                        <ul class="list-unstyled text-left">
-                            <li class="media" style="border-bottom:2px solid #F8FCF7">
-                                <img class="d-flex mr-3" src="../img/bg3.jpg" alt="Generic placeholder image" height="64" width="64">
+                        <ul id="articLelist" class="list-unstyled text-left">
+                            <li class="media my-4" style="border-bottom:2px solid #F8FCF7">
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-1">Some crazy text header</h5>
                                     <p>  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                <small> Dor Danai<cite> PHD</cite></small>
                                 </div>
                             </li>
                             <li class="media my-4" style="border-bottom:2px solid #F8FCF7">
-                                <img class="d-flex mr-3" src="../img/flags/AE.png" alt="Generic placeholder image" height="64" width="64">
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-1">List-based media object</h5>
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                    <small> Dor Danai<cite> PHD</cite></small>
                                 </div>
+                                
                             </li>
-                            <li class="media">
-                                <img class="d-flex mr-3" src="../img/bg1.jpg" alt="Generic placeholder image" width="64" height="64">
+                            <li class="media my-4" style="border-bottom:2px solid #F8FCF7">
+                               
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-1">List-based media object</h5>
-                                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                    <p> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                    <small> Dor Danai<cite> PHD</cite></small>
+
                                 </div>
                             </li>
                         </ul>
+                        <!--Model for adding articles-->
+
                         <div class="modal" id="uArticleModale" tabindex="-1" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -242,26 +259,22 @@
                                         <h4 class="modal-title">
                                             Add Article
                                         </h4>
-                                            <button class="close" data-dismiss="modal">&times;</button>
-
-                                          
+                                        <button class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
                                         <form>
                                             <div class="form-group">
-                                                <label for="Modale-articleName">Enter article</label>
+                                               
                                                 <input class="form-control" placeholder="Article name" id="Modal-articleName" />
                                             </div>
                                             <div class="form-group">
-                                                <label for="Modal-articleSummery">Enter article summery</label>
                                                 <textarea class="form-control" placeholder="Article Summery" id="Modal-articleSummery"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label for="Modal-articleAuthor">Author/s</label>
                                                 <input class="form-control" placeholder="Authors" id="Modal-articleAuthors" />
                                             </div>
                                             <div class="modal-footer">
-                                                <button id="btnModalSave" class="btn russian col-xs-6">Save</button>
+                                                <button id="btnModalSave" data-dismiss="modal" class="btn russian col-xs-6" onclick="Save();">Save</button>
                                                 <button id="btnModalCancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
                                             </div>
                                         </form>
@@ -269,20 +282,16 @@
                                 </div>
                             </div>
                         </div>
+                        <!--End Model for adding articles-->
+
                     </div>
                 </div>
-                <!--Model for adding articles-->
 
 
                 <!----------------------------------------------------------Affiliations----------------------------------------------->
                 <div class="col-lg-6 col-md-12">
                     <h3>Affiliations</h3>
                     <div class="jumbotron">
-                        <div class="Cedit">
-                            <span class="fa fa-edit"></span>
-                            <span class="fa fa-check"></span>
-                            <span class="fa fa-undo"></span>
-                        </div>
                         <ul class="list-unstyled text-left">
                             <li class="media">
                                 <img class="d-flex mr-3" src="../img/bg3.jpg" alt="Generic placeholder image" height="64" width="64">
@@ -299,165 +308,201 @@
             </div>
         </div><!--Secction end-->
     </div> <!--container End-->
-
-
-    <!----------------------------------------Testing Lines------------------------------->
-
+    <!----------------------------------------Footer------------------------------->
+    <footer class="footer russian">
+        <div class="container">
+            <center>
+                <span class="text-white">
+                    &copy; Karnafun & Friends
+                </span>
+            </center>
+        </div>
+    </footer>
 
     <script>
+        /// var body = document.getElementsByTagName("body");
+        //window.onload = function () {
 
-        window.onload = function () {
-            var div = document.getElementById('uID');
-            var edit = document.getElementsByClassName('fa-edit');
-            var check = document.getElementsByClassName('fa-check');
-            var undo = document.getElementsByClassName('fa-undo');
-            var summery = document.getElementById("uSummery");
-            $(check).hide();
-            $(undo).hide();
-            var stringTemp = div.innerHTML;
-            var summeryTemp = summery.innerHTML;
-            ////////////////////////////Changing User Img/////////////////////////////////////
-            edit[0].onclick = function (e) {
+        //    ///Catch Modale save button//////
 
-                var userimg = document.getElementById("uImg");
-                var file = document.getElementById("file1");
+        //    var Savebtn = document.getElementById("btnModalSave")
 
-                //var selectDialogueLink = $('<a href="">Select files</a>');
-                var fileSelector = $('<input type="file">');
+        //    ///////////////////////////////
+        //    var div = document.getElementById('uID');
+        //    var edit = document.getElementsByClassName('fa-edit');
+        //    var check = document.getElementsByClassName('fa-check');
+        //    var undo = document.getElementsByClassName('fa-undo');
+        //    var summery = document.getElementById("uSummery");
+        //    $(check).hide();
+        //    $(undo).hide();
+        //    var stringTemp = div.innerHTML;
+        //    var summeryTemp = summery.innerHTML;
+        //    ////////////////////////////Changing User Img/////////////////////////////////////
+        //    edit[0].onclick = function (e) {
 
-                file.click(function () {
-                    userimg.click()
-                    return false;
-                });
+        //        var userimg = document.getElementById("uImg");
+        //        var file = document.getElementById("file1");
 
-                userimg.src = file.nodeValue;
+        //        //var selectDialogueLink = $('<a href="">Select files</a>');
+        //        var fileSelector = $('<input type="file">');
+
+        //        file.click(function () {
+        //            userimg.click()
+        //            return false;
+        //        });
+
+        //        userimg.src = file.nodeValue;
+
+        //    }
+
+
+
+        //    ////////////////////////////End Changing User Img/////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+        //    ////////////////////////////////////////////////////////Name changing////////////////////////////////////////////////////
+        //    // making changes
+        //    edit[1].onclick = function (e) {
+        //        stringTemp = div.innerHTML;
+        //        $(this).hide();
+        //        $(check[1]).show();
+        //        $(undo[1]).show();
+        //        div.contentEditable = true;
+        //        div.focus();
+        //        div.setAttribute("class", "edeting");
+        //    }
+
+
+        //    //confirmiing chenges
+        //    check[1].onclick = function (e) {
+        //        var string = div.innerHTML;
+        //        $(check[1]).hide();
+        //        $(undo[1]).hide();
+        //        if (string == '') {
+        //            div.innerHTML = "edit Line";
+        //            $(edit[1]).show();
+        //            div.contentEditable = false;
+        //            div.className = "endEdeting";
+
+
+        //        }
+        //        else {
+        //            string = string.trim();
+        //            // div.style.backgroundColor = '#ffffff';
+        //            div.style.border = '';
+        //            div.contentEditable = false;
+        //            $(edit[1]).show();
+        //            div.className = "endEdeting";
+
+        //        }
+
+        //    }
+
+        //    //Undoing changes
+        //    undo[1].onclick = function (e) {
+        //        $(this).hide();
+        //        $(check[1]).hide();
+        //        $(edit[1]).show();
+        //        div.innerHTML = stringTemp.trim();
+        //        div.contentEditable = false;
+        //        div.className = "endEdeting";
+
+
+
+        //    }
+
+        //    ////////////////////////////////////////////////////////End Name changing////////////////////////////////////////////////////
+
+
+        //    /////////////////////////////////////////////////////////Canging Summery////////////////////////////////////////////////////
+
+        //    edit[2].onclick = function (e) {
+        //        summeryTemp = summery.innerHTML;
+        //        $(this).hide();
+        //        $(check[2]).show();
+        //        $(undo[2]).show();
+        //        summery.contentEditable = true;
+        //        summery.focus();
+        //        summery.setAttribute("class", "edeting");
+        //    }
+
+
+        //    //confirmiing chenges
+        //    check[2].onclick = function (e) {
+        //        var summeryString = summery.innerHTML;
+        //        $(check[2]).hide();
+        //        $(undo[2]).hide();
+        //        if (summeryString == '') {
+        //            summery.innerHTML = "Add Summery";
+        //            $(edit[2]).show();
+        //            summery.contentEditable = false;
+        //            summery.className = "Endsummery text-left";
+
+
+        //        }
+        //        else {
+        //            summeryString = summeryString.trim();
+        //            //  summery.style.backgroundColor = '#ffffff';
+        //            summery.style.border = '';
+        //            summery.contentEditable = false;
+        //            $(edit[2]).show();
+        //            summery.className = "Endsummery text-left";
+
+        //        }
+
+        //    }
+
+        //    //Undoing changes
+        //    undo[2].onclick = function (e) {
+        //        $(this).hide();
+        //        $(check[2]).hide();
+        //        $(edit[2]).show();
+        //        summery.innerHTML = summeryTemp.trim();
+        //        summery.contentEditable = false;
+        //        summery.className = "Endsummery text-left";
+
+
+
+        //    }
+
+        //    ///////// Add to body article ////////////////////////////
+
+        //    Savebtn.onclick = function (e) {
+        //        var modaleArtical = document.getElementById("uArticleModale");
+        //        var articleUl = document.getElementById("articLelist");
+        //        var articletitle = document.getElementById("Modal-articleName");
+        //        var articleSummery = document.getElementById("Modal-articleSummery");
+        //        var articleAuthor = document.getElementById("Modal-articleAuthors");
+        //        if (articletitle.value == '' || articleSummery.value == '' || articleAuthor.value == '') {
+        //            return null;
+        //        }
+        //        else {
+        //            articleUl.innerHTML += "<li class='media' style='border-bottom:2px solid #F8FCF7'> <div class='media-body'><h5 class='mt- 0 mb- 1'>" + articletitle.value + "</5><p>" + articleSummery.value + "</p><small>" + articleAuthor.value + "</small></div></li>";
+        //        }
                 
-            }
 
+        //    }
+ 
+            
 
+        //        /// <li class="media my-4" style="border-bottom:2px solid #F8FCF7">
+        //       // < img class="d-flex mr-3" src= "../img/flags/AE.png" alt= "Generic placeholder image" height= "64" width= "64" >
+        //         //   <div class="media-body">
+        //           //     <h5 class="mt-0 mb-1">List-based media object</h5>
+        //             //   <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+        //               //         </div>
+        //                 //   </li >
 
-            ////////////////////////////End Changing User Img/////////////////////////////////////
-
-
-           
-
-
-
-
-
-
-
-
-            ////////////////////////////////////////////////////////Name changing////////////////////////////////////////////////////
-            // making changes
-            edit[1].onclick = function (e) {
-                stringTemp = div.innerHTML;
-                $(this).hide();
-                $(check[1]).show();
-                $(undo[1]).show();
-                div.contentEditable = true;
-                div.focus();
-                div.setAttribute("class", "edeting");
-            }
-
-
-            //confirmiing chenges 
-            check[1].onclick = function (e) {
-                var string = div.innerHTML;
-                $(check[1]).hide();
-                $(undo[1]).hide();
-                if (string == '') {
-                    div.innerHTML = "edit Line";
-                    $(edit[1]).show();
-                    div.contentEditable = false;
-                    div.className = "endEdeting";
-
-
-                }
-                else {
-                    string = string.trim();
-                   // div.style.backgroundColor = '#ffffff';
-                    div.style.border = '';
-                    div.contentEditable = false;
-                    $(edit[1]).show();
-                    div.className = "endEdeting";
-
-                }
-
-            }
-       
-            //Undoing changes
-            undo[1].onclick = function (e) {
-                $(this).hide();
-                $(check[1]).hide();
-                $(edit[1]).show();
-                div.innerHTML = stringTemp.trim();
-                div.contentEditable = false;
-                div.className = "endEdeting";
-
-
-
-            }
-
-////////////////////////////////////////////////////////End Name changing////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////Canging Summery////////////////////////////////////////////////////
-
-            edit[2].onclick = function (e) {
-                summeryTemp = summery.innerHTML;
-                $(this).hide();
-                $(check[2]).show();
-                $(undo[2]).show();
-                summery.contentEditable = true;
-                summery.focus();
-                summery.setAttribute("class", "edeting");
-            }
-
-
-            //confirmiing chenges 
-            check[2].onclick = function (e) {
-                var summeryString = summery.innerHTML;
-                $(check[2]).hide();
-                $(undo[2]).hide();
-                if (summeryString == '') {
-                    summery.innerHTML = "Add Summery";
-                    $(edit[2]).show();
-                    summery.contentEditable = false;
-                    summery.className = "Endsummery text-left";
-
-
-                }
-                else {
-                    summeryString = summeryString.trim();
-                  //  summery.style.backgroundColor = '#ffffff';
-                    summery.style.border = '';
-                    summery.contentEditable = false;
-                    $(edit[2]).show();
-                    summery.className = "Endsummery text-left";
-
-                }
-
-            }
-
-            //Undoing changes
-            undo[2].onclick = function (e) {
-                $(this).hide();
-                $(check[2]).hide();
-                $(edit[2]).show();
-                summery.innerHTML = summeryTemp.trim();
-                summery.contentEditable = false;
-                summery.className = "Endsummery text-left";
-
-
-
-            }
-
-
-
-
-
-        }
+        //}
 
 
 
