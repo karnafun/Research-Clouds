@@ -1,21 +1,4 @@
 
-/*
-
-delete from Affiliations
-delete from UsersInCluster
-delete from usersInArticle
-delete from KeywordsInCluster
-delete from KeywordsInArticle
-delete from users
-delete from Clusters
-delete from Articles
-delete from Keywords
-delete from AcademicInstitutes
-
-*/
---Insert Raw Data
-
-
 --Insert The User:
 insert into users values
 ('Amit', '', 'Rechavi','Ph.D','https://goo.gl/s235Pe',null,null,0,'emailaddress','password',null,'this is my summery')

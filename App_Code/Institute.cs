@@ -6,29 +6,18 @@ using System.Web;
 /// <summary>
 /// Summary description for Institute
 /// </summary>
-public class Institute
+public class Institute :RCEntity
 {
 
     //Fields
-    DBServices db;
-    int id;
     string name;
     string imgPath;
-    
     List<User> users;
 
-    //Props
-    public int Id { get { return id; } }
-    public string Name { get { return name; } }
-    public string ImgPath { get { return imgPath; } }
-    public List<User> Users
-    {
-        get
-        {
-            return users;
-        }
-    }
-
+    //Properties
+    public string Name { get { return name; } set { name = value; } }
+    public string ImgPath { get { return imgPath; } set { imgPath = value; } }
+    public List<User> Users { get { return users; } }
 
     //Constructors
     public Institute()
@@ -41,11 +30,23 @@ public class Institute
         this.id = id;
         this.name = name;
         this.imgPath = imgPath;
-       
+
     }
 
-
     //Methods
+    public override string ToString()
+    {
+        string info = "ID: " + id + "<br>";
+        info += "Name: " + Name + "<br>";
+
+        return info;
+    }
+    public void GetFullInfo()
+    {
+        users = db.GetInstituteUsers(id);
+    }
+
+    //Database Related Methods
     public List<Institute> GetAllInstitutes()
     {
         return db.GetAllInstitutes();
@@ -58,18 +59,31 @@ public class Institute
     {
         return db.GetInstituteUsers(iId);
     }
-
-    public override string ToString()
+    public int InsertInstituteToDatabase()
     {
-        string info = "ID: " + id + "<br>";
-        info += "Name: " + Name + "<br>";
-
-        return info;
+        if (id > 0)
+        {
+            LogManager.Report("trying to insert an institute with a valid id", this);
+        }
+        return db.InsertInstitute(this);
+    }
+    public int UpdateInstituteInDatabase()
+    {
+        if (id < 0)
+        {
+            LogManager.Report("tried to update an institute with an invalid id ", this);
+            return -1;
+        }
+        return db.UpdateInstitute(this);
+    }
+    public int DeleteInstituteFromDatabase()
+    {
+        if (id < 0)
+        {
+            LogManager.Report("tried to delete an institute with invalid id", this);
+            return -1;
+        }
+        return db.RemoveEntity(this);
     }
 
-    public void GetFullInfo()
-    {
-        users = db.GetInstituteUsers(id);
-    }
-    
 }

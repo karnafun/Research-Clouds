@@ -26,7 +26,7 @@ public class AjaxServices : System.Web.Services.WebService
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     //--------------------------------------------------------------------------
-    // Get the distance of the point for a specific group from the target point
+    // Gets a user from the database by the user id provided
     //--------------------------------------------------------------------------
     public string GetUserById(int Id)
     {
@@ -48,12 +48,16 @@ public class AjaxServices : System.Web.Services.WebService
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     //--------------------------------------------------------------------------
-    // Get the distance of the point for a specific group from the target point
+    // Gets user information based on given credentials
     //--------------------------------------------------------------------------
     public string Login(string email, string password)
     {
         User user = new User().Login(email, password);
-       
+        if (user==null)
+        {
+            LogManager.Report("Invalid Login credentials for " + email);
+            return null;
+        }
         try
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
@@ -64,6 +68,31 @@ public class AjaxServices : System.Web.Services.WebService
         {
             LogManager.Report(ex);
             return null;
+        }
+    }
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // 
+    //--------------------------------------------------------------------------
+    public string UpdateUser(string userString)
+    {
+
+        //User user = new User().GetUserById(Id);
+
+        try
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            User user = js.Deserialize<User>(userString);
+            string res = user.UpdateUserInDatabase().ToString();
+            return res;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return ex.ToString();
         }
     }
 }

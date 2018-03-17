@@ -6,43 +6,28 @@ using System.Web;
 /// <summary>
 /// Summary description for Article
 /// </summary>
-public class Article
+public class Article : RCEntity
 {
-    DBServices db;
-    int id;
+    //Fields
+    //DBServices db;
+    //int id;
     string title, link;
     List<User> users;
     List<Keyword> keywords;
 
+    //Properties
+    public string Title { get { return title; } set { title = value; } }
+    public string Link { get { return link; } set { link = value; } }
+    public List<User> Users { get { return users; } }
+    public List<Keyword> Keywords { get { return keywords; } }
 
-    public int Id { get { return id; } }
-    public string Title { get { return title; } }
-    public string Link { get { return link; } }
-
-
-    public List<User> Users
-    {
-        get
-        {
-            return users;
-        }
-    }
-
-    public List<Keyword> Keywords
-    {
-        get
-        {
-            return keywords;
-        }
-    }
-
+    //Constructors:
     public Article()
     {
-     
+
         db = new DBServices();
     }
-
-    public Article(int id, string title, string link) 
+    public Article(int id, string title, string link)
     {
 
         db = new DBServices();
@@ -51,17 +36,12 @@ public class Article
         this.link = link;
     }
 
-    public List<Article> GetAllArticles()
+    //Methods
+    public void GetFullInfo()
     {
-        return db.GetAllArticles();
+        users = db.GetArticleUsers(id);
+        keywords = db.GetArticleKeywords(id);
     }
-    public Article GetArticleById(int aId)
-    {
-        return db.GetArticleById(aId);
-    }
-
-   
-
     public override string ToString()
     {
         string info = "Id: " + id + "<br>";
@@ -70,19 +50,39 @@ public class Article
         return info;
     }
 
-    
-    public void GetFullInfo()
+    //Database Related Methods
+    public List<Article> GetAllArticles()
     {
-        users = db.GetArticleUsers(id);
-        keywords = db.GetArticleKeywords(id);
+        return db.GetAllArticles();
     }
-
+    public Article GetArticleById(int aId)
+    {
+        return db.GetArticleById(aId);
+    }
     public int InsertArticleToDatabase()
     {
-        if (id>0) //it means you tried to insert an article with a valid id ! you CANNOT choose the id yourself
+        if (id > 0) //it means you tried to insert an article with a valid id ! you CANNOT choose the id yourself
         {
-            LogManager.Report(String.Format("trying to insert:\r\n{0}\r\n\r\n into the database (has valid ID)",ToString()));
+            LogManager.Report(String.Format("trying to insert:\r\n{0}\r\n\r\n into the database (has valid ID)", ToString()));
         }
         return db.InsertArticle(this);
+    }
+    public int UpdateArticleInDatabase()
+    {
+        if (id < 0)
+        {
+            LogManager.Report("tried to update an article with invalid id", this);
+            return -1;
+        }
+        return db.UpdateArticle(this);
+    }
+    public int DeleteArticleFromDatabase()
+    {
+        if (id < 0)
+        {
+            LogManager.Report("tried to delete an article with invalid id", this);
+            return -1;
+        }
+        return db.RemoveEntity(this);
     }
 }
