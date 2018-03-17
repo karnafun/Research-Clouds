@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/AjaxCalls.js"></script>
+    <script src="../js/AjaxDemo.js"></script>
+
+    <style>
+        .long , text{
+            width:800px;
+        }
+    </style>
+</head>
+<body>
+    <div id="ph">
+
+    </div>
+    <table>
+        <tr>
+            <td>ID:</td>
+            <td><input type="text" id="txt_id" disabled="disabled" /></td>
+        </tr>
+        <tr>
+            <td>First Name:</td>
+            <td><input type="text" id="txt_firstName" /></td>
+        </tr>
+        <tr>
+            <td>Middle Name:</td>
+            <td><input id="txt_middleName" /></td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td><input id="txt_lastName" /></td>
+        </tr>
+        <tr>
+            <td>Degree:</td>
+            <td><input id="txt_degree" /></td>
+        </tr>
+        <tr>
+            <td>Image Path:</td>
+            <td class="long"><input id="txt_imagePath" /></td>
+        </tr>
+        <tr>
+            <td>Birth Date:</td>
+            <td class="long"><input id="txt_birthDate" /></td>
+        </tr>
+        <tr>
+            <td>Registration Date:</td>
+            <td class="long"><input id="txt_registrationDate" /></td>
+        </tr>
+        <tr>
+            <td>administrator:</td>
+            <td><input id="cb_administrator"  type="checkbox"/></td>
+        </tr>
+        <tr>
+            <td>email:</td>
+            <td ><input id="txt_email" /></td>
+        </tr>
+        <tr>
+            <td>Hash:</td>
+            <td class="long"><input disabled="disabled" id="txt_hash" /></td>
+        </tr>
+        <tr>
+            <td>SALT:</td>
+            <td class="long"><input disabled="disabled" id="txt_salt" /></td>
+        </tr>
+        <tr>
+            <td>Summery:</td>
+            <td > <textarea id="txt_summery" rows="5"></textarea></td>
+        </tr>
+        <tr id="clusters"> </tr>
+        <tr id="articles"> </tr>
+        <tr id="affiliations"></tr>
+    </table>
+</body>
+</html>
