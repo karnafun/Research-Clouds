@@ -59,7 +59,7 @@ function DisplayClusters(results) {
             var _user = _cluster.Users[j];
 
            
-            res += "<a onclick='ViewUser(" + _user.Id + ")'> <img src='" + _user.ImagePath + "' width='100' height='100' />";
+            res += "<a onclick='ViewUser(" + _user.Id + ")'><div class='spin' style='border-right: 10px solid #37956f;'> <img src='" + _user.ImagePath + "' width='100' height='100' /></div>";
             res += "<h5>" + _user.Name + " </h5></a>";
            
         }
