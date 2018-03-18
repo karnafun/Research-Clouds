@@ -102,7 +102,7 @@
                             <button class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form enctype="multipart/form-data"  action="/action_page_binary.asp" method="post">
                                 <div class="form-group">
                                     <input class="form-control" placeholder="First Name" id="infoModal_firstName" />
                                 </div>
@@ -116,7 +116,7 @@
                                     <input type="file" class="form-control" placeholder="Middle Name" id="infoModal_imagePath" />
                                 </div>
                                 <div class="modal-footer">
-                                    <button id="infoModal_btn_save" data-dismiss="modal" class="btn russian col-xs-6">Save</button>
+                                    <button id="infoModal_btn_save" type="submit" data-dismiss="modal" class="btn russian col-xs-6">Save</button>
                                     <button id="infoModal_btn_cancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
                                 </div>
                             </form>
