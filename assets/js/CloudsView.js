@@ -39,36 +39,43 @@ function DisplayClusters(results) {
     User = JSON.parse(results.d);
     var bootstrapClass = "";
     if (User.Clusters.length > 2) {
-        bootstrapClass = "col-md-4";
+        bootstrapClass = "col-md-3";
     } else {
         bootstrapClass = "col-md-6";
     }
 
     var res = "";
     for (var i = 0; i < User.Clusters.length; i++) {
+        //Cluster Loop
         var _cluster = User.Clusters[i];
-        res += "<div class='" + bootstrapClass + "'><h4>Cluster " + (i + 1) + ": " + _cluster.Name + "</h4><br>";
+
+        res += "<div class='" + bootstrapClass + "'>";
+        res += "<div data-toggle='collapse' data-target='#" + _cluster.Id + "'>";
+        res += "<h4>Cluster " + (i + 1) + ": " + _cluster.Name + "</h4>";
+        res += "</div>";
+
+        res += "<div id='" + _cluster.Id + "' class='collapsible collapse'>"
         for (var j = 0; j < _cluster.Users.length; j++) {
+            //User Loop
             var _user = _cluster.Users[j];
-            res += GetUserString(_user);
+
+           
+            res += "<a onclick='ViewUser(" + _user.Id + ")'> <img src='" + _user.ImagePath + "' width='100' height='100' />";
+            res += "<h5 >" + _user.Name + " </h5></a>";
+           
         }
+        res += "</div>";
         res += "</div>";
     }
     $("#clusters").html(res);
+
 }
 
-function GetUserString(_user) {
-    var str = "<a onclick='ViewUser(" + _user.Id + ")'> <img src='" + _user.ImagePath + "' width='100' height='100' />";
-    str += "<h5 >" + _user.Name + " </h5></a>";
-    return str;
-}
 
-function GetClusterString() {
-}
 function ViewUser(_id) {
     GetUserById({ Id: _id }, function (results) {
-    localStorage.setItem('Researcher',results.d)
-    window.location.replace("../html/ResearcherProfile.html");
+        localStorage.setItem('Researcher', results.d)
+        window.location.replace("../html/ResearcherProfile.html");
     }, errorCB)
-    
+
 }
