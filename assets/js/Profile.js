@@ -9,17 +9,22 @@ try {
     var request = { Id: User.Id };
 
     //Insert uId, Summery, and uImg, articles
-    GetUserById(request, function (results) {
-        try {
-
-            results = JSON.parse(results.d);
-        } catch (e) {
-            RedirectToLogin();
-        }
-        User = results;
-        EditedUser = $.extend(true, {}, User);
+    if (!User.Updated) {
+        GetUserById(request, function (results) {
+            try {
+                results = JSON.parse(results.d);
+            } catch (e) {
+                RedirectToLogin();
+            }
+            User = results;
+            EditedUser = $.extend(true, {}, User);
+            UpdatePageFromUser();
+        }, errorCB);
+    } else {
         UpdatePageFromUser();
-    }, errorCB);
+    }
+    
+    
 
     //TODO:    
     //Insert Affiliations
@@ -257,9 +262,14 @@ function ConfigureClickEvents() {
             User.ImagePath = img;
         }
         UpdatePageFromUser();
-        var message = "Write to local JSON file? (this page DB update function is not implemented yet. \r\n please see AjaxDemo.html to see it exists in the code)";
+        var message = "Currently updating local JSON, changes deleted on refresh when we pull the user again from the server\r\n";
+        message += "Updating user using ajax functions is demonstrated in the AjaxDemo.html file\r\n\r\n";
+        message += "Would you like to get redirected to AjaxDemo.Html?";
         if (confirm(message)) {
-            localStorage.setItem('User', JSON.stringify(User));            
+            window.location.replace("../html/AjaxDemo.html");
+            //User.Updated = true;
+            //localStorage.setItem('User', JSON.stringify(User));
+            //alert(localStorage.getItem('User'));
         }
     })
 
