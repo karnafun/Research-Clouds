@@ -91,3 +91,18 @@ input[type=text] {
 .fa-check-square {
     cursor: pointer;
 }
+
+
+#clusterInfo {
+    height: 0;
+    width: 0;
+    text-align: center;
+    align-content:center;
+}
+#p_clusterInfo {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    align-content: center;
+}

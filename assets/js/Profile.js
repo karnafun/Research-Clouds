@@ -1,4 +1,6 @@
-﻿try {
+﻿User = {};
+ClusterClickedId = -1;
+try {
 
     User = localStorage.getItem("User");
     User = JSON.parse(User);
@@ -81,7 +83,7 @@ function UpdateResearcherInfo(results) {
         TODO: Build cluster buttons based on value info
             
         */
-        resString += '<span class="btn light-russian col-xs-6" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
+        resString += '<span onclick="ClusterClick(' + (value.Id) + ')" class="btn light-russian col-xs-6" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
     });
     $("#clusters").html(resString);
 }
@@ -109,7 +111,27 @@ function RedirectToLogin() {
     }
 }
 
+function ClusterClick(_id) {
+    if (ClusterClickedId == _id) {
+        //Toggle back
+        $("#clusterInfo").animate({ height: '0', width: '0' });
+        ClusterClickedId = -1;
+        return;
+    } else if (ClusterClickedId == -1) {
+        $("#clusterInfo").animate({ height: '100px', width: '250px' });
+        ClusterClickedId = _id;
+    }
 
+    //change the text
+    for (var i = 0; i < User.Clusters.length; i++) {
+        if (User.Clusters[i].Id == _id) {
+            $("#p_clusterInfo").text(User.Clusters[i].Name);
+            ClusterClickedId = _id;
+        }
+    }
+
+
+}
 
 //***************************************************************************************************//
 //***************************** Editing Profile (Ilya Testing) *************************************
