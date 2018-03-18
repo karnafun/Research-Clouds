@@ -28,7 +28,7 @@ public class User : RCEntity
     {
         get
         {
-            if (!String.IsNullOrWhiteSpace(mName) &&  mName.Length > 2)
+            if (!String.IsNullOrWhiteSpace(mName) && mName.Length > 2)
             {
                 return string.Format("{0} {1} {2}", fName, mName, lName);
             }
@@ -210,10 +210,9 @@ public class User : RCEntity
         {
             registrationDate = DateTime.Now;
         }
-        foreach (Article article in articles)
-        {
-            article.UpdateArticleInDatabase();
-        }
+        if (articles !=null)
+            foreach (Article article in articles)
+                article.UpdateArticleInDatabase();
         return db.UpdateUser(this);
     }
     public int RemoveUserFromDatabase()

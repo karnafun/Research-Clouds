@@ -308,8 +308,24 @@ function ConfigureClickEvents() {
         message += "Updating user using ajax functions is demonstrated in the AjaxDemo.html file\r\n\r\n";
         message += "Would you like to get redirected to AjaxDemo.Html?";
         if (confirm(message)) {
-            window.location.replace("../html/AjaxDemo.html");
+            //window.location.replace("../html/AjaxDemo.html");
             //User.Updated = true;
+            User.BirthDate = GetDateObject(User.BirthDate);
+            User.RegistrationDate = GetDateObject(User.RegistrationDate);
+            UpdateUserAjax({ userString: JSON.stringify(User) }, function (results) {
+                /*
+                <div class="alert alert-success">
+                  <strong>Success!</strong> Indicates a successful or positive action.
+                </div>
+                */
+                var popup = [
+                    '<div class="alert alert-info">',
+                    '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',
+                    '<strong>Success!</strong> You updated your profile',
+                    '</div>'
+                ];
+                $('#userProfileCon').prepend(popup.join(''));
+            }, errorCB)
             //localStorage.setItem('User', JSON.stringify(User));
             //alert(localStorage.getItem('User'));
         }
