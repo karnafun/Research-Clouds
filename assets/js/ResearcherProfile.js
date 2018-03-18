@@ -21,7 +21,9 @@ $(document).ready(function () {
     $("#btn_logout").click(function () {
         Logout();
     });
-
+    $("#editProfile").on("click", function () {
+        $("#editUl").hide();
+    })
 });
 
 function UpdateResearcherInfo(results) {

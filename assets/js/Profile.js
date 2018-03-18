@@ -171,7 +171,9 @@ applies also to fa-undo -> undo_name, etc
 $(document).ready(function () {
     ToggleEditingTools(false);
     ConfigureClickEvents();
-
+    $("#editProfile").on("click", function () {
+        $("#editUl").hide();
+    })
 });
 
 function EditArticle(_id) {
