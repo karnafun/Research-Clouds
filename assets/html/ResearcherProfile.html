@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Brand Colors
 
 
@@ -15,7 +15,7 @@
 
 
 
-      
+
     <!-------------------------->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -43,14 +43,14 @@
             color: #37956f;
         }
 
-        span{
-            margin-left:6px;
+        span {
+            margin-left: 6px;
+            margin-top: 3px;
         }
-
     </style>
 
 
- 
+
 
 </head>
 <body class="BBg">
@@ -72,11 +72,11 @@
                             Clouds view
                         </a>
                     </li>
-                    <li class="dropdown nav-item">
+                    <li class="dropdown nav-item ">
                         <a class="dropdown-toggle aColor" data-toggle="dropdown" href="#">Settings<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a id="editProfile" href="#">Edit profile</a></li>
-                            <li><a id="btn_logout" href="#">Logout</a></li>
+                        <ul class="dropdown-menu ml-auto russian">
+                            <li><a id="editProfile" class="aColor" href="#">Edit profile</a></li>
+                            <li><a id="btn_logout" class="aColor" href="#">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -85,26 +85,25 @@
     </nav>
 
     <!--------------------------------------------------------Profile Details------------------------------------------------->
-    
+
     <div class="container" style="margin-top:23px">
         <div class="section BBg">
             <center>
                 <img id="uImg" src="../img/avatar.jpg" name="aboutme" width="140" height="140" border="0" class="img-circle">
-                
-                <h3 class="media-heading" id="uID">Dor Danai <small id="uCountry"> USA </small></h3>
+
+                <h2 class="media-heading" id="uID">Dor Danai <small id="uCountry"> USA </small></h2>
 
 
-                <div id="clusters">
+                <div id="clusters" class="row justify-content-center">
                     <span class="btn light-russian col-xs-6" id="uCluster1">big data</span>
                     <span class="btn light-russian col-xs-6" id="uCluster2">social media </span>
                     <span class="btn light-russian col-xs-6" id="uCluster3">data mining</span>
                     <span class="btn light-russian col-xs-6" id="uCluster4">cyber security</span>
-
                 </div>
             </center>
-            <div  id="clusterInfo" >
-                <p id="p_clusterInfo"  >
-                    Cluster infromation will be displayed here in future updates            
+            <div id="clusterInfo">
+                <p id="p_clusterInfo">
+                    Cluster infromation will be displayed here in future updates
                 </p>
             </div>
             <hr>
@@ -120,16 +119,16 @@
                     </p>
                     <small>by <cite>Ilya kolker</cite></small>
                 </div>
-                </center>
+            </center>
 
-                <!----------------------------------------------------------Articles----------------------------------------------->
+            <!----------------------------------------------------------Articles----------------------------------------------->
             <div class="row">
                 <div class="col-lg-6 col-md-12">
                     <h3>Articles</h3>
                     <div class="jumbotron">
                         <ul id="articleList" class="list-unstyled text-left">
                             <li class="media" style="border-bottom:2px solid #F8FCF7">
-                                <img  class="d-flex mr-3" src="../img/bg3.jpg" alt="Generic placeholder image" height="64" width="64">
+                                <img class="d-flex mr-3" src="../img/bg3.jpg" alt="Generic placeholder image" height="64" width="64">
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-1">Some crazy text header</h5>
                                     Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
@@ -186,7 +185,9 @@
     </footer>
 
     <script>
-
+        $('.dropdown-toggle').click(function () {
+            $(this).next('.dropdown-menu').slideToggle(500);
+        });
     </script>
 
 
