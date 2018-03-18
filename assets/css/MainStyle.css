@@ -6,6 +6,10 @@
     4 - #00bfb3 - amazonite
     5 - #aceca1 - granny-smith-apple
  */
+
+body {
+	background-image: url('../img/Screenshot_3_burned2 - Copy.png');
+}
 .BBg {
     background-color: #F8FCF7;
 }

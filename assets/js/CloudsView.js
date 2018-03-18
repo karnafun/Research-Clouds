@@ -15,8 +15,7 @@ try {
 $(document).ready(function () {
     $("#btn_logout").click(function () {
         Logout();
-    });
-
+    });    
 });
 
 function Logout() {
@@ -51,7 +50,7 @@ function DisplayClusters(results) {
 
         res += "<div class='" + bootstrapClass + "'>";
         res += "<div data-toggle='collapse' data-target='#" + _cluster.Id + "'>";
-        res += "<h4>Cluster " + (i + 1) + ": " + _cluster.Name + "</h4>";
+        res += "<h4 class='btn light-russian'>" + _cluster.Name + "</h4>";
         res += "</div>";
 
         res += "<div id='" + _cluster.Id + "' class='collapsible collapse'>"
@@ -61,14 +60,15 @@ function DisplayClusters(results) {
 
            
             res += "<a onclick='ViewUser(" + _user.Id + ")'> <img src='" + _user.ImagePath + "' width='100' height='100' />";
-            res += "<h5 >" + _user.Name + " </h5></a>";
+            res += "<h5>" + _user.Name + " </h5></a>";
            
         }
         res += "</div>";
         res += "</div>";
     }
     $("#clusters").html(res);
-
+    $('#uArticleModale').modal('show');
+    
 }
 
 
