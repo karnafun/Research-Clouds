@@ -88,7 +88,7 @@ public class AjaxServices : System.Web.Services.WebService
         }
         catch (Exception ex)
         {
-            LogManager.Report(ex);
+            LogManager.Report(ex,userString);
             return ex.ToString();
         } 
     }
