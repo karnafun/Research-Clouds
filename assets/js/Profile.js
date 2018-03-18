@@ -153,7 +153,10 @@ function ConfigureClickEvents() {
     })
 
     $(".fa-times").click(function () {
-         CancelChanges();
+        CancelChanges();
+    })
+    $(".fa-edit").click(function (e) {
+        EditField(e);
     })
 
     $("#btn_modalSave").click(function (e) {
@@ -172,9 +175,13 @@ Modal-articleName = articleModal_title
 Modal-articleLink = articleModal_link
 Modal-articleAuthors = articleModal_authors
 
+All fa-edit spans now have ids: edit_name,edit_image, edit_summery edit_article
+this applies to fa-check -> check_name, etc
+applies also to fa-undo -> undo_name, etc
+
 */
 $(document).ready(function () {
-    ToggleEditingTools(false);    
+    ToggleEditingTools(false);
     ConfigureClickEvents();
 
 });
@@ -187,13 +194,13 @@ function SaveArticle(e) {
     var modaleArtical = document.getElementById("uArticleModale");
     var articleUl = document.getElementById("articleList");
 
-    if (title == '' || link == '' || authors== '') {
+    if (title == '' || link == '' || authors == '') {
         return null;
     }
     else {
         //articleUl.innerHTML += "<li class='media my-4' style='border-bottom:2px solid #F8FCF7'> <div class='media-body'><h5 class='mt-0 mb-1'><a href='" + articleLink.value + "'>" + articletitle.value + "</a></h5><small>" + articleAuthor.value + "<cite> PHD</cite></small></div></li>";
         ArticleDetails = { Id: User.Id, Keywords: [], Link: link, Title: title, Users: [User] };
-        EditedUser.Articles.push(ArticleDetails);        
+        EditedUser.Articles.push(ArticleDetails);
     }
 
 
@@ -201,12 +208,12 @@ function SaveArticle(e) {
 
 function SaveChanges() {
     EditedUser.BirthDate = GetDateObject(EditedUser.BirthDate);
-    EditedUser.RegistrationDate= GetDateObject(EditedUser.RegistrationDate);
+    EditedUser.RegistrationDate = GetDateObject(EditedUser.RegistrationDate);
     request = {
         userString: JSON.stringify(EditedUser)
     }
     UpdateUserAjax(request, function (results) {
-        if (results.d>1) {
+        if (results.d > 1) {
             alert("User Updated Successfully");
         } else {
             alert(results.d + " rows effected");
@@ -240,7 +247,18 @@ function GetDateObject(myDate) {
     return new Date(parseInt(myDate.substr(6)));
 }
 
+function EditField(e) {
+    var sender = e.currentTarget.id;
+    if (sender == "edit_image") {
+        alert("yup");
+    } else if (sender == "edit_name") {
 
+    } else if (sener == "edit_summery") {
+
+    }
+
+
+}
 
 //***************************************************************************************************//
 //***************************** Editing Profile (Ilya Testing) *************************************
