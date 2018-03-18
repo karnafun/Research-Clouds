@@ -1,5 +1,5 @@
  
-###Todo:
+### Todo:
 
  - Fix Navbar for mobile (ugly, and when clicking 'settings' its ugly as fuck)
  - Change the way clusters and users are displayed in CloudsView.html
@@ -20,7 +20,7 @@
 	- Are you getting redirected to UserProfile with the new User?
 
 
-#####if articles and image update is working, verify it now
+##### if articles and image update is working, verify it now
 
 2) Log out and log back in as a user with information
 
