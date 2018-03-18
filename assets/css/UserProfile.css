@@ -106,3 +106,7 @@ input[type=text] {
     text-align: center;
     align-content: center;
 }
+
+span{
+	margin-left:6px;
+}
