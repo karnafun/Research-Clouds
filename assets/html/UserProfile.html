@@ -61,8 +61,8 @@
             <!--<span class="fa fa-check-square"></span>
             <span class="fa fa-times"></span>-->
             <center>
-               <a> <img id="uImg"  src="https://vignette.wikia.nocookie.net/animal-jam-clans-1/images/1/1e/Insert-picture-here.jpg/revision/latest?cb=20161231005211"  width="140" height="140" /></a>
-                <!--<div class="Cedit1">                    
+                <a> <img id="uImg" src="https://vignette.wikia.nocookie.net/animal-jam-clans-1/images/1/1e/Insert-picture-here.jpg/revision/latest?cb=20161231005211" width="140" height="140" /></a>
+                <!--<div class="Cedit1">
                     <span id="edit_image" class="fa fa-edit"></span>
                     <span id="check_image" class="fa fa-check"></span>
                     <span id="undo_image" class="fa fa-undo"></span>
@@ -75,14 +75,14 @@
                         <span id="undo_name" class="fa fa-undo"></span>-->
                     </div>
                 </div>
-                <input type="text"   value="Click The Pencil Icon to Edit Me" />
+                <input type="text" value="Click The Pencil Icon to Edit Me" />
                 <div id="clusters">
                     <span class="btn light-russian col-xs-6" id="uCluster1">Cluster Name</span>
                     <span class="btn light-russian col-xs-6" id="uCluster2">Cluster Name </span>
                     <span class="btn light-russian col-xs-6" id="uCluster3">Cluster Name</span>
                     <span class="btn light-russian col-xs-6" id="uCluster4">Cluster Name</span>
                 </div>
-                <div  id="clusterInfo">
+                <div id="clusterInfo">
                     <p id="p_clusterInfo">
                         Cluster Discription Will Be Here, This is hidden by default
                     </p>
@@ -90,7 +90,7 @@
             </center>
             <hr>
 
-        <!-----------------------------------------------Personal Information Modal------------------------------------------ -->
+            <!-----------------------------------------------Personal Information Modal------------------------------------------ -->
             <div class="modal" id="infoModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="file" class="form-control" placeholder="Middle Name" id="infoModal_imagePath" />
-                                </div>                                
+                                </div>
                                 <div class="modal-footer">
                                     <button id="infoModal_btn_save" data-dismiss="modal" class="btn russian col-xs-6">Save</button>
                                     <button id="infoModal_btn_cancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
@@ -129,14 +129,14 @@
                 <h3>Summary</h3>
                 <div class="jumbotron">
                     <div class="Cedit">
-                        <span id="edit_summery" class="fa fa-edit" data-target="#summeryModal" data-toggle="modal" ></span>
+                        <span id="edit_summery" class="fa fa-edit" data-target="#summeryModal" data-toggle="modal"></span>
                         <!--<span id="check_summery" class="fa fa-check"></span>
                         <span id="undo_summery" class="fa fa-undo"></span>-->
                     </div>
                     <p id="uSummery" class="text-left" data-placement="top">
                         This is a summary paragraph
                         <br />
-                        
+
                     </p>
                 </div>
             </center>
@@ -154,8 +154,8 @@
                             <form>
                                 <div class="form-group">
                                     <!--<input />-->
-                                       <textarea class="form-control" placeholder="Enter a summery about yourself" id="summeryModal_summery" ></textarea>
-                                </div>                             
+                                    <textarea class="form-control" placeholder="Enter a summery about yourself" id="summeryModal_summery"></textarea>
+                                </div>
                                 <div class="modal-footer">
                                     <button id="summeryModal_btn_save" data-dismiss="modal" class="btn russian col-xs-6">Save</button>
                                     <button id="summeryModal_btn_cancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
@@ -173,11 +173,11 @@
                 <div class="col-lg-6 col-md-12">
                     <h3>Articles</h3>
                     <div class="jumbotron">
-                        <div class="Cedit">
-                            <span id="edit_article" class="fa fa-edit" data-target="#uArticleModale" data-toggle="modal"></span>
-                            <!--<span id="check_article" class="fa fa-check"></span>
-                            <span id="undo_article" class="fa fa-undo"></span>-->
-                        </div>
+                        <!--<div class="Cedit">
+                            <span id="edit_article" class="fa fa-edit" data-target="#articleModal" data-toggle="modal"></span>
+                            <span id="check_article" class="fa fa-check"></span>
+                            <span id="undo_article" class="fa fa-undo"></span>
+                        </div>-->
                         <ul id="articleList" class="list-unstyled text-left">
                             <li class="media my-4" style="border-bottom:2px solid #F8FCF7">
                                 <div class="media-body">
@@ -204,13 +204,12 @@
                         <!--Model for adding articles-->
 
 
-                        <div class="modal" id="uArticleModale" tabindex="-1" role="dialog">
+                        <div class="modal" id="articleModal" tabindex="-1" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">
-                                            Add Article
-                                        </h4>
+                                        <h4 class="modal-title"> Add Article </h4>
+                                        <p id="articleModal_articleId" hidden>-1</p>
                                         <button class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
@@ -225,7 +224,7 @@
                                                 <input class="form-control" placeholder="Authors" id="articleModal_authors" />
                                             </div>
                                             <div class="modal-footer">
-                                                <button id="articleModal_btn_save" data-dismiss="modal" class="btn russian col-xs-6" >Save</button>
+                                                <button id="articleModal_btn_save" data-dismiss="modal" class="btn russian col-xs-6">Save</button>
                                                 <button id="articleModal_btn_cancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
                                             </div>
                                         </form>

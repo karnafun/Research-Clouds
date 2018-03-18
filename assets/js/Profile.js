@@ -23,8 +23,8 @@ try {
     } else {
         UpdatePageFromUser();
     }
-    
-    
+
+
 
     //TODO:    
     //Insert Affiliations
@@ -43,11 +43,12 @@ function UpdatePageFromUser() {
     BuildArticles();
     BuildAffiliations();
     BuildClusters();
+    ToggleEditingTools(false);
 
 }
 
 function BuildArticles() {
-    var resString = "";
+    var res = "";
     $.each(User.Articles, function (index, value) {
         var usernames = "";
         for (var i = 0; i < value.Users.length; i++) {
@@ -56,12 +57,18 @@ function BuildArticles() {
                 usernames += ", ";
             }
         }
-
-        resString += "<li onclick='return ArticleClick()' class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='" + value.Link + "'>" + value.Title + "</a></h5><br /><p>" + usernames + "</p></div></li > ";
+        res += "<li class='media' style='border-bottom:2px solid #F8FCF7'>"
+        res += "<div onclick='return ArticleClick()'  class='media-body'>"
+        res += "<h5><a href='" + value.Link + "'>" + value.Title + "</a></h5>"
+        res += "<br />";
+        res += "<p>" + usernames + "</p>";
+        res += "</div>";
+        res += '<span onclick="EditArticle(' + index + ')" class="fa fa-edit" data-target="#articleModal" data-toggle="modal"></span>';
+        res += "</li>"
 
     });
     $("#articleList").empty();
-    $("#articleList").append(resString);
+    $("#articleList").append(res);
 
 }
 function BuildAffiliations() {
@@ -164,23 +171,58 @@ $(document).ready(function () {
 
 });
 
+function EditArticle(_index) {
+    $.each(User.Articles, function (index, value) {
+        if (index == _index) {
+            $("#articleModal_title").val(value.Title);
+            $("#articleModal_link").val(value.Link);
+            var res = "";
+            for (var i = 0; i < value.Users.length; i++) {
+                res += value.Users[i].Name;
+                if (i != value.Users.length - 1) {
+                    res += ", ";
+                }
+            }
+            $("#articleModal_authors").val(res);
+        }
+    })
+}
+
 function SaveArticle(e) {
 
     var title = $("#articleModal_title").val();
     var link = $("#articleModal_link").val();
-    var authors = $("#articleModal_authors").val();
-    var modaleArtical = document.getElementById("uArticleModale");
-    var articleUl = document.getElementById("articleList");
+    var _users = $("#articleModal_authors").val();
 
-    if (title == '' || link == '' || authors == '') {
+    if (title == '' || link == '' || _users == '') {
         return null;
     }
-    else {
-        //articleUl.innerHTML += "<li class='media my-4' style='border-bottom:2px solid #F8FCF7'> <div class='media-body'><h5 class='mt-0 mb-1'><a href='" + articleLink.value + "'>" + articletitle.value + "</a></h5><small>" + articleAuthor.value + "<cite> PHD</cite></small></div></li>";
-        ArticleDetails = { Id: User.Id, Keywords: [], Link: link, Title: title, Users: [User] };
-        EditedUser.Articles.push(ArticleDetails);
-    }
 
+    var articleId = $("#articleModal_articleId").val();
+    for (var i = 0; i < User.Articles.length; i++) {
+        var exists = false;
+        var _article = User.Articles[i];
+        if (_article.Id == articleId) {
+            ArticleDetails = _article;
+            ArticleDetails.Title = title;
+            ArticleDetails.Link = link;
+            //if (_users!=null&&_users!=undefined) {
+            //    _users = _users.split(',')
+            //    ArticleDetails.authors = [];
+            //    for (var j = 0; j < _users.length; j++) {
+            //        ArticleDetails.authors.push(_users[j]);
+            //    }
+            //}
+            ArticleDetails.Users = [];
+            ArticleDetails.Users.push(_users)
+            exists = true;
+        }
+    }
+    if (!exists) {
+        ArticleDetails = { Id: 0, Keywords: [], Link: link, Title: title, Users: [User.Name] };
+        User.Articles.push(ArticleDetails);
+    }
+    BuildArticles();
 
 }
 
@@ -253,12 +295,12 @@ function ConfigureClickEvents() {
     })
 
     $("#infoModal_btn_save").click(function (e) {
-        User.FirstName= $("#infoModal_firstName").val();
-        User.MiddleName= $("#infoModal_middleName").val();
-        User.LastName = $("#infoModal_lastName").val();  
+        User.FirstName = $("#infoModal_firstName").val();
+        User.MiddleName = $("#infoModal_middleName").val();
+        User.LastName = $("#infoModal_lastName").val();
         User.Name = User.FirstName + " " + User.MiddleName + " " + User.LastName;
         var img = $("#infoModal_imagePath").val()
-        if (img!=null&&img!=undefined&& img!="") {
+        if (img != null && img != undefined && img != "") {
             User.ImagePath = img;
         }
         UpdatePageFromUser();
@@ -283,11 +325,11 @@ function ConfigureClickEvents() {
 function EditField(e) {
     var sender = e.currentTarget.id;
     if (sender == "edit_image") {
-       
+
     } else if (sender == "edit_name") {
         $("#infoModal_firstName").val(User.FirstName);
         $("#infoModal_middleName").val(User.MiddleName);
-        $("#infoModal_lastName").val(User.LastName);   
+        $("#infoModal_lastName").val(User.LastName);
 
     } else if (sender == "edit_summery") {
         $("#summeryModal_summery").val(User.Summery);
@@ -300,12 +342,12 @@ function EditField(e) {
 function CancelChange(e) {
     var sender = e.currentTarget.id;
     if (sender == "undo_image") {
-       
+
     } else if (sender == "undo_name") {
 
     } else if (sender == "undo_summery") {
 
-    } 
+    }
 }
 
 //***************************************************************************************************//
