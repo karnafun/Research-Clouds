@@ -23,13 +23,22 @@
 
 
 #uID {
-    align-content: center;
-    display: inline-block;
+	align-content: center;
+	display: inline-block;
+	color: #37956f;
+	display: table;
 }
 
 #uImg {
     border-radius: 33%;
     margin-bottom: 4px;
+}
+
+
+
+span {
+	margin-left: 6px;
+	margin-top: 3px;
 }
 
 
