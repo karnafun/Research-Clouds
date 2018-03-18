@@ -324,7 +324,7 @@ function ConfigureClickEvents() {
                     '<strong>Success!</strong> You updated your profile',
                     '</div>'
                 ];
-                $('#userProfileCon').prepend(popup.join(''));
+                $('#userProfileCon').prepend(popup.join('')); 
             }, errorCB)
             //localStorage.setItem('User', JSON.stringify(User));
             //alert(localStorage.getItem('User'));

@@ -90,7 +90,7 @@ public class AjaxServices : System.Web.Services.WebService
         {
             LogManager.Report(ex);
             return ex.ToString();
-        }
+        } 
     }
 
 
