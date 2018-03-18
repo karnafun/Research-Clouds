@@ -145,5 +145,6 @@ public partial class assets_html_WebFormClassDemo : System.Web.UI.Page
         res += "ronaldo: " + ronaldo + "\r\n";
         res += "bale: " + bale + "\r\n";
         Response.Write(res);
+
     }
 }

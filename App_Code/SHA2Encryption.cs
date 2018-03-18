@@ -11,15 +11,13 @@ using System.Web;
 public static class SHA2
 {
 
-    
-
-
     public static string GenerateSHA256String(string password,string salt)
     {
         SHA256 sha256 = SHA256Managed.Create();
         byte[] bytes = Encoding.UTF8.GetBytes(salt+password);
         byte[] hash = sha256.ComputeHash(bytes);
         return GetStringFromHash(hash);
+
         
     }
 
