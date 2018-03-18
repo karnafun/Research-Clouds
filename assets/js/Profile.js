@@ -307,16 +307,11 @@ function ConfigureClickEvents() {
         User.LastName = $("#infoModal_lastName").val();
         User.Name = User.FirstName + " " + User.MiddleName + " " + User.LastName;
         var img = $("#infoModal_imagePath").val();
-        alert(img);
         if (img != null && img != undefined && img != "") {
             User.ImagePath = img;
         }
         UpdatePageFromUser();
-
-
         UpdateUserInDatabase();
-
-
     })
 
     $("#summeryModal_btn_save").click(function (e) {
