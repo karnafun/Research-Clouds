@@ -273,6 +273,11 @@ function ConfigureClickEvents() {
         }
     })
 
+    $("#summeryModal_btn_save").click(function (e) {
+        User.Summery = $("#summeryModal_summery").val();
+        UpdatePageFromUser();
+    });
+
 }
 
 function EditField(e) {
@@ -285,7 +290,7 @@ function EditField(e) {
         $("#infoModal_lastName").val(User.LastName);   
 
     } else if (sender == "edit_summery") {
-        
+        $("#summeryModal_summery").val(User.Summery);
     } else if (sender == "edit_article") {
         //not implemented yet -> need to make one for each article.
     }
