@@ -137,33 +137,6 @@ function ArticleClick() {
 
 }
 
-function ConfigureClickEvents() {
-    $("#btn_logout").click(function () {
-        Logout();
-    });
-
-    $("#editProfile").click(function () {
-        if (!EditingMode) {
-            ToggleEditingTools(true);
-        }
-    })
-
-    $(".fa-check-square").click(function () {
-        SaveChanges();
-    })
-
-    $(".fa-times").click(function () {
-        CancelChanges();
-    })
-    $(".fa-edit").click(function (e) {
-        EditField(e);
-    })
-
-    $("#btn_modalSave").click(function (e) {
-        SaveArticle(e);
-    })
-
-}
 
 //***************************************************************************************************//
 //**************************************** Fixed Editing ********************************************//
@@ -239,7 +212,7 @@ function ToggleEditingTools(toggleOn) {
         $(".fa-undo").hide();
         $(".fa-check-square").hide();
         $(".fa-times").hide();
-        $("#file_image").hide(); //allways hidden
+        //$("#file_image").hide(); -- Removed !
         EditingMode = false;
     }
 }
@@ -247,17 +220,77 @@ function GetDateObject(myDate) {
     return new Date(parseInt(myDate.substr(6)));
 }
 
+
+function ConfigureClickEvents() {
+    $("#btn_logout").click(function () {
+        Logout();
+    });
+
+    $("#editProfile").click(function () {
+        if (!EditingMode) {
+            ToggleEditingTools(true);
+        }
+    })
+
+    $(".fa-check-square").click(function () {
+        SaveChanges();
+    })
+
+    $(".fa-times").click(function () {
+        CancelChanges();
+    })
+    $(".fa-edit").click(function (e) {
+        EditField(e);
+    })
+
+    $("#articleModal_btn_save").click(function (e) {
+        SaveArticle(e);
+    })
+
+    $("#infoModal_btn_save").click(function (e) {
+        User.FirstName= $("#infoModal_firstName").val();
+        User.MiddleName= $("#infoModal_middleName").val();
+        User.LastName = $("#infoModal_lastName").val();  
+        User.Name = User.FirstName + " " + User.MiddleName + " " + User.LastName;
+        var img = $("#infoModal_imagePath").val()
+        if (img!=null&&img!=undefined&& img!="") {
+            User.ImagePath = img;
+        }
+        UpdatePageFromUser();
+        var message = "Write to local JSON file? (this page DB update function is not implemented yet. \r\n please see AjaxDemo.html to see it exists in the code)";
+        if (confirm(message)) {
+            localStorage.setItem('User', JSON.stringify(User));            
+        }
+    })
+
+}
+
 function EditField(e) {
     var sender = e.currentTarget.id;
     if (sender == "edit_image") {
-        alert("yup");
+       
     } else if (sender == "edit_name") {
+        $("#infoModal_firstName").val(User.FirstName);
+        $("#infoModal_middleName").val(User.MiddleName);
+        $("#infoModal_lastName").val(User.LastName);   
 
-    } else if (sener == "edit_summery") {
-
+    } else if (sender == "edit_summery") {
+        
+    } else if (sender == "edit_article") {
+        //not implemented yet -> need to make one for each article.
     }
+}
 
 
+function CancelChange(e) {
+    var sender = e.currentTarget.id;
+    if (sender == "undo_image") {
+       
+    } else if (sender == "undo_name") {
+
+    } else if (sender == "undo_summery") {
+
+    } 
 }
 
 //***************************************************************************************************//
@@ -274,7 +307,7 @@ $(document).ready(function () {
     $(file).hide()
     ///Catch Modale save button//////
 
-    var Savebtn = document.getElementById("btnModalSave")
+    var Savebtn = document.getElementById("articleModal_btn_save")
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

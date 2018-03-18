@@ -14,7 +14,6 @@ $(document).ready(function () {
     $("#btn_panel_updateUser").click(function () {
         log("Updating JSON user from the table");
         UpdateUserFromTable();
-        //{"FirstName":"Lionel",
         var jsonString = JSON.stringify(User);
         var request = {
             userString: jsonString

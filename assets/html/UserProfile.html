@@ -58,22 +58,21 @@
 
     <div class="container" style="margin-top:23px">
         <div class="section BBg ">
-            <span class="fa fa-check-square"></span>
-            <span class="fa fa-times"></span>
+            <!--<span class="fa fa-check-square"></span>
+            <span class="fa fa-times"></span>-->
             <center>
                <a> <img id="uImg"  src="https://vignette.wikia.nocookie.net/animal-jam-clans-1/images/1/1e/Insert-picture-here.jpg/revision/latest?cb=20161231005211"  width="140" height="140" /></a>
-                <input type="file" id="file_image">
-                <div class="Cedit1">                    
+                <!--<div class="Cedit1">                    
                     <span id="edit_image" class="fa fa-edit"></span>
                     <span id="check_image" class="fa fa-check"></span>
                     <span id="undo_image" class="fa fa-undo"></span>
-                </div>
+                </div>-->
                 <div>
                     <h3 id="uID">User Name </h3> <!--<small> PHD </small>-->
                     <div class="Cedit1">
-                        <span id="edit_name" class="fa fa-edit"></span>
-                        <span id="check_name" class="fa fa-check"></span>
-                        <span id="undo_name" class="fa fa-undo"></span>
+                        <span id="edit_name" class="fa fa-edit" data-target="#infoModal" data-toggle="modal"></span>
+                        <!--<span id="check_name" class="fa fa-check"></span>
+                        <span id="undo_name" class="fa fa-undo"></span>-->
                     </div>
                 </div>
                 <input type="text"   value="Click The Pencil Icon to Edit Me" />
@@ -90,14 +89,49 @@
                 </div>
             </center>
             <hr>
+
+        <!-----------------------------------------------Personal Information Modal------------------------------------------ -->
+            <div class="modal" id="infoModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                Update Personal Information
+                            </h4>
+                            <button class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="First Name" id="infoModal_firstName" />
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Middle Name" id="infoModal_middleName" />
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Last Name" id="infoModal_lastName" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" class="form-control" placeholder="Middle Name" id="infoModal_imagePath" />
+                                </div>                                
+                                <div class="modal-footer">
+                                    <button id="infoModal_btn_save" data-dismiss="modal" class="btn russian col-xs-6">Save</button>
+                                    <button id="infoModal_btn_cancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!--------------------------------------------------------Summery------------------------------------------------------------------->
             <center>
                 <h3>Summary</h3>
                 <div class="jumbotron">
                     <div class="Cedit">
-                        <span id="edit_summery" class="fa fa-edit"></span>
-                        <span id="check_summery" class="fa fa-check"></span>
-                        <span id="undo_summery" class="fa fa-undo"></span>
+                        <span id="edit_summery" class="fa fa-edit" data-target="summeryModal" data-toggle="modal" ></span>
+                        <!--<span id="check_summery" class="fa fa-check"></span>
+                        <span id="undo_summery" class="fa fa-undo"></span>-->
                     </div>
                     <p id="uSummery" class="text-left" data-placement="top">
                         This is a summary paragraph
@@ -106,6 +140,33 @@
                     </p>
                 </div>
             </center>
+            <!-----------------------------------------------Summery Modal------------------------------------------ -->
+            <div class="modal" id="summeryModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                Edit Your Summery
+                            </h4>
+                            <button class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Enter a summery about yourself" id="summeryModal_summery" />
+                                </div>                             
+                                <div class="modal-footer">
+                                    <button id="summeryModal_btn_save" data-dismiss="modal" class="btn russian col-xs-6">Save</button>
+                                    <button id="summeryModal_btn_cancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
             <!----------------------------------------End Summery Editing------------------------------------------------------------>
             <div class="row">
                 <div class="col-lg-6 col-md-12">
@@ -113,8 +174,8 @@
                     <div class="jumbotron">
                         <div class="Cedit">
                             <span id="edit_article" class="fa fa-edit" data-target="#uArticleModale" data-toggle="modal"></span>
-                            <span id="check_article" class="fa fa-check"></span>
-                            <span id="undo_article" class="fa fa-undo"></span>
+                            <!--<span id="check_article" class="fa fa-check"></span>
+                            <span id="undo_article" class="fa fa-undo"></span>-->
                         </div>
                         <ul id="articleList" class="list-unstyled text-left">
                             <li class="media my-4" style="border-bottom:2px solid #F8FCF7">
@@ -163,8 +224,8 @@
                                                 <input class="form-control" placeholder="Authors" id="articleModal_authors" />
                                             </div>
                                             <div class="modal-footer">
-                                                <button id="btn_modalSave" data-dismiss="modal" class="btn russian col-xs-6" >Save</button>
-                                                <button id="btnModalCancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
+                                                <button id="articleModal_btn_save" data-dismiss="modal" class="btn russian col-xs-6" >Save</button>
+                                                <button id="articleModal_btn_cancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
                                             </div>
                                         </form>
                                     </div>
