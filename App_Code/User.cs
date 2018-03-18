@@ -210,6 +210,10 @@ public class User : RCEntity
         {
             registrationDate = DateTime.Now;
         }
+        foreach (Article article in articles)
+        {
+            article.UpdateArticleInDatabase();
+        }
         return db.UpdateUser(this);
     }
     public int RemoveUserFromDatabase()

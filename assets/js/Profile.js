@@ -192,15 +192,18 @@ function SaveArticle(e) {
     else {
         //articleUl.innerHTML += "<li class='media my-4' style='border-bottom:2px solid #F8FCF7'> <div class='media-body'><h5 class='mt-0 mb-1'><a href='" + articleLink.value + "'>" + articletitle.value + "</a></h5><small>" + articleAuthor.value + "<cite> PHD</cite></small></div></li>";
         ArticleDetails = { Id: User.Id, Keywords: [], Link: link, Title: title, Users: [User] };
-        EditedUser.Articles.push(ArticleDetails);
-        
+        EditedUser.Articles.push(ArticleDetails);        
     }
 
 
 }
 
 function SaveChanges() {
-    request = JSON.stringify(EditedUser);
+    EditedUser.BirthDate = GetDateObject(EditedUser.BirthDate);
+    EditedUser.RegistrationDate= GetDateObject(EditedUser.RegistrationDate);
+    request = {
+        userString: JSON.stringify(EditedUser)
+    }
     UpdateUserAjax(request, function (results) {
         if (results.d>1) {
             alert("User Updated Successfully");
@@ -208,9 +211,6 @@ function SaveChanges() {
             alert(results.d + " rows effected");
         }
     }, errorCB);
-
-
-
 
 }
 function ToggleEditingTools(toggleOn) {
@@ -231,6 +231,10 @@ function ToggleEditingTools(toggleOn) {
         EditingMode = false;
     }
 }
+function GetDateObject(myDate) {
+    return new Date(parseInt(myDate.substr(6)));
+}
+
 
 
 //***************************************************************************************************//
