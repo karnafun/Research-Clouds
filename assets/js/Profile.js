@@ -1,4 +1,5 @@
-﻿User = {};
+﻿
+User = {};
 EditedUser = {};
 EditingMode = false;
 ClusterClickedId = -1;
@@ -52,10 +53,11 @@ function BuildArticles() {
     $.each(User.Articles, function (index, value) {
         var usernames = "";
         for (var i = 0; i < value.Users.length; i++) {
-            usernames += value.Users[i].Name;
+            usernames += "<span class='article_user'>" + value.Users[i].Name + "</span>";
             if (i != value.Users.length - 1) {
                 usernames += ", ";
             }
+
         }
         res += "<li class='media' style='border-bottom:2px solid #F8FCF7'>"
         res += "<div onclick='return ArticleClick()'  class='media-body'>"
@@ -63,7 +65,7 @@ function BuildArticles() {
         res += "<br />";
         res += "<p>" + usernames + "</p>";
         res += "</div>";
-        res += '<span onclick="EditArticle(' + index + ')" class="fa fa-edit" data-target="#articleModal" data-toggle="modal"></span>';
+        res += '<span onclick="EditArticle(' + value.Id + ')" class="fa fa-edit" data-target="#articleModal" data-toggle="modal"></span>';
         res += "</li>"
 
     });
@@ -171,9 +173,9 @@ $(document).ready(function () {
 
 });
 
-function EditArticle(_index) {
+function EditArticle(_id) {
     $.each(User.Articles, function (index, value) {
-        if (index == _index) {
+        if (value.Id == _id) {
             $("#articleModal_title").val(value.Title);
             $("#articleModal_link").val(value.Link);
             var res = "";
@@ -186,6 +188,7 @@ function EditArticle(_index) {
             $("#articleModal_authors").val(res);
         }
     })
+    $("#articleModal_articleId").val(_id);
 }
 
 function SaveArticle(e) {
@@ -195,6 +198,7 @@ function SaveArticle(e) {
     var _users = $("#articleModal_authors").val();
 
     if (title == '' || link == '' || _users == '') {
+        PopAlert('Error', 'You MUST fill all relevant field to update an article');
         return null;
     }
 
@@ -203,23 +207,25 @@ function SaveArticle(e) {
         var exists = false;
         var _article = User.Articles[i];
         if (_article.Id == articleId) {
-            ArticleDetails = _article;
-            ArticleDetails.Title = title;
-            ArticleDetails.Link = link;
-            //if (_users!=null&&_users!=undefined) {
-            //    _users = _users.split(',')
-            //    ArticleDetails.authors = [];
-            //    for (var j = 0; j < _users.length; j++) {
-            //        ArticleDetails.authors.push(_users[j]);
-            //    }
-            //}
-            ArticleDetails.Users = [];
-            ArticleDetails.Users.push(_users)
+           
+            _article.Title = title;
+            _article.Link = link;
+            try {
+                _users = _users.split(',')
+                _article.Users = [];
+                for (var j = 0; j < _users.length; j++) {
+                    _article.Users.push(_users[j]);
+                }
+            } catch (e) {
+                _article.Users = [];
+                _article.Users.push(_users)
+                console.log("tried to split with , the variable: " + _users)
+            }
             exists = true;
         }
     }
     if (!exists) {
-        ArticleDetails = { Id: 0, Keywords: [], Link: link, Title: title, Users: [User.Name] };
+        ArticleDetails = { Id: -1, Keywords: [], Link: link, Title: title, Users: [User.Name] };
         User.Articles.push(ArticleDetails);
     }
     BuildArticles();
@@ -276,7 +282,6 @@ function ConfigureClickEvents() {
     $("#editProfile").click(function () {
         if (!EditingMode) {
             ToggleEditingTools(true);
-         
         }
     })
 
@@ -300,40 +305,30 @@ function ConfigureClickEvents() {
         User.MiddleName = $("#infoModal_middleName").val();
         User.LastName = $("#infoModal_lastName").val();
         User.Name = User.FirstName + " " + User.MiddleName + " " + User.LastName;
-        var img = $("#infoModal_imagePath").val()
+        var img = $("#infoModal_imagePath").val();
+        alert(img);
         if (img != null && img != undefined && img != "") {
             User.ImagePath = img;
         }
         UpdatePageFromUser();
-       
-           
-            User.BirthDate = GetDateObject(User.BirthDate);
-            User.RegistrationDate = GetDateObject(User.RegistrationDate);
-            UpdateUserAjax({ userString: JSON.stringify(User) }, function (results) {               
-                var popup = [
-                    '<div class="alert alert-info">',
-                    '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',
-                    '<strong>Success!</strong> You updated your profile',
-                    '</div>'
-                ];
-                $('#userProfileCon').prepend(popup.join('')); 
-            }, errorCB)
-       
-        
+
+
+        UpdateUserInDatabase();
+
+
     })
 
     $("#summeryModal_btn_save").click(function (e) {
         User.Summery = $("#summeryModal_summery").val();
         UpdatePageFromUser();
+        UpdateUserInDatabase();
     });
 
 }
 
 function EditField(e) {
     var sender = e.currentTarget.id;
-    if (sender == "edit_image") {
-
-    } else if (sender == "edit_name") {
+    if (sender == "edit_name") {
         $("#infoModal_firstName").val(User.FirstName);
         $("#infoModal_middleName").val(User.MiddleName);
         $("#infoModal_lastName").val(User.LastName);
@@ -355,6 +350,24 @@ function CancelChange(e) {
     } else if (sender == "undo_summery") {
 
     }
+}
+
+function UpdateUserInDatabase() {
+    User.BirthDate = GetDateObject(User.BirthDate);
+    User.RegistrationDate = GetDateObject(User.RegistrationDate);
+    UpdateUserAjax({ userString: JSON.stringify(User) }, function (results) {
+        PopAlert('Success', 'You updated your profile');
+    }, errorCB)
+}
+
+function PopAlert(type,message) {
+    var popup = [
+        '<div class="alert alert-info">',
+        '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>',
+        '<strong>' + type+'!</strong> '+message,
+        '</div>'
+    ];
+    $('#userProfileCon').prepend(popup.join(''));
 }
 
 //***************************************************************************************************//
