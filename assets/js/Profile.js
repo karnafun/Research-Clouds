@@ -84,7 +84,7 @@ function UpdateResearcherInfo(results) {
         TODO: Build cluster buttons based on value info
             
         */
-        resString += '<span onclick="ClusterClick(' + (value.Id) + ')" class="btn light-russian col-xs-6" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
+        resString += '<span onclick="ClusterClick(' + (value.Id) + ')" class="btn light-russian col-md-3 col-lg-2 col-sm-12" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
     });
     $("#clusters").html(resString);
 }

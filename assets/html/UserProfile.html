@@ -45,8 +45,8 @@
                     <li class="dropdown nav-item">
                         <a class="dropdown-toggle aColor" data-toggle="dropdown" href="#">Settings<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a id="editProfile" href="#">Edit profile</a></li>
-                            <li><a id="btn_logout" href="#">Logout</a></li>
+                            <li class="nav-item"><a id="editProfile" href="#">Edit profile</a></li>
+                            <li class="nav-item"><a id="btn_logout" href="#">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -78,10 +78,10 @@
                 </div>
                 <input type="text"   value="Click The Pencil Icon to Edit Me" />
                 <div id="clusters">
-                <span class="btn light-russian col-xs-6" id="uCluster1">Cluster Name</span>
-                <span class="btn light-russian col-xs-6" id="uCluster2">Cluster Name</span>
-                <span class="btn light-russian col-xs-6" id="uCluster3">Cluster Name</span>
-                <span class="btn light-russian col-xs-6" id="uCluster4">Cluster Name</span>
+                    <span class="btn light-russian col-xs-6" id="uCluster1">Cluster Name</span>
+                    <span class="btn light-russian col-xs-6" id="uCluster2">Cluster Name </span>
+                    <span class="btn light-russian col-xs-6" id="uCluster3">Cluster Name</span>
+                    <span class="btn light-russian col-xs-6" id="uCluster4">Cluster Name</span>
                 </div>
                 <div  id="clusterInfo">
                     <p id="p_clusterInfo">
@@ -207,7 +207,11 @@
             </center>
         </div>
     </footer>
-
+    <script type="text/javascript">
+        $('.dropdown-toggle').click(function () {
+            $(this).next('.dropdown-menu').slideToggle(500);
+        });
+    </script>
 
 </body>
 </html>
