@@ -1,11 +1,11 @@
 ﻿try {
-   
-    User = localStorage.getItem("User");
-          User = JSON.parse(User);
-          var request = { Id: User.Id };
 
-          //Insert uId, Summery, and uImg, articles
-          GetUserById(request, UpdateUserInfo, errorCB);
+    User = localStorage.getItem("User");
+    User = JSON.parse(User);
+    var request = { Id: User.Id };
+
+    //Insert uId, Summery, and uImg, articles
+    GetUserById(request, UpdateResearcherInfo, errorCB);
 
     //TODO:    
     //Insert Affiliations
@@ -15,9 +15,14 @@
     RedirectToLogin();
 }
 
+$(document).ready(function () {
+    $("#btn_logout").click(function () {
+        Logout();
+    });
 
+});
 
-function UpdateUserInfo(results) {
+function UpdateResearcherInfo(results) {
     /*
     Filling:
     uId, uSummery, uImg
@@ -39,13 +44,20 @@ function UpdateUserInfo(results) {
         TODO:
         Build an html li article using value (it has the users in it )
         */
-         //to understand the raw results meanwhile
-        resString += "<li class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Title + "</a></h5><br /><p>" + value.Users[0].Name + "</p></div></li > ";
-        
+        //to understand the raw results meanwhile
+        var usernames = "";
+        for (var i = 0; i < value.Users.length; i++) {
+            usernames += value.Users[i].Name;
+            if (i!=value.Users.length-1) {
+                usernames += ", ";
+            }
+        }
+        resString += "<li class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Title + "</a></h5><br /><p>" + usernames+ "</p></div></li > ";
+
     });
     $("#articleList").empty();
     $("#articleList").append(resString);
-    
+
 
     resString = "";
     $.each(results.Affiliations, function (index, value) {
@@ -54,14 +66,14 @@ function UpdateUserInfo(results) {
         TODO:
         Build an html li article using value (it has the users in it )
         */
-       // resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Name + "</a></h5><br>,<p>" + value.Users[0].Name + "</p></li>";
-        resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /><p><small>" + value.Users[0].Name + "</small></p></div></li>";
-        
-        
+        // resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Name + "</a></h5><br>,<p>" + value.Users[0].Name + "</p></li>";
+        resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div></li>";
+
+
     });
     $("#affiliationsList").empty();
     $("#affiliationsList").append(resString);
-   
+
     resString = "";
     $.each(results.Clusters, function (index, value) {
 
@@ -69,12 +81,12 @@ function UpdateUserInfo(results) {
         TODO: Build cluster buttons based on value info
             
         */
-        resString += '<span class="btn light-russian col-xs-6" id="uCluster'+(index+1)+'">'+value.Name+'</span>'
+        resString += '<span class="btn light-russian col-xs-6" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
     });
     $("#clusters").html(resString);
 }
 
-function UpdateUserArticles(results) {
+function UpdateResearcherArticles(results) {
     /*
     Inserting Articles
     */
@@ -87,7 +99,7 @@ function errorCB(error) {
 
 function Logout() {
     localStorage.setItem('User', null);
-    window.location.replace("../html/LoginTesting.html");
+    window.location.replace("../html/Login.html");
 }
 
 function RedirectToLogin() {
@@ -150,7 +162,7 @@ $(document).ready(function () {
         $(check).hide();
         $(undo).hide();
 
-        if (div.contentEditable = true) {
+        if (div.contentEditable == true) {
             div.contentEditable = false;
         }
         else {
@@ -267,7 +279,7 @@ $(document).ready(function () {
 
     }
 
- 
+
 
 
     /////////////////////////////////////////////////////////Canging Summery////////////////////////////////////////////////////
