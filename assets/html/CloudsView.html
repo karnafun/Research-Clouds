@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <meta charset="utf-8" />
     <title>Reseach Clouds</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -18,10 +20,26 @@
     <link href="../css/MainStyle.css" rel="stylesheet" />
 
     <style type="text/css">
-        h4{
-            cursor:pointer;
+        body {
+            background-image: url('../img/Screenshot_3_burned2 - Copy.png');
         }
 
+        h5 {
+            cursor: pointer;
+            margin-top:6px;
+        }
+        
+        h4 {
+            cursor: pointer;
+            margin-top: 13px;
+            border-bottom: 2px solid #37956f;
+            transition:border-bottom 500ms;
+        }
+        h1 {
+            border-bottom: 2px solid #37956f;
+            margin-bottom:16px;
+            
+        }
         .footer {
             position: absolute;
             right: 0;
@@ -30,10 +48,23 @@
             background-color: #37956f;
             text-align: center;
         }
-        
+        img {
+            border-radius: 33%;
+        }
+
+        .modal p {
+            font-family: 'Nunito', sans-serif;
+           
+        }
+
+        h4:hover {
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+            border-bottom: 4px solid #00bfb3;
+        }
     </style>
 </head>
 <body>
+
 
     <!--------------------------------------Nav bar------------------------------------------------------>
 
@@ -64,12 +95,36 @@
             </div>
         </div>
     </nav>
+    <!--animation-->
     <div class="container">
+        <center>
+            <center>
+                <h1>Clouds Network</h1>
+            </center>
 
-        <div id="clusters" class="container row">
+            <div class="modal fade" id="uArticleModale" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">
+                                Clouds network
+                                <button class="close" data-dismiss="modal">&times;</button>
+                            </h3>
 
-        </div>
-        <div></div>
+                        </div>
+                        <div class="modal-body">
+                            <p>Clicking on one of the clusters will show you your network clouds in that cluster</p>
+                            <p><a href="#" data-dismiss="modal">come on give it a try</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--------------------------------------------------------------------->
+            <div id="clusters" class="container row">
+
+            </div>
+            <div></div>
+        </center>
     </div>
     <footer class="footer russian">
         <div class="container">
