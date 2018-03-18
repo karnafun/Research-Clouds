@@ -16,6 +16,22 @@
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <link href="../css/MainStyle.css" rel="stylesheet" />
+
+    <style type="text/css">
+        h4{
+            cursor:pointer;
+        }
+
+        .footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: #37956f;
+            text-align: center;
+        }
+        
+    </style>
 </head>
 <body>
 
@@ -50,11 +66,24 @@
     </nav>
     <div class="container">
 
-    <div id="clusters" class="container row">
-        
-    </div>
+        <div id="clusters" class="container row">
+
+        </div>
         <div></div>
     </div>
-
+    <footer class="footer russian">
+        <div class="container">
+            <center>
+                <span class="text-white">
+                    &copy; Karnafun & Friends
+                </span>
+            </center>
+        </div>
+    </footer>
+    <script type="text/javascript">
+        $('.dropdown-toggle').click(function () {
+            $(this).next('.dropdown-menu').slideToggle(500);
+        });
+    </script>
 </body>
 </html>

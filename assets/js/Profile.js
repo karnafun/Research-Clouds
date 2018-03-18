@@ -180,6 +180,7 @@ $(document).ready(function () {
     //Show edit button
     editProfile.onclick = function (e) {
         $(edit).show();
+        $(cancelEdite).show()
     }
 
 

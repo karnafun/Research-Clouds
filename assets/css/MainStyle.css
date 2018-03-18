@@ -73,3 +73,13 @@ a {
     margin-bottom: 4px;
     opacity: 0.6;
 }
+
+.footer {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #37956f;
+	text-align: center;
+	
+}
