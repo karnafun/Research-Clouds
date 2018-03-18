@@ -495,7 +495,7 @@ insert into UsersInCluster values (2,5,1) --uId, cId, visible
 
 insert into UsersInArticle values (1,2) --uId, aId
 insert into UsersInArticle values (1,4)
-insert into UsersInArticle values (1,2)
+insert into UsersInArticle values (1,6)
 insert into UsersInArticle values (2,1)
 insert into UsersInArticle values (2,11)
 insert into UsersInArticle values (2,5)

@@ -54,7 +54,7 @@ function UpdateResearcherInfo(results) {
                 usernames += ", ";
             }
         }
-        resString += "<li class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Title + "</a></h5><br /><p>" + usernames + "</p></div></li > ";
+        resString += "<li onclick='return ArticleClick()' class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='" + value.Link + "'>" + value.Title + "</a></h5><br /><p>" + usernames + "</p></div></li > ";
 
     });
     $("#articleList").empty();
@@ -131,5 +131,12 @@ function ClusterClick(_id) {
         }
     }
 
+
+}
+
+function ArticleClick() {
+    if (!confirm('Leave Research Clouds and go to the article?')) {
+        return false;
+    }
 
 }
