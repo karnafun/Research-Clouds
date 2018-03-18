@@ -24,6 +24,9 @@ $(document).ready(function () {
     $("#editProfile").on("click", function () {
         $("#editUl").hide();
     })
+    $(document).on("click", function () {
+        $("#editUl").hide();
+    })
 });
 
 function UpdateResearcherInfo(results) {

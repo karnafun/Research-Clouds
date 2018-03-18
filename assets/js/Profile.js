@@ -173,6 +173,9 @@ $(document).ready(function () {
     ConfigureClickEvents();
     $("#editProfile").on("click", function () {
         $("#editUl").hide();
+        $(document).on("click", function () {
+            $("#editUl").hide();
+        })
     })
 });
 
