@@ -18,7 +18,7 @@ try {
         }
         User = results;
         EditedUser = $.extend(true, {}, User);
-        UpdateResearcherInfo();
+        UpdatePageFromUser();
     }, errorCB);
 
     //TODO:    
@@ -30,7 +30,7 @@ try {
 }
 
 
-function UpdateResearcherInfo() {
+function UpdatePageFromUser() {
     $("#uID").html(User.Name);
     $("#uImg").attr("src", User.ImagePath);
     $("#uSummery").html(User.Summery);
@@ -153,12 +153,13 @@ function ConfigureClickEvents() {
     })
 
     $(".fa-times").click(function () {
-        // CancelChanges();
+         CancelChanges();
     })
 
     $("#btn_modalSave").click(function (e) {
         SaveArticle(e);
     })
+
 }
 
 //***************************************************************************************************//
@@ -212,6 +213,10 @@ function SaveChanges() {
         }
     }, errorCB);
 
+}
+function CancelChanges() {
+    ToggleEditingTools(false);
+    UpdatePageFromUser();
 }
 function ToggleEditingTools(toggleOn) {
     if (toggleOn) {
