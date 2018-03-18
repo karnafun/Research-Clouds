@@ -40,6 +40,7 @@ function UpdatePageFromUser() {
     $("#uImg").attr("src", User.ImagePath);
     $("#uSummery").html(User.Summery);
 
+
     BuildArticles();
     BuildAffiliations();
     BuildClusters();
@@ -57,7 +58,7 @@ function BuildArticles() {
                 usernames += ", ";
             }
         }
-        res += "<li class='media' style='border-bottom:2px solid #F8FCF7'>"
+        res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>"
         res += "<div onclick='return ArticleClick()'  class='media-body'>"
         res += "<h5><a href='" + value.Link + "'>" + value.Title + "</a></h5>"
         res += "<br />";
@@ -78,7 +79,7 @@ function BuildAffiliations() {
         TODO:
         Build an html li article using value (it has the users in it )
         */
-        resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div></li>";
+        resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div></li>";
 
 
     });
@@ -93,7 +94,7 @@ function BuildClusters() {
         /*
         TODO: Build cluster buttons based on value info            
         */
-        resString += '<span onclick="ClusterClick(' + (value.Id) + ')" class="btn light-russian col-md-3 col-lg-2 col-sm-12" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
+        resString += '<span onclick="ClusterClick(' + (value.Id) + ')" class="btn light-russian col-md-3 col-lg-2 col-sm-12 animated fadeInLeft" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
     });
     $("#clusters").html(resString);
 }

@@ -1,0 +1,42 @@
+﻿body {
+	background-image: url('../img/Screenshot_3_burned2 - Copy.png');
+	padding-bottom: 30px;
+}
+
+h5 {
+	cursor: pointer;
+	margin-top: 6px;
+}
+
+h4 {
+	cursor: pointer;
+	margin-top: 13px;
+	border-bottom: 2px solid #37956f;
+	transition: border-bottom 500ms;
+}
+
+h1 {
+	border-bottom: 2px solid #37956f;
+	margin-bottom: 16px;
+}
+
+.footer {
+	bottom: 0;
+	background-color: #37956f;
+	text-align: center;
+}
+
+img {
+	border-radius: 33%;
+}
+
+.modal p {
+	font-family: 'Nunito', sans-serif;
+}
+
+h4:hover {
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	border-bottom: 4px solid #00bfb3;
+}
+
+
