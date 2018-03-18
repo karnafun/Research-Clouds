@@ -1,4 +1,6 @@
 ﻿User = {};
+EditedUser = {};
+EditingMode = false;
 ClusterClickedId = -1;
 try {
 
@@ -7,7 +9,17 @@ try {
     var request = { Id: User.Id };
 
     //Insert uId, Summery, and uImg, articles
-    GetUserById(request, UpdateResearcherInfo, errorCB);
+    GetUserById(request, function (results) {
+        try {
+
+            results = JSON.parse(results.d);
+        } catch (e) {
+            RedirectToLogin();
+        }
+        User = results;
+        EditedUser = $.extend(true, {}, User);
+        UpdateResearcherInfo();
+    }, errorCB);
 
     //TODO:    
     //Insert Affiliations
@@ -17,36 +29,21 @@ try {
     RedirectToLogin();
 }
 
-$(document).ready(function () {
-    $("#btn_logout").click(function () {
-        Logout();
-    });
 
-});
+function UpdateResearcherInfo() {
+    $("#uID").html(User.Name);
+    $("#uImg").attr("src", User.ImagePath);
+    $("#uSummery").html(User.Summery);
 
-function UpdateResearcherInfo(results) {
-    /*
-    Filling:
-    uId, uSummery, uImg
-    */
-    try {
+    BuildArticles();
+    BuildAffiliations();
+    BuildClusters();
 
-        results = JSON.parse(results.d);
-    } catch (e) {
-        RedirectToLogin();
-    }
-    User = results;
-    $("#uID").html(results.Name);
-    $("#uImg").attr("src", results.ImagePath);
-    $("#uSummery").html(results.Summery);
+}
+
+function BuildArticles() {
     var resString = "";
-    $.each(results.Articles, function (index, value) {
-
-        /*
-        TODO:
-        Build an html li article using value (it has the users in it )
-        */
-        //to understand the raw results meanwhile
+    $.each(User.Articles, function (index, value) {
         var usernames = "";
         for (var i = 0; i < value.Users.length; i++) {
             usernames += value.Users[i].Name;
@@ -54,35 +51,35 @@ function UpdateResearcherInfo(results) {
                 usernames += ", ";
             }
         }
-      
-        resString += "<li onclick='return ArticleClick()' class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='"+value.Link+"'>" + value.Title + "</a></h5><br /><p>" + usernames + "</p></div></li > ";
+
+        resString += "<li onclick='return ArticleClick()' class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='" + value.Link + "'>" + value.Title + "</a></h5><br /><p>" + usernames + "</p></div></li > ";
 
     });
     $("#articleList").empty();
     $("#articleList").append(resString);
 
-
-    resString = "";
-    $.each(results.Affiliations, function (index, value) {
-
+}
+function BuildAffiliations() {
+    var resString = "";
+    $.each(User.Affiliations, function (index, value) {
         /*
         TODO:
         Build an html li article using value (it has the users in it )
         */
-        // resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><h5><a href='#'>" + value.Name + "</a></h5><br>,<p>" + value.Users[0].Name + "</p></li>";
         resString += " <li class='media' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div></li>";
 
 
     });
     $("#affiliationsList").empty();
     $("#affiliationsList").append(resString);
+}
+function BuildClusters() {
 
-    resString = "";
-    $.each(results.Clusters, function (index, value) {
+    var resString = "";
+    $.each(User.Clusters, function (index, value) {
 
         /*
-        TODO: Build cluster buttons based on value info
-            
+        TODO: Build cluster buttons based on value info            
         */
         resString += '<span onclick="ClusterClick(' + (value.Id) + ')" class="btn light-russian col-xs-6" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
     });
@@ -134,19 +131,115 @@ function ClusterClick(_id) {
 
 }
 function ArticleClick() {
-    if (!confirm('Leave Research Clouds and go to the article?'))
-    {
+    if (!confirm('Leave Research Clouds and go to the article?')) {
         return false;
     }
-    
+
 }
+
+function ConfigureClickEvents() {
+    $("#btn_logout").click(function () {
+        Logout();
+    });
+
+    $("#editProfile").click(function () {
+        if (!EditingMode) {
+            ToggleEditingTools(true);
+        }
+    })
+
+    $(".fa-check-square").click(function () {
+        SaveChanges();
+    })
+
+    $(".fa-times").click(function () {
+        // CancelChanges();
+    })
+
+    $("#btn_modalSave").click(function (e) {
+        SaveArticle(e);
+    })
+}
+
+//***************************************************************************************************//
+//**************************************** Fixed Editing ********************************************//
+//**************************************************************************************************//
+/* Renamed the following:
+file1 - file_image
+btnModaleSave = btn_modalSave
+Modal-articleName = articleModal_title
+Modal-articleLink = articleModal_link
+Modal-articleAuthors = articleModal_authors
+
+*/
+$(document).ready(function () {
+    ToggleEditingTools(false);    
+    ConfigureClickEvents();
+
+});
+
+function SaveArticle(e) {
+
+    var title = $("#articleModal_title").val();
+    var link = $("#articleModal_link").val();
+    var authors = $("#articleModal_authors").val();
+    var modaleArtical = document.getElementById("uArticleModale");
+    var articleUl = document.getElementById("articleList");
+
+    if (title == '' || link == '' || authors== '') {
+        return null;
+    }
+    else {
+        //articleUl.innerHTML += "<li class='media my-4' style='border-bottom:2px solid #F8FCF7'> <div class='media-body'><h5 class='mt-0 mb-1'><a href='" + articleLink.value + "'>" + articletitle.value + "</a></h5><small>" + articleAuthor.value + "<cite> PHD</cite></small></div></li>";
+        ArticleDetails = { Id: User.Id, Keywords: [], Link: link, Title: title, Users: [User] };
+        EditedUser.Articles.push(ArticleDetails);
+        
+    }
+
+
+}
+
+function SaveChanges() {
+    request = JSON.stringify(EditedUser);
+    UpdateUserAjax(request, function (results) {
+        if (results.d>1) {
+            alert("User Updated Successfully");
+        } else {
+            alert(results.d + " rows effected");
+        }
+    }, errorCB);
+
+
+
+
+}
+function ToggleEditingTools(toggleOn) {
+    if (toggleOn) {
+        $(".fa-edit").show();
+        $(".fa-check").show();
+        $(".fa-undo").show();
+        $(".fa-check-square").show();
+        $(".fa-times").show();
+        EditingMode = true;
+    } else {
+        $(".fa-edit").hide();
+        $(".fa-check").hide();
+        $(".fa-undo").hide();
+        $(".fa-check-square").hide();
+        $(".fa-times").hide();
+        $("#file_image").hide(); //allways hidden
+        EditingMode = false;
+    }
+}
+
+
 //***************************************************************************************************//
 //***************************** Editing Profile (Ilya Testing) *************************************
 //**************************************************************************************************//
 $(document).ready(function () {
     //Running before ready 
 
-
+    return;
 
 
     var userimg = document.getElementById("uImg");
@@ -233,7 +326,7 @@ $(document).ready(function () {
         $(doneEdit).show();
         $(cancelEdite).show();
         $(this).hide();
-        file.click();
+        var test = file.click();
         x = file.value;
     }
 
