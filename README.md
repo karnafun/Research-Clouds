@@ -1,33 +1,43 @@
- 
- Research Clouds Platform.
+# Research Clouds Platform.
 
-Research Clouds is a college project under development by [ilyakolker](http://github.com/ilyakolker) and [karnafun](http://github.com/karnafun)    
- You can view our [Client Side](proj.ruppin.ac.il/bgroup62/prod)  logging in with username "messi@<span>ruppin.a<span>c.il" and password "messi123"  
-We are focusing most of our efforts on using industry coding standards and best practices while building a robust, scalable and well documented code.  
-Because of that, our development process is slower than rushing towards the close deadlines.  
-we have implemented the following **extra features**
+Research Clouds is a college project under development by [Ilya Kolker](http://github.com/ilyakolker) and [Dor Danai](http://github.com/karnafun)    
+ 
+We're prioritizing the usage of industry coding standards and best practices in order to build a robust, scalable and well documented code, at the cost slower development time.    
+If you find a bug or have any suggestions on how we can improve our work, we encourage you to [contact us](https://www.facebook.com/karnafun) and let us know.
+
+ - [Technical Information](#technical-information)
+ - [Next Steps](next-steps)
+
+### Technical Information:
+
+*We have decided to implement a few **extra features** that were not a part of the  requirements* 
+ [See Extra Features](#extra-features)
+
+
+#### Data Tier:  
+all of our `SQL` queries are located in our [SQL Folder](https://github.com/karnafun/Research-clouds/tree/master/sql), the server is hosted by our college under the domain ruppin.ac.il using `Microsoft SQL Server Management Studio`  
+
+#### Logic Tier:
+ **All of our logic layer is implemented in `C#`.**  
+Connections to the SQL Server are being opened using the `DBServices` class that can be found at [DBServices.cs](https://github.com/karnafun/Research-clouds/blob/master/App_Code/DBServices.cs)   
+`aspx` and `aspx.cs` files are currently only for testing server-side, and are not a part of the Client Tier
+
+##### Web Services:  
+`AJAX` calls are made by [AjaxCalls.js](https://github.com/karnafun/Research-clouds/blob/master/assets/js/AjaxCalls.js) to [AjaxWebService.cs](https://github.com/karnafun/Research-clouds/blob/master/App_Code/AjaxServices.cs)  
+
+#### Client Tier:
+Using mostly [Bootstrap 4](https://getbootstrap.com/) and utilizing HTML5 features.  
+[jQuery 3.3.1](https://jquery.com/) is also heavily relied on.  
+We might use additional JavaScript libraries like d3.js for our animations in the future. 
+
+
+   
+### Extra Features:
  - [SHA2Encryption class](https://github.com/karnafun/Research-clouds/wiki/SHA2Encryption), hashing with `SHA256` and generating simple random hexadecimal SALT.  
  - [LogManager class](https://github.com/karnafun/Research-clouds/wiki/Log-Manager), sending live reports and exception updates to our dedicated email address ResearchCloudsDe<span>velopment@g</span>mail.com 
  - RCEntity class, implementing OOP Inheritance for better scalability       
  - Strict usage of parameters with SqlCommand object to avoid sql injections
  - SQL Stored Procedures combined with the inheritance to create a better code
- 
-  ***
-  
- In order not to store our passwords in plain text *like suggested by our college!* we have implemented a very basic encryption using
-  ```C#
-    System.Security.Cryptography.SHA256Managed
-```  
-For each user we are creating a random SALT using out own method and hashing it together with the password  
-Usage:  
-after obtaining the users password and salt, call `GenerateSHA256String` using the static `SHA2` class
-```chsarp  
-string userHash = SHA2.GenerateSHA256String(password, SALT);  
-```
- in order to generate a salt, you can call `GenerateSALT` using the same `SHA2` class  
-```csharp  
-string SALT = SHA2.GenerateSALT();  
-```  
 
 
 If you feel like playing around with the very basics of cryptography ideas, in our [aspx folder](https://github.com/karnafun/Research-clouds/tree/master/assets/aspx) you can find `WebFormClassDemo.aspx.cs` file which is connected to a plain web form where you can manipulate data without having to reach the client side. that page was mainly created for server-side testing
@@ -84,7 +94,7 @@ Sending email with an explanation, calling function and the actual object inform
  
  
  
-# Todo Before 50%:
+## 19-3-2018 deadline:
 
  - Fix Navbar for mobile (ugly, and when clicking 'settings' its ugly as fuck)
  - Change the way clusters and users are displayed in CloudsView.html
@@ -97,7 +107,7 @@ Sending email with an explanation, calling function and the actual object inform
 
 
 
-### QA Stages:
+#### QA Stages:
 
 1) Register as a new User
 	
@@ -105,7 +115,7 @@ Sending email with an explanation, calling function and the actual object inform
 	- Are you getting redirected to UserProfile with the new User?
 
 
-##### if articles and image update is working, verify it now
+###### if articles and image update is working, verify it now
 
 2) Log out and log back in as a user with information
 
@@ -129,4 +139,4 @@ Sending email with an explanation, calling function and the actual object inform
  
 
 
-
+## Next Steps:
