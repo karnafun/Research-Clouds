@@ -10,7 +10,8 @@ If you find a bug or have any suggestions on how we can improve our work, we enc
  - [Project Wiki](https://github.com/karnafun/Research-clouds/wiki)
  - [QA Stages](#qa-stages)
  - [Next Steps](#next-steps)
- - [Running Application On Production Server](proj.ruppin.ac.il/bgroup62/prod)
+ - [Running Application On Production Server](https://proj.ruppin.ac.il/bgroup62/prod)
+ 
 ### Technical Information:
 
 *We have decided to implement a few **extra features** that were not a part of the  requirements* 
