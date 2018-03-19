@@ -4,10 +4,13 @@ Research Clouds is a college project under development by [Ilya Kolker](http://g
  
 We're prioritizing the usage of industry coding standards and best practices in order to build a robust, scalable and well documented code, at the cost slower development time.    
 If you find a bug or have any suggestions on how we can improve our work, we encourage you to [contact us](https://www.facebook.com/karnafun) and let us know.
-
+ 
+ 
  - [Technical Information](#technical-information)
- - [Next Steps](next-steps)
-
+ - [Project Wiki](https://github.com/karnafun/Research-clouds/wiki)
+ - [QA Stages](#qa-stages)
+ - [Next Steps](#next-steps)
+ - [Running Application On Production Server](proj.ruppin.ac.il/bgroup62/prod)
 ### Technical Information:
 
 *We have decided to implement a few **extra features** that were not a part of the  requirements* 
@@ -45,69 +48,8 @@ If you feel like playing around with the very basics of cryptography ideas, in o
 
   ***  
 
-  `LogManager` class is used to generate reports and live updates to make exception handling and bug fixing a bit easier.  
-We are planning on generating log files on the server when certain conditions are met, but until then we are using gmail for that.  
-  
-`LogManager` is using `System.Net.NetworkCredential` and googles smtp server to send emails on exception and on other certain events.  
-Information sent is gathered also using ``StackTrace`` (sending  `stackTrace.GetFrame(1).GetMethod().Name`)
 
-```csharp  
- public static void Report(Exception ex, Object _obj=null)  
-``` 
-The function requires an exception which will be displayed in detail in the email sent.  
-Using an optional Object parameter you can send additional information to be displayed in the email.  
-
-examples:  
-```csharp  
-    catch (Exception ex)
-        {
-            LogManager.Report(ex, entity);
-            return -1;
-        }
-```  
-The message sent via email will contain not only the exception information but also entity.ToString() which can help me a lot realizing what exactly caused that exception.  
- 
-Another Method for LogManager is  
-```csharp  
-public static void Report(string message, Object _obj=null);  
-```  
-Like in the last Report function, the Object parameter is optional, and you can send a custom message wherever in the code. Example:  
-```csharp    
-public int UpdateUserInDatabase()
-    {
-        if (id < 0)
-        {
-            LogManager.Report("tried to update user with invalid id", this);
-            return -1;
-        }  
-
-```
-
-In the above example, i am finding the problem even before it reaches DBServices and causes an exception.  
-Sending email with an explanation, calling function and the actual object information will help understanding problems you might have issues recreating, especially on production.
-
-
-	***  
-	
- 
- 
- 
- 
- 
-## 19-3-2018 deadline:
-
- - Fix Navbar for mobile (ugly, and when clicking 'settings' its ugly as fuck)
- - Change the way clusters and users are displayed in CloudsView.html
- 	- no specific idea on how it should look, we are not animating yet. but it needs to look good enough for Benny
- 
- - Enable adding articles and image for users
- - Fix the way cluster information is displayed on ResearcherProfile.html
- - Upload all the code the production folder on ruppin server
- - verify that everything works
-
-
-
-#### QA Stages:
+## QA Stages:
 
 1) Register as a new User
 	
@@ -140,3 +82,15 @@ Sending email with an explanation, calling function and the actual object inform
 
 
 ## Next Steps:
+
+
+ - Fix collapsed Navbar for mobile. when pressing "Settings" the drop down color is "horrible white" which is worse than normal white 
+ - Enable adding articles and image for users
+ - Fix the way cluster information is displayed on ResearcherProfile.html
+ - Start creating the main animation.
+ - Get resonable database information instead of the one we made to get points from Benney. (atleast replace oren hazan..)
+ - Find a way to store actual passwords not on the database, so we can manually add them to our SQL queries easily when rebuilding the database
+ - Learn how to use github tickets so we can keep track of issue fixes in a better way.
+ - Build a repository page so we can explain what Research Clouds is without refering non-developers to our github.
+
+
