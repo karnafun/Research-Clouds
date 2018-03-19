@@ -2,7 +2,7 @@
  Research Clouds Platform.
 
 Research Clouds is a college project under development by [ilyakolker](http://github.com/ilyakolker) and [karnafun](http://github.com/karnafun)    
- 
+ You can view our [Client Side](proj.ruppin.ac.il/bgroup62/prod)  logging in with username "messi@ruppin.ac.il" and password "messi123"  
 We are focusing most of our efforts on using industry coding standards and best practices while building a robust, scalable and well documented code.  
 Because of that, our development process is slower than rushing towards the close deadlines.  
 we have implemented the following **extra features**
