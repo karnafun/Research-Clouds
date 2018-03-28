@@ -23,8 +23,8 @@
 	Droping all Research clouds related tables, views and procedures ordered by foreign keys constraints
 *****************************************************************************************************************************/
 
-drop table Affiliations, UsersInCluster, usersInArticle,KeywordsInCluster,KeywordsInArticle
-drop table users, Clusters, Articles, Keywords, AcademicInstitutes
+drop table Affiliations, UsersInCluster, usersInArticle,KeywordsInCluster,KeywordsInArticle, AuthorsInArticle
+drop table users, Clusters, Articles, Keywords, AcademicInstitutes ,Authors
 drop view [dbo].[v_ArticleKeywords],[dbo].[v_ClusterKeywords],[dbo].[v_InstituteUsers],[dbo].[v_UserAffiliations],[dbo].[v_UserArticles],[dbo].[v_UserClusters]
 drop proc p_deleteUser, p_deleteArticle, p_deleteCluster, p_deleteInstitute,p_deleteKeyword
 
@@ -48,6 +48,15 @@ email nvarchar(250) not null,
 uHash nvarchar(max) ,
 uSALT nvarchar(max) ,
 summery nvarchar(500) 
+)
+go
+
+create table Authors(
+[aId] int identity not null,
+firstName nvarchar(50) not null,
+middleName nvarchar(50),
+lastName nvarchar(50) not null,
+degree nvarchar(50)
 )
 go
 
@@ -101,6 +110,11 @@ aId int not null
 )
 go
 
+create table AuthorsInArticle(
+authorId int not null,
+aId int not null
+)
+
 create table Affiliations(
 [uId] int not null,
 iId int not null
@@ -113,6 +127,8 @@ cId int not null,
 visible bit not null,
 )
 go
+
+
 
 /****************************************************************************************************************************
 	Part 4: Primary Keys
@@ -136,6 +152,9 @@ alter table Keywords
 add constraint Keywords_id_PK primary key ([kId])
 go
 
+alter table Authors
+add constraint Authors_id_PK primary key (aId)
+go
 
 alter table AcademicInstitutes
 add constraint AcademicInstitutes_id_PK primary key ([iId])
@@ -199,6 +218,13 @@ add constraint UsersInCluster_FK_uId
 foreign key ([uId]) references Users([uId]),
 	constraint UsersInCluster_FK_iId
 foreign key (cId) references Clusters(cId)
+go
+
+alter table AuthorsInArticle
+add constraint AuthorsInArticle_FK_authorId
+foreign key ([authorId]) references Authors([aId]),
+	constraint AuthorsInArticle_FK_articleId
+foreign key ([aId]) references Articles([aId])
 go
 
 
