@@ -14,13 +14,13 @@ public class Article : RCEntity
     string title, link;
     List<User> users;
     List<Keyword> keywords;
-
+    List<Author> authors; //Non registered authors. this does not include the Users who are also Authors
     //Properties
     public string Title { get { return title; } set { title = value; } }
     public string Link { get { return link; } set { link = value; } }
     public List<User> Users { get { return users; } }
     public List<Keyword> Keywords { get { return keywords; } }
-
+    public List<Author> Authors { get { return authors; } }
     //Constructors:
     public Article()
     {
@@ -41,6 +41,7 @@ public class Article : RCEntity
     {
         users = db.GetArticleUsers(id);
         keywords = db.GetArticleKeywords(id);
+        authors = db.GetArticleAuthors(id);
     }
     public override string ToString()
     {
@@ -73,6 +74,15 @@ public class Article : RCEntity
         {
             LogManager.Report("tried to update an article with invalid id", this);
             return -1;
+        }
+
+        if (users.SequenceEqual(db.GetArticleUsers(id)))
+        {
+
+        }
+        else
+        {
+
         }
         return db.UpdateArticle(this);
     }
