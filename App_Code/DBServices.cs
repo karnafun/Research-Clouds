@@ -992,7 +992,8 @@ public class DBServices
         string summery = reader["summery"].ToString();        
         string hash = reader["uHash"].ToString();
         string salt = reader["uSALT"].ToString();
-        return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator,bdate,registrationDate,hash,salt);
+        bool isRegistered = (bool)reader["isRegistered"];
+        return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator,bdate,registrationDate,hash,salt,isRegistered);
     }
     private Article CurrentLineArticle(SqlDataReader reader)
     {
@@ -1030,7 +1031,7 @@ public class DBServices
         {
             cmdStr.Append("insert into users values");
             cmdStr.Append("(@firstName,@middleName,@lastName,@degree,@imgPath,@birthDate, @registrationDate,");
-            cmdStr.Append("@administrator,@email,@uHash,@uSALT,@summery)");
+            cmdStr.Append("@administrator,@email,@uHash,@uSALT,@summery,@isRegistered)");
         }
         else
         {
@@ -1058,6 +1059,7 @@ public class DBServices
         _cmd.Parameters.AddWithValue("@administrator", user.IsAdmin);
         _cmd.Parameters.AddWithValue("@email", user.Email);
         _cmd.Parameters.AddWithValue("@summery", user.Summery);
+        _cmd.Parameters.AddWithValue("@isRegistered", user.IsRegistered);
         if (isNewUser)
         {
             _cmd.Parameters.AddWithValue("@uHash", user.Hash); //nullable - but i wont allow

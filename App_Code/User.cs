@@ -14,7 +14,7 @@ public class User : RCEntity
     string fName, mName, lName;
     string imgPath, degree, hash, salt, email, summery;
     string password; //Not in the constructor, only for creating users
-    bool administrator;
+    bool administrator,isRegistered;
     DateTime bdate, registrationDate;
     List<Article> articles;
     List<Institute> affiliations;
@@ -49,6 +49,7 @@ public class User : RCEntity
     public string Hash { get { return hash; } }
     public string Salt { get { return salt; } }
     public string Password { set { password = value; } }
+    public bool IsRegistered { set { IsRegistered = value; } get { return IsRegistered; } }
     public List<Article> Articles
     {
         get
@@ -90,7 +91,7 @@ public class User : RCEntity
     }
     public User(int id, string fName, string mName, string lName, string imgPath, string degree,
         string email, string summery, bool administrator, DateTime bdate, DateTime registrationDate,
-        string hash = null, string salt = null)
+        string hash = null, string salt = null, bool isRegistered = true)
     {
         db = new DBServices();
         this.id = id;
@@ -106,6 +107,7 @@ public class User : RCEntity
         this.registrationDate = registrationDate;
         this.hash = hash;
         this.salt = salt;
+        this.isRegistered = isRegistered;
     }
 
 

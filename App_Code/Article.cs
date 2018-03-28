@@ -74,6 +74,8 @@ public class Article : RCEntity
             LogManager.Report("tried to update an article with invalid id", this);
             return -1;
         }
+
+        ValidateUsers();
         return db.UpdateArticle(this);
     }
     public int DeleteArticleFromDatabase()
@@ -84,5 +86,17 @@ public class Article : RCEntity
             return -1;
         }
         return db.RemoveEntity(this);
+    }
+
+    private void ValidateUsers()
+    {
+        List<User> dbArticleusers = db.GetArticleUsers(id);
+        foreach (User _user in users)
+        {
+            for (int i = 0; i < users.Count; i++)
+            {
+
+            }
+        }
     }
 }

@@ -39,15 +39,16 @@ create table Users(
 firstName nvarchar(50) not null,
 middleName nvarchar(50) ,
 lastName nvarchar(50) not null,
-degree nvarchar(50) not null,
-imgPath nvarchar(1000) not null,
+degree nvarchar(50) ,
+imgPath nvarchar(1000) ,
 birthDate datetime ,
 registrationDate datetime ,
-administrator bit not null,
-email nvarchar(250) not null,
+administrator bit ,
+email nvarchar(250) ,
 uHash nvarchar(max) ,
 uSALT nvarchar(max) ,
-summery nvarchar(500) 
+summery nvarchar(500),
+unregistered bit not null
 )
 go
 
@@ -331,28 +332,28 @@ go
 insert into users values
 ('Lionel', '', 'Messi','Degree','https://cdn.images.express.co.uk/img/dynamic/67/590x/Lionel-Messi-Barcelona-778351.jpg',
 '5-20-1985','3-16-2018',1,'messi@ruppin.ac.il','61A1B1A373DFA2C6515612B1A8A77F83AE28B7E0C5E39816B64D67739019F669','20E6494B4207A90D',
-'Messi is unsumable ! ')
+'Messi is unsumable ! ',1)
 go
 
 insert into users values
 ('Neymar', 'Da Silva', ' Santos','Degree','http://www.whoateallthepies.tv/wp-content/uploads/2013/05/neymar-cry.jpg',
 '5-20-1985','3-16-2018',0,'neymar@ruppin.ac.il','B9383D41E4D70F56E4A2FE34B9F116EA9BBCEE04B4A61E4957D184074CC4EF58','3C3C58961451D04',
-'A Summery About Neymar')
+'A Summery About Neymar',1)
 go
 insert into users values
 ('Oren', '', 'Hazan','Degree','http://www.maariv.co.il/HttpHandlers/ShowImage.ashx?ID=292760',
 '5-20-1985','3-16-2018',0,'hazan@ruppin.ac.il','5E55DE8E9F15CC8373BFD3B1866DDDB55499F66F6E978E7C85BA4D55191477B5','66C26C8D58996B8F',
-'We Dont Think that Oren needs a summery')
+'We Dont Think that Oren needs a summery',1)
 go
 insert into users values
 ('Cristiano', '', 'Ronaldo','Degree','https://secure.i.telegraph.co.uk/multimedia/archive/02479/infant_2479350k.jpg',
 '5-20-1985','3-16-2018',0,'ronaldo@ruppin.ac.il','11CEE9D8C4546E96675E38898B3BFE25A9313D645394AFFCBFACEEE439006972','7EE9BB521CE704BA',
-'this is my summery')
+'this is my summery',1)
 go
 insert into users values
 ('Gareth', '', 'Bale','Degree','http://news.images.itv.com/image/file/1401468/stream_img.jpg',
 '5-20-1985','3-16-2018',0,'bale@ruppin.ac.il','C9EC3C42562081E5439A40A0D9C06630261827C09CE375D5335795548D4004F3','2813B5F0BA1E74',
-'Gareth Bale Summery, Somthing unique and long enough to make your HTML wonder if he is ready for somthing heavy like this.')
+'Gareth Bale Summery, Somthing unique and long enough to make your HTML wonder if he is ready for somthing heavy like this.',1)
 go
 
 
