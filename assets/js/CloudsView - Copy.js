@@ -69,6 +69,7 @@ function DisplayClusters(results) {
         elements.push(divBootclass);
 
         divBootclass.setAttribute("class", bootstrapClass);
+        divBootclass.setAttribute("id", "c" + _cluster.Id);
         divToggle.setAttribute("data-toggle", "collapse");
         divToggle.setAttribute("data-target", "#" + _cluster.Id);
         h4Cluster.setAttribute("class", "p1 btn light-russian");
@@ -118,18 +119,72 @@ function DisplayClusters(results) {
     
    // $('#uArticleModale').modal('show');
     //alert(elements[0].className);
-    var playPause = anime({
-        targets: '.p2',
+
+    var playPause1 = anime({
+        targets: '#c1 .divAnime',
+        translateX: [{value: 250, duration: 800}, {value:0,duration:600}],
         rotate: '1turn',
-        delay: function (el, i, l) { return i * 100; },
+        delay: function (el, i, l) { return i * 900; },
+        easing: 'easeInOutSine',
+        scale: function (el, i, l) {
+            return (l - i) + .25;
+        },
         direction: 'alternate',
-        loop: true,
+        autoplay: false
+    });
+
+    //alert(elements[0]);
+
+    document.querySelector("#c1").onclick = playPause1.play;
+
+    var playPause2 = anime({
+        targets: '#c2 .divAnime',
+        translateX: [{ value: 250, duration: 800 }, { value: 0, duration: 600 }],
+        rotate: '1turn',
+        delay: function (el, i, l) { return i * 900; },
+        easing: 'easeInOutSine',
+        scale: function (el, i, l) {
+            return (l - i) + .25;
+        },
+        direction: 'alternate',
+        autoplay: false
+    });
+
+    document.querySelector("#c2").onclick = playPause2.play;
+
+    var playPause3 = anime({
+        targets: '#c3 .divAnime',
+        translateX: [{ value: 250, duration: 800 }, { value: 0, duration: 600 }],
+        rotate: '1turn',
+        delay: function (el, i, l) { return i * 900; },
+        easing: 'easeInOutSine',
+        scale: function (el, i, l) {
+            return (l - i) + .25;
+        },
+        direction: 'alternate',
         autoplay: false
     });
 
 
+    document.querySelector("#c3").onclick = playPause3.play;
 
-    document.querySelector(elements[0]).onclick = playPause.play;
+    var playPause4 = anime({
+        targets: '#c4 .divAnime',
+        translateX: [{ value: 250, duration: 800 }, { value: 0, duration: 600 }],
+        rotate: '1turn',
+        delay: function (el, i, l) { return i * 900; },
+        easing: 'easeInOutSine',
+        scale: function (el, i, l) {
+            return (l - i) + .25;
+        },
+        direction: 'alternate',
+        autoplay: false
+    });
+
+    document.querySelector("#c4").onclick = playPause4.play;
+
+
+
 }
 
 
