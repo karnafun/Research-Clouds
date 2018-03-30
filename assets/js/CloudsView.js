@@ -23,6 +23,12 @@ $(document).ready(function () {
     $(document).on("click", function () {
         $("#editUl").hide();
     })
+
+    $('.dropdown-toggle').click(function () {
+        $(this).next('.dropdown-menu').slideToggle(500);
+    });
+
+
 });
 
 function Logout() {
@@ -57,7 +63,7 @@ function DisplayClusters(results) {
 
         res += "<div class='" + bootstrapClass + "'>";
         res += "<div data-toggle='collapse' data-target='#" + _cluster.Id + "'>";
-        res += "<h4 class='btn light-russian'>" + _cluster.Name + "</h4>";
+        res += "<h4 class='p1 btn light-russian'>" + _cluster.Name + "</h4>";
         res += "</div>";
 
         res += "<div id='" + _cluster.Id + "' class='collapsible collapse'>"
@@ -66,7 +72,7 @@ function DisplayClusters(results) {
             var _user = _cluster.Users[j];
 
            
-            res += "<a onclick='ViewUser(" + _user.Id + ")'><div class='animated fadeInLeft' style='border-right: 10px solid #37956f; border-radius:50%;'> <img src='" + _user.ImagePath + "' width='100' height='100' /></div>";
+            res += "<a onclick='ViewUser(" + _user.Id + ")'><div class='p2 animated fadeInLeft' style='border-right: 10px solid #37956f; border-radius:50%;'> <img src='" + _user.ImagePath + "' width='100' height='100' /></div>";
             res += "<h5>" + _user.Name + " </h5></a>";
            
         }
@@ -86,3 +92,4 @@ function ViewUser(_id) {
     }, errorCB)
 
 }
+

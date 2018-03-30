@@ -27,6 +27,10 @@ $(document).ready(function () {
     $(document).on("click", function () {
         $("#editUl").hide();
     })
+
+    $('.dropdown-toggle').click(function () {
+        $(this).next('.dropdown-menu').slideToggle(500);
+    });
 });
 
 function UpdateResearcherInfo(results) {

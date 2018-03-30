@@ -12,7 +12,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="../js/AjaxCalls.js"></script>
-    <script src="../js/CloudsView.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
@@ -20,7 +19,12 @@
     <link href="../css/MainStyle.css" rel="stylesheet" />
     <link href="../css/CloudsView.css" rel="stylesheet" />
     <link href="../css/animate.css" rel="stylesheet" />
+    <style type="text/css">
+        .p1, .p2{
+            text-align:center;
+        }
 
+    </style>
 
 </head>
 <body>
@@ -49,7 +53,7 @@
                         <ul id="editUl" class="dropdown-menu">
                             <li><a id="editProfile" href="#">Edit profile</a></li>
                             <li><a id="btn_logout" href="#">Logout</a></li>
-                            <li class="nav-item"><a  href="UserProfile.html">My profile</a></li>
+                            <li class="nav-item"><a href="UserProfile.html">My profile</a></li>
 
                         </ul>
                     </li>
@@ -85,7 +89,6 @@
             <div id="clusters" class="container row">
 
             </div>
-            <div></div>
         </center>
 
     </div>
@@ -98,10 +101,10 @@
             </center>
         </div>
     </footer>
-    <script type="text/javascript">
-        $('.dropdown-toggle').click(function () {
-            $(this).next('.dropdown-menu').slideToggle(500);
-        });
-    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script>
+    <script src="../js/CloudsView - Copy.js"></script>
+    <!--<script src="../js/CloudsView.js"></script>-->
+
 </body>
 </html>
