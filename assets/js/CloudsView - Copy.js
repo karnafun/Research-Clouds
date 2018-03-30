@@ -29,7 +29,6 @@ $(document).ready(function () {
         $(this).next('.dropdown-menu').slideToggle(500);
     });
 
-
 });
 
 function Logout() {
@@ -118,7 +117,19 @@ function DisplayClusters(results) {
     }
     
    // $('#uArticleModale').modal('show');
-    
+    //alert(elements[0].className);
+    var playPause = anime({
+        targets: '.p2',
+        rotate: '1turn',
+        delay: function (el, i, l) { return i * 100; },
+        direction: 'alternate',
+        loop: true,
+        autoplay: false
+    });
+
+
+
+    document.querySelector(elements[0]).onclick = playPause.play;
 }
 
 
@@ -130,12 +141,5 @@ function ViewUser(_id) {
 
 }
 
-var playme = anime({
-    targets: elements[0],
-    translateX: 250,
-    rotate: '1turn',
-    autoplay: false
-});
 
-document.querySelector(elements[0]).onclick = playme.play;
 //animated fadeInLeft
