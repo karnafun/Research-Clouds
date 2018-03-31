@@ -1,25 +1,37 @@
 
 let baseX = 800, baseY = 300;
 let greensX = baseX, greensY = baseY;
-var reds = [];
-var greens = [];
-var purple = GetDiv('purple hidden');
+let reds = [];
+let greens = [];
+let purple = GetDiv('purple hidden');
 
-for (var i = 0; i < 4; i++) {
-    reds[reds.length] = GetDiv('red hidden');
-    greens[greens.length] = GetDiv('green hidden');
+let startX = baseX;
+let startY = baseY;
+let positions = [];
+ConfigurePositions();
+init();
+
+function init() {
+    for (var i = 0; i < 4; i++) {
+        reds[reds.length] = GetDiv('red hidden');        
+    }
+    for (var j = 0; j < 10; j++) {
+        greens[greens.length] = GetDiv('green hidden');
+    }
+    ShowPurple();
 }
-anime({
-    targets: purple,
-    opacity: 1,
-    translateX: baseX,
-    translateY: baseY,
-    duration: 800
+function ShowPurple() {
+    anime({
+        targets: purple,
+        opacity: 1,
+        translateX: baseX,
+        translateY: baseY,
+        duration: 500
 
 
-});
+    });
 
-
+}
 function ShowReds() {
     anime({
         targets: reds,
@@ -48,7 +60,7 @@ function ShowReds() {
                 }
             }
         },
-        duration: 800
+        duration: 500
 
 
 
@@ -87,13 +99,15 @@ function RedClick(target) {
         duration: 100
     });
     for (var i = 0; i < _targets.length; i++) {
-        _targets[i].onclick = function () { return false;}
+        _targets[i].onclick = function () { return false; };
     }
     anime({
         targets: target,
         translateX: baseX,
-        translateY:baseY
-    })
+        translateY: baseY
+    });
+
+    AnimateGreens();
 
 }
 function GreenClick(target) {
@@ -136,3 +150,79 @@ function GetClickEvent(target) {
     };
 }
 
+function ConfigurePositions() {
+    startX = baseX;
+    startY = baseY;
+    positions_upperLeft = [
+        { x: startX-150, y: startY, open: true },
+        { x: startX - 300, y: startY, open: true },
+        { x: startX - 450, y: startY , open: true },
+        { x: startX - 600, y: startY, open: true },
+        { x: startX , y: startY - 140, open: true },
+        { x: startX - 150, y: startY -140, open: true },
+        { x: startX - 300, y: startY - 130, open: true },
+        { x: startX - 450, y: startY - 150, open: true },
+        { x: startX - 600, y: startY - 170, open: true }
+    ];
+
+    positions_upperRight = [
+        { x: startX + 150, y: startY, open: true },
+        { x: startX + 300, y: startY, open: true },
+        { x: startX + 450, y: startY, open: true },
+        { x: startX + 600, y: startY, open: true },
+        { x: startX, y: startY + 140, open: true },
+        { x: startX + 150, y: startY - 140, open: true },
+        { x: startX + 300, y: startY - 130, open: true },
+        { x: startX + 450, y: startY - 150, open: true },
+        { x: startX + 600, y: startY - 170, open: true }
+    ];
+
+    positions_lowerRight = [
+        { x: startX, y: startY + 140, open: true },
+        { x: startX + 150, y: startY + 140, open: true },
+        { x: startX + 300, y: startY + 130, open: true },
+        { x: startX + 450, y: startY + 150, open: true },
+        { x: startX + 600, y: startY + 170, open: true }
+    ];
+
+    positions_lowerLeft = [
+        { x: startX - 150, y: startY + 140, open: true },
+        { x: startX - 300, y: startY + 130, open: true },
+        { x: startX - 450, y: startY + 150, open: true },
+        { x: startX - 600, y: startY + 170, open: true }
+    ]
+
+}
+
+function AnimateGreens() {
+    var counter = 0;
+    for (var j = 0; j < greens.length; j++) {        
+        if (counter===0) {
+            _pos = positions_upperLeft[Math.floor(Math.random() * positions_upperLeft.length)];
+            counter++
+        } else if (counter === 1) {
+            _pos = positions_lowerLeft[Math.floor(Math.random() * positions_lowerLeft.length)];
+            counter++
+        } else if (counter === 2) {
+            _pos = positions_lowerRight[Math.floor(Math.random() * positions_lowerRight.length)];
+            counter++;
+        } else if (counter === 3) {
+            _pos = positions_upperRight[Math.floor(Math.random() * positions_upperRight.length)];
+            counter++;
+        }
+        if (!_pos.open) {
+            j--;
+            continue;
+        }
+        anime({
+            targets: greens[j],
+            opacity: 1,
+            translateX: [baseX, _pos.x],
+            translateY: [baseY, _pos.y]
+        });
+
+        if (counter>3) {
+            counter = 0;
+        }
+    }
+}
