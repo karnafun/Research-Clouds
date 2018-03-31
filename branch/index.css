@@ -1,0 +1,30 @@
+﻿
+#boxes {
+    width: 80%;
+    margin: auto;    
+    text-align:center;
+}
+.box {
+    
+    width: 100px;
+    height: 100px;
+    position: relative;
+    display: inline-block;
+    margin:5px;
+}
+
+.red {
+    background-color: red
+}
+
+.blue {
+    background-color: blue
+}
+
+.green {
+    background-color: green
+}
+
+.purple {
+    background-color: purple
+}
