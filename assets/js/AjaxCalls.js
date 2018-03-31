@@ -32,7 +32,7 @@ function LoginAjax(request, successCB, failureCB) {
         timeout: 5000, // timeout in miliseconds
         success: successCB, // 
         error: failureCB
-    })// end of ajax call
+    });// end of ajax call
 }
 
 
@@ -52,7 +52,7 @@ function UpdateUserAjax(request, successCB, failureCB) {
         timeout: 5000, // timeout in miliseconds
         success: successCB, // 
         error: failureCB
-    })// end of ajax call
+    });// end of ajax call
 }
 
 //---------------------------------------------------------------------------
@@ -70,7 +70,7 @@ function GetClusterById(request, successCB, failureCB) {
         timeout: 5000, // timeout in miliseconds
         success: successCB, // 
         error: failureCB
-    })// end of ajax call
+    });// end of ajax call
 }
 
 
@@ -91,7 +91,7 @@ function GetUserFullClustersAjax(request, successCB, failureCB) {
         timeout: 5000, // timeout in miliseconds
         success: successCB, // 
         error: failureCB
-    })// end of ajax call
+    });// end of ajax call
 }
 
 //---------------------------------------------------------------------------
@@ -110,7 +110,7 @@ function GetUserForAnimationAjax(request, successCB, failureCB) {
         timeout: 5000, // timeout in miliseconds
         success: successCB, // 
         error: failureCB
-    })// end of ajax call
+    });// end of ajax call
 }
 
 
@@ -132,5 +132,5 @@ function InsertUserAjax(request, successCB, failureCB) {
         timeout: 5000, // timeout in miliseconds
         success: successCB, // 
         error: failureCB
-    })// end of ajax call
+    });// end of ajax call
 }

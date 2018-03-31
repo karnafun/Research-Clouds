@@ -64,14 +64,14 @@ function BuildArticles() {
             }
 
         }
-        res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>"
-        res += "<div onclick='return ArticleClick()'  class='media-body'>"
-        res += "<h5><a href='" + value.Link + "'>" + value.Title + "</a></h5>"
+        res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>";
+        res += "<div onclick='return ArticleClick()'  class='media-body'>";
+        res += "<h5><a href='" + value.Link + "'>" + value.Title + "</a></h5>";
         res += "<br />";
         res += "<p>" + usernames + "</p>";
         res += "</div>";
         res += '<span onclick="EditArticle(' + value.Id + ')" class="fa fa-edit" data-target="#articleModal" data-toggle="modal"></span>';
-        res += "</li>"
+        res += "</li>";
 
     });
     $("#articleList").empty();
@@ -100,7 +100,7 @@ function BuildClusters() {
         /*
         TODO: Build cluster buttons based on value info            
         */
-        resString += '<span onclick="ClusterClick(' + value.Id + ')" class="btn light-russian col-md-3 col-lg-2 col-sm-12 animated fadeInLeft" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
+        resString += '<span onclick="ClusterClick(' + value.Id + ')" class="btn light-russian col-md-3 col-lg-2 col-sm-12 animated fadeInLeft" id="uCluster' + (index + 1) + '">' + value.Name + '</span>';
     });
     $("#clusters").html(resString);
 }
@@ -168,7 +168,7 @@ $(document).ready(function () {
     ConfigureClickEvents();
     $("#editProfile").on("click", function () {
         $("#editUl").hide();
-    })
+    });
 
     $(document).on("click", function () {
         $("#editUl").hide();
