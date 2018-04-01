@@ -100,11 +100,13 @@ function ShowReds() {
                 }
             }
         },
-        duration: 500
+        easeeasing: 'easeInOutSine'
 
 
 
     });
+
+    anime.speed = .4;
 }
 
 function GetDiv(classString) {
