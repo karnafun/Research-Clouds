@@ -1,0 +1,10 @@
+Article:
+Not All Is Gold That Glitters: Response Time & Satisfaction Rates in Yahoo! Answers
+IEEE Keywords:
+Time factors, Barium, Communities, Awards activities, Subspace constraints, Social network services, Internet
+INSPEC - Controlled Indexing:
+Web sites, question answering (information retrieval)
+INSPEC - Non-Controlled Indexing:
+ranking time, Yahoo, question-and-answer site, network activity, answer response time, answer stars, long response time
+Author Keywords:
+Wisdom of the crowds, Yahoo! Answers, Response time, Satisfaction rates

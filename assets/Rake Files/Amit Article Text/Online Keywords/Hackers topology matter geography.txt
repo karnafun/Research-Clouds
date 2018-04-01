@@ -1,0 +1,10 @@
+Article:
+Hackers topology matter geography: Mapping the dynamics of repeated system trespassing events networks
+IEEE Keywords:
+Network topology, Computers, Topology, Computer crime, IP networks, Computer hacking, Internet
+INSPEC - Controlled Indexing:
+social networking (online), computer crime, geography
+INSPEC - Non-Controlled Indexing:
+cybercrime, hackers topology, geography, repeated system trespassing event network dynamics mapping, hacking spatial context, Honey-pots network, topological positions, geographic position, victimized computers, system trespassers, computer networks, brute force attacks, BFA, social network analysis technique, SNA technique, spatial attributes, hacking network topology, hacking patterns, attacker behavior
+Author Keywords:
+Hot-spots, Hacking, Cybersecurity, Cyberspace Policies, Topology, SNA

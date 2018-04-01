@@ -1,0 +1,674 @@
+Not all is Gold that Glitters 
+ Response time & satisfaction rates in Yahoo! 
+Answers  
+ 
+Amit Rechavi 
+Sagy Center for Internet Research 
+Graduate School of Management, Univ. of Haifa 
+Haifa, Israel 
+Amit.rechavi@gmail.com 
+Sheizaf Rafaeli 
+Sagy Center for Internet Research 
+Graduate School of Management, Univ. of Haifa 
+Haifa, Israel 
+Sheizaf@rafaeli.net 
+ 
+Abstract - This study investigates two questions concerning 
+question-and-answer sites. We analyzed data from “Yahoo! 
+Answers”, including 19 months and over 20 million interactions 
+per month.  The first question investigates the differences in 
+response time and in the average number of answers between an 
+asker’s ranking of “Best Answer” (BA) and the community’s BA. 
+The second question concerns the impact of an explicit network 
+on several implicit network activities. 
+The results imply that askers use response time as a parameter to 
+choose the BA, whereas the community chooses the BA with no 
+regard to Answer Response Time (ART). Another finding implies 
+that if the answerer is not listed in the asker’s “explicit network,” 
+it might result in longer ranking (award) time and in a slightly 
+decreased number of answer stars (satisfaction-rate indicator). 
+And yet, one result might be surprising. Being a “fan” of the 
+asker implies a long response time to the question. This finding 
+might contradict the intuition that our friends are the first to 
+provide answers to our questions. Several explanations of this 
+result from different research fields are suggested in the 
+discussion. 
+Keywords-component; Yahoo! Answers; Response time; 
+Satisfaction rates; Wisdom of the crowds 
+I. INTRODUCTION 
+A. Social Networks and Q&A sites 
+Social Q&A services are online information-seeking sites 
+offering a method, a place and a community [21, 32]. These 
+sites are variously known by many names [23, 27, 28, 31] and 
+have common features such as a public or semi-public profile, 
+a list of other connected users and a list of connections [7]. The 
+participants’ activity in these sites create ties to other users 
+through asking and answering questions, evaluating and 
+ranking the answers and establish a social network [4, 5, 22, 
+30, 32, 33, 36].  
+In contrast to traditional Q&A systems or services in library 
+settings, social Q&A sites provide a venue where people 
+voluntarily ask and answer questions and it is the asker who 
+has the responsibility to filter the answers that best fit the 
+information needs and to evaluate and rank the answers. 
+Sometimes the community participates in this process as well.  
+Little [1, 24], if any, was written on the differences in the 
+process of selecting, evaluating and ranking satisfying answers 
+by the asker or the community. 
+This study will explore these differences using Yahoo! 
+Answers data. The study will also explore the response time of 
+asker and answerer in light of two assumptions: (1) The asker 
+prefers to receive information sooner rather than later [16] and 
+(2) Because of such terms as “reciprocity” [28], “obligation” 
+[24], and as a means of “care and presence” [19], the asker’s 
+friends will reply as quickly as possible to her questions.  The 
+study investigates Yahoo! Answers data in light of this logic 
+and suggests alternative explanations of the askers and 
+answerers’ behavior. 
+B. Yahoo! Answers’ Site 
+Knowing the answer’s experience and network, having the 
+ability to obtain personalized answers, and receiving a variety 
+of answers are some of the reasons for searching socially rather 
+than through a search engine [4, 9, 26].  
+Launched on July 5, 2005, Yahoo! Answers enables 
+participants to ask and answer personalized questions on any 
+topic and serves many needs - requesting everyday advice, 
+answering questions, and receiving support [1].  
+Providing more than 20 million answers per month, about 
+40% of the Yahoo! Answers questions are opinion-type 
+questions [6, 11, 20]. This might be one of the reasons why its 
+content is deemed to be subjective; its information was found 
+to be noisy, ungrammatical, vague, and poorly stated [25]. And 
+yet, though its expertise depth was barely at the high school 
+level [1], Yahoo! Answers was found to provide good answers 
+to “Complicated Answer” and "Opinions" [24] especially in 
+categories in which a clear and conclusive answer was needed. 
+[35]. 
+The process of asking and answering questions in Yahoo! 
+Answers is rather simple; an asker puts a question to Yahoo! 
+Answers by selecting a category and entering the question 
+subject. If the asker is satisfied with any of the answers, she 
+This study was supported by Yahoo Research, Yahoo Israel, and the Sagy 
+Center for Internet Research.  
+2011 IEEE International Conference on Privacy, Security, Risk, and Trust, and IEEE International Conference on Social Computing
+978-0-7695-4578-3/11 $26.00 © 2011 IEEE
+DOI 
+904
+can choose it as Best Answer (BA) and can offer textual 
+feedback. In case the asker did not find a BA [23], the 
+community can vote and choose a BA. Once a BA is chosen, 
+the question is “resolved” although comments can be added to 
+both closed and resolved questions. 
+II. HYPOTHESES 
+ (1) Do the asker and the community consider the answering 
+response time as a decisive parameter in their BA selection? If 
+not, what are the differences between the asker and the 
+community in deciding which Answer is the Best”? 
+(2) How does past acquaintance between an answerer and 
+an asker in the explicit network influence the answerer’s 
+response time, the asker’s awarding time and the number of 
+stars the BA receives from the asker? 
+Hypothesis 1 
+Both asker and community consider the answering response 
+time to be a decisive parameter in their BA selection.  
+Hypothesis 2 
+When asker and answerer know each other, the ART (Average 
+Response Time) and the AAT (Average Award Time) will be 
+relatively short, and the Average Starring Response (ASR) will 
+be relatively high; all this is due to the mutual commitment 
+between the asker and the answerer. 
+Hypothesis 3 
+When asker and answerer do not know each other, the ART 
+and the AAT will be relatively long. The ASR will be high due 
+to "Strength of Weak Ties”, according to which strangers 
+might supply the most interesting/useful input 
+III. RESEARCH METHODOLOGY 
+A. Data Collection 
+The Yahoo! Corporation gave us access to Yahoo! files, 
+stored on its servers, and managed with the Hadoop file 
+system.  The data for this study covered 19 activity months, 
+from January 2009 till August 2010, except for July 2009. 
+During this time period, there were more than 20 millions 
+interactions per month and more than 2 million answers were 
+chosen each month to be BA.  
+B. Variables 
+Regarding H:1  
+ For each BA given to a question(i) in the five activity 
+months investigated, three quantitative variables were 
+collected: (V1) Who chose the BA - the asker or the 
+community? (V2) How long (in seconds) did it take the 
+answerer to send a BA and (V3) How many more alternative 
+answers were sent to a question(i)? 
+Regarding H:2 And H:3  
+There are three user activities in the asking-answering 
+process in Yahoo! Answers: (1) Answering a question (2) 
+Awarding an Answer as BA and (3) Starring the BA - 
+according to the asker’s satisfaction (1 to 5 stars). 
+Four quantitative variables were used in H:2 And H:3: 
+V(1) – The existence of an explicit network: The nature of 
+acquaintance between the asker and the answerer? 
+V(2) – ART: Time in seconds to send an Answer 
+V(3) – AAT: Time in seconds to award the BA. 
+V(4) – ASR: Stars awarded, ranging from 1 to 5 
+The impact of V(1) on V(2), V(3) and V(4) was explored at the 
+time of two interactions: (1) answering a question and (2) 
+awarding an answer as BA. In each interaction, there are three 
+possible statuses of V(1) : 
+V(1) Exists - u(i) knew u(j) before acting and she was a fan of 
+u(j) in the Yahoo! Answers’ explicit network. 
+V(1) doesn’t Exists yet - u(i) didn’t know u(j) before acting 
+but started to follow u(j) since then and became u(j)’s fan. 
+V(1) doesn’t Exists at all - u(i) and u(j) didn’t know each other 
+before, during or after the interaction. 
+C. Data Analysis 
+The statistical analysis was conducted using SPSS and 
+correlation test analyses were conducted to examine each 
+hypothesis. All the variables included in the final models 
+reported are listed in the main results section. The significance 
+level deemed appropriate was the smallest value reported by 
+the SPSS package for the analysis in question. For a large-scale 
+analysis, this was p <0.0001, for an analysis with hundreds of 
+variables, this was p <0.001. 
+ 
+IV. MAIN RESULTS 
+A. H:1 - Best Answers Response Time 
+TABLE I.  AVERAGE BA RESPONSE TIME AND AVERAGE NUMBER OF 
+ALTERNATIVE ANSWERS IN FIVE RANDOM ACTIVITY MONTHS 
+Best Answers chosen By: Asker 
+(N=1.3M) 
+community 
+(N=1.7M) 
+Total 
+(N=3M)
+Response 
+Time (in 
+Minutes) 
+Mean 232 615 444.2 
+Std. 
+Deviation 614 1401 1136.4 
+Median 17.8 20.8 19 
+No. of 
+Alternative 
+Answers 
+Mean 7 4.8 5.8 
+Std. 
+Deviation 6.8 5.62 6.3 
+Median 4.8 3 3.8 
+ 
+The main findings - There are two distinctive clusters: the 
+BA chosen by the asker and the BA chosen by the community. 
+The continuous variables are the response time and the number 
+of alternative answers. All the sampling months are consistent 
+with the following results. 
+1)  Response time 
+BAs that are chosen by the asker have a remarkably lower 
+response time (less than four hours) than those chosen by the 
+community (more than ten hours). There are huge differences 
+between the median response time (17.8 and 20.8 minutes) and 
+the average response time (232 and 615 minutes) for both the 
+asker and the community. The differences between the 
+905
+response time medians of the BA chosen by the asker and those 
+chosen by the community are clearly significant (17.6% 
+difference), and are much smaller than the differences in the 
+respective averages (226% difference). 
+2) Number of alternative answers 
+Asker’s BAs have on average more “competitors” (7) than 
+the community’s BA (4.8) and both medians are smaller than 
+the averages (4.8 vs. 7 and 3 vs. 4.8 respectively). The 
+medians’ differences are clearly significant (43% difference), 
+and yet they are smaller than the differences in the respective 
+averages (66% difference). These results are consistent for all 
+the activity months investigated, with minor changes. 
+B.  H:2 and H:3 – The explicit network’s influence on Q&A 
+activities 
+TABLE II.  RESPONSE TIME , AWARD TIME  AND NO. OF STARS OF “BEST 
+ANSWERS”, BASED ON A FIVE RANDOM ACTIVITY MONTH 
+Relationships’ 
+type (asker, 
+answerer) 
+Number of 
+Cases 
+Response 
+Time (in 
+minutes) 
+Award, 
+Time (in 
+minutes) 
+Number 
+of  
+Stars 
+(-1, -1 ) 11,812 323 1,492 4.76 
+(-1, 1) 5,307 267 1,637 4.71 
+(-1, 99) 11,978 250 1,599 4.62 
+(1, -1) 4,556 393 1,418 4.79 
+(1,1) 60,845 459 1,489 4.72 
+(1, 99) 25,980 439 1,462 4.66 
+(99, -1) 9,231 298 1,324 4.71 
+(99, 1) 28,604 283 1,585 4.71 
+(99, 99) 1,229,573 208 1,775 4.27 
+-1 - u(i) didn’t know u(j) before acting but started to follow u(j) since then and 
+became u(j)’s fan;  
+1 - u(i) knew u(j) before acting and she was a fan of u(j) in the Yahoo! Answers’ 
+explicit network; 
+99 - u(i) and u(j) didn’t know each other before, during or after the interaction; 
+ 
+The main findings 
+1) Response Time 
+The shortest response time (208 minutes) was found 
+between askers and answerers who did not follow each other at 
+all. The longest response time (459 minutes) was found 
+between askers and answerers who followed each other, 
+meaning that they were mutual friends in the explicit network.  
+2)  Award Time 
+The shortest award time was found between askers who 
+didn’t know the answerers and answerers who were not 
+followed by the askers before (1324 minutes ~ almost one day). 
+The longest award time was found between askers and 
+answerers who did not follow each other at all (1775 minutes ~ 
+thirty hours). 
+3)  Number of Stars 
+The lowest satisfaction rate (4.27 stars) was found between 
+askers and answerers who did not know each other at all. The 
+highest satisfaction rate (4.79 stars) was found between askers 
+who knew the answerer before and answerers who didn’t know 
+the askers before. This result is not conclusive, since almost all 
+relationships had more than 4.7 stars. 
+The results suggest that though the BAs coming from total 
+strangers are the fastest, their satisfaction rate was the lowest.  
+We suggest that the asker considers (as opposing to that of 
+the community) the response time of the answerer as a 
+parameter in choosing the BA. Yet, eventually, the asker’s 
+satisfaction with these quick answers, coming from total 
+strangers, is the lowest. 
+ 
+V. DISCUSSION 
+A. Response Time Latencies  
+Regarding H:1: The fundamental finding of this study is the 
+huge difference between the median of the response time (17 
+minutes) and the average response time (229 minutes) to 
+answers. 
+Investigating online “response time”, Kalman [19] explored 
+three data sets of computer-mediated communications. 93% of 
+the users created more than 70% of their responses within their 
+average response latency or less (1.58 hours) only a minority of 
+the response latencies was of average duration or above. All of 
+the users created at least 96% of their responses within less 
+than ten times their average response latency. These results 
+accord with our results, in which half of the answerers whose 
+answers were chosen as BA by the asker replied in 17 minutes; 
+the average response time was 223 minutes. Half of the 
+answerers whose answers were chosen as BA by the 
+community replied in 20 minutes, with an average response 
+time of 610 minutes. 
+B. Satisfier versus Optimizer 
+The response time of the asker’s BA was much smaller 
+than that chosen by the community. A possible explanation of 
+this phenomenon might be found in the user’s psychology. 
+Since the asker prefers to receive information sooner rather 
+than later [16], she acts as a Satisfier, and not as an Optimizer. 
+The asker seeks a satisfactory solution which meets criteria for 
+adequacy rather than finding the optimal solution.  Since many 
+answers appear in a short time period (half of them in 17 
+minutes), once the asker stumbles upon a satisfying answer, it 
+is chosen.  
+Another possible explanation may be rooted in the huge 
+amount of questions and answers, which creates “data 
+overload” [18, 19]. In light of Jones’ observations and if 
+Yahoo! Answers is viewed as a one-to-many CMC, two 
+overloads might occur to the asker. A Conversational Overload 
+- “Information presented at a rate too fast for a person to 
+process” [13], meaning that too many answers are delivered 
+and the asker is unable to use them. The second overload is 
+“Information Entropy” [13], the answers are not sufficiently 
+organized to be easily recognized, and the asker can’t obtain 
+from them the information needed. Either way, choosing one of 
+the answers immediately as BA or choosing it under “data 
+overload” conditions might explain the asker’s behavior and 
+why the asker keeps choosing them though these answers are 
+less satisfying. 
+The order in which the answers are received should have no 
+impact on choosing the BA since in Yahoo! Answers the latest 
+906
+answer is presented at the top of the list. Hence the asker is 
+exposed to the newest answers (with a higher Response Time 
+and shortest exposure time). Finally, in case the asker spends in 
+average very little time online, then she may be more likely to 
+choose a BA that was posted earlier; the research didn’t 
+explore the average duration of the user's session on Yahoo! 
+Answers. 
+C. Textual and Non-Textual Quality 
+Textual features such as accuracy, completeness, relevance 
+and length of the answer [5], the answer’s focus and the 
+number of other answers [1] were found to be good predictors 
+of BA in Yahoo! Answers. Usually textual features measure the 
+relevance of an answer and non-textual features measure its 
+quality [17, 24]. We assume that an important non-textual 
+signal is the quickness of the reply which reflects the 
+answerer’s seriousness and engagement.  
+In contrast to the user’s strategy, the response time is 
+neutralized in the community decision process. The community 
+seems to act like an Optimizer, scanning the whole list of 
+answers and selecting the most appropriate one, without 
+considering its time of arrival. Hence, in situations in which 
+there are many answers to choose from and no time constraints, 
+the community might find a more relevant answer to a given 
+question than will a single user. 
+D.  The amount of alternative answers  
+The number of answers was a significant factor in choosing 
+BA [1] and it differs significantly when comparing the BA 
+chosen by the askers and by the community. A possible 
+explanation for this difference between the asker’s average 
+number of chosen BA (7) and the community’s (5) might be 
+found in the Yahoo! Answers mechanism.  
+In Yahoo! Answers, the question and its answers are 
+forwarded to the community only when the asker cannot find a 
+satisfying answer. Hence, questions with a significant amount 
+of answers are more likely to have an answer that will satisfy 
+the asker. Questions with a small amount of answers might not 
+have a satisfying answer and, therefore, will be moved to the 
+community for BA voting. The community does not possess 
+any set of expectations [23] and therefore any reasonable 
+answer that is better than all the rest may be chosen as the BA.  
+E.  Friends’ response time 
+At first sight, the finding that it takes friends the longest to 
+response to a question might be puzzling. In the present study, 
+it took 494 minutes on average for friends - people who knew 
+each other in the explicit network - to reply (with a BA) to a 
+friend’s question, compared to the response time of a total 
+stranger, who gave an answer (BA) in less than half this time 
+(207 minutes).  
+Moreover, “in asynchronous CMC, a quick response is one 
+of the only non-verbal tools that can be used to signal 
+immediacy, care, and presence” [19]. This argument seems 
+adequate to Yahoo! Answers. So, why do friends seem to be the 
+last to answer our calls and to give an answer satisfying our 
+need? The coming sections will advance some explanations of 
+this finding. 
+ 
+1) The Yahoo! Answers’ mechanism 
+In Yahoo! Answers, once a user has chosen another user as 
+a contact in the explicit network, the former receives an email 
+message containing the questions this contact asks in real time.  
+Thus, fans are notified about the contact’s questions and might 
+try to answer them either through the Yahoo! Answers site or 
+directly by mail. Accordingly the answers collected and used in 
+this study came only from Yahoo! Answers network. It is 
+possible that the “quick and dirty” answers are emailed directly 
+to the asker and receive no expression in the Yahoo! Answers’ 
+data.  
+2) Random users 
+Since Yahoo! Answers is a public tool where everybody can 
+watch the questions and answer them and since there are much 
+more random users then explicit friends, there are greater 
+chances that a random user will see a question and will answer 
+it. Hence the fastest answers are from random users who 
+stumble upon the question, answer it and move on… 
+3) Homophily and Friend’s obligation  
+In 1954, Lazarsfeld and Merton coined the term 
+“homophily” to refer to the tendency to be attracted to others 
+who possess similar attitudes, beliefs, and personal 
+characteristics. Fostering trust and reciprocity, increasing the 
+ease of communication, improving the predictability of 
+behaviors and values, and enhancing instrumental relations 
+were suggested as a reason for homophily [14]. 
+Individuals form their beliefs and actions based on their 
+neighbors’; at the same time, network connections are formed 
+between vertices that share the same way of thinking [10, 15]. 
+The homophily of neighboring vertices might be relevant to 
+this study’s finding in the following aspect: since a mutual 
+obligation, the “nature of the relationship” [26] and a sense of 
+reciprocity motivate the answerer to send a satisfying answer 
+and since two friends share the same interest fields and one 
+might not be able to instantly answer a satisfying answer, it 
+takes longer time for friends to answer a friend’s question in 
+Yahoo! Answers. 
+F. Does Granovetter’s “Strength of Weak Ties” hold for a 
+Q&A-based social network? 
+One last point is relevant to Granovetter’s “Strength of 
+Weak Ties” (1973). Granovetter found that weak ties serve as 
+information bridges across cliques with strong ties and can 
+offer access to resources that are not found in strong-tie 
+relationships. In Yahoo! Answers, the interactions involving 
+two users who are friends in the explicit network are 
+considered “Strong Ties,” while interactions between people 
+who are not friends in the explicit network are considered 
+“Weak Ties.” Investigating the satisfaction rate (number of 
+stars) from all interactions might help in understanding whether 
+Granovetter’s “Strength of Weak Ties” (SWT) holds for Q&A-
+based social networks.   
+Surprisingly, the results do not support the SWT theory. 
+The answers from total strangers have the lowest average 
+number of answer stars (4.2). Although answers from strangers 
+have the faster response time and the asker apparently tends to 
+907
+choose these answers, they do not really satisfy or prove of true 
+benefit to the asker.  
+VI. CONCLUSIONS AND FUTURE WORK 
+Our first hypothesis was that “both the asker and the 
+community consider the answering response time as a decisive 
+parameter in their BA selection”. 
+The results reject our first hypothesis. A correlation was 
+found between the speed of answering and the selection of an 
+answer as a BA by the asker but NOT by the community in 
+Yahoo! Answers. The asker seems to choose the quickest 
+answer, whereas the community does not take the speed of 
+answering into consideration. 
+Next, the correlation between the average number of 
+answers to a question and the fact that the answer was chosen 
+by the asker was analyzed.  The asker’s BAs were found to 
+come from a larger group of answers (7.2 on average) than 
+were the BAs chosen by the community (5.02 on average). We 
+suggest that since the asker can’t find an appropriate answer 
+(because there are too few answers), the selection of BA is 
+directed to the community. There, because of the lack of 
+specific expectations or emotions, a BA is (more readily) 
+chosen. 
+Our second hypothesis was as follows: “In cases in which 
+the asker and the answerer know each other, the ART will be 
+relatively short, the AAT will be relatively short, and the ASR 
+will be relatively high; all this is due to the mutual commitment 
+between the asker and the answerer.”  
+The study findings reject these assumptions. On the 
+contrary, the longest ART (459 minutes ~ seven and half 
+hours) was found between an asker and an answerer who were 
+friends in the explicit network. We suggest Yahoo! Answers’ 
+mechanism, the number of random users and the obligation of 
+mutual friends to supply satisfying answers as several possible 
+explanations to this phenomenon.  
+The study findings support the hypothesis that since the 
+asker and the answerer know each other, the AAT will be 
+relatively short (1,489 minutes). In addition the study findings 
+support the assumption that since the asker and the answerer 
+know each other, the ASR will be relatively high. The ASR 
+(4.72) between an asker and an answerer who knew each other 
+was only third (and 1.4% less) to the highest satisfaction rate 
+(4.8 stars). 
+Our third hypothesis: “In cases in which the asker and the 
+answerer don’t know each other, the ART will be relatively 
+long, the AAT will be relatively long owing to the fact that 
+there is no mutual commitment between the asker and the 
+answerer. The ASR will be high because of the "Strength of 
+Weak Ties” theory, according to which strangers supply us 
+with the most interesting/useful input.”  
+The study findings reject the assumption that the ART will 
+be relatively long. On the contrary, the shortest response time 
+(208 minutes ~ three and a half hours) was found between an 
+asker and an answerer who did not follow each other at all. The 
+huge number of random users and the fact that they respond 
+fast without any commitment to answers’ quality might explain 
+these results. 
+The study findings support the assumption that in cases in 
+which the asker and the answerer do not know each other, the 
+AAT will be relatively long. The longest award time was found 
+between an asker and an answerer who did not follow each 
+other at all (1,775 minutes ~ thirty hours).  
+The study findings reject the assumption that in cases in 
+which the asker and the answerer do not know each other, the 
+ASR will be relatively high. The lowest average number of 
+answer stars (4.27) awarded resulted from answers coming 
+from total strangers. Since the number of stars signals the 
+satisfaction of the asker with the answer, it seems that the asker 
+does not find these answers to be very beneficial even if 
+chosen.  
+This implies that the "Strength of Weak Ties” theory does 
+not hold for Yahoo! Answers. Although answers coming from 
+total strangers have the fastest response time and although the 
+asker tends to choose these answers, it appears that these 
+answers are really not of that much benefit to the asker. 
+Elsewhere [39], we treated the correlation between knowledge 
+and social networks on Yahoo! Answers. 
+Lastly, to sum our conclusions, the asker tends to choose 
+answers from strangers because they have the fastest response 
+time. Interestingly enough the satisfaction rate from these 
+answers is the lowest. Apparently these fast answers do not 
+really satisfy or prove of true benefit to the asker.  
+VII. ACKNOWLEDGEMENTS 
+We wish to thank Ricardo Baeza-Yates of Yahoo! research 
+Barcelona and Yoelle Maarek and her team from Yahoo! Labs 
+Haifa for their knowledge and support. We also acknowledge 
+thankfully the financial support of The Sagy Center for Internet 
+Research, Univ. of Haifa, Israel. 
+REFERENCES 
+[1] L. A. Adamic, J. Zhang, E. Bakshy and M. S. Ackerman, "Knowledge 
+sharing and yahoo answers: Everyone knows something," in Proceeding 
+of the 17th International Conference on World Wide Web, 2008, pp. 
+665-674.  
+[2] E. Agichtein, C. Castillo, D. Donato, A. Gionis and G. Mishne, "Finding 
+high-quality content in social media," in Proceedings of the International 
+Conference on Web Search and Web Data Mining, 2008, pp. 183-194.  
+[3] E. Agichtein, C. Castillo, D. Donato, A. Gionis and G. Mishne, 
+"TECHNICAL REPORT YR-2007-005," 2007.  
+[4] J. Bian, Y. Liu, E. Agichtein and H. Zha, "Finding the right facts in the 
+crowd: Factoid question answering over social media," in Proceeding of 
+the 17th International Conference on World Wide Web, 2008, pp. 467-
+476.  
+[5] M. J. Blooma, A. Y. K. Chua and D. H. L. Goh, "A predictive 
+framework for retrieving the best answer," in Proceedings of the 2008 
+ACM Symposium on Applied Computing, 2008, pp. 1107-1111.  
+[6] M. Bouguessa, B. Dumoulin and S. Wang, "Identifying authoritative 
+actors in question-answering forums: The case of Yahoo! Answers," in 
+Proceeding of the 14th ACM SIGKDD International Conference on 
+Knowledge Discovery and Data Mining, 2008, pp. 866-874.  
+[7] D. M. Boyd and N. B. Ellison, "Social network sites: Definition, history, 
+and scholarship," JOURNAL OF COMPUTER MEDIATED 
+COMMUNICATION-ELECTRONIC EDITION -, vol. 13, pp. 210, 
+2007.  
+908
+[8] P. B. Brandtzæg and J. Heim, "User loyalty and online communities: 
+Why members of online communities are not faithful," in Proceedings of 
+the 2nd International Conference on INtelligent TEchnologies for 
+Interactive enterTAINment, 2008, pp. 1-10.  
+[9] D. Constant, L. Sproull and S. Kiesler, "The kindness of strangers: The 
+usefulness of electronic weak ties for technical advice," Organization 
+Science, vol. 7, pp. 119-135, 1996. 
+[10] D. Crandall, D. Cosley, D. Huttenlocher, J. Kleinberg and S. Suri, 
+"Feedback effects between similarity and social influence in online 
+communities," in Proceeding of the 14th ACM SIGKDD International 
+Conference on Knowledge Discovery and Data Mining, 2008, pp. 160-
+168.  
+[11] F. M. Harper, D. Moy and J. A. Konstan, "Facts or friends?: 
+Distinguishing informational and conversational questions in social 
+Q&A sites," in Proceedings of the 27th International Conference on 
+Human Factors in Computing Systems, 2009, pp. 759-768.  
+[12] F. M. Harper, D. Raban, S. Rafaeli and J. A. Konstan, "Predictors of 
+answer quality in online Q&A sites," in Proceeding of the Twenty-Sixth 
+Annual SIGCHI Conference on Human Factors in Computing Systems, 
+2008, pp. 865-874.  
+[13] S. R. Hiltz and M. Turoff, "Structuring computer-mediated 
+communication systems to avoid information overload," Commun 
+ACM, vol. 28, pp. 680-689, 1985.  
+[14] P. J. Hinds, K. M. Carley, D. Krackhardt and D. Wholey, "Choosing 
+Work Group Members: Balancing Similarity, Competence, and 
+Familiarity* 1," Organ. Behav. Hum. Decis. Process., vol. 81, pp. 226-
+251, 2000.  
+[15] P. Holme and M. Newman, "Nonequilibrium phase transition in the 
+coevolution of networks and opinions," Physical Review E, vol. 74, pp. 
+56108, 2006.  
+[16] S. Jain, Y. Chen and D. C. Parkes, "Designing incentives for online 
+question and answer forums," in Proceedings of the 10th ACM 
+Conference on Electronic Commerce, 2009, pp. 129-138.  
+[17] J. Jeon, W. B. Croft, J. H. Lee and S. Park, "A framework to predict the 
+quality of answers with non-textual features," in Proceedings of the 29th 
+Annual International ACM SIGIR Conference on Research and 
+Development in Information Retrieval, 2006, pp. 235 
+[18] Q. Jones, G. Ravid and S. Rafaeli, "Information overload and the 
+message dynamics of online interaction spaces: A theoretical model and 
+empirical exploration," Information Systems Research, vol. 15, pp. 194-
+210, 2004.  
+[19] Y. M. Kalman, G. Ravid, D. R. Raban and S. Rafaeli, "Pauses and 
+response latencies: A chronemic analysis of asynchronous CMC," 
+Journal of ComputeŕMediated Communication, vol. 12, pp. 1-23, 
+2006.  
+[20] S. Kim, J. S. Oh and S. Oh, "Best-answer selection criteria in a social 
+Q&A site from the user-oriented relevance perspective," Proceedings of 
+the American Society for Information Science and Technology, vol. 44, 
+pp. 1-15, 2008.  
+[21] B. Li, Y. Liu and E. Agichtein, "CoCQA: Co-training over questions and 
+answers with an application to predicting question subjectivity 
+orientation," in Proceedings of the Conference on Empirical Methods in 
+Natural Language Processing, 2008, pp. 937-946.  
+[22] B. S. C. Liu, R. Madhavan and D. Sudharshan, "DiffuNET: The impact 
+of network structure on diffusion of innovation," European Journal of 
+Innovation Management, vol. 8, pp. 240-262, 2005.  
+[23] Y. Liu and E. Agichtein, "You've got answers: Towards personalized 
+models for predicting success in community question answering," in 
+Proceedings of the 46th Annual Meeting of the Association for 
+Computational Linguistics on Human Language Technologies: Short 
+Papers, 2008, pp. 97-100.  
+[24] Y. Liu and E. Agichtein, "On the evolution of the Yahoo! Answers QA 
+community," in Proceedings of the 31st Annual International ACM 
+SIGIR Conference on Research and Development in Information 
+Retrieval, 2008, pp. 737-738.  
+[25] Y. Liu, J. Bian and E. Agichtein, "Predicting information seeker 
+satisfaction in community question answering," in Proceedings of the 
+31st Annual International ACM SIGIR Conference on Research and 
+Development in Information Retrieval, 2008, pp. 483-490.  
+[26] M. R. Morris, J. Teevan and K. Panovich, "What do people ask their 
+social networks, and why?: A survey study of status message q&a 
+behavior," in Proceedings of the 28th International Conference on 
+Human Factors in Computing Systems, 2010, pp. 1739-1748. 
+[27]  T. Murata and S. Moriyasu, "Link prediction of social networks based 
+on weighted proximity measures," in Proceedings of the 
+IEEE/WIC/ACM International Conference on Web Intelligence, 2007, 
+pp. 85-88. 
+[28] K. K. Nam, M. S. Ackerman and L. A. Adamic, "Questions in, 
+knowledge in?: A study of naver's question answering community," in 
+Proceedings of the 27th International Conference on Human Factors in 
+Computing Systems, 2009, pp. 779-788.  
+[29] D. Raban and F. Harper, "Motivations for answering questions online," 
+New Media and Innovative Technologies, 2008.  
+[30] M. E. Rodrigues and N. Milic-Frayling, "Socializing or knowledge 
+sharing?: Characterizing social intent in community question 
+answering," in Proceeding of the 18th ACM Conference on Information 
+and Knowledge Management, 2009, pp. 1127-1136.  
+[31] P. Shachaf, "Social reference: Toward a unifying theory," Library & 
+Information Science Research, 2009.  
+[32] C. Shah, J. S. Oh and S. Oh, "Exploring characteristics and effects of 
+user participation in online social Q&A sites," First Monday, vol. 13, 
+2008.  
+[33] C. Shah, S. Oh and J. S. Oh, "Research agenda for social Q&A," Library 
+& Information Science Research, vol. 31, pp. 205-209, 2009.  
+[34] M. Surdeanu, M. Ciaramita and H. Zaragoza, "Learning to rank answers 
+on large online QA collections," in Proceedings of the 46th Annual 
+Meeting for the Association for Computational Linguistics: Human 
+Language Technologies (ACL-08: HLT), 2008, pp. 719–727.  
+[35] M. A. Suryanto, E. P. Lim, A. Sun and R. H. L. Chiang, "Quality-aware 
+collaborative question answering: Methods and evaluation," in 
+Proceedings of the Second ACM International Conference on Web 
+Search and Data Mining, 2009, pp. 142-151.  
+[36] B. Wellman, "Computer networks as social networks," Science, vol. 293, 
+pp. 2031, 2001. 
+[37] H. T. Welser, E. Gleave, D. Fisher and M. Smith, "Visualizing the 
+signatures of social roles in online discussion groups," Journal of Social 
+Structure, vol. 8, 2007.  
+[38] J. Yang, X. Wei, M. Ackerman and L. Adamic, "Activity Lifespan: An 
+Analysis of User Survival Patterns in Online Knowledge Sharing 
+Communities," Proceeding of ICWSM, 2010. 
+[39] A. Rechavi and S. Rafaeli, "What’s sauce for the goose is sauce for the 
+gander: Knowledge and Social Networks in Yahoo! Answers", to be 
+presented at HICSS 45, Hawaii, 2012. 
+ 
+ 
+ 
+909

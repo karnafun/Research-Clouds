@@ -1,0 +1,975 @@
+Knowledge and Social Networks in Yahoo! Answers
+Amit Rechavi 
+Sagy Center for Internet Research 
+Graduate School of Management, Univ. of Haifa 
+Haifa, Israel 
+Amit.rechavi@gmail.com 
+Sheizaf Rafaeli 
+Sagy Center for Internet Research 
+Graduate School of Management, Univ. of Haifa 
+Haifa, Israel 
+Sheizaf@rafaeli.net 
+Abstract 
+This study defines and explores relations between 
+knowledge-seeking and social relationship networks, 
+using data from a popular Q&A social network site. 
+Our theoretical framework draws on Motivation, 
+Common-goods, and Social capital theories to 
+generate an understanding of the interrelationship of 
+the two types of networks. A dataset consisting of 19 
+months of activity on Q&A Yahoo! Answers provides 
+the basis for answering the following questions: Does 
+a reciprocal relationship exist between the two 
+networks? Is there a positive correlation in either size 
+or growth between the two? Who are their members 
+and actual participants? How does the social capital 
+created by the social activities influence the asker’s 
+satisfaction? Finally, can the growth of one network 
+come at the expense of the other?  
+ 
+Findings suggest a positive correlation between the 
+knowledge-seeking network and the social network; 
+Social capital does contribute to askers’ satisfaction 
+and furthermore, under certain conditions, one 
+network might grow at the expense of the other. 
+Theoretical and practical implications for the mutual 
+dependency of social ties and informational provision 
+are discussed. 
+ 
+1. Introduction  
+ 
+Social Q&A is a Web-based information-seeking 
+service in which questions are asked and answers given 
+by the users themselves. The service offers (1) a 
+method for presenting a request for needed 
+information; (2) a place where others can respond to 
+that person’s information need; and (3) a community 
+built around such service and based on active 
+participation [38]. 
+ 
+Yahoo! Answers is the world’s largest question-answer 
+system. Its declared mission is to be “the one place 
+where the world shares what they know to help each 
+other out.” Yahoo! Answers is a community site: 
+anybody can ask and answer [14]. The heterogeneous 
+interactions, which include actively participating in 
+regulating the system, turn Yahoo! Answers into a 
+social network [3, 33]. Yahoo! Answers also 
+encourages with its rewards system such acts as voting 
+for the answers offered, selection of “best Answer” 
+(BA), citing interesting questions, and even reporting 
+abusive behavior. Users raise discussion topics to 
+garner others’ opinions or simply for fun [47]. 
+ 
+Unlike discussion groups where users can write on a 
+specific subject and relate to each other’s words, in 
+Yahoo! Answer, one can only ask a question or answer 
+it. There is no conversation support mechanism.  
+Hence two networks co-exist in Yahoo! Answers; a 
+knowledge-seeking network and a social activities 
+network. The knowledge seeking network consists of 
+both conversational questions which are asked for the 
+purpose of stimulating discussion and informational 
+questions which are asked with the intent of obtaining 
+information [13].  
+ 
+We define the social network to consist of all activities 
+not related to actually asking or answering a question. 
+This includes five parameters: (1) the number of stars 
+that a question rates (“interesting”) and the number of 
+participants who star a question; (2) the number of 
+“thumbs up” and “thumbs down” to answers, their 
+ratio, and the number of people who participated in the 
+evaluation; (3) the number of comments to a closed 
+question and the number of participants who 
+commented; (4) the number of votes for a “Best 
+Answer” (BA) and the number of participants who 
+voted in this category; and (5) the number of “stars” 
+awarded to the BA.   
+ 
+Though Q&A sites are defined as communities [26, 33, 
+46] where the participants’ activity creates a social 
+network, not much was written on the two co-existing 
+networks that compose Q&A sites; the social network 
+and the knowledge-seeking network. 
+ 
+This study explores these networks and addresses the 
+following questions: What is the relationship between a 
+knowledge-seeking network and a social network? Do 
+reciprocal relations exist between the two network 
+types? Is there a positive correlation in growth between 
+the two? Who are their respective members, and who 
+are their actual participants? How does the social 
+capital created by the social activities influence the 
+asker’s satisfaction? And under what conditions might 
+the growth of one network come at the expense of the 
+other? 
+ 
+2. Literature Review 
+ 
+2.1. Question-and-Answer Sites as Social 
+Networks 
+Online question-and-answer services, are variously 
+known as Social Q&A and Social Reference [35], 
+Community Question Answering (CQA) [33] (Co-
+training Community Question Answering) [26], and 
+QABB (Questions and Answers Bulletin Board) [29].   
+ 
+Q&A sites are online communities, where anyone 
+could ask and answer and share knowledge, and all the 
+data are public and immediately searchable [27]. 
+Participants’ activity, whether for  knowledge sharing 
+or socializing, create ties to other users through asking 
+and answering questions and establish a social network 
+even if not intended [33, 36, 37, 44].  
+ 
+Though much of the content reflects unsubstantiated 
+opinions, questioners prefer to obtain personalized 
+answers to their individual queries [4] and having the 
+opportunity to connect socially with others is a good 
+enough reason to prefer these sites over a search engine 
+[28]. 
+ 
+In recent years, several researchers indentified Yahoo! 
+Answers as “an example of a community site organized 
+around questions and answers” [4] and as “an online 
+community” [5] especially since in Yahoo! Answers 
+anybody could ask and answer questions [3, 14] and 
+the site fully meets Golbeck's accessibility, relationship 
+and a support criteria for a web-based social network 
+[11]. 
+ 
+All these studies support our main motivation to 
+distinguish between the knowledge-seeking network 
+and the social network in Yahoo! Answers, to explore 
+the activities in both networks and to understand the 
+correlation between them. 
+ 
+2.2. Roles in Q&A Sites  
+Turner et al. [43] and Wellman [44] identify five 
+archetypes:”Answer people”, “Questioner”, “Trolls”, 
+“Spammers / Binary Posters” and “Flame Warrior 
+/Conversationalist”, participates in online 
+communities. This section will focus on the answerer 
+who volunteers to respond to questions in Newsgroups 
+and QABB and will present her motivations and 
+importance to the Q&A sites. 
+ 
+Participation in discussion groups and Q&A sites is 
+paradoxical. The content is available to all members, 
+but since no single individual is required to contribute 
+to the site’s content; indeed, the "rational consumer" 
+might be a “lurker,” consuming the medium without 
+making contributions. Watching others talk and 
+becoming familiar with a community’s content makes 
+lurkers feel they belong to that community. Another 
+frequent explanation of lurking is free-riding, defined 
+as using a common good without contributing to it 
+[40]. Yet, if no one contributed, there would soon be 
+no medium to consume, and this is the dilemma of so-
+called "public goods" [32]. 
+ 
+Most on-line communities exhibit a “90-9-1 rule”: 90% 
+of the users are “lurkers” who never contribute, 9% 
+contribute a little, and 1% account for almost all the 
+action [8, 40]. Only 4% of members in open-source 
+development communities’ account for 50% of 
+answers on a user-to-user help site [24] and in Naver, 
+only 1% of the answerers contributed between 22% 
+and 52% of the answers in the different categories [30]. 
+ 
+Askers can also be answerers; while this is rare [14], it 
+does occur where users chat informally [1]. In two 
+leading Q&A sites Yahoo! Answers and Naver only 5% 
+of all users were found to act as both asker and 
+answerer [6, 30].  
+ 
+Regarding the nature of the participation in 
+newsgroups, 50% of social, hobby, and work mailing 
+lists had no traffic over a period of four straight months 
+[9]. In Q&A sites most answerers prefer to act in a 
+single (topic) category [10], ask one question only [47] 
+and tend over the years to quote or relate to the 
+answers of others and not to answer themselves [26]. 
+ 
+The low participation rates in Yahoo! Answers can be 
+explained by (1) “social loafing” [25], meaning 
+individual contributions to a group effort are reduced 
+when that effort is not unique, or as the size of the 
+group grows; (2) relevant questions that were non-
+observed, which the user cannot detect [12] or (3) a 
+lack of motivation to solve someone else's problems 
+[12]. 
+ 
+Our study uses the knowledge-seeking network’s roles 
+such as asker and answerer and the social network’s  
+roles to explore the correlation between the two 
+networks in Yahoo! Answers. 
+ 
+ 
+2.3. Motivations in Q&A Sites  
+Many studies explore the motivation for participate in 
+Q&A activities and related them to several fields: 
+(a) Professional skills such as gaining reputation and 
+structural connection to the network [45] learning 
+and reviewing material [30] and using relevant 
+experience [29]. 
+(b) Interpersonal connectivity such as helping others 
+[30], expressing appreciation or affiliation, 
+providing or receiving social support [47] and 
+commitment due to the nature of relationship [29]. 
+(c) Belonging to a community such as participating in 
+the social network as a hobby [30], building a 
+sense of community [45], connecting socially and 
+experiencing the social capital [29].  
+(d) Asker’s characteristics and personality such as 
+altruism, obligation, humor and ego [29] 
+(e) Community mechanism such as; having answers 
+selected as “best answers” or commented on [8, 
+18] and having the opportunity to obtain better, 
+more numerous, and longer responses [48]. 
+Usability had little role in explaining user 
+motivation [25]. 
+ 
+Theories such as Uses and Gratifications (U&G), 
+where users actively seek particular media with the 
+goal of gratifying an existing need, were also suggested 
+as explanations for users’ motivations to contribute to 
+online communities [25]. Surprisingly enough Wasko 
+and Faraj [45] found that expectations of reciprocity or 
+high levels of commitment to the network are not 
+significant in explaining motivations for sharing. 
+Raban and Harper divided the answerer's motivations 
+into internal (intrinsic) and external (extrinsic) groups, 
+mentioning Yahoo! Answers as a Q&A which “uses 
+extrinsic motivations heavily to invite user 
+contributions and increase the quality of answers" 
+[32]. 
+The explanations for the user’s motivation to 
+contribute and share knowledge are varying. No matter 
+what is the explanation, the contributions’ outcome is 
+clear and crucial for the existence of online 
+communities and Q&A sites. Our study explores some 
+of the motivations (social capital and community 
+mechanism) and their correlations with the asker’s 
+satisfaction in Yahoo! Answers.  
+ 
+2.4. Quality and Satisfaction 
+Satisfying a user’s information need was the goal of 
+Q&A systems [5]. People turn to their social networks 
+rather than use search engines in order to satisfy their 
+information needs [29]. However, QABB suffer from 
+diverse answer quality with a low percentage (17% - 
+42%) of correct answers [2, 41]. 
+ 
+The asker satisfaction could be derived from both 
+textual features and non-textual features. Whereas 
+textual features such as accuracy, completeness, and 
+relevance are used to measure the relevance of an 
+answer to the question, the non-textual features help 
+estimate the quality of the answer [19].  Several studies 
+found signaling value in non-textual features of 
+answers such as: 
+(a) Previous experience and interaction with the tool 
+[26] 
+(b) Features such as; answer length, ranking (thumbs 
+up minus thumbs down) and the answerer's 
+reputation [3, 5].  
+(c) Response time; “In asynchronous CMC, a quick 
+response is one of the only non-verbal tools that 
+can be used to signal immediacy, care, and 
+presence” [21].  
+ 
+Our study does not use content analysis and uses only 
+the non-textual features such as ranking and response 
+time to explore the community’s estimations, the social 
+capital and their correlations to the asker’s satisfaction 
+in Yahoo! Answers. 
+ 
+2.5. Yahoo! Answers 
+Launched on July 5, 2005, Yahoo! Answers enables 
+participants to ask and answer questions on any topic. 
+It provides more than 20 million answers per month. In 
+its early years, Yahoo! Answers handled 96% of all 
+answering and questioning activity on the Internet and 
+this platform was judged to be not only the largest 
+Q&A site but also the one that delivered the best 
+answers [6]. 
+ 
+Yahoo! Answers serves many needs - answering 
+questions, receiving support, and requesting everyday 
+advice [1] - all of which can be divided into 
+Informational Questions and Conversational 
+Discussions [13]. It was found that about 40% of the 
+Yahoo! Answers questions were opinion-type 
+questions, asking for an opinion, evaluation, or point of 
+view [22]. 
+ 
+Along with its rapid growth in 2006 and 2007, the 
+quality of Yahoo! Answers responses to factual 
+questions went into decline. Its expertise depth and 
+question content were deemed to be subjective-
+oriented, the information was noisy, ungrammatical, 
+vague, and poorly stated [26] and its content was found 
+to be barely at the high school level [1]. Nevertheless, 
+Yahoo! answers provided good answers to two specific 
+question types: “Complicated Answer” and "Opinions" 
+[28] and in categories where the answerers were active 
+on specific topics and not supplying answers in 
+multiple categories [1]. 
+ 
+Yahoo! Answers has 24 top categories and more than 
+1,600 sub-categories in total. Some are huge with more 
+than 100,000 active users per month and some have 
+only a few active users per month. These differences 
+are critical to our activity level analysis and the size 
+analysis of Yahoo! Answers. 
+ 
+Yahoo! Answers process is quite straightforward. An 
+asker puts a question to Yahoo! Answers by selecting a 
+category and entering the question subject (title) and, 
+optionally, giving details (description). At this point 
+other users can act in one of two ways: (a) Knowledge 
+driven acts - answer the question; (b) Social driven acts 
+- tagging other users’ answers (Thumbs up or Thumbs 
+down) and questions (e.g., awarding stars for quality) 
+or, later, commenting on the question and/or voting for 
+the Best Answer.  
+ 
+Each question has a lifecycle, starting in an “open” 
+state in which answers are received. If the asker is 
+satisfied with any of the answers, she can choose it as a 
+best answer and provide feedback, such as assigning 
+stars to the best answer or offering textual feedback. If 
+the asker did not indicate a best answer within four or 
+eight days (extended time), the best answer is chosen 
+by the community in a voting process. Once a best 
+answer is chosen, the question is “resolved” although 
+comments can be added to both closed and resolved 
+questions. 
+ 
+In our view, the group’s social activities in Yahoo! 
+Answers—namely, starring questions, commenting on 
+and rating answers, and voting for the “Best 
+Answer”—are all part of the social capital that is 
+created by the Yahoo! Answers’ mechanism. This 
+social capital comprises “networked ties of goodwill, 
+mutual support, shared language, shared norms, social 
+trust, and a sense of mutual obligation that people can 
+derive value from” [17]. In the following hypotheses, 
+we will explore the effect of the social capital on the 
+asker’s satisfaction. 
+ 
+ 
+3. Hypotheses 
+ 
+Users may continue to participate in a site for different 
+reasons than those that led them to the site [25]. Asking 
+or answering questions might lead to meeting new 
+interesting people and vice versa, evaluating questions 
+and answers might lead to participating in asking or 
+answering. This possible diffusion leads us to explore 
+the relationship between the knowledge-seeking 
+network and the social network in Yahoo! Answers 
+(H1).  
+Since the social capital was found to be important in 
+predicting contribution to the site [25] and was found 
+to be influential on the user satisfaction [17, 29, 39, 44] 
+we will explore the correlation between the social 
+capital and two parameters: the community’s 
+contribution and the asker’s satisfaction (H2).  
+Finally we will explore the correlation between “pure” 
+social activities (people who engage in social activities 
+to the exclusion of other activities on the system) and 
+two parameters: (a) the asker’s satisfaction and (b) the 
+correlation between “pure” social activity and the level 
+of overall-activities in the network (H3). 
+ 
+H1: The size and growth of both knowledge- seeking 
+networks and social networks are positively correlated 
+across categories. 
+H1.1: A high volume of knowledge activity will 
+correspond to a high volume of social activity (such as 
+Thumbs up/ down, starring questions, voting and 
+commenting) across categories.  
+H1.2: Across categories, a positive growth correlation 
+exists between the two networks. Categories 
+experiencing a growth in knowledge- seeking will 
+experience growth in social network, as well.  
+ 
+On one hand, the knowledge-seeking network causes 
+people to interact and creates social activity. On the 
+other hand, social activity exposes random users to 
+Yahoo! Answers content and encourages them to 
+participate in asking and even answering questions. 
+Since no definite causal direction can be established 
+between the knowledge-seeking network and the social 
+network, we explored the following correlations 
+between the two systems: 
+ 
+H2: A correlation will be found between the social 
+network’s parameters which create a social capital 
+and the asker’s evaluation of the quality of the 
+answers.  
+H2.1 The social network’s positive evaluations 
+(Thumbs up, Question stars) will be positively 
+correlated with the asker’s satisfaction parameters 
+(Best Answer stars). 
+H2.2: The social networks’ negative evaluations 
+(Thumbs down) will be positively correlated with poor 
+satisfaction parameters of the knowledge network 
+(asker’s Best Answer’s stars). 
+H2.3: The size of the social network (number of users’ 
+starring and evaluating) will be positively correlated 
+with the correlation between the group’s evaluations 
+and asker satisfaction. 
+Categories with a positive community atmosphere 
+(many “Thumbs up” answers and “interesting” stars to 
+questions) will create social capital. This situation, in 
+return, will increase the contribution to the site [25], as 
+it will influence the quality of the answers and will 
+increase the user satisfaction [25] in terms of a higher 
+average number of “stars” given to the Best Answer. 
+Categories with a negative community atmosphere 
+(many “Thumbs down” to answers) will create poor 
+social capital. This, in turn, will influence the quality 
+of the answers and create lower asker satisfaction rates. 
+Categories with a larger community will exhibit more 
+accurate “Wisdom of Crowds,” causing higher 
+correlations between the group’s evaluation and the 
+asker’s evaluation in the different categories.   
+ 
+H3: in categories in which the social activity is carried 
+out by users who do not participate in the knowledge-
+seeking activity, we expect to find: 
+H3.1 A negative correlation between the volume of the 
+“pure” social activity and the size of the network. 
+H3.2 A negative correlation between the volume of the 
+“pure” social activity and the number of answers per 
+question.  
+H3.3 A negative correlation between the volume of the 
+“pure” social activity and the asker’s satisfaction rates 
+regarding the “Best Answer.”  
+ 
+Yahoo! Answers was established as a Q&A site, and as 
+such the user’s main reason for entering the site is to 
+ask and answer questions. Nevertheless, besides 
+lurkers, who are an intrinsic part of question answering 
+sites [32], there are people who use this platform solely 
+as a social network, meaning that their activity 
+involves commenting, voting, and rating, but not 
+offering questions or answers.  
+ 
+The effect of this phenomenon on questioning and 
+answering is now explored. On the one hand, H1 
+assumes that the knowledge-seeking network and the 
+social network go hand in hand. On the other hand, it 
+can be assumed that since people’s resources are 
+limited, a successful social network might emerge at 
+the expense of the knowledge- seeking network. We 
+argue that in categories where the share of “pure” 
+social activity is high, the size of the overall network 
+and the total number of answers per question will be 
+small, and the rates of asker satisfaction with the 
+answers obtained will be low. 
+ 
+4. Research Methodology 
+ 
+For an initial analysis of the size and growth of the 
+knowledge-seeking network and the social network, we 
+used data that had been collected from 19 months of 
+Yahoo! Answers activity. The sequential data was 
+divided into distinct phases. This kind of division was 
+used previously [16, 23, 42, 44]. 
+ 
+During this time period, approximately 20 million 
+knowledge-seeking activities were executed each 
+month, the number of users ranging between 6.4 
+million and 9.2 million each month. All knowledge-
+seeking activities were explored as were four types of 
+social activities: (1) starring a question as interesting, 
+(2) giving thumbs up or thumbs down to a question, (3) 
+commenting on a question, and (4) voting for the “Best 
+Answer.”  
+ 
+The hypothesized relationships were estimated, using 
+more than 1600 sub-categories in Yahoo! Answers. In 
+most cases, the direction of influence between the 
+knowledge-seeking network and the social network is 
+uncertain; therefore, correlation analysis was employed 
+as the main analysis tool. The explanatory power of the 
+correlations was evaluated by looking at the Pearson 
+Correlation value; unless otherwise stated, the 
+significance was (2-tailed) p <0.001.  
+ 
+Data were collected from the Yahoo! Answers servers, 
+using Yahoo!’s administrative tools for almost a year. 
+The data reported here consist of all the relevant 
+activities between January 1, 2009, and August 31, 
+2010, excluding July 2009, data for which were 
+missing. 
+ 
+5. Main results 
+ 
+Since Yahoo! Answers categories vary in size, we 
+analyzed the data accordingly. Three sets of results are 
+presented for each correlation check: one for the whole 
+Yahoo! Answers network (1622 sub-categories, 100% 
+of the categories) (SET A); one for the biggest 
+categories (369 categories, 22% of the categories), 
+each with a total number of users of more than 20,000 
+for the 19-month activity time period (SET B); and one 
+for the top categories (310 categories, 18% of the 
+categories), each with more than 40,000 users over the 
+19-month time period (SET C).  
+ 
+The results for the size correlation and the growth 
+correlation between the two networks are presented 
+first; these are given in terms of the number of nodes 
+and the volume of interactions. Next are the results for 
+the correlation between a group’s social capital and the 
+asker’s satisfaction with the answers. This is followed 
+by the results for the correlation between the “pure” 
+social network activities and the knowledge-network 
+parameters.  
+ 
+H1.1 Results - A high correlation (0.57, 0.64, 0.67) 
+was found between the average number of members 
+per Q&A activity in the knowledge- seeking network 
+(askers and answerers) and the average number of 
+members per Q&A activity in the pure social network 
+(number of nodes) for Sets A, B and C. A very high 
+correlation (0.88) was found between the knowledge-
+seeking (questions and answers) activity and the social 
+activity (number of interactions) for Sets A, B and C.  
+ 
+H1.2 Results - A very high correlation was found 
+between the growth in knowledge-seeking activity (in 
+nodes) and the growth in number of people who give 
+stars (0.57, 0.71, 0.79) and evaluations (0.9, 1, 0.9) for 
+Sets A, B and C.  
+ 
+A very high correlation was found between the growth 
+in knowledge-seeking activity (in nodes) and the 
+growth in questions’ stars (0.32, 0.64, 0.87), comments 
+(0, 0.7, 0.79) and Thumbs up (0.84, 1, 0.92) for Sets A, 
+B and C.  
+ 
+H2.1 Results - The data show a moderate positive 
+correlation (0.28, 0.34, and 0.36, respectively, in 
+compatibility) between the group’s evaluation of the 
+quality of the question (Question stars) and the asker’s 
+satisfaction with the “Best Answer” chosen (Stars) for 
+Sets A, B and C. The data support a moderate positive 
+correlation (0.32) between the group’s evaluation of 
+the quality of the answer (Thumbs up) and the asker’s 
+satisfaction with the “Best Answer” chosen (Stars) and 
+support a for Sets B and C. The data do not support a 
+correlation for Set A (low significance). 
+ 
+H2.2: Results - The data indicate a moderate negative 
+correlation (-0.32) between the group’s negative 
+evaluation of the quality of the answers (Thumbs down 
+per all Thumbs) and the asker’s satisfaction with the 
+“Best Answer” chosen (Stars) for Sets B and C. The 
+data do not support a correlation for Set A (low 
+significance). 
+ 
+H2.3: Results - A strong positive correlation (0.84) 
+was found between the size of the group (starring 
+questions and evaluating answers) and the correlation 
+between the group evaluations and asker satisfaction 
+for Sets A, B and C. 
+ 
+H3.1 Results - The data show a weak negative 
+correlation (-0.2) between the share of “pure” (non-
+informational) social activity and the size of the 
+knowledge-seeking activity for Sets B and C. The data 
+do not support a correlation for Set A (low 
+significance). 
+ 
+H3.2 Results - The data indicate a weak negative 
+correlation (-0.28) between the share of “pure” (non-
+informational) social activity and the average number 
+of answers per question for Sets B and C. The data do 
+not support a correlation for Set A (low significance). 
+ 
+H3.3 Results - The data show a weak negative 
+correlation (-0.27) between the volume of “pure” (non-
+informational) social activity and the average number 
+of Best Answer stars for Sets B and C. The data do not 
+support a correlation for Set A (low significance). 
+ 
+The findings support almost all of the hypotheses for 
+sets B and C. These sets focus on the biggest categories 
+where many users are involved in the knowledge - 
+seeking and in the social activities. The data support 
+only H1 for Set A (whole 1610 categories). We assume 
+that since Set A consists of hundreds of small 
+categories with a few users and a minimum level of 
+activity, the data is noisy and can’t generate clear and 
+significant statistical insights. 
+ 
+6. Discussion  
+ 
+More people who seek information might generate 
+more social interactions. When people interact socially 
+on Yahoo! Answers (in other words, provide ratings or 
+“thumbs up” or vote), they are exposed to the content 
+of the questions and answers, and therefore they might 
+be drawn into the informational exchange as well. 
+ 
+The positive correlation between the group’s 
+evaluation of the quality of the answers and the asker’s 
+evaluation might have two explanations: (1) since the 
+group members and the asker are equally interested in 
+the same issues, they might subscribe to similar 
+opinions and, hence, think alike from the outset; (2) a 
+second explanation might be related to the 
+synchronicity of the inputs. Since the user chooses a 
+“Best Answer” only after the group has judged the 
+answers, the group’s input might influence the asker’s 
+evaluation. 
+ 
+The results also provide an indication that social 
+capital plays a role underlying knowledge contribution. 
+Consistent with previous work [29, 32, 45], the present 
+study leads to the conclusion that once the individual is 
+given a chance to share knowledge and the experience 
+of sharing is positive, knowledge contribution will 
+occur. The positive social atmosphere created by the 
+“Thumbs up” and the “question stars” is correlated 
+with the quality of the answers as seen by the asker. 
+This is not a trivial finding. It points to a significant 
+impact of the social sphere on the informational sphere. 
+  
+The strong positive correlation between the size of the 
+group (number of participants in the social network 
+who starred questions and evaluated answers) and the 
+correlation between group evaluations and asker 
+satisfaction supports the “Wisdom of Crowds” 
+expectation, since increased numbers of people 
+participating in the evaluation leads to a better ability 
+to predict asker satisfaction. 
+ 
+The weak negative correlation between the share of 
+those who stick to social activity alone and the size of 
+the knowledge-seeking activity (numbers of questions 
+and answers) is explained by the phenomenon of 
+people who interact only with social tools. These users 
+participate in the social network and do not partake in 
+the knowledge-seeking network. Though the 
+knowledge-seeking network and the social network are 
+positively correlated across categories and grow 
+together, the relative part of those who only do social 
+activities declines as the knowledge-seeking network 
+grows larger.  
+ 
+Because users who participate in the social network do 
+not necessarily use the knowledge-seeking network, 
+the social activity in some categories is carried out by 
+users who participate only in the social activities. As a 
+consequence, these categories will have fewer people 
+who answer questions and the size of the group that 
+answers and the average number of answers per 
+question will be relatively small. In these categories the 
+rate of asker satisfaction with the Best Answers will be 
+low, as we found in [34], compared to that in 
+categories in which the knowledge-seeking activity and 
+the amount of answers is average or above.  
+ 
+7. Conclusions and Future Work  
+ 
+The aim of this study was to investigate relationships 
+between the two types of networks that compose Q&A 
+sites in general and Yahoo! Answers in particular. We 
+are interested in exploring social and informational 
+networks and the cross-fertilization of user motivation 
+between them. The results provide qualified support 
+for most of the hypothesized relationships. They 
+indicate that the knowledge network and the social 
+network are correlated in size and growth, and also 
+uncover some subtle variations in this correlation.     
+ 
+The results provide some evidence that the 
+contributions by people who engage in social activities 
+to the exclusion of other activities on the system, might 
+come at the expense of knowledge-seeking activities. 
+In categories in which the social activity had no 
+knowledge-seeking attached to it, the overall volume 
+of the latter activity and the average number of answers 
+per question was smaller than in categories in which 
+social activities and knowledge-seeking activities co-
+occurred. In addition, the social parameters indicating 
+the group’s satisfaction with answers were positively 
+correlated with the asker’s satisfaction with the answer, 
+meaning that the social network can predict asker’s 
+satisfaction.  
+ 
+One potential explanation of this result is the common 
+and popular “Wisdom of Crowds” expectation, 
+according to which groups can successfully predict 
+whether an answer is satisfying or not. A potential 
+influence of the group’s evaluation on the asker might 
+also explain these results, which would create a 
+distinctive and directional link between the social 
+network and the knowledge-seeking network. 
+Consistent with theories of “Wisdom of Crowds,” the 
+larger the group that evaluates answer’s quality, the 
+more it is correlated with askers’ evaluation of the 
+quality of the “Best Answer.”   
+ 
+The results resonate with previous works [29, 32, 45] 
+and provide an indication that social capital plays a 
+role underlying knowledge contribution and that 
+maintaining a critical mass of active social participants 
+is important for the knowledge-seeking network.  
+ 
+Thus, an interesting area of further research would look 
+for more ties between the two networks, whether 
+resulting from behavioral theories or from the 
+mechanism of each platform.  
+ 
+Since user satisfaction was found to be a good 
+predictor of user’s intention to participate in the future 
+[25] an interesting further research would be to define 
+and capture the satisfaction parameters of the social 
+network’s users. Comparing them to the well-known 
+satisfaction’s features, textual and non-textual [5, 19] 
+of the information seeking network’s users will be the 
+next research issue. 
+ 
+8. References  
+ 
+[1] L. A. Adamic, J. Zhang, E. Bakshy and M. S. Ackerman, 
+"Knowledge sharing and yahoo answers: Everyone knows 
+something", in Proceeding of the 17th International 
+Conference on World Wide Web, 2008, pp. 665-674.  
+ 
+[2] E. Agichtein, C. Castillo, D. Donato, A. Gionis and G. 
+Mishne, "Finding high-quality content in social media", in 
+Proceedings of the International Conference on Web Search 
+and Web Data Mining, 2008, pp. 183-194.  
+ 
+[3] E. Agichtein, C. Castillo, D. Donato, A. Gionis and G. 
+Mishne, "TECHNICAL REPORT YR-2007-005”, 2007.  
+ 
+[4] J. Bian, Y. Liu, E. Agichtein and H. Zha, "Finding the 
+right facts in the crowd: Factoid question answering over 
+social media", in Proceeding of the 17th International 
+Conference on World Wide Web, 2008, pp. 467-476.  
+ 
+[5] M. J. Blooma, A. Y. K. Chua and D. H. L. Goh, ”A 
+predictive framework for retrieving the best answer“, in 
+Proceedings of the 2008 ACM Symposium on Applied 
+Computing, 2008, pp. 1107-1111.  
+ 
+[6] M. Bouguessa, B. Dumoulin and S. Wang, "Identifying 
+authoritative actors in question-answering forums: The case 
+of Yahoo! Answers", in Proceeding of the 14th ACM 
+SIGKDD International Conference on Knowledge Discovery 
+and Data Mining, 2008, pp. 866-874.  
+ 
+[7] D. M. Boyd and N. B. Ellison, "Social network sites: 
+Definition, history, and scholarship", Journal of Computer 
+Mediated Communication Electronic Edition, 2007, vol. 13, 
+pp. 210. 
+ 
+[8] P. B. Brandtzæg and J. Heim, "User loyalty and online 
+communities: Why members of online communities are not 
+faithful", in Proceedings of the 2nd International Conference 
+on INtelligent TEchnologies for Interactive enterTAINment, 
+2008, pp. 1-10.  
+ 
+[9] B. S. Butler, "Membership size, communication activity, 
+and sustainability: A resource-based model of online social 
+structures",  Information Systems Research, vol. 12, 2001, 
+pp. 346-362.  
+ 
+[10] L. Chen and R. Nayak, ”Expertise analysis in a question 
+answer portal for author ranking“, in IEEE/WIC/ACM 
+International Conference on Web Intelligence and Intelligent 
+Agent Technology, 2008. WI-IAT'08.  
+ 
+[11] J. Golbeck, "The dynamics of web-based social 
+networks: Membership, relationships, and change," First 
+Monday, vol. 12, 2007. 
+ 
+[12] J. Guo, S. Xu, S. Bao and Y. Yu, "Tapping on the 
+potential of q&a community by recommending answer 
+providers", in Proceeding of the 17th ACM Conference on 
+Information and Knowledge Management, 2008, pp. 921-
+930.  
+[13] F. M. Harper, D. Moy and J. A. Konstan, "Facts or 
+friends?: Distinguishing informational and conversational 
+questions in social Q&A sites", in Proceedings of the 27th 
+International Conference on Human Factors in Computing 
+Systems, 2009, pp. 759-768.  
+ 
+[14] F. M. Harper, D. Raban, S. Rafaeli and J. A. Konstan, 
+"Predictors of answer quality in online Q&A sites", in 
+Proceeding of the Twenty-Sixth Annual SIGCHI Conference 
+on Human Factors in Computing Systems, 2008, pp. 865-
+874.  
+ 
+[15] S. R. Hiltz and M. Turoff, "Structuring computer-
+mediated communication systems to avoid information 
+overload", Communication of the ACM, vol. 28, 1985, pp. 
+680-689. 
+ 
+[16] H. Hu and X. Wang, "Evolution of a large online social 
+network", Physics Letters A, vol. 373, 2009, pp. 1105-1110. 
+ 
+[17] M. Huysman and V. Wulf, ”The role of information 
+technology in building and sustaining the relational base of 
+communities“, The Information Society (TIS), vol. 21, 2005, 
+pp. 81-89.  
+ 
+[18] A. Iriberri and G. Leroy, ”A life-cycle perspective on 
+online community success“, ACM Computing Surveys 
+(CSUR), Volume 41 Issue 2, February 2009.  
+ 
+[19] J. Jeon, W. B. Croft, J. H. Lee and S. Park, ”A 
+framework to predict the quality of answers with non-textual 
+features“, in Proceedings of the 29th Annual International 
+ACM SIGIR Conference on Research and Development in 
+Information Retrieval, 2006, pp. 235.  
+ 
+[20] Q. Jones, G. Ravid and S. Rafaeli, "Information 
+overload and the message dynamics of online interaction 
+spaces: A theoretical model and empirical exploration", 
+Information Systems Research, vol. 15, 2004, pp. 194-210.  
+ 
+[21] Y. M. Kalman, G. Ravid, D. R. Raban and S. Rafaeli, 
+"Pauses and response latencies: A chronemic analysis of 
+asynchronous CMC", Journal of Computer‐Mediated 
+Communication, vol. 12, 2006, pp. 1-23. 
+ 
+[22] S. Kim, J. S. Oh and S. Oh, "Best-answer selection 
+criteria in a social Q&A site from the user-oriented relevance 
+perspective", Proceedings of the American Society for 
+Information Science and Technology, vol. 44, 2008, pp. 1-15, 
+ 
+[23] G. Kossinets and D. J. Watts, "Origins of Homophily in 
+an Evolving Social Network," Am. J. Social., vol. 115, 2009, 
+pp. 405-450. 
+ 
+[24] K. R. Lakhani and E. Von Hippel, "How open source 
+software works", Research Policy, vol. 32, 2003, pp. 923-
+943. 
+ 
+[25] C. Lampe, R. Wash, A. Velasquez and E. Ozkaya, 
+"Motivations to participate in online communities," in 
+Proceedings of the 28th International Conference on Human 
+Factors in Computing Systems, 2010, pp. 1927-1936. 
+ 
+[26] B. Li, Y. Liu and E. Agichtein, "CoCQA: Co-training 
+over questions and answers with an application to predicting 
+question subjectivity orientation", in Proceedings of the 
+Conference on Empirical Methods in Natural Language 
+Processing, 2008, pp. 937-946.  
+ 
+[27] B. S. C. Liu, R. Madhavan and D. Sudharshan, 
+"DiffuNET: The impact of network structure on diffusion of 
+innovation", European Journal of Innovation Management, 
+vol. 8, 2005, pp. 240-262. 
+ 
+[28] Y. Liu and E. Agichtein, "You've got answers: Towards 
+personalized models for predicting success in community 
+question answering", in Proceedings of the 46th Annual 
+Meeting of the Association for Computational Linguistics on 
+Human Language Technologies: Short Papers, 2008, pp. 97-
+100.  
+ 
+[29] M. R. Morris, J. Teevan and K. Panovich, "What do 
+people ask their social networks, and why?: A survey study 
+of status message q&a behavior", in Proceedings of the 28th 
+International Conference on Human Factors in Computing 
+Systems, 2010, pp. 1739-1748.  
+ 
+[30] T. Murata and S. Moriyasu, "Link prediction of social 
+networks based on weighted proximity measures", in 
+Proceedings of the IEEE/WIC/ACM International 
+Conference on Web Intelligence, 2007, pp. 85-88.  
+ 
+[31] K. K. Nam, M. S. Ackerman and L. A. Adamic, 
+"Questions in, knowledge in?: A study of naver's question 
+answering community", in Proceedings of the 27th 
+International Conference on Human Factors in Computing 
+Systems, 2009, pp. 779-788.  
+ 
+[32] D. Raban and F. Harper, "Motivations for answering 
+questions online", New Media and Innovative Technologies, 
+2008.  
+ 
+[33] S. Rafaeli and R. J. LaRose, ”Electronic bulletin boards 
+and public goods explanations of collaborative mass media“, 
+Communication Research, vol. 20, 1993, pp. 277. 
+ 
+[34] A. Rechavi and S. Rafaeli, “Not all is Gold that Glitters: 
+Response time & satisfaction rates in Yahoo! Answers”, to be 
+presented at The Third IEEE International Conference on 
+Social Computing, 2011. 
+ 
+[35] E. M. Rodrigues, and N. Milic-Frayling,”Socializing or 
+knowledge sharing? Characterizing social intent in 
+community question answering,” 2009, pp. 1127-1136, 
+ACM.  
+ 
+[36] P. Shachaf, "The paradox of expertise: is the Wikipedia 
+Reference Desk as good as your library?", Journal of 
+Documentation, vol. 65, 2009, pp. 977-996. 
+ 
+[37] C. Shah, J. S. Oh and S. Oh, "Exploring characteristics 
+and effects of user participation in online social Q&A sites", 
+First Monday, vol. 13, 2008.  
+ 
+[38] C. Shah, S. Oh and J. S. Oh, "Research agenda for social 
+Q&A," Library & Information Science Research, vol. 31, 
+2009, pp. 205-209.  
+ 
+[39] J. Shim, "Social Networking Sites: A Brief Comparison 
+of Usage in the US and Korea", Decision Line, vol. 39, 2008, 
+pp. 16-18. 
+ 
+[40] V. Soroka and S. Rafaeli, "Invisible participants: How 
+cultural capital relates to lurking behavior", in Proceedings of 
+the 15th International Conference on World Wide Web, 
+2006, pp. 172.  
+ 
+[41] M. Surdeanu, M. Ciaramita and H. Zaragoza, "Learning 
+to rank answers on large online QA collections", in 
+Proceedings of the 46th Annual Meeting for the Association 
+for Computational Linguistics: Human Language 
+Technologies (ACL-08: HLT), 2008, pp. 719–727.  
+ 
+[42] J. Tang, S. Scellato, M. Musolesi, C. Mascolo and V. 
+Latora, "Small-world behavior in time-varying graphs", 
+Physical Review E, vol. 81, Issue 5, 2010, 55101. 
+ 
+[43] T. C. Turner, M. A. Smith, D. Fisher and H. T. Welser, 
+"Picturing Usenet: Mapping computer-mediated collective 
+action," Journal of Computer-Mediated Communication, vol. 
+10, pp. 7, 2005.  
+ 
+[44] B. Viswanath, A. Mislove, M. Cha and K. P. Gummadi, 
+”On the evolution of user interaction in Facebook“, in 
+Proceedings of the 2nd ACM Workshop on Online Social 
+Networks, 2009, pp. 37-42.  
+ 
+[45] M. M. L. Wasko and S. Faraj, ”Why should I share? 
+Examining social capital and knowledge contribution in 
+electronic networks of practice“, Mis Quarterly, vol. 29, pp. 
+35-57, 2005.  
+ 
+[46] B. Wellman, "Computer networks as social networks," 
+Science, vol. 293, pp. 2031, 2001.  
+ 
+[47] H. T. Welser, E. Gleave, D. Fisher and M. Smith, 
+“Visualizing the signatures of social roles in online 
+discussion groups", Journal of Social Structure, vol. 8, 2007.  
+ 
+[48] Yang, J., Wei, X., Ackerman, M. S., Adamic, L. A., 
+"Activity lifespan: An analysis of user survival patterns in 
+online knowledge sharing communities", Proceeding of 
+ICWSM, 2010. 

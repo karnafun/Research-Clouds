@@ -1,0 +1,1245 @@
+See	discussions,	stats,	and	author	profiles	for	this	publication	at:	https://www.researchgate.net/publication/273069602
+Engaging	Students	in	an	MIS	Course	through	the
+Creation	of	E-Business:	A	Self-Determination
+Theory	Analysis
+Article		in		Communications	of	the	Association	for	Information	Systems	·	February	2015
+CITATION
+1
+READS
+105
+3	authors,	including:
+Some	of	the	authors	of	this	publication	are	also	working	on	these	related	projects:
+Knowledge	learning	netwroks	View	project
+Hackers	networks	View	project
+Amit	Rechavi
+Ruppin	Academic	Center
+10	PUBLICATIONS			25	CITATIONS			
+SEE	PROFILE
+All	content	following	this	page	was	uploaded	by	Amit	Rechavi	on	04	March	2015.
+The	user	has	requested	enhancement	of	the	downloaded	file.
+Communications of the Association for Information Systems
+Volume 36 Article 10
+2-2015
+Engaging Students in an MIS Course through the
+Creation of E-Business: A Self-Determination
+Theory Analysis
+Yossi Lichtenstein
+Norwich Business School, University of East Anglia, UK, y.lichtenstein@uea.ac.uk
+Pamela Abbott
+Department of Information Systems and Computing, Brunel University, UK
+Amit Rechavi
+Rupin Academic College, Israel
+Follow this and additional works at: http://aisel.aisnet.org/cais
+This material is brought to you by the Journals at AIS Electronic Library (AISeL). It has been accepted for inclusion in Communications of the
+Association for Information Systems by an authorized administrator of AIS Electronic Library (AISeL). For more information, please contact
+elibrary@aisnet.org.
+Recommended Citation
+Lichtenstein, Yossi; Abbott, Pamela; and Rechavi, Amit (2015) "Engaging Students in an MIS Course through the Creation of E-
+Business: A Self-Determination Theory Analysis," Communications of the Association for Information Systems: Vol. 36, Article 10.
+Available at: http://aisel.aisnet.org/cais/vol36/iss1/10
+  
+Volume 36 Article 10 
+Engaging Students in an MIS Course through the Creation of E-Business: A 
+Self-Determination Theory Analysis  
+Yossi Lichtenstein 
+Norwich Business School, University of East Anglia, UK    
+y.lichtenstein@uea.ac.uk 
+ 
+Pamela Abbott 
+Department of Information Systems and Computing, Brunel University, UK 
+ 
+Amit Rechavi 
+Rupin Academic College, Israel 
+ 
+We describe an entrepreneurial approach for teaching a management information systems (MIS) course. The 
+course builds on the psychological needs for autonomy, competence, and relatedness to encourage student 
+motivation and engagement. Students are required to create new electronic businesses and to build prototypes of 
+their electronic Web fronts. Students are also required to use the concepts taught in the course and to analyze the 
+ventures’ strategies, related network externalities, and business processes and data analytics. The course has been 
+taught since 2009 to five classes and more than two-hundred students. Using student evaluation questionnaires and 
+four detailed interviews, we found that more than half of the students were enthusiastic about the new approach: 
+they felt satisfied and even proud of their projects. However, a minority of students found the course over-
+complicated and even boring. We also found that students who expressed autonomy orientation engaged with the 
+course, while students who expressed impersonal or controlled orientation did not. We believe that this analysis 
+should help instructors in aligning new teaching opportunities created by IT to fit students’ orientations and needs.  
+ 
+Keywords: Information Systems, Education, Curricula. 
+Volume 36, Article 10, pp. 157-177, February 2015 
+The manuscript was received 10/03/2014 and was with the authors 3 months for 2 revisions. 
+  
+Engaging Students in an MIS Course through the Creation of E-Business: A Self-
+Determination Theory Analysis 
+Virhe. Määritä Aloitus-välilehdessä Title, jota haluat käyttää tähän 
+kirjoitettavaan tekstiin. 
+158 
+Volume 36 Article 10 
+I. INTRODUCTION  
+The management of information systems (MIS) is challenging to teach in a business-school context because of a 
+mismatch between curricula and the business community’s needs. Typically, academic MIS courses are quite 
+technically focused, while employers seek graduates with a mixture of both enterprise or business knowledge and 
+technological knowledge. In addition, continuous technological changes and the rapid evolution of business 
+experiences relating to IT often render academic MIS courses’ technical focus outdated. A further difficulty is the fact 
+that IT and business taught as a subject area is interdisciplinary by nature, which makes it difficult to delineate its 
+core insights (Dhar & Sundararajan, 2007). As a result of these difficulties, we have seen reduced student 
+enrolments in MIS programs and the merging of MIS courses and programs into other school areas (Gefen at al., 
+2012). Consequently, researchers have attempted to re-engineer MIS curricula (Aitken & Hatt 2012; Austin, Nolan, & 
+O’Donnell, 2009; Whelan & Firth 2012) with new approaches to tie business and technology perspectives together.  
+In this paper, we describe and analyze a management information technology course in an MBA degree at the 
+largest business school in Israel. We developed and taught this course, in which we leveraged the country’s 
+entrepreneurial culture (Senor & Singer, 2009) to engage students through electronic business innovation. At the 
+same time, we designed the course to incorporate theory-based concepts of technology and business, and included 
+ideas from economics, strategic management, decision science, and sociology to create enduring knowledge 
+assets. This approach shares many of the principles Austin et al. (2009) reports, including design for student 
+engagement, emphasis on IT’s business aspects, and the identification of a set of core issues essential to IT 
+management. However, the two courses differ: Austin et al.’s (2009) hero’s journey from a business executive to a 
+chief information officer is designed for student derivation of management frameworks; however, our course focused 
+on a predefined set of MIS concepts. Also, while Austin et al.’s (2009) course is technology independent, we 
+leverage the consumerization of IT (Economist, 2011) and von Hippel’s (2006) ideas about the democratizing of 
+innovation to create business and technology connection and student engagement.  
+In this paper, we (1) present a novel approach to teaching management information systems in a business school 
+setting with the expectation that others can use it as a model for their own course development, and (2) analyze the 
+effectiveness of this approach in engaging students and achieving learning objectives. The analysis is of interest 
+because technology enables a variety of opportunities for student-centered learning, and the particular case we 
+describe should clarify under which circumstances such courses may be successful or for which students such 
+courses are effective.  
+Our analysis is guided by self-determination theory (SDT) (Deci & Ryan, 2012a), which focuses on the satisfaction of 
+the basic psychological needs of autonomy, competence, and relatedness for achieving motivation. These basic 
+psychological needs are highly relevant to the approach of teaching through ideation and innovation. We used a 
+mixed-methods analytical approach, which included a cluster analysis of student evaluation questionnaires and a 
+qualitative analysis of interviews with four students. 
+The paper is organised as follows. In Section 2, we discuss SDT. In Section 3, we describe the course (delivery, 
+technological tools used, and electronic businesses suggested by students). In Section 4, we present our 
+quantitative and qualitative analysis, and, in Section 5, we discuss the results. 
+II. THEORY 
+Student Engagement and Motivation  
+The objective of the newly designed course was to enhance student engagement through student-centered learning. 
+Student engagement is “participation in educationally effective practices, both inside and outside the classroom” 
+(Harper & Quaye 2008, p. 2). These effective educational practices could be experienced as a combination of 
+“student-faculty contact, cooperation among students, active learning, prompt feedback, time on task, high 
+expectations, and respect for diverse talents and ways of learning” (Kuh, Kinzie, Buckley, Bridges, & Hayek, 2007, p. 
+43). The course was designed to include quite a few of these underlying cues for effective educational engagement 
+such as on-going faculty-student discussions on the feasibility and value of the new electronic businesses (often 
+before or after the formal lectures), active learning through engagement in a practical task, and group work that 
+  
+Volume 36 Article 10 
+159 
+respected individuals’ diverse talents. These types of engagement are also central to the precepts of student-
+centered learning; that is, the: 
+ ways of thinking about teaching and learning that emphasize student responsibility and activity in learning 
+rather than content or what the teachers are doing...[it] has student responsibility and activity at its heart, in 
+contrast to a strong emphasis on teacher control and coverage of academic content in much conventional, 
+didactic teaching. (Cannon & Newble, 2000, pp. 16-17).  
+At the heart of student-centered approaches to learning is engendering student motivation (Maclellan, 2008), which 
+is further seen as dependent on the context in which the learning occurs (Schunk, Meece, & Pintrich, 2013). Thus, a 
+context that emphasizes performance goals (external influences to succeed) may be more inclined to inhibit 
+motivation as opposed to one that encourages mastering an activity (internal influences to succeed) (Maclellan, 
+2008; Schunk et al., 2013). The social environment of learning has also been linked to the development of a sense 
+of interest and volition in a student and, consequently, higher achievement (Krapp, 1999; Deci, Vallerand, Pelletier, 
+& Ryan, 1991). Some authors further link such accomplishment to a student’s ability to value their work and regulate 
+their learning behaviours (Black & Deci, 2000; Pintrich, 2004; Schunk et al., 2013; Vansteenkiste, Simons, Lens, 
+Sheldon, & Deci, 2004). Some of these studies are based on a theoretical perspective about motivation known as 
+self-determination theory (SDT), which we adopt as a guiding conceptual position in this paper. 
+Self-Determination Theory  
+Self-determination theory (SDT) is a theory of human motivation and personality. The theory should prove useful in 
+evaluating the outcomes of a course designed around entrepreneurial self-developed electronic businesses because 
+its most important conceptual distinction is between “autonomous” and “controlled” motivation (Deci & Ryan, 2012b, 
+p. 422]. Briefly, autonomous motivation is related to the extent to which an individual is internally driven to 
+accomplish a task, while controlled motivation is linked to external influences on accomplishing a task that are 
+unassimilated/non-internalised by the individual. SDT maintains that whether a person’s motivation is more 
+autonomous or more controlled predicts the quality of their engagement and performance better than predictions 
+based on the intensity of the motivation (Deci & Ryan, 2012a, p. 86). SDT research supports these predictions in a 
+variety of circumstances, including educational contexts (Benware & Deci, 1984; Black & Deci, 2000; Deci et al., 
+1991). When college students learn under autonomous motivation, their learning tends to be deeper and more 
+conceptual and they tend to remember it longer than when the motivation to learn is more controlled (Benware & 
+Deci, 1984; Vansteenskiste et al., 2004). In the following paragraphs, we review of the background to SDT in more 
+depth, which helps to frame and contextualize these assumptions.  
+At the heart of SDT is the assertion that competence, relatedness, and autonomy are basic psychological needs that 
+all individuals hold, which, when satisfied, lead to a sense of well-being and achievement: 
+We have posited that people require three specific psychological nutriments for healthy functioning: They 
+need to feel competent in negotiating their external and internal environments; they need to experience 
+relatedness to other people and groups; and they need to feel autonomy or self-determination with respect 
+to their own behaviours and lives. (Deci & Ryan, 2012a, p. 87) 
+Competence refers to an individual’s experience of having the confidence to pursue and effectively master activities 
+in their environment (Deci & Ryan, 2000; Sheldon et al., 2001). Niemiec and Ryan (2009) relate competence in a 
+higher education learning environment to the actions that lead students to believe they are capable of meeting the 
+challenges of their coursework. Relatedness refers to having a sense of connectedness and belonging to groups 
+that share the same values, norms, and practices as one’s own belief system (Deci et al., 1991). In a learning 
+environment, relatedness is associated with a student feeling valued by their teachers, of having the experience that 
+their instructors or peers genuinely like, respect, and value them (Niemiec & Ryan, 2009). Finally, autonomy or self-
+determination refers to the concept that one’s own actions are, as a result of one’s own choices (agency), totally 
+congruent to one’s own internalised values. To experience autonomy means to experience a sense of integrity and 
+self-regulation in activities in which one engages (Deci & Ryan, 2000, 2012a). This may be realized, for example, 
+when students willingly devote time and energy to their studies (Niemiec & Ryan, 2009). 
+SDT further aligns the fulfilment of the basic psychological needs of autonomy, competence, and relatedness with 
+motivation and goals (Deci & Ryan, 2012a). In this vein, Deci and Ryan define intrinsic motivation as engaging with 
+an activity because it is perceived as interesting and enjoyable; these satisfactions derive primarily from experiences 
+of competence and autonomy, and, in some cases, from relatedness. As an illustration, Deci and Ryan (2012, p. 88) 
+relate: 
+  
+160 
+Volume 36 Article 10 
+One typically delightful example of intrinsically motivated behaviour is children playing. In play children are 
+often wholly absorbed in activities, experiencing a sense of interest and joy as they manipulate objects and 
+explore their environments. As this occurs, their basic psychological needs for competence and autonomy 
+are being met, as they self-organize their actions and experience effectance [competence]. 
+Extrinsic motivation, on the other hand, refers to someone being externally influenced by rewards or punishments to 
+regulate their behaviour (Deci & Ryan, 2012a). Extrinsic motivation is associated with a lack, or varying levels, of 
+autonomy (Ryan & Deci, 2000). The degree to which extrinsic motivation may affect autonomy (in the sense of the 
+individual endorsing the activity) is related to another SDT concept: internalization. One form of internalization is 
+achieved when people adopt values or practices from their environment and are motivated to maintain these values 
+to avoid self-censure or guilt (Deci & Ryan, 2012a). But, internalization can also occur when people identify with an 
+external value and accept it as their own or, further, integrate and identify these external influences with other 
+aspects of their core values and practices. Research has shown that those more autonomous types of internalization 
+(e.g., associating with one’s own values) are associated with more engagement in work or coursework, perceived 
+competence, and deeper conceptual learning (Deci & Ryan, 2012a). Thus, instructors’ strategies for learning and 
+teaching should be geared towards increasing the opportunities for more autonomous motivation experiences in 
+their student cohorts. 
+In the classroom, autonomy can be supported by minimizing the importance of external measures of performance 
+(i.e., controlling environments) and by maximizing students’ perceptions of having choice and influence over the 
+learning activities in which they are engaged (Niemiec & Ryan, 2009). This is referred to as autonomy support and is 
+achieved when the perspectives of the individual are considered, when they are encouraged to explore, when they 
+take chances and initiatives, and when they are furthermore provided with some choice as to activities in which they 
+will engage; in these situations, the use of control or external regulation is minimized (Deci & Ryan, 2012a). 
+Autonomy-supportive contexts satisfy not only the basic psychological need for autonomy, but, to some degree, the 
+other needs of competence and relatedness. When an authority figure, such as an instructor, considers a child’s or 
+student’s perspective, this provides the need to be related to and allows the person in authority to encourage the 
+individual to do what is necessary to satisfy their other needs (Deci & Ryan, 2012a).  
+Finally, while much of SDT considers the socio-contextual factors that influence motivation, such as the autonomy 
+supporting environments vs. controlling environments, it also studies differences between individuals at a personal 
+level to determine if motivation is affected by personality variations (Deci & Ryan, 2012a). In this vein, the authors 
+define three personality orientations: autonomous, controlled, and impersonal. Autonomy orientation is defined as 
+the degree to which people tend to be inherently autonomous in their behaviour. That is, they tend to interpret their 
+environments as supportive of their autonomy needs and informational regarding their potential choices; in general, 
+they will tend to behave out of interest and according to their values. A person with a controlled orientation will tend 
+to interpret their environment as demanding and pressurizing; in general, they are focused on rewards and 
+punishments and regulate their behaviour accordingly. Finally, the impersonal orientation refers to a sense of being 
+unmotivated of having little influence over outcomes (lack of agency); the environment is seen as being an 
+encumbrance and impediment to personal development. Research into these orientations has shown that autonomy 
+orientation is associated with self-actualization, self-esteem, and ego-development; controlled orientation is 
+associated with public self-consciousness, competitiveness, and aggressiveness; while impersonal orientation is 
+associated with anxiety and depressive symptoms (Deci & Ryan, 2012a). SDT posits that people will exhibit to some 
+degree all three of these orientations; one orientation may be dominant; however, other orientations can become 
+dominant because factors in the environment stimulate specific orientations (Deci & Ryan, 2012a). 
+III. THE COURSE 
+We designed the course to engage students by creating a setting that resembled the Israeli high-technology cluster. 
+Association with this small but internationally successful part of the otherwise lagging Israeli economy is highly 
+sought after (Senor & Singer, 2009). We asked students to self-organize into groups of either three or four members, 
+similar to the self-selection of start-up founders (reflecting the SDT need for autonomy). Then, we asked each group 
+to create a new business idea, preferably one that reflects their professional knowhow (reflecting competence). 
+Groups were required to present their initial ideas to the class to receive feedback from other students and the 
+lecturers. This procedure resembled the popular perceptions of ideation and evaluation in the high-tech cluster 
+(relatedness). Groups were then required to create electronic prototypes of the business ideas and to analyze their 
+value and operational principles using the conceptual frameworks presented in lectures. Finally, groups presented 
+their businesses to gain “agreement to invest” either from the class and lecturers, or from a small panel of industry 
+experts. 
+We intended the students’ creation of new business ideas to create a sense of ownership and autonomy. Students 
+were directed to select a business sector they knew well. Since the course was developed for MBA classes with 
+  
+Volume 36 Article 10 
+161 
+students in their mid- to late twenties, almost all students had professional experience. So, we asked students to 
+consider their own profession for opportunities to create value and reduce transaction costs through new electronic, 
+mobile, or social media channels. Often, this worked well. For example, a student working for a large investment 
+house explained that a specific type of financial product was not traded in the Israeli exchange, but was still required 
+by companies and often traded inefficiently. The idea to create a new specific electronic market was analyzed in 
+class, and the group then created a pilot website for this electronic market. In a sense, the course aimed to translate 
+students’ domain expertise or competence into a new skill of analyzing the value and operation principles of 
+information technology in their domain. However, some groups preferred not to dwell on their employment 
+experience and chose to develop ideas related to their behaviour as consumers. Often, this happened when 
+students had advanced specific needs and operated as lead users (von Hippel, 1999). For example, one group (of 
+female students) created a Facebook-based service to share experiences of fashion enthusiasts; this type of service 
+was new to Israel at the time (early 2011). They succeeded in convincing the class and a sceptical (male) lecturer 
+that the business would be profitable by presenting a return on investment calculation based on affiliate marketing.  
+The analysis of the business ideas was done through a dialogue in class and out of class between the student 
+groups and the lecturers. The idea was that the lecturers were the “owners” of the conceptual frameworks presented 
+in class. Similarly, the students were the owners of the business idea and often of a specific domain expertise. The 
+dialogue fulfilled both relatedness and competence needs and created iterations of ideation and analysis. The 
+students suggested an idea and some domain knowledge that supported it. Then, the students were required to 
+analyze their idea with one or more of the conceptual frameworks taught in class. The lecturer then questioned 
+some of the detailed application of the framework to the specific domain and business idea. The result was 
+sometimes a better analysis of the business idea, but sometimes the refinement of the business idea, or even an 
+abandoning of the original idea for a “better idea”. An example of refining the business idea was a discussion about 
+the detail of the main business process in a network of small-scale suppliers of ethnic food. Should the network 
+operator provide delivery services? What are the costs of including such services? What are the risks in not 
+providing them? Through the interaction of this dialogue, students would gain feedback on the salience of their 
+projects from the point of view of the conceptual frameworks and better understand the frameworks.  
+The interaction was not confined to a student-instructor exchange. The ideation process required interaction 
+between group members because of the open-ended nature of the task. In some of the groups, a single domain 
+expert emerged, and much of the interaction centered on this individual. However, our impression was that at least 
+the first stages of the ideation process involved all or almost all members of most groups. A third level of interaction 
+was in class between the group presenting an idea/analysis and other students of the class. This type of interaction 
+was intensive when either the business ideas were relevant to consumers, or when several students shared a 
+specific domain expertise; for example, when many of the students were lawyers. A final level of interactions 
+between students was related to the development of the websites. During many discussions and presentations, 
+students shared experiences on how to use the tools. Often, the inclusion of Hebrew text (written from right to left) in 
+various contexts was non-trivial and was discussed between students.  
+The ideation, analysis, feedback, and iteration process was the backbone of the course. However, in the course, we 
+also aimed for students to create actual technological artefacts as prototypes for the new businesses. We focused 
+on three types of artefacts: 1) an electronic Web front of the business, such as a website, mobile application, or 
+Facebook page; 2) the definition of the business’ major processes, in particular those that involve customers and 
+suppliers; 3) some simple automatic decision rules, or data analytics, to new business’s decisions and exemplify 
+business intelligence. The goal was to provide students with both conceptual and technological tools for creating 
+these information technology artefacts and to create a sense of new competency. As the students were MBAs, 
+usually with no technical background, the technological tools we selected were simple and provided only an initial 
+demonstration of the technological opportunities. Namely, we wanted to give the students some initial experience in 
+creating webpages or Facebook communities, but we did not aim to develop full blown skills in developing websites, 
+automated processes, or analytics.  
+Concepts 
+The first part of the course was intended to teach students how to think systematically about the strategic and 
+economic aspects of technology. We started with a brief summary of strategic management, including mission, 
+vision, objectives, business strategy, and Porter’s five forces of competition (Thompson, Strickland, & Gamble, 
+2013). A strategic planning course was a prerequisite for the MIS course, so we briefly summarized the ideas and 
+used them to describe and analyze a project that students created in one of our previous courses. We discussed in 
+more detail McFarlan’s questions about the strategic value of technology (Applegate, Austin, & Soule, 2009) using 
+American Airline’s Sabre as the classic case. Because we emphasized current relevance of the ideas, we 
+supplemented the American Airlines case with high-frequency trading of equities as an example of how technology 
+changes the basis of competition nowadays. The third subject in this part of the course was the economics of 
+  
+162 
+Volume 36 Article 10 
+technology. We introduced transaction costs economics (TCE) and briefly reviewed the ideas of Coase and 
+Williamson (Tadelis & Williamson, 2012). We then used TCE to discuss in detail the electronic markets hypothesis 
+(Malone, Yates, & Benjamin, 1989) and some recent empirical evidence on structure and prices in electronic 
+markets (Baye, Morgan, & Scholten, 2004; Goldmanis, Hortacsu, Syverson, & Emre, 2010). Then, we discussed 
+network effects and switching costs (Shapiro & Varian, 1999). We exemplified the concepts with several e-
+commerce role models, including Google (Iyer & Davenport, 2008) Amazon (Bezos, Kirby, & Stewart, 2007) and 
+eBay.  
+Students were required to use these concepts while forming their businesses. Specifically, we asked them about the 
+transaction costs in their domain and how they used various technologies (e.g., video) to reduce these costs. If 
+network effects were relevant, we asked them to explain how they would achieve them and roughly at what cost by 
+using Google’s AdSense to assess costs of an internet marketing campaign. The first part of the course concluded, 
+in Week 5 or 6, with initial presentations of the electronic businesses. These presentations were not graded; they 
+were used to create a dialogue, or relate, the “entrepreneurs” of each project and the rest of the class. Students 
+were required to alter their business strategy following the feedback in these sessions. Often, businesses were 
+changed quite dramatically.  
+The second part of the course took an operational perspective of business technologies. The first operational 
+framework was business process management; the focus was on the wider managerial concepts—Hammer’s (2007; 
+Hammer & Stanton, 1999) reasoning about enterprise-wide processes, process owners, enterprise-wide 
+performance measures, and systematic improvement of processes. We then presented enterprise systems, 
+including ERP, CRM, and SCM, as enablers for the process management approach. In addition, we presented 
+technological and organizational change in this context (McAfee & Brynjolfsson, 2008) using the debate about cloud 
+computing (Iyer & Henderson, 2010) as an example. The second operational perspective was decision making, 
+again starting with a wider discussion about rational and behavioral models (Kahneman, 2003), and then discussing 
+organizational decision making and business intelligence (Applegate et al., 2009; Davenport, 2006]. The third and 
+final aspect was sociological, starting with technological and social determinism and the socio-technical theory 
+(Grint, 2005; Chapter 8) and then discussing structuration theory and its practical implication on IT usage patterns 
+(Orlikowski, 2000). Following Weill and Ross (2009), we concluded the course’s lectures with a wider discussion of 
+IT management. We demonstrated the concepts in this part of the course with several East-Asian case studies to 
+increase awareness of the global nature of our discussion (because Israeli students usually focus on the US). The 
+examples included productivity of mobile phones in rural India (Jensen, 2007), the interaction of technology and 
+social prejudice to unbalance male and female births (Economist, 2010), and empowerment of workers at Seven-
+Eleven Japan (Weill & Ross, 2009)]. 
+The students were required to address these IT-related operational concepts in their projects. At a minimum, 
+students had to construct the main supplier- and customer-related business processes, and discuss data needs and 
+decision making in their businesses. We awarded extra points when they discussed social aspects. The final two 
+classes were devoted to students’ presentations of their businesses. Industrial panels helped us grade the 
+presentations. The panels included two or three e-commerce experts who shared their experiences and expressed 
+their willingness, or otherwise, to consider investing in the students’ projects. Table 1 outlines the weekly course 
+topics and supporting case studies. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+Volume 36 Article 10 
+163 
+Table 1. Course Outline 
+Week Concepts Cases/examples 
+1 
+Outline of the course 
+A students’ e-business (from an earlier 
+course) 
+2 Summary of strategic management 
+strategic value of technology 
+American Airlines 
+High-frequency trading 
+3 Transaction cost economics 
+the electronic markets hypothesis 
+Structure and prices at travel agencies, 
+bookstores and car dealerships (2010) 
+4 Economics of technology: switching 
+costs and network externalities  
+Google, Amazon, eBay 
+5-6 Initial e-business presentations and class feedback 
+7 Business process management  
+enterprise systems 
+CVS caremark 
+8 Rational & behavioral decision making 
+business intelligence 
+Mobile phones at Kerala Fisheries 
+Marriot International 
+9 Socio-technical theory 
+structuration  
+South Asia gender unbalance 
+Lotus notes at ‘alpha’ 
+10 IT management Seven Eleven Japan 
+11-12 Final e-business presentations to an industrial expert panel 
+Tools 
+Our success in this aspect of the course was only partial. We had experimented with several Web-authoring 
+packages, such as OS Commerce, Google Sites, Wix, and Weebly. All provided drag and drop tools to create 
+websites; students found them easy enough for creating the required websites. We advised students to use either 
+the Weebly free website authoring tool or Wix, a free Flash website builder. For business processes, we 
+experimented with Business One, a small business ERP solution from SAP. Although the package was intuitive and 
+easy to use, we did not recommend it for the later instances of the course delivery because of the difficulty in 
+integrating data from the website (for example, customer contact information) with Business One’s forms and 
+processes. It probably reflected a difference in technological style; Business One is an enterprise-wide application 
+but not a native Web-based solution. We planned to use the Salesforce Web-based CRM for the operational 
+artifacts of the course; it was easy to integrate data from websites into Salesforce. As for decision making and 
+business intelligence, we had experimented with Google Analytics on the traffic to the projects’ websites; however, 
+the traffic was so small, that the decision rules and related analysis seemed meaningless. We are still looking for 
+ideas on how to create an actual demonstration of business intelligence in our context, such as by creating more 
+traffic to the websites and then analyzing it. 
+Electronic Businesses  
+We started teaching this course during 2009 and, by the 2011 spring semester, we had taught five classes with 
+more than two hundred students and many dozens of electronic businesses. Indeed, these businesses reflected our 
+aim to achieve continuous relevance. All the first semester projects were Internet based; many business ideas 
+during the 2011 semesters were mobile applications and some projects were based on social networks. The quality 
+of business ideas varied widely; however, even the more mundane ideas were useful in the application and analysis 
+of the course’s concepts.  
+In order to illustrate the type and quality of business ideas, the following four projects are some of the best 
+suggested by the five classes we taught during 2010 and 2011. 
+Business idea 1: an electronic market for home-cooked ethnic food. Four students, led by a student who was, at 
+the time, self-employed as a producer of events and parties, developed this idea. The group suggested creating a 
+network of housewives skilled at home cooking ethnic food, typically from the less prosperous suburbs of Tel-Aviv. 
+The other side of the suggested market were affluent technology-savvy young professionals. The group showed that 
+takeaway food was often purchased through Internet websites, while the specific service they proposed had not yet 
+been available in Israel. Given the nature of this business idea, there were many short discussions in class about it, 
+and specifically about service quality. An important realization was that the delivery process was critical and should 
+probably be organized by the new venture. The group’s final business plan specified two models of delivery: 
+outsourcing and in-sourcing, and the group discussed their feasibility. The business plan used also ideas about 
+transaction costs and network effects to analyze the two sides of the market. For example, they discussed the 
+reputation mechanism for the meal suppliers and the social network aspects for the customers.  
+  
+164 
+Volume 36 Article 10 
+Business idea 2: an electronic marketing service for law offices. Three students, working as lawyers, explained in 
+class that the Israeli bar association had allowed lawyers to electronically market their law offices just three months 
+earlier. At the time, there were already about 3,000 law office websites. The group expected that many more of the 
+45,000 or so Israeli lawyers would create websites, social media pages, and mobile applications to market their 
+services. However, there were few, and they were mostly websites for small companies catering for the marketing 
+needs of law offices. The group explained that marketing legal services was governed by strict rules about content 
+and media. They suggested creating a business that would provide compliance services. These could be performed 
+semi-automatically and would be used as an entry strategy into this emerging sector. Using ideas about the 
+economics of IT, they suggested a freemium revenue model. Basic compliance alerts would be free, while full 
+compliance monitoring, search engine optimization, and website and social network construction would be charged.  
+Business idea 3: an Israeli fashion-sharing social network. A group of students employed by ad agencies 
+suggested creating a Facebook-based business aiming at young women in Israel who wish to share their experience 
+related to fashion. There was an ongoing discussion about the commercial viability of such a venture. The lecturer 
+and some of the other students doubted that large fashion chains would cooperate. If this is so easy, why would the 
+fashion chains not create such a network themselves? The entrepreneurs answered these doubts by demonstrating 
+the limits of Internet marketing efforts by the major fashion chains in Israel. They succeeded in convincing us that 
+the large chains will not cater for the community aspect of fashion, and, if they succeed in creating a large enough 
+electronic community, their business would be viable. They created quickly some traffic in their Share-Your-Style 
+pages coming from their own friends. They showed that that their costs were minimal, and their expectations of 
+advertisement revenue from the large Israeli chains seemed to be reasonable.  
+Business idea 4: a mobile loyalty application. Two students who worked as programmers at a large bank 
+suggested a mobile application for small shops to create loyalty programs for the shops’ customers. The students 
+showed that it would be very easy to customize an open source CRM package. This would reduce their deployment 
+costs and a minimal initial investment. Using ideas from transaction cost economics, they suggested a lock-in 
+mechanism: free of charge subscription for the first year and inexpensive charges for subsequent years. They 
+assumed that some of the shops would appreciate access to data about existing customers and thus would accept 
+this revenue model.  
+IV. ANALYSIS 
+Student Evaluation Surveys 
+The college surveys students at the end of each semester about their course evaluations. These are voluntary 
+Internet surveys that include eleven questions about each course. They cover general impressions about the course 
+and lecturer, acquired knowledge, assignments, teaching assistant, learning portal, and classroom.  
+Table 2 presents a cluster analysis of student evaluation questionnaires of two courses given during the Fall 
+semester 2010/2011. We had two general MBA classes with 54 and 46 students and, as much as we could tell, the 
+classes were homogenous. Aggregating the 25 and 29 respondents from the two classes, we performed the 
+following cluster analysis procedure: we included all survey questions including ones about the lecturer, teaching 
+assistant, portal, and classroom; we identified and removed outliers (six respondents); we performed a cluster 
+analysis in which we allowed SPSS to choose the number of clusters. Table 2 reports the averages of the course-
+related questions in the two clusters; the survey uses a seven point scale and high values correspond to answers 
+such as “very good” or “very much”; standard deviations are reported in parentheses. The significant difference 
+between the clusters becomes clearer with medians rather than averages: for example, the median of the overall 
+evaluation of the course is 4.0 in one cluster and 6.0 in the other. Verbal comments by students, which are part of 
+the survey, include comments such as “the most relevant and interesting course in my MBA studies”, “too difficult, 
+demands too much work”, and “too many subjects, not organized, superficial”. 
+ 
+ 
+ 
+ 
+ 
+  
+Volume 36 Article 10 
+165 
+Table 2. Student Evaluations, 2 General MBA Classes, Fall 2010/2011 
+Number of students 100 
+Number of respondents 54 
+ Cluster 1 Cluster 2 
+Number of respondents in this cluster 20 28 
+Questionnaire items 
+What is your overall evaluation of the course? 4.5 (1.0) 5.5 (1.2) 
+How much relevant knowledge did you gain from this 
+course? 
+4.1 (1.1) 5.3 (1.3) 
+How much did the assignments contribute in achieving the 
+course’s goals? 
+4.0 (1.3) 5.1 (1.5) 
+How interesting was the course? 4.6 (1.2) 6.2 (1.0) 
+ 
+Table 3 presents the main results for two other classes we taught during the Spring 2011 semester. Both classes 
+were MBA students, one an executive MBA for lawyers majoring in finance, and the other a general MBA with about 
+half of the students with a BA degree in media and communication (the college has a large media school).  
+Our reading of Table 3 shows that the more-experienced, somewhat older lawyers in the executive MBA class did 
+not like the course and did not see the point of the projects. However, the younger media-oriented general MBA 
+class liked the course and projects. Furthermore, comparing these results to the average evaluation in all the 
+general MBA courses (5.1), it is interesting to note that the general MBA students found the course better than the 
+average MBA course, which is uncommon for MIS or technology management courses.  
+Table 3. Student Evaluations, 2 MBA Classes, Spring 2010/2011 
+ MBA 
+for lawyers 
+General 
+MBA 
+Number of students 27 50 
+Number of respondents 15 31 
+Questionnaire items 
+What is your overall evaluation of the course? 4.2 (1.6) 5.1 (1.7) 
+How much relevant knowledge did you gain from this 
+course? 
+4.3 (1.9) 5.1 (1.8) 
+How much did the assignments contribute in achieving the 
+course’s goals? 
+3.9 (1.6) 5.1 (1.8) 
+How interesting was the course? 4.1 (2.0) 5.6 (2.0) 
+Interviews 
+The quantitative results demonstrate two opposing views towards the course; therefore, we used interviews to 
+further investigate the underlying reasons for these divergent opinions. This approach is compatible with mixed-
+methods research design, which promotes the use of both quantitative and qualitative methods to complement each 
+other. For example, broad-based survey results could be complemented with detailed views on the meaning of those 
+results (Creswell, 2003). We selected and interviewed a convenience sample of four students from the Spring 
+2010/2011 cohort. Selecting the number of interviews in a qualitative study is not an exact science and is very much 
+based on the context of the study and the research objectives (Baker & Edwards, 2012). We performed these 
+interviews to follow up on the issues raised by the larger, representative survey; hence, a few “voices” from the 
+student cohort was enough (Creswell, 2003).  
+We selected the students based on performance, one with a grade in the top 10% of the grade distribution (labelled 
+as RL), two with grades in the median band of the grade distribution (labelled as TR and AM), and one student 10% 
+below the median (NN). The resulting sample comprised one student from the executive MBA lawyer group, and 
+three from the general MBA group. We contacted the students by email one year after the course had been 
+completed and asked them to participate in a short interview (30 minutes). This one-year gap allowed for a wider, 
+longer-term perspective of the course; that is, a perspective that did not necessarily reflect the results of the course 
+but rather its aftermath, providing some distance between the immediate consequences of the course and the 
+students’ feelings. We conducted and recorded the interviews themselves via Skype/telephone in English. We 
+subsequently transcribed and analysed the recordings with the help of QSR International’s NVivo1 qualitative 
+analysis software. The interviewer was the only member of the co-authors who had not met or interacted with the 
+                                                     
+1 http://www.qsrinternational.com/ 
+  
+166 
+Volume 36 Article 10 
+students beforehand; therefore, some degree of objectivism was established in the process. The fact that the 
+interviewer spoke no Hebrew and conducted the interviews by referring to the lecturing staff in a formal way also put 
+some distance between the interviewer and interviewees. 
+The interview consisted of six semi-structured questions querying the students’ level of engagement with the course 
+and how the entrepreneurial flavour of the course, which was meant to mirror an entrepreneurial culture in Israel, 
+affected that engagement. They were asked how motivated they were by the given task (i.e., that they should create 
+a project as a means of being assessed in the course). Questions were raised about their imagination and creativity 
+in developing new ideas for their projects, how persuasive they were in convincing others about the viability of their 
+project, their judgement in validating the project, and their feelings of ownership over the project. They were also 
+asked whether the course worked, achieved its objectives, and whether they learnt skills or concepts from the 
+process. 
+We performed thematic coding as part of the analysis of the transcribed interviews (Miles & Huberman, 1994). This 
+is a qualitative data analytical method in which coding categories are selected and segments of data (in this case, 
+chunks of transcribed text) are associated with those coding categories. In our case, we drew the coding categories 
+from the SDT concepts explained in Section 2. Two authors coded the transcripts together and discussed the coding 
+between themselves to agree on common understandings of the coded segments. In reporting the results, we 
+agreed on a protocol as described here. Where the respondents perceived the SDT concepts negatively, we coded 
+them as “lack of” the particular concept; for example, where the respondent did not perceive much autonomy over 
+their conduct in the course, this was coded as “lack of autonomy”. We subsequently grouped the codes into five 
+categories: personality, motivation, SDT needs, environment, and outcome. Table 4 and Figure 1 present the 
+frequency of coding of the concepts in the transcripts of the four interviews. In later stages of analysis, we also relate 
+coding categories to each other: we report on these relationships in the latter part of this section.  
+Table 4. Frequency of Coding of SDT Concepts in the Four Interviews 
+Categories Concepts Coded Student 
+AM 
+Student 
+NN 
+Student 
+TR 
+Student 
+RL 
+Personality 
+Autonomy orientation - - 7.8% 3.0% 
+Controlled Orientation - 1.4% - - 
+Impersonal Orientation 23.5% 25.2% - - 
+Motivation 
+Intrinsic motivation - - 11.1% 5.9% 
+Extrinsic motivation - 7.3% - - 
+Internalization - - - 1.2% 
+SDT Needs 
+Autonomy - - 15.6% 5.8% 
+Lack of autonomy - 1.6% - - 
+Competence - - 24.4% 14.2% 
+Lack of competence 18.8% 10.2% - - 
+Relatedness 7.5% 6.4% 22.2% 7.2% 
+Lack of relatedness 10.9% - - - 
+Environment 
+Autonomy support - 6.4% 13.7% 19.0% 
+Lack of autonomy support 29.0% 26.2% - - 
+Outcome 
+Performance  - - 14.7% 6.7% 
+Lack of performance - 7.1% - - 
+Surface Learning 5.2% 4.7% - - 
+ 
+  
+Volume 36 Article 10 
+167 
+ 
+Figure 1. The Frequency of Coding of SDT Concepts in the Four Interviews 
+ 
+Figure 2 includes an alternative representation of concepts that are expressed in a “negative” way by the 
+respondents (i.e., concepts that represent the “lack of” dimension as described above). We assigned these concepts 
+with negative percentages; therefore, the resulting figure illustrates that concept below the x-axis of the chart but in 
+the category it was negating. For example, we represented lack of autonomy as a negative frequency in the chart 
+under “autonomy” to become the “negative” dimension of that concept. Where the interviews seemed to support 
+both the concept and its “negative” dimension, we list the two concepts in the figure with one above the x-axis and 
+one below the x-axis with two different categorisations. This occurred in the case of “relatedness” and “autonomy 
+support”, where we found both “positive” and “negative” dimensions to the responses; therefore, they were 
+represented in the figure as “relatedness” and “autonomy support” above the x-axis and “relatedness (lack)” and 
+“autonomy support (lack)” below the x-axis. The resulting figure shows clearly that there was a split between the two 
+pairs of interviewees: one was positive about the five concepts being measured, and one was generally negative 
+about the same concepts. 
+  
+168 
+Volume 36 Article 10 
+ 
+Figure 2. SDT Concept Frequency with Negative and Positive Aspects 
+ 
+The figure also demonstrates that interviewees who had strong perceptions of autonomy orientation (TR, RL), also 
+showed strong inclinations towards intrinsic motivation, fulfilment of basic psychological needs according to SDT, 
+autonomy-supporting environments and showed good performance. Similarly, interviewees who indicated an 
+impersonal orientation also showed strong inclinations towards extrinsic motivation, did not perceive fulfilment of 
+their basic psychological needs, perceived lack of autonomy support in their environment, and demonstrated lack of 
+performance and surface learning. We describe these relationships for each interview below. 
+AM Interview 
+When interviewed, AM expressed strong personal viewpoints that there was insufficient support provided by the 
+course to enable the class to do well, which demonstrates a lack of autonomy support. These viewpoints can be 
+evidenced by quotes such as: 
+The guideline was unnecessarily complicated…. I heard things more them once, I felt kind of bored, and I 
+don’t really know how you can teach this kind of important stuff like being entrepreneurs. I think it’s not the 
+kind of thing that you can lecture about. 
+AM also spoke quite frequently about not having much influence over the outcomes of her studies and pointed out 
+that the learning environment was more of a hindrance than a help to achieving the course’s objectives; for example, 
+the fact that students had no choice but to be made to work in groups, which may or may not work in achieving the 
+course outcomes. As a result, AM was self-critical: she assumed a lack of success as compared to others in the 
+course, and thus demonstrated a lack of competence: 
+For some people, building the website is an easy task and for others it’s quite complicated because the 
+website most people did in class was the full website, they have a basic template, and you just need to put 
+in all your visuals and you just put the text in too, so it doesn’t look like a really professional website, it’s 
+quite simple and for a business, a real business, you need a real website, not something that has some 
+funny ending like .weebly.com. 
+  
+Volume 36 Article 10 
+169 
+There were kind of theoretical terms that [the lecturer] posed for the course sessions. It is... it comes back to 
+your first questions where I told you that, either you have it or you don’t have it, you can learn the terms, but 
+if you [are not entrepreneurial] you can’t take it one step ahead. 
+AM also claimed a lack of support from the lecturer in developing the project ideas, which led to some feelings of 
+lack of relatedness. At the same time, paradoxically, AM also felt relatedness to the entrepreneurs in Israeli society, 
+the culture that this engendered, and the role AM claimed to have played in participating in a protest against Israel’s 
+high cost of living, which the project attempted to deal with. The following quotes illustrate: 
+And maybe [the lecturer] was kind of afraid…to accept it because the technology part, in order to succeed in 
+this, we said we might do it by scanning QRs and a year ago people didn’t really know what was QR [quick 
+response code]…. One of the problems in the course that I have experienced, is that I have the sense that 
+my idea is good and on the one side I wanted to share my idea with the class and tell it to [the lecturer], but 
+on the other side, if it is too good, I do not want someone else to come and take my idea, so this is kind of a 
+complex situation. 
+The interviewee’s overall perception of learning in the course was at a surface level and not much more. AM claimed 
+that the content was something that was more related to common sense and not academic material that could be 
+learnt in a course. At the same time, AM spoke about conceptual aspects as “unnecessarily complicated”. AM’s 
+focus was on learning how to be an “entrepreneur”. She did not recognize that this was just a vehicle to study MIS 
+concepts in a particular context. She therefore misunderstood the course’s aim. 
+NN Interview 
+Similarly to AM, NN felt that there was not enough support in the learning environment in order to be more 
+successful in the course, such as the group method of teaching. 
+ Not to impose the course theory on them because there were a lot of things that [the lecturer] taught, that 
+would not, did not match our project and we had to impose the answers and obviously when it does not 
+match, you are forcing it you know, you’re just forcing it to something that is not natural for the answer to be, 
+it’s like if you keep trying to teach a ballerina how to dance jazz. 
+Like AM, NN also felt that the environment was a hindrance rather than a help to achieving the course objectives. 
+NN’s views pertained to the wider environment as well: they referred to the busy life that MBA students in particular 
+had to juggle 
+Most of us have families and regular jobs that we have to attend to and it is very difficult to find the time to 
+get together. It was very complicated because tasks were interesting and we had to be very creative and to 
+put some work into it and once you don’t have the time to get together as 5 people, it’s is un-motivating. 
+As a student, I did not see that [developing a good project] as a possibility because there was so much 
+pressure and you know, we just did not have much time to do that. But now especially when I am on … 
+leave I see that if you have a little time, you can do wonders, and [the lecturer] saw that and believed in that 
+but I think he has to strengthen that. 
+NN also experienced feelings of failure to achieve appropriate levels of competence in meeting the course 
+objectives. 
+The project we had to do was an online website on which you could do deliveries, you know if you have TV 
+services come to your house or phone services, it was not successful because. They wouldn’t want to work 
+with us as a subcontractor, because then they would have to make their services more expensive because 
+they would have to pay us, so there were a lot of flaws in our plan, which we did not have the time or the 
+energy to think through, that’s why our grade was…so-so. 
+Thus NN was mainly motivated by external factors (extrinsic motivation) to complete the course and, as a result, felt 
+the group’s performance was not that impressive. 
+I don’t know, we just did our best and the grades were according to that, they weren’t so great. I think it was 
+C or B-…. I don't think so, no, me for myself, I did not have the time or the energy to do that [project], but in 
+general this is how I see my MBA studies, I did everything in the minimum just to get the grade. 
+  
+170 
+Volume 36 Article 10 
+Interestingly, NN complained about the group nature of the project but actually found this to be a positive influence 
+via feeling a sense of relatedness to the other colleagues. 
+We found good people that can help, except for one, … but I think the interaction went very well especially if 
+you have friends there. Every time there is one person that pushes harder than the others, it changes, you 
+know, one week I push harder, the next week my friend pushes harder but I think all in all, we had a good 
+interaction a lot of emailing, exchanging over the phone, or texts, it was very good. 
+Again, NN displayed surface learning. She recalled the course as a way to learn a lot about how to use the World 
+Wide Web as a tool for creating interesting business ideas; NN had little or no recollection about the underlying MIS 
+concepts that were supposed to be delivered as part of this course. 
+Additionally, NN also mentioned being “ashamed” at a personal level due to lack of achievement (in her  own 
+opinion) in the course: she cited the prevailing attitude in Israel towards MBA studies, which are part-time, as a main 
+impediment. In this way, NN acknowledged a lack of autonomy in controlling the learning event. 
+TR Interview 
+Contrary to the interviewees above, TR had a strong perception of competence in the work for the course. TR 
+stressed the importance and utility of the idea and the fact that it could be developed into something marketable. 
+We come up with the idea that you can speak to your phone and it will translate it to SMS …. We called the 
+idea, that venture STSMS—speech to SMS, and I think it was quite a brilliant idea but I don’t know why I 
+didn’t have time to develop it but I think that...I believe that in the near future we will find some product like 
+this in the market. 
+I think everyone saw and understood the potential. Of course, we spoke about numbers and economic 
+models for the venture, but I think in general the strongest thing was the notion that everybody thought 
+about this, that they might use this idea or technology. 
+Along with feelings of competence was a strong sense of relatedness, especially with respect to the group TR 
+worked with, their acceptance of the idea, and their willingness to work to develop that idea. There was also a sense 
+of relatedness to the lecturer in that the idea was accepted and that the lecturer was supportive of it. 
+Actually we considered a few ideas … we spoke about the advantages and disadvantages and in the 
+general items, I think the idea which I came up with was nice and good and we thought and we figured out 
+that it can be developed because there was available technology and also [the lecturer] also put in his input 
+and we discussed with him and after we considered all the items, we concluded this speech to SMS was a 
+great idea. 
+There was also a sense of relatedness to the software industry or other technologists as a whole, which the 
+following comment evidences: 
+I was discussing with a few friends of mine who were working in the Hi-Tech industry , it had good potential 
+and [could be built] with relevant technologies that we don’t have to develop, but only do a joint venture or 
+buy the technology from the other side. 
+TR also showed inclinations towards satisfaction of autonomy needs since the project seemed to satisfy some 
+personal objectives. 
+I was very happy and it was very satisfying because to come up with an idea, with something that you think 
+is needed in the market it is quite fulfilling, it was very nice and all the processes with [the lecturer] and with 
+my fellows in the group, it was very nice. 
+TR expressed an experience in this course that was quite different to achievements in other degree courses—it was 
+an experience in learning to think in different ways: 
+I may have two degrees in Law, but I don’t have a technological background; [the lecturer] also introduced 
+us to technologies in the Web and everything that I was not aware of, so I think it was much more interesting 
+and exciting and new for me … you can say you learn how to think and to develop things “out of the box”, 
+not in the traditional way. 
+  
+Volume 36 Article 10 
+171 
+TR also felt that the environment was broadly supportive of learning as compared for example with other courses: 
+From my point of view, I think it is much more interesting to take part in a venture that you are part of it 
+[rather than] analyzing or discussing a case study. We have another course which is called strategy that we 
+are doing, analyzing a lot of case studies, it’s nice but I think it’s more lively…. [It’s] fascinating to take part in 
+the venture that you are a part of and you develop and analyze it. So I think the combination of the 
+background, of the theoretical background and the practical experience was great and was very successful 
+from my point of view. 
+Much of what TR expressed seemed to give credence to a sense of enjoying the course, of finding it “nice and 
+refreshing”, “fascinating”, and “interesting and exciting”. TR’s comments also an inclination towards an autonomy 
+orientation since he spoke of an environment that supported the development of the project idea and that others 
+were helpful towards this goal and provided useful developmental ideas. 
+RL Interview 
+The strongest impression reported by RL was one of autonomy support in that the project encouraged interaction 
+and interest. The fact that the class was divided into groups, that students needed to use their imagination, that 
+students were encouraged to defend their projects were all positively presented by RL. 
+It was very easy, it was so much different than other projects I did in school, like just a paper you have to 
+write, it’s something that you have to really, like be interactive with, you have to really build something. I 
+think it was very interactive. If you would ask me, I am on the last semester now so if you would ask me 
+what are the one or two classes you remember that most, like in a positive way, like you were saying, I 
+would say this class. 
+Also, RL reported that the group were able to demonstrate their competence in the task due to being able to 
+accomplish activities and initiate ideas: 
+What we did was we divided the work between us into different aspects. So, for example, the [one] who is 
+working in financing, …did the research part for the, [economic part], I mean, if this kind of business would 
+be economical and, one person did the writing of the paragraphs, the thing we wanted to write, on the text 
+… and I did the design, so each person did something different, brought his..., what he knows best to do. 
+RL also reported that there was the possibility of building on this project to create a business: “The fact that we did 
+not do anything with it afterwards but at the same time we really wanted to ‘yea, it’s so good, we gonna make a lot of 
+money’, we believed in it.”. 
+There were also some sentiments regarding relatedness that RL expressed with regard to the interest the lecturer 
+demonstrated, to the other members of the group as a whole, and even towards famous entrepreneurs such as Jeff 
+Bezos (founder of Amazon.com): “It was a group effort.... I think that everybody thought that they can really bring 
+something from themselves into the project.” 
+In terms of performance, RL seemed to grasp the main ideas of the course and not just the means by which the 
+course was delivered. He recollected, for example, some of the underlying concepts such as competitive advantage 
+and adding value through technology: 
+Your idea you have to sell something using technology, using, in our case, the Internet, has to be 
+[developed] in a way that, like I said before, it gives you the added value and not just “oh, okay I can sell it in 
+a store and also in the Internet”. No, it has to have this uniqueness, using the technology will have to bring 
+the added value, and ... competitive advantage …In a way this has to be our unique competitive advantage. 
+RL also displayed high levels of autonomy with motivational levels along the lines of intrinsic motivation, speaking, 
+for example, quite a bit about enjoyment of the course: 
+I was very excited with that project because it was something new, different from the other projects you get 
+to do in school, so I was very excited and enthusiastic to do it and I put a lot of energy into it and I was very 
+excited. 
+  
+172 
+Volume 36 Article 10 
+A few comments from RL suggest being able to identify with the project and relate the concepts to personal values: 
+“I know that in the end people really were proud of the project, really, they were proud of it and it was important you 
+know, I think what I am trying to say is that they felt that they cared about it, really.”. 
+Relationship of Concepts Within Interviews 
+In the case of AM, an impersonal orientation was linked to a feeling of lack of autonomy support from the learning 
+environment; that is, the way the course was structured. Accordingly, the basic psychological needs of competence 
+and relatedness were not being met. This led to a lack of deep learning. AM did not appreciate or understand the 
+conceptual frameworks that were part of the MIS underpinnings of the course and instead viewed them as 
+unnecessary additions. 
+For NN, an impersonal orientation was also linked to a feeling of lack of autonomy support. Here, NN reflected on 
+the lack of support in general for MBA students and not specifically in this particular course. The situation in which 
+the students found themselves was thought to contribute to not being able to have much control over the outcomes 
+of learning. NN also reported basic psychological needs not being met in terms of lack of autonomy and lack of 
+competence, although relatedness was being met to some extent. This led to only satisfying the external 
+requirements of the course; that is, being extrinsically motivated and to a general lack of performance and deep 
+learning. 
+TR showed some autonomy orientation and felt that the environment was supportive of autonomy and reported high 
+levels of all basic psychological needs being met, especially competence and relatedness. TR also reported high 
+levels of intrinsic motivation, which led to a feeling of satisfaction with the relevant performance and learning. 
+RL, although not relating much information about personality orientation, did mention some aspects related to 
+autonomy orientation. RL was more concerned with how the environment supported autonomy. This also led to 
+satisfaction of basic psychological needs, more in the vein of competence in comparison to relatedness and 
+autonomy. RL was also able to report levels of intrinsic motivation and was the only one who related the course to 
+deeper core values (internalization). RL was also satisfied with the relevant performance and saw the bigger picture 
+of course much better than other interviewees. 
+Relationship Across Interviews 
+The findings strongly support the SDT theory as Figure 3 shows. 
+Personality
+Basic 
+Psychological 
+Needs
+Environment 
+Support
+Motivation Performance
+ 
+Figure 3. Relationships Between the Coded Categories as Represented in the Interview Analysis 
+ 
+One surprising area in the findings was to see three different levels of relatedness occurring in the sample: (1) 
+relatedness to several wider groups outside of the academic environment (e.g., the Israeli hi-tech industry, well-
+known entrepreneurs such as Amazon’s founder, or social movements), (2) relatedness to the instructor in this 
+specific course, and (3) relatedness to the members of the project teams (i.e., peers). This is surprising because (1) 
+no other dimension of SDT appeared so consistently throughout the interviews, (2) no other dimension appeared at 
+so many levels of abstraction, and (3) we did not expect this dimension to occur in relation to groups outside of the 
+teaching environment. The course found a way to meet at least one basic psychological need across all 
+interviewees regardless of their performance. We discuss this result in more detail in Section 5. 
+  
+Volume 36 Article 10 
+173 
+V. DISCUSSION 
+This paper describes an entrepreneurial approach for teaching a management information systems course. Using 
+ideas from self-determination theory (SDT) (Deci & Ryan, 2012a, 2012b), the course builds on the basic 
+psychological needs for autonomy, competence and relatedness to create autonomous motivation and engagement 
+in students. Student groups are required to initiate new electronic businesses, build prototypes of their electronic 
+Web fronts, and describe business processes. In addition, several conceptual frameworks or information technology 
+as related to markets and organisations are taught and the students are required to analyze their ventures with 
+these concepts. Market aspects include strategic analysis, discussion of opportunities to influence transaction costs 
+via technology, and assessment of network externalities. Organisational aspects include descriptions of the main 
+business processes and descriptions of decision making and data analytics.  
+We started teaching this course during 2009 and, by the 2011 spring semester, we had five classes with more than 
+two hundred students. The current paper uses feedback from the 2011 Spring cohort to analyze student 
+engagement. We found two distinct clusters in this cohort: 52 percent of respondents thought highly of the course 
+(median evaluation was 6 out of 7); about 37 percent of respondents were not enthusiastic with the course (median 
+evaluation was 4 out of 7). We conducted interviews with four students and found out a similar split: “I think that 
+everybody thought that they can really bring something from themselves into the project … in the end, people really 
+were proud of the project … they felt that they cared about it, really” on one side, while another student felt “There 
+were kind of theoretical terms that [the lecturer] posed for the course sessions…. Either you have it or you don’t 
+have it—you can learn the terms, but if you [are not entrepreneurial] you can’t take it one step ahead.”. 
+In this paper, we analyze these results through SDT. We found that the structure of the course was able to engage 
+some students in the learning process to the extent that they were excited and motivated. At the same time, it also 
+disincentivized and demotivated some students such that their performance was unsatisfactory to them and their 
+learning incomplete. Thus, the overall effect was not uniform. We interpret the positive effect to be related to 
+autonomy support and positive feedback. As Deci and Ryan (2008, p. 418) state “events such as positive feedback 
+that lead to perceived competence by supporting the competence need, will enhance intrinsic motivation”. In the 
+same vein, we interpret the negative effect as being related to the informational aspect of negative feedback. 
+Consider, for example, Deci and Ryan’s (2008, p. 418) assertion that “if the competence information is sufficiently 
+negative, indicating that people are too incompetent to attain desired outcomes, it could undermine both intrinsic and 
+extrinsic motivation, leaving individuals amotivated”; namely, negative feedback on the student’s own choice is 
+highly detrimental. Additionally, lack of engagement could have been related to an excess amount of tasks that 
+students needed to perform because of the entrepreneurial nature of the project. Finally, these negative effects 
+could possibly relate to the individual student’s personality orientation and sense of agency (Niemiec & Ryan, 2009; 
+Maclellan, 2008). The four interviewees were split into two groups, one of which expressed general satisfaction and 
+support for their psychological needs, and the other of which expressed lack of interest and motivation in the course. 
+The interview analysis also revealed that the relationships between personality orientation, learning environment, 
+basic psychological needs, motivation, and outcomes were consistent with the theoretical perspective chosen for 
+this study: SDT. The results match well with the expected positions of the theory; namely, that the two students who 
+expressed autonomy orientation felt that their environment was supportive, that their psychological needs were 
+being met, and who indicated they had high motivation (Ryan & Deci, 2000). Students who expressed tendencies 
+toward an impersonal or controlled orientation found the learning environment a hindrance, found that it did not fulfill 
+their psychological needs, and they expressed low motivation towards the course. Although we believe the course 
+provided the structure and support for autonomous student-centered learning, the personality orientations of the 
+students, it appears, either enhanced or hindered their levels of motivation, and thus their performance. This 
+emphasizes the need for agency on the part of the student, that is, the need for the student to assume some 
+responsibility for their learning behaviour beyond what the environment may be able to provide (Schunk et al., 2013). 
+As Pintrich (2004) states: 
+[It is] not just individuals’ cultural, demographic, or personality characteristics that influence achievement 
+and learning directly, nor just the contextual characteristics of the classroom environment that shape 
+achievement, but the individuals’ self-regulation of their cognition, motivation, and behaviour that mediate 
+the relations between the person, context, and eventual achievement. 
+The course also consistently seemed to appeal to the relatedness aspect of the three basic psychological needs 
+according to SDT, and did so at the three levels identified in our findings. We can partly explain this by the group-
+work structure to which the students were expected to adhere. Groupwork has been shown to be linked to student 
+motivation, especially where choice is exercised over group formation (Ciani, Summers, Easter, & Sheldon, 2008). 
+Additionally, the instructor’s role as mentor and facilitator would also have influenced an almost paternalistic sense 
+of relatedness. This would explain at least two of the levels of relatedness found in the study (i.e., relatedness to 
+peers and relatedness to the instructor). The other aspect of relatedness engendered by the course, even among 
+  
+174 
+Volume 36 Article 10 
+students who failed to find autonomy support or to express feelings of competence, was a strong sense of belonging 
+to groups external to the course, but somehow in the student’s mind intrinsic to the course objectives. We can 
+explain the sense of relatedness to the Israeli high-tech cluster and well-known e-business entrepreneurs by the 
+entrepreneurial and e-business-based orientation adopted for the course and the cultural associations that Israeli 
+MBA students might make with such an orientation (Senor & Singer, 2009). In fact, the need to be entrepreneurial or 
+to be able to see oneself as an entrepreneur also seemed to factor highly into the other relatedness claim, that of 
+belonging to a politically active group to which the entrepreneurial spirit could also be oriented. This aspect of the 
+course appeared to engender strong emotions in the student cohort. 
+V. CONCLUSION 
+To conclude, we discuss the study’s implications for practice and its limitations. As a guideline for policy in teaching 
+MIS, we follow previous advice to experiment with new teaching methods in order to engage students (Austin at al., 
+2009; Aitken & Hatt, 2012; Whelan & Firth, 2012). However, the SDT-based analysis shows that it would be 
+advisable to provide students with a choice of traditional teaching methods (textbook and cases) and entrepreneurial 
+or other practice-based methods. The courses should be described in detail in the programme prospectus with an 
+emphasis on the tasks that students should do in completing the course. Alternative semesters for each stream 
+would be a practical means of delivering these alternate streams without compromising resources. Students could 
+then select the stream that they wish to take. Thus, teaching methods become self-selected (c.f. DeCosta, 2011). 
+The four interviewees in this research would clearly have benefited from such self-selection based on the responses 
+they provided: two would most likely have opted for the entrepreneurial approach, and two would have opted for the 
+traditional instruction-based approach since the complexity of the course delivery was too challenging for them. 
+The study is limited in its generalizability to other countries and contexts since the course focused on imitating 
+entrepreneurial ventures in the Israeli hi-tech cluster. There are, however, other countries and contexts where 
+innovation may be encouraged by government interventions and an entrepreneurial culture may be continually 
+discussed in the public domain. In such contexts, this entrepreneurial approach to teaching MIS may be successful. 
+Our results are clearly limited by the fact that we analyzed the results of a limited sample of student cohorts in only 
+one academic year. Therefore, our quantitative and qualitative data are limited to less than a hundred questionnaires 
+and four interviews. However. even with these limitations, the current analysis adequately demonstrates the 
+opportunities and challenges in attempting a unique approach to MIS teaching. 
+We believe that this study has implications beyond the MIS course we describe and analyze. Information technology 
+creates opportunities for new teaching methods (Kapp, 2012). These include entrepreneurial projects, business 
+game simulation, smartphone voting systems, debating and voting in social media, and different variations on online 
+and video-based courses. The analysis in this paper shows that these methods may create motivation and 
+engagement with many students, but they may demotivate others, and our role as teachers is to align technologies 
+with students’ orientations and needs.  
+ACKNOWLEDGMENTS 
+We are very grateful to Erela Amit of the College of Management, Rishon-le-Zion, Israel, for her support and 
+encouragement in developing and teaching this course. We are also grateful to SAP Israel for their help with the 
+Business One package. 
+REFERENCES 
+Editor’s Note: The following reference list contains hyperlinks to World Wide Web pages. Readers who have the 
+ability to access the Web directly from their word processor or are reading the paper on the Web, can gain direct 
+access to these linked references. Readers are warned, however, that:  
+1. These links existed as of the date of publication but are not guaranteed to be working thereafter. 
+2. The contents of Web pages may change over time. Where version information is provided in the 
+References, different versions may not contain the information or the conclusions referenced. 
+3. The author(s) of the Web pages, not AIS, is (are) responsible for the accuracy of their content. 
+4. The author(s) of this article, not AIS, is (are) responsible for the accuracy of the URL and version 
+information. 
+ 
+Applegate, L., Austin, R., & Soule, D. (2009). Corporate information strategy and management (8th edn). Burr Ridge, 
+IL: McGraw Hill. 
+Aitken, A. M., & Hatt, G. (2012). Creating value in an introductory business IS and IT unit. Proceedings of the 23rd 
+Australasian Conference on Information Systems. 
+  
+Volume 36 Article 10 
+175 
+Austin, R. D., Nolan, R. L., & O’Donnell, S. (2009). A “novel” approach to the design of an IS management course. 
+Communications of the Association for Information Systems, 24(19), 315-332. 
+Baker, S. E., & Edwards, R. (2012). How many qualitative interviews is enough?: Expert voices and early career 
+reflections on sampling and cases in qualitative research. UK: National Centre for Research Methods, 
+Economic and Social Research Council. Retrieved from http://eprints.brighton.ac.uk/11632/ 
+Baye, M. R., Morgan, J., & Scholten, P. (2004). Price dispersion in the small and in the large: Evidence from an 
+internet price comparison Site. Journal of Industrial Economics, 52(4), 463-496. 
+Benware, C. A., & Deci, E .L. (1984). Quality of learning with an active versus passive motivational set. American 
+Educational Research Journal, 21(4), 755–765. 
+Bezos J., Kirby, J., & Stewart, T. A. (2007). The institutional YES. Harvard Business Review, 85(10), 74-82. 
+Black, A. E., & Deci, E. L. (2000). The effects of instructors’ autonomy support and students’ autonomous motivation 
+on learning organic chemistry: A self-determination theory perspective. Science Education, 84, 740–756. 
+Cannon, R., & Newble, D. I. (2000). A handbook for teachers in universities and college: A guide to improving 
+teaching methods. London: Kogan Page. 
+Ciani, K. D., Summers, J.J., Easter, M. A., & Sheldon, K. M. (2008). Collaborative learning and positive experiences: 
+Does letting students choose their own groups matter? Educational Psychology, 28(6), 627-641. 
+Creswell, J. W. (2003). Research design: Qualitative, quantitative, and mixed method approaches. Thousand Oaks, 
+CA: Sage Publications. 
+Davenport, T. H. (2006). Competing on analytics. Harvard Business Review, 84(1), 98-107. 
+Deci, E. L., & Ryan, R. M. (2012a). Motivation, personality, and development within embedded social contexts: An 
+overview of self-determination theory. In R. M. Ryan (Ed.), The Oxford handbook of human motivation (pp. 
+85–107). Oxford, UK: Oxford University Press 
+Deci, E. L., & Ryan, R. M. (2012b). Self-determination theory. In P. A. M. Van Lange, A. W. Kruglanski, & E. T. 
+Higgins (Eds.), Handbook of theories of social psychology (Vol. 1, pp. 416-437). Thousand Oaks, CA: 
+Sage.Deci, E. L., & Ryan, R. M. (2000). The “what” and “why” of goal pursuits: Human needs and the self-
+determination of behaviour. Psychological Inquiry, 11(4), 227–268. 
+Deci, E. L., Vallerand, R. J., Pelletier, L. G., Ryan, R. M. (1991). Motivation and education: The self-determination 
+perspective. Educational Psychologist, 26(3&4), 325-346. 
+Dhar V., & Sundararajan, A. (2007). Information technologies in business: A blueprint for education and research. 
+Information Systems Research, 18(2), 125-141. 
+Economist. (2010). The worldwide war on baby girls: Technology, declining fertility and ancient prejudice are 
+combining to unbalance societies. Retrieved from http://www.economist.com/node/15636231 
+Economist. (2011). Special report: Personal technology: Beyond the PC. Retrieved from 
+http://www.economist.com/blogs/babbage/2011/10/special-report-personal-technology 
+DeCosta, J. W. (2011). Course modality choice and students’ self-selection of courses. Retrieved from 
+http://ssrn.com/abstract=1797267 
+Gefen, D., Ragowsky, A., McLean, E. R., Markus, M. L., Rivard, S., & Rossi, M. (2012). ICIS 2011 panel report: Are 
+we on the wrong track and do MIS curricula need to be reengineered? Communications of the Association for 
+Information Systems, 30. 
+Goldmanis, M., Hortacsu, A., Syverson, C., & Emre, Ö. (2010). -commerce and the market structure of retail 
+industries. The Economic Journal, 120(545), 651-682. 
+Grint, K. (2005). The sociology of work: Introduction (3rd ed.). Cambridge, UK: Polity Press. 
+Hammer, M., & Stanton, S. (1999). How process enterprises really work. Harvard Business Review, 77(6), 108-120. 
+Hammer, M. (2007). The process audit. Harvard Business Review, 85(4), 111-123. 
+Harper, S. R., & Quaye, S. J. (2008). Beyond sameness, with engagement and outcomes for all: An introduction. In 
+S. R. Harper & S. J. Quaye (Eds.), Student engagement in higher education: Theoretical perspectives and 
+practical approaches for diverse populations (pp. 1-16). New York, NY: Routledge. 
+Iyer, B., & Davenport, T.H. (2008). Reverse engineering Google's innovation machine. Harvard Business Review, 
+86(4), 58-68. 
+  
+176 
+Volume 36 Article 10 
+Iyer, B., & Henderson, J. C. (2010). Preparing for the future: Understanding the seven capabilities cloud computing. 
+MIS Quarterly Executive, 9(2), 117-131. 
+Jensen, R. (2007). The digital provide: Information (technology), market performance, and welfare in the South 
+Indian fisheries sector. The Quarterly Journal of Economics, 122(3), 879-924. 
+Kahneman D. (2003). Maps of bounded rationality: Psychology for behavioural economics. The American Economic 
+Review, 93(5), 1449-1475. 
+Kapp, K. M. (2012). The gamification of learning and instruction: Game-based methods and strategies for training 
+and education. San Francisco, CA: Wiley. 
+Krapp, A. (1999). Interest, motivation and learning: An educational-psychological perspective. European Journal of 
+Psychology of Education, 14(1), 23–40. 
+Kuh, G. D., Kinzie, J., Buckley, J. A., Bridges, B. K., & Hayek, J. C. (2007). Piecing together the student success 
+puzzle: Research, propositions, and recommendations. ASHE Higher Education Report, 32(5), 1-182. 
+Malone, T. W., Yates, J., & Benjamin, R. I. (1989). The logic of electronic markets. Harvard Business Review, 67(3), 
+166-172. 
+McAfee, A. (2007). Those to whom IS matters most: Perspectives of IS faculty on curricula, and class materials. 
+Information Systems Research, 18(2), 142-149. 
+McAfee. A., & Brynjolfsson, E. (2008). Investing in IT that makes a competitive difference. Harvard Business 
+Review, 86(7/8), 98-107. 
+Maclellan, E. (2008). The significance of motivation in student-centred learning: A reflective case study. Teaching in 
+Higher Education, 13(4), 411–421. 
+Miles, M. B., & Huberman, A. M. (1994). Qualitative data analysis (2nd Ed.). Thousand Oaks, CA: Sage. 
+Niemiec, C. P., & Ryan, R. M. (2009). Autonomy, competence, and relatedness in the classroom: Applying self-
+determination theory to educational practice. Theory and Research in Education, 7, 133–144. 
+Orlikowski, W. J. (2000). Using technology and constituting structures: A practice lens for studying technology in 
+organizations. Organization Science, 11(4), 404-442. 
+Pintrich, P. (2004). A conceptual framework for assessing motivation and self-regulated learning in college students. 
+Educational Psychology Review, 16(4), 385–407. 
+Ryan, R .M., & Deci, E. L. (2000), Self-determination theory and the facilitation of intrinsic motivation, social 
+development, and well-being. American Psychologist, 55(1), 68-78. 
+Schunk, D. H., Meece, J. R., & Pintrich, P. R. (2013). Motivation in education: Theory, research, and applications (4th 
+ed.). New York: Pearson   
+Senor, D., & Singer, S. (2009). Start-up nation: The story of Israel's economic miracle. New York, NY: Twelve. 
+Shapiro C., & Varian, H. (1999). Information rules: A strategic guide to the network economy. Boston, MA: Harvard 
+Business School Press. 
+Tadelis, S., & Williamson, O. (2012). Transaction cost economics. Retrieved from http://ssrn.com/abstract=2020176 
+Thompson, A., Strickland A. J., & Gamble J. (2013). Crafting and executing strategy: Concepts and readings (19th 
+ed.). New York: Mcgraw Hill. 
+Vansteenkiste, M., Simons, J., Lens, W., Sheldon, K. M., Deci, E. L. (2004). Motivating learning, performance, and 
+persistence: The synergistic effects of intrinsic goal contents and autonomy-supportive contexts. Journal of 
+Personality and Social Psychology, 87(2), 246–260. 
+von Hippel, E. (2006). Democratizing innovation. Cambridge, MA: MIT Press. 
+Weill P., & Ross, J. W. (2009). IT savvy: What top executives must know to go from pain to gain. Boston, MA: 
+Harvard Business Press. 
+Whelan E., & Firth, D. (2012). Changing the introductory IS course to improve future enrolments: An Irish 
+perspective. Journal of Information Systems Education, 23(4), 395-405. 
+ABOUT THE AUTHORS 
+Yossi Lichtenstein is a lecturer in Innovation Management at the Norwich Business School, University of East 
+Anglia. Previously, he lectured at the College of Management, Israel and at University College Dublin. Yossi was a 
+  
+Volume 36 Article 10 
+177 
+staff member at IBM Research and at Hewlett-Packard Laboratories. He has published in MIS Quarterly and 
+Communications of the ACM about economic aspects of software development and has co-authored several patents 
+in the area of hardware design verification. 
+Pamela Abbott is a lecturer and researcher in Information Systems at Brunel University London, UK with a specific 
+interest in the area of global sourcing. Her initial focus was on nearshore and proximity models of global sourcing 
+and more recently she has been investigating cross-cultural and knowledge processing issues related to the 
+distributed collaborative work involved in offshoring. She has recently won the Journal of Strategic Information 
+Systems best paper award in 2013 for her work on the “creolization” collaborative processes in the Chinese software 
+and services outsourcing industry. This work emerged from a five-year international collaborative research project 
+which she led with UK and China based researchers investigating the competitive strategies employed by Chinese 
+IT service provider firms who operate in this highly competitive environment. Her other research interests include the 
+suitability of specific locations for software and services outsourcing, and the role that distance plays in managing 
+offshore working arrangements.  
+Amit Rechavi is a lecturer in Innovation and Technology at the Engineering and Business Schools, Ruppin 
+Academic Center, Israel. He is a member of the Interned Research Centre in the University of Haifa. Amit’s main 
+research interest is social networks analysis; his other research interests include online entrepreneurship, mobile 
+applications and project management. Previously Amit worked for Yahoo! and HP consulting. 
+Copyright © 2014 by the Association for Information Systems. Permission to make digital or hard copies of all or part 
+of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for 
+profit or commercial advantage and that copies bear this notice and full citation on the first page. Copyright for 
+components of this work owned by others than the Association for Information Systems must be honored. 
+Abstracting with credit is permitted. To copy otherwise, to republish, to post on servers, or to redistribute to lists 
+requires prior specific permission and/or fee. Request permission to publish from: AIS Administrative Office, P.O. 
+Box 2712 Atlanta, GA, 30301-2712, Attn: Reprints; or via e-mail from ais@aisnet.org. 
+ 
+ 
+  
+ 
+Volume 36 Article 10 
+  
+  ISSN: 1529-3181 
+EDITOR-IN-CHIEF 
+Matti Rossi 
+Aalto University 
+AIS PUBLICATIONS COMMITTEE 
+Virpi Tuunainen 
+Vice President Publications  
+Aalto University 
+Matti Rossi 
+Editor, CAIS  
+Aalto University 
+Suprateek Sarker 
+Editor, JAIS 
+University of Virginia 
+Robert Zmud 
+AIS Region 1 Representative 
+University of Oklahoma 
+Phillip Ein-Dor 
+AIS Region 2 Representative 
+Tel-Aviv University 
+Bernard Tan 
+AIS Region 3 Representative 
+National University of Singapore 
+CAIS ADVISORY BOARD 
+Gordon Davis 
+University of Minnesota 
+Ken Kraemer 
+University of California at 
+Irvine 
+M. Lynne Markus  
+Bentley University 
+Richard Mason 
+Southern Methodist University 
+Jay Nunamaker  
+University of Arizona 
+Henk Sol 
+University of Groningen 
+Ralph Sprague 
+University of Hawaii 
+Hugh J. Watson 
+University of Georgia  
+CAIS SENIOR EDITORS 
+Steve Alter 
+University of San Francisco 
+Michel Avital 
+Copenhagen Business School 
+CAIS EDITORIAL BOARD 
+Monica Adya 
+Marquette University 
+Dinesh Batra 
+Florida International University 
+Tina Blegind Jensen 
+Copenhagen Business School 
+Indranil Bose 
+Indian Institute of Management 
+Calcutta 
+Tilo Böhmann  
+University of Hamburg 
+Thomas Case 
+Georgia Southern University 
+Tom Eikebrokk 
+University of Agder 
+Harvey Enns 
+University of Dayton 
+Andrew Gemino 
+Simon Fraser University 
+Matt Germonprez 
+University of Nebraska at Omaha 
+Mary Granger 
+George Washington University 
+Douglas Havelka 
+Miami University 
+Shuk Ying (Susanna) Ho 
+Australian National University 
+Jonny Holmström 
+Umeå University 
+Tom Horan 
+Claremont Graduate University 
+Damien Joseph 
+Nanyang Technological University 
+K.D. Joshi 
+Washington State University 
+Michel Kalika 
+University of Paris Dauphine 
+Karlheinz Kautz 
+Copenhagen Business School 
+Julie Kendall 
+Rutgers University 
+Nelson King 
+American University of Beirut 
+Hope Koch 
+Baylor University 
+Nancy Lankton 
+Marshall University 
+Claudia Loebbecke 
+University of Cologne 
+Paul Benjamin Lowry 
+City University of Hong Kong 
+Don McCubbrey  
+University of Denver 
+Fred Niederman 
+St. Louis University 
+Shan Ling Pan 
+National University of Singapore 
+Katia Passerini 
+New Jersey Institute of 
+Technology 
+Jan Recker 
+Queensland University of 
+Technology 
+Jackie Rees 
+Purdue University 
+Jeremy Rose  
+Aarhus University 
+Saonee Sarker  
+Washington State University 
+Raj Sharman 
+State University of New York at 
+Buffalo 
+Thompson Teo 
+National University of Singapore 
+Heikki Topi  
+Bentley University 
+Arvind Tripathi  
+University of Auckland Business 
+School 
+Frank Ulbrich 
+Newcastle Business School 
+Chelley Vician 
+University of St. Thomas 
+Padmal Vitharana 
+Syracuse University 
+Fons Wijnhoven 
+University of Twente 
+Vance Wilson 
+Worcester Polytechnic Institute 
+Yajiong Xue 
+East Carolina University 
+Ping Zhang 
+Syracuse University 
+DEPARTMENTS 
+Debate 
+Karlheinz Kautz 
+History of Information Systems 
+Editor: Ping Zhang 
+Papers in French 
+Editor: Michel Kalika 
+Information Systems and Healthcare 
+Editor: Vance Wilson 
+Information Technology and Systems 
+Editors: Dinesh Batra and Andrew Gemino 
+ADMINISTRATIVE  
+James P. Tinsley 
+AIS Executive Director 
+Meri Kuikka 
+CAIS Managing Editor 
+Aalto University 
+Copyediting by  
+Adam LeBrocq, AIS Copyeditor 
+ 
+ 
+View publication stats
