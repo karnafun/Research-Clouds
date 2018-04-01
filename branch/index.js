@@ -23,7 +23,7 @@ function LoadUser() {
 
 
 
-let baseX = 800, baseY = 300;
+let baseX = 300 , baseY = 300;
 let greensX = baseX, greensY = baseY;
 let reds = [];
 let greens = [];
@@ -38,32 +38,33 @@ ConfigurePositions();
 function init() {
     for (var i = 0; i < User.Clusters.length; i++) {
         var div = document.createElement('div');
-        div.className = 'box red hidden';
-        //div.style.backgroundImage = "url('" + User.ImagePath + "')";
+        div.setAttribute('class', 'box red hidden');
         div.innerHTML = "<p>" + User.Clusters[i].Name + "</p>";
+        div.setAttribute('style', 'position:absolute');
         div.id = i;
-        document.body.appendChild(div);
-        //div.onclick = function (e) { RedClick(div); };
+        document.getElementById("boxes").appendChild(div);
         reds[reds.length] = div;
+
     }
-    //for (var j = 0; j < 10; j++) {
-    //    greens[greens.length] = GetDiv('green hidden');
-    //}    
+ 
     ShowPurple();
 }
 function ShowPurple() {
-    anime({
-        targets: purple,
-        opacity: 1,
-        translateX: baseX,
-        translateY: baseY,
-        duration: 500
+    //anime({
+    //    targets: purple,
+    //   // translateX: 200,
+    //    opacity: 1,
+    //   // duration: 500
+    //});
 
-
-    });
+    p = document.getElementsByClassName("purple");
+    p[0].style.opacity = 1;
 
 }
 function ShowReds() {
+
+ 
+
     //redo onclicks:
     for (var t = 0; t < 4; t++) {
         var _div = document.getElementById(t);
@@ -77,22 +78,25 @@ function ShowReds() {
         translateY: {
             value: function (target, index) {
                 if (index === 0) {
-                    return [baseY, baseY + 150];
+                    return [0, 150];
                 } else if (index === 2) {
-                    return [baseY, baseY - 150];
+                    return [0, -150];
                 } else {
-                    return [baseY, baseY];
+                    return [0, 0];
                 }
             }
         },
         translateX: {
             value: function (target, index) {
-                if (index === 1) {
-                    return [baseX, baseX + 150];
-                } else if (index === 3) {
-                    return [baseX, baseX - 150];
+                if (index === 0 || index === 2) {
+                    return -100
+                }
+                if (index === 1 ) {
+                    return [0, 50];
+                } else if (index === 3 ) {
+                    return [0, -250];
                 } else {
-                    return [baseX, baseX];
+                    return [0, 0];
                 }
             }
         },
@@ -105,19 +109,10 @@ function ShowReds() {
 
 function GetDiv(classString) {
     var div = document.createElement('div');
-    div.className = 'box ' + classString;
-    document.body.appendChild(div);
+    div.setAttribute('class', 'box ' + classString);
+    //div.className = 'box ' + classString;
+    document.getElementById("boxes").appendChild(div);
     GetClickEvent(div);
-    //div.addEventListener('click', function (event) {
-    //    if (classString.search('purple')!==-1) {
-    //        PurpleClick(div);
-    //    } else if (classString.search('red')!==-1)
-    //    {
-    //        RedClick(div);
-    //    } else if (classString.search('green') !== -1){
-    //        GreenClick(div);
-    //    }
-    //});
     return div;
 }
 
@@ -278,7 +273,9 @@ function GenerateClusters(_id) {
         div.style.backgroundSize = 'cover';
         div.id = 'r' + clust.Users[i];
         greens[greens.length] = div;
-        document.body.appendChild(div)
+        document.getElementById("boxes").appendChild(div);
+
+      //  document.body.appendChild(div)
     }
 }
 

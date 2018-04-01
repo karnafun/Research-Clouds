@@ -1,16 +1,17 @@
 ﻿
 #boxes {
-    width: 80%;
-    margin: auto;    
+    width: 100%; 
     text-align:center;
+	margin-top:30%;
+	border:1px solid black;	
 }
 .box {
-    
     width: 100px;
     height: 100px;
-    position: absolute;
     display: inline-block;
-    margin:5px;
+	border-radius:100%;
+	
+    /*margin:5px auto;*/
 }
 
 .red {
@@ -33,3 +34,10 @@
     opacity:0;
 }
 
+.container{
+	text-align:center;
+}
+
+.box p{
+	margin-top:30%
+}
