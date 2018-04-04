@@ -36,27 +36,26 @@ ConfigurePositions();
 
 
 function init() {
+    var count = 1
     for (var i = 0; i < User.Clusters.length; i++) {
         var div = document.createElement('div');
-        div.setAttribute('class', 'box red hidden');
+        div.setAttribute('class', 'box russian hidden');
         div.innerHTML = "<p>" + User.Clusters[i].Name + "</p>";
-        div.setAttribute('style', 'position:absolute');
+        //div.setAttribute('style', 'position:absolute');
         div.id = i;
-        document.getElementById("boxes").appendChild(div);
+        document.getElementById("d" + count).appendChild(div);
         reds[reds.length] = div;
-
+        count++
+        if (count === 3) {
+            count+=2;
+        }
     }
- 
+   
     ShowPurple();
 }
 function ShowPurple() {
-    //anime({
-    //    targets: purple,
-    //   // translateX: 200,
-    //    opacity: 1,
-    //   // duration: 500
-    //});
 
+    $('.purple').show();
     p = document.getElementsByClassName("purple");
     p[0].style.opacity = 1;
 
@@ -75,45 +74,24 @@ function ShowReds() {
         opacity: {
             value: 1
         },
-        translateY: {
-            value: function (target, index) {
-                if (index === 0) {
-                    return [0, 150];
-                } else if (index === 2) {
-                    return [0, -150];
-                } else {
-                    return [0, 0];
-                }
-            }
-        },
-        translateX: {
-            value: function (target, index) {
-                if (index === 0 || index === 2) {
-                    return -100
-                }
-                if (index === 1 ) {
-                    return [0, 50];
-                } else if (index === 3 ) {
-                    return [0, -250];
-                } else {
-                    return [0, 0];
-                }
-            }
-        },
-        easeeasing: 'easeInOutSine'
+        translateY: [{ value: 150, transition: 800 }, { value: 0, transition: 600 }],
+        
+        translateX: [{ value: 150, transition: 800 }, { value: 0, transition: 600 }],
+        easeeasing: 'easeInOutSine',
+        delay: function (el, i, l) { return i * 1000; },
 
 
 
     });
 
-    anime.speed = .4;
+    //anime.speed = .4;
 }
 
 function GetDiv(classString) {
     var div = document.createElement('div');
     div.setAttribute('class', 'box ' + classString);
-    //div.className = 'box ' + classString;
-    document.getElementById("boxes").appendChild(div);
+    div.className = 'box ' + classString;
+    document.getElementById("user").appendChild(div);
     GetClickEvent(div);
     return div;
 }
@@ -121,8 +99,12 @@ function GetDiv(classString) {
 function PurpleClick(target) {
     ShowReds();
 }
+
 function RedClick(target) {
    
+    $('.purple').hide();
+    var p = $(".purple");
+    var position = p.position();
     var rect = target.getBoundingClientRect();
     greensX = rect.left;
     greensY = rect.top;
@@ -131,36 +113,34 @@ function RedClick(target) {
     anime({
         targets: _targets,
         opacity: 0,
-        duration: 100
     });
     for (var i = 0; i < _targets.length; i++) {
         _targets[i].onclick = function () { return false; };
     }
     GenerateClusters(target.id);
+    
     var centerRed = anime({
         targets: target,
-        translateX: baseX,
-        translateY: baseY,
-        complete: function (anim) {
+        translateX: position.left,
+        translateY: position.top,
+        complete: function (anime) {
             AnimateGreens();
         }
     });
 
-   
+    
+
+
 }
 function GreenClick(target) {
 
 }
 
 function ShowGreens() {
-    var timeline = anime.timeline();
-    timeline.add({
+    anime(
+    {
         targets: greens,
-        opacity: 1,
-        translateX: function (target, index) {
-            return [greensX, greensX + index * 150];
-        },
-        translateY: [greensY, greensY + 1]
+        opacity: 0
     });
 }
 
@@ -233,6 +213,7 @@ function ConfigurePositions() {
 }
 
 function AnimateGreens() {
+
     var counter = 0;
     for (var j = 0; j < greens.length; j++) {
         if (counter === 0) {
@@ -255,8 +236,9 @@ function AnimateGreens() {
         anime({
             targets: greens[j],
             opacity: 1,
-            translateX: [baseX, _pos.x],
-            translateY: [baseY, _pos.y]
+            //translateX: [0,_pos.x-200],
+            // translateY: [0,_pos.y-400]
+
         });
 
         if (counter > 3) {
@@ -268,6 +250,7 @@ function AnimateGreens() {
 function GenerateClusters(_id) {
     var clust = User.Clusters[_id];
     greens = [];
+    var counter = 1;
     for (var i = 0; i < clust.Users.length; i++) {
         var div = document.createElement('div');
         div.className = 'box green hidden';
@@ -275,10 +258,14 @@ function GenerateClusters(_id) {
         div.style.backgroundSize = 'cover';
         div.id = 'r' + clust.Users[i];
         greens[greens.length] = div;
-        document.getElementById("boxes").appendChild(div);
-
+        document.getElementById("d" + counter).appendChild(div);
+        counter++;
+        if (counter > 6) {
+            counter = 1;
+        }
       //  document.body.appendChild(div)
     }
+    ShowGreens();
 }
 
 function BackToClusters() {
