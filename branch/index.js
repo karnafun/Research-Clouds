@@ -36,7 +36,7 @@ ConfigurePositions();
 
 
 function init() {
-    var count = 1
+    var count = 2
     for (var i = 0; i < User.Clusters.length; i++) {
         var div = document.createElement('div');
         div.setAttribute('class', 'box russian hidden');
@@ -46,15 +46,15 @@ function init() {
         document.getElementById("d" + count).appendChild(div);
         reds[reds.length] = div;
         count++
-        if (count === 3) {
-            count+=2;
+        if (count === 3 || count === 6 ) {
+            count++;
         }
     }
    
     ShowPurple();
 }
-function ShowPurple() {
-
+function ShowPurple(target) {
+    $(target).show();
     $('.purple').show();
     p = document.getElementsByClassName("purple");
     p[0].style.opacity = 1;
@@ -89,8 +89,7 @@ function ShowReds() {
 
 function GetDiv(classString) {
     var div = document.createElement('div');
-    div.setAttribute('class', 'box ' + classString);
-    div.className = 'box ' + classString;
+    div.setAttribute('class', classString);
     document.getElementById("user").appendChild(div);
     GetClickEvent(div);
     return div;
@@ -108,7 +107,7 @@ function RedClick(target) {
     var rect = target.getBoundingClientRect();
     greensX = rect.left;
     greensY = rect.top;
-    target.onclick = function (e) { BackToClusters(); };
+    target.onclick = function (e) { BackToClusters(target); };
     _targets = AllDivsExcept(target);
     anime({
         targets: _targets,
@@ -121,10 +120,12 @@ function RedClick(target) {
     
     var centerRed = anime({
         targets: target,
-        translateX: position.left,
-        translateY: position.top,
+        scale: 2,
+        translateY: 24,
         complete: function (anime) {
             AnimateGreens();
+            document.getElementById('user').appendChild(target);
+            
         }
     });
 
@@ -215,36 +216,17 @@ function ConfigurePositions() {
 function AnimateGreens() {
 
     var counter = 0;
-    for (var j = 0; j < greens.length; j++) {
-        if (counter === 0) {
-            _pos = positions_upperLeft[Math.floor(Math.random() * positions_upperLeft.length)];
-            counter++;
-        } else if (counter === 1) {
-            _pos = positions_lowerLeft[Math.floor(Math.random() * positions_lowerLeft.length)];
-            counter++;
-        } else if (counter === 2) {
-            _pos = positions_lowerRight[Math.floor(Math.random() * positions_lowerRight.length)];
-            counter++;
-        } else if (counter === 3) {
-            _pos = positions_upperRight[Math.floor(Math.random() * positions_upperRight.length)];
-            counter++;
-        }
-        if (!_pos.open) {
-            j--;
-            continue;
-        }
+
         anime({
-            targets: greens[j],
+            targets: greens,
             opacity: 1,
-            //translateX: [0,_pos.x-200],
-            // translateY: [0,_pos.y-400]
+            translateX: [{ value: function() {return anime.random(-200, 250) }, transition: 800 }, { value: 0, transition: 600 }],
+            translateY: [{ value: function () { return anime.random(-200, 250) }, transition: 800 }, { value: 0, transition: 600 }],
+            easeeasing: 'easeInOutSine',
+           delay: function(el, i, l) { return i * 1000; },
 
-        });
+    });
 
-        if (counter > 3) {
-            counter = 0;
-        }
-    }
 }
 
 function GenerateClusters(_id) {
@@ -268,11 +250,32 @@ function GenerateClusters(_id) {
     ShowGreens();
 }
 
-function BackToClusters() {
+function BackToClusters(target) {
+    switch (target.id) {
+        case '0':
+            $(target).hide();
+            document.getElementById('d2').appendChild(target);
+            break;
+        case '1':
+            $(target).hide();
+            document.getElementById('d4').appendChild(target);
+            break;
 
+
+        case '2':
+            $(target).hide();
+            document.getElementById('d5').appendChild(target);
+            break;
+        case '3':
+            $(target).hide();
+            document.getElementById('d7').appendChild(target);
+            break;
+    }
+
+    //document.getElementById().appendChild(target);
     for (var i = 0; i < greens.length; i++) {
         greens[i].parentNode.removeChild(greens[i]);
     }
     PurpleClick();
-    ShowPurple();
+    ShowPurple(target);
 }
