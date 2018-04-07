@@ -10,6 +10,7 @@ function LoadUser() {
             }
             User = results;
             ShowPurple();
+           // init();
             purple.style.backgroundImage = "url('" + User.ImagePath + "')";
             purple.style.backgroundSize = 'cover';
         }, function (e) { return false; });
@@ -22,7 +23,7 @@ function LoadUser() {
 
 
 
-
+var go = true; // to not run init() many times
 let baseX = 300 , baseY = 300;
 let greensX = baseX, greensY = baseY;
 let reds = [];
@@ -41,17 +42,20 @@ function ShowPurple() {
 
 }
 function PurpleClick(target) {
-    //init();
+    if (go) {
+        init();
+    }
     ShowReds();
+    go = false;
 }
 
 function init() {
+
     var count = 2
     for (var i = 0; i < User.Clusters.length; i++) {
         var div = document.createElement('div');
         div.setAttribute('class', 'box russian hidden');
         div.innerHTML = "<p>" + User.Clusters[i].Name + "</p>";
-        //div.setAttribute('style', 'position:absolute');
         div.id = i;
         document.getElementById("d" + count).appendChild(div);
         reds[reds.length] = div;
@@ -61,12 +65,8 @@ function init() {
         }
     }
    
-    //ShowPurple();
 }
-function ShowReds() {
-    init();
-  
-
+function ShowReds() {  
     //red onclicks:
     for (var t = 0; t < 4; t++) {
         var _div = document.getElementById(t);
@@ -247,25 +247,12 @@ function GenerateClusters(_id) {
 }
 
 function BackToClusters(target, targets) {
-    $(target).hide();
-    for (var i = 0; i < targets.length ; i++) {
-        $(targets[i]).hide();
+    init();
+    target.parentNode.removeChild(target);
+    for (var i = 0; i < targets.length; i++) {
+        targets[i].parentNode.removeChild(targets[i]);
     }
-    switch (target.id) {
-        case '0':
-            //
-            document.getElementById('d2').appendChild(target);
-            break;
-        case '1':
-            document.getElementById('d4').appendChild(target);
-            break;
-        case '2':
-            document.getElementById('d5').appendChild(target);
-            break;
-        case '3':
-            document.getElementById('d7').appendChild(target);
-            break;
-    }
+
 
 
     for (var i = 0; i < greens.length; i++) {
