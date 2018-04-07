@@ -9,7 +9,7 @@ function LoadUser() {
                 RedirectToLogin();
             }
             User = results;
-            init();
+            ShowPurple();
             purple.style.backgroundImage = "url('" + User.ImagePath + "')";
             purple.style.backgroundSize = 'cover';
         }, function (e) { return false; });
@@ -34,6 +34,16 @@ let startY = baseY;
 let positions = [];
 ConfigurePositions();
 
+function ShowPurple() {
+
+    p = document.getElementsByClassName("purple");
+    p[0].style.opacity = 1;
+
+}
+function PurpleClick(target) {
+    //init();
+    ShowReds();
+}
 
 function init() {
     var count = 2
@@ -51,20 +61,13 @@ function init() {
         }
     }
    
-    ShowPurple();
-}
-function ShowPurple(target) {
-    $(target).show();
-    $('.purple').show();
-    p = document.getElementsByClassName("purple");
-    p[0].style.opacity = 1;
-
+    //ShowPurple();
 }
 function ShowReds() {
+    init();
+  
 
- 
-
-    //redo onclicks:
+    //red onclicks:
     for (var t = 0; t < 4; t++) {
         var _div = document.getElementById(t);
         _div.onclick = function (e) { RedClick(this); };
@@ -74,9 +77,9 @@ function ShowReds() {
         opacity: {
             value: 1
         },
-        translateY: [{ value: 150, transition: 800 }, { value: 0, transition: 600 }],
+        translateY: [{ value: function() { return anime.random(-200, 250) }, transition: 800 }, { value: 0, transition: 600 }],
         
-        translateX: [{ value: 150, transition: 800 }, { value: 0, transition: 600 }],
+        translateX: [{ value: function() { return anime.random(-200, 250) }, transition: 800 }, { value: 0, transition: 600 }],
         easeeasing: 'easeInOutSine',
         delay: function (el, i, l) { return i * 1000; },
 
@@ -95,23 +98,26 @@ function GetDiv(classString) {
     return div;
 }
 
-function PurpleClick(target) {
-    ShowReds();
+function GetClickEvent(target) {
+    target.onclick = function (e) {
+        if (target.className.search('purple') !== -1) {
+            PurpleClick(target);
+        } else if (target.className.search('red') !== -1) {
+            RedClick(target);
+        } else if (target.className.search('green') !== -1) {
+            GreenClick(target);
+        }
+    };
 }
-
 function RedClick(target) {
    
     $('.purple').hide();
-    var p = $(".purple");
-    var position = p.position();
-    var rect = target.getBoundingClientRect();
-    greensX = rect.left;
-    greensY = rect.top;
     target.onclick = function (e) { BackToClusters(target); };
     _targets = AllDivsExcept(target);
     anime({
         targets: _targets,
         opacity: 0,
+
     });
     for (var i = 0; i < _targets.length; i++) {
         _targets[i].onclick = function () { return false; };
@@ -125,12 +131,12 @@ function RedClick(target) {
         complete: function (anime) {
             AnimateGreens();
             document.getElementById('user').appendChild(target);
-            
+            target.setAttribute('class', 'animated fadeIn russian box');
         }
     });
 
-    
 
+    target.onclick = function (e) { BackToClusters(target, _targets); };
 
 }
 function GreenClick(target) {
@@ -157,17 +163,7 @@ function AllDivsExcept(target) {
     return list;
 }
 
-function GetClickEvent(target) {
-    target.onclick = function (e) {
-        if (target.className.search('purple') !== -1) {
-            PurpleClick(target);
-        } else if (target.className.search('red') !== -1) {
-            RedClick(target);
-        } else if (target.className.search('green') !== -1) {
-            GreenClick(target);
-        }
-    };
-}
+
 
 function ConfigurePositions() {
     startX = baseX;
@@ -250,32 +246,32 @@ function GenerateClusters(_id) {
     ShowGreens();
 }
 
-function BackToClusters(target) {
+function BackToClusters(target, targets) {
+    $(target).hide();
+    for (var i = 0; i < targets.length ; i++) {
+        $(targets[i]).hide();
+    }
     switch (target.id) {
         case '0':
-            $(target).hide();
+            //
             document.getElementById('d2').appendChild(target);
             break;
         case '1':
-            $(target).hide();
             document.getElementById('d4').appendChild(target);
             break;
-
-
         case '2':
-            $(target).hide();
             document.getElementById('d5').appendChild(target);
             break;
         case '3':
-            $(target).hide();
             document.getElementById('d7').appendChild(target);
             break;
     }
 
-    //document.getElementById().appendChild(target);
+
     for (var i = 0; i < greens.length; i++) {
         greens[i].parentNode.removeChild(greens[i]);
     }
+    $('.purple').show();
     PurpleClick();
-    ShowPurple(target);
+    ShowPurple();
 }

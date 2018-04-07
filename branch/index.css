@@ -89,4 +89,14 @@
 .bor{
 	border:1px solid black;
 }
-
+#d4 .box{
+	float:right;
+}
+
+#d5 .box {
+	float: left;
+}
+
+#d4, #d5 {
+	margin-top:50px;
+}
