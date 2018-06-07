@@ -22,14 +22,14 @@ function LoadUser() {
 
 
 
-
 var go = true; // to not run init() many times
 let baseX = 300 , baseY = 300;
 let greensX = baseX, greensY = baseY;
 let reds = [];
 let greens = [];
 let purple = GetDiv('purple hidden');
-
+var window_width = $(window).width();
+var window_height = $(window).height();
 let startX = baseX;
 let startY = baseY;
 let positions = [];
@@ -54,10 +54,10 @@ function init() {
     var count = 2
     for (var i = 0; i < User.Clusters.length; i++) {
         var div = document.createElement('div');
-        div.setAttribute('class', 'box russian hidden');
+        div.setAttribute('class', 'box russian elem');
         div.innerHTML = "<p>" + User.Clusters[i].Name + "</p>";
         div.id = i;
-        document.getElementById("d" + count).appendChild(div);
+        document.getElementById("bd").appendChild(div);
         reds[reds.length] = div;
         count++
         if (count === 3 || count === 6 ) {
@@ -71,29 +71,31 @@ function ShowReds() {
     for (var t = 0; t < 4; t++) {
         var _div = document.getElementById(t);
         _div.onclick = function (e) { RedClick(this); };
+        switch (t) {
+            case 0:
+                $("#" + t).animate({ top: 30 + "%", left: 50 + "%", margin: -50 }, 1000);
+                break;
+
+            case 1:
+                $("#" + t).animate({ top: 50 + "%", left: 60 + "%", margin: -50 }, 1000);
+                break;
+            case 2:
+                $("#" + t).animate({ top: 50 + "%", left: 40 + "%", margin: -50 }, 1000);
+                break;
+            case 3:
+                $("#" + t).animate({ top: 70 + "%", left: 50 + "%", margin: -50 }, 1000);
+                break;
+
+        }
     }
-    anime({
-        targets: reds,
-        opacity: {
-            value: 1
-        },
-        translateY: [{ value: function() { return anime.random(-200, 250) }, transition: 800 }, { value: 0, transition: 600 }],
-        
-        translateX: [{ value: function() { return anime.random(-200, 250) }, transition: 800 }, { value: 0, transition: 600 }],
-        easeeasing: 'easeInOutSine',
-        delay: function (el, i, l) { return i * 1000; },
 
 
-
-    });
-
-    //anime.speed = .4;
 }
 
 function GetDiv(classString) {
     var div = document.createElement('div');
     div.setAttribute('class', classString);
-    document.getElementById("user").appendChild(div);
+    document.getElementById("bd").appendChild(div);
     GetClickEvent(div);
     return div;
 }
@@ -114,28 +116,13 @@ function RedClick(target) {
     $('.purple').hide();
     target.onclick = function (e) { BackToClusters(target); };
     _targets = AllDivsExcept(target);
-    anime({
-        targets: _targets,
-        opacity: 0,
+    $(_targets).remove();
 
-    });
+    $("#"+target.id).animate({ top: 50 + "%", left: 50 + "%", margin: -100, height: 200 + "px", width: 200 + "px" }, 1000);
     for (var i = 0; i < _targets.length; i++) {
         _targets[i].onclick = function () { return false; };
     }
     GenerateClusters(target.id);
-    
-    var centerRed = anime({
-        targets: target,
-        scale: 2,
-        translateY: 24,
-        complete: function (anime) {
-            AnimateGreens();
-            document.getElementById('user').appendChild(target);
-            target.setAttribute('class', 'animated fadeIn russian box');
-        }
-    });
-
-
     target.onclick = function (e) { BackToClusters(target, _targets); };
 
 }
@@ -144,11 +131,11 @@ function GreenClick(target) {
 }
 
 function ShowGreens() {
-    anime(
-    {
-        targets: greens,
-        opacity: 0
-    });
+    var h = ((window_height / 4) / Math.floor(Math.random() * 11 + 9)) ;
+    var w = ((window_width / 5) / Math.floor(Math.random() * 11 + 9)) ;
+    for (var i = 0; i < greens.length; i++) {
+        $("#" + greens[i].id).animate({ top: h + (i * Math.random() * 10) + "%", left: w + (i * 10) + "%", margin: -50, height: 100, width: 100 }, 1000);
+    }
 }
 
 function AllDivsExcept(target) {
@@ -231,18 +218,21 @@ function GenerateClusters(_id) {
     var counter = 1;
     for (var i = 0; i < clust.Users.length; i++) {
         var div = document.createElement('div');
-        div.className = 'box green hidden';
+        div.className = 'box green elem';
         div.style.backgroundImage = "url('" + clust.Users[i].ImagePath + "')";
         div.style.backgroundSize = 'cover';
-        div.id = 'r' + clust.Users[i];
+        div.style.zIndex = "-2";
+        div.id = 'r' + clust.Users[i].Id;
         greens[greens.length] = div;
-        document.getElementById("d" + counter).appendChild(div);
+        document.getElementById("bd").appendChild(div);
         counter++;
         if (counter > 6) {
             counter = 1;
-        }
+        }
+
       //  document.body.appendChild(div)
     }
+
     ShowGreens();
 }
 
