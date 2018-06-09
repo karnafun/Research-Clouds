@@ -235,16 +235,16 @@ function AnimateGreens(up, h, w,ww) {
             hTest = (h + countP);
             if (hTest == 50 && wTest == 50) {
                 
-                $("#" + greens[i].id).animate({ top: (h + 12) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%" }, 1000);
+                $("#" + greens[i].id).animate({ top: (h + 12) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%", opacity: 1 }, 1000);
             }
             else {
                 if (up <= 0) {
                     countP += 10;
-                    $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%" }, 1000);
+                    $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%", opacity: 1 }, 1000);
                     
                 }
                 else {
-                    $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%" }, 1000);
+                    $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%", opacity: 1  }, 1000);
                     countP -=5;
                 }
             }
@@ -259,16 +259,16 @@ function AnimateGreens(up, h, w,ww) {
             hTest = (h + countP);
             if (hTest == 50 || wTest == 50) {
                 countP += 10;
-                $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%" }, 1000);
+                $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%", opacity: 1 }, 1000);
             }
             else {
                 if (up <= 0) {
                     countP += 10;
-                    $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%" }, 1000);
+                    $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%", opacity: 1 }, 1000);
 
                 }
                 else {
-                    $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%" }, 1000);
+                    $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%", opacity: 1 }, 1000);
                     countP -= 10;
                 }
             }
@@ -336,17 +336,17 @@ function BigScreenAnimation() {
         _div.onclick = function (e) { RedClick(this); };
         switch (t) {
             case 0:
-                $("#" + t).animate({ top: 32 + "%", left: 50 + "%" ,width: 6 + "%", height: 0, 'padding-bottom': 6 + "%" }, 1000);
+                $("#" + t).animate({ top: 32 + "%", left: 50 + "%", width: 6 + "%", height: 0, 'padding-bottom': 6 + "%", opacity: 1 }, 1000);
                 break;
 
             case 1:
-                $("#" + t).animate({ top: 50 + "%", left: 60 + "%", width: 6 + "%", height: 0, 'padding-bottom': 6 + "%" }, 1000);
+                $("#" + t).animate({ top: 50 + "%", left: 60 + "%", width: 6 + "%", height: 0, 'padding-bottom': 6 + "%", opacity: 1  }, 1000);
                 break;
             case 2:
-                $("#" + t).animate({ top: 68 + "%", left: 50 + "%", width: 6 + "%", height: 0, 'padding-bottom': 6 + "%" }, 1000);
+                $("#" + t).animate({ top: 68 + "%", left: 50 + "%", width: 6 + "%", height: 0, 'padding-bottom': 6 + "%", opacity: 1 }, 1000);
                 break;
             case 3:
-                $("#" + t).animate({ top: 50 + "%", left: 40 + "%", width: 6 + "%", height: 0, 'padding-bottom': 6 + "%" }, 1000);
+                $("#" + t).animate({ top: 50 + "%", left: 40 + "%", width: 6 + "%", height: 0, 'padding-bottom': 6 + "%", opacity: 1 }, 1000);
                 break;
 
         }
@@ -364,17 +364,17 @@ function SetMobileDiv() {
         _div.onclick = function (e) { RedClick(this); };
         switch (t) {
             case 0:
-                $("#" + t).animate({ top: 35 + "%", left: 35 + "%", width: 15 + "%", height: 0, 'padding-bottom': 15 + "%" }, 1000);
+                $("#" + t).animate({ top: 35 + "%", left: 35 + "%", width: 15 + "%", height: 0, 'padding-bottom': 15 + "%", opacity: 1 }, 1000);
                 break;
 
             case 1:
-                $("#" + t).animate({ top: 35 + "%", left: 65 + "%", width: 15 + "%", height: 0, 'padding-bottom': 15 + "%" }, 1000);
+                $("#" + t).animate({ top: 35 + "%", left: 65 + "%", width: 15 + "%", height: 0, 'padding-bottom': 15 + "%", opacity: 1  }, 1000);
                 break;
             case 2:
-                $("#" + t).animate({ top: 65 + "%", left: 65 + "%", width: 15 + "%", height: 0, 'padding-bottom': 15 + "%" }, 1000);
+                $("#" + t).animate({ top: 65 + "%", left: 65 + "%", width: 15 + "%", height: 0, 'padding-bottom': 15 + "%", opacity: 1 }, 1000);
                 break;
             case 3:
-                $("#" + t).animate({ top: 65 + "%", left: 35 + "%", width: 15 + "%", height:0, 'padding-bottom': 15+"%" }, 1000);
+                $("#" + t).animate({ top: 65 + "%", left: 35 + "%", width: 15 + "%", height: 0, 'padding-bottom': 15 + "%", opacity: 1 }, 1000);
                 break;
 
         }
