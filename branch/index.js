@@ -42,7 +42,7 @@ $(document).ready(function () {
 })
     
 
-
+var arrClusterImge = ["../../assets/img/winning-runner.svg", "../../assets/img/kicking-a-footbal-ball.svg", "../../assets/img/soccer-ball-silhouette.svg", "../../assets/img/dumbbells-exercise.svg"];
 var window_width = $(window).width();
 var window_height = $(window).height();
 var go = true; // to not run init() many times
@@ -83,8 +83,11 @@ function init() {
 
         }
         div.setAttribute('class', 'box russian elem');
-        div.innerHTML = "<p>" + User.Clusters[i].Name + "</p>";
+        //div.innerHTML = "<p>" + User.Clusters[i].Name + "</p>";
         div.id = i;
+        div.style.backgroundImage = "url('" + arrClusterImge[i] + "')";
+        div.style.backgroundSize = 'cover';
+        div.style.backgroundRepeat = "no-repeat";
         document.getElementById("bd").appendChild(div);
         reds[reds.length] = div;
         count++
@@ -150,8 +153,8 @@ function GreenClick(target) {
 
 function ShowGreens() {
 
-    var h = (Math.floor(Math.random() *1) + 5)* 10;
-    var w = (Math.floor(Math.random() *2) + 2) * 10;
+    var h = 30;
+    var w = 30;
     countP = 0;
     countPX = 0;
     if (greens.length % 2 == 0) {
@@ -242,7 +245,7 @@ function AnimateGreens(up, h, w,ww) {
                 }
                 else {
                     $("#" + greens[i].id).animate({ top: (h + countP) + "%", left: (w + countPX) + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%" }, 1000);
-                    countP -=10;
+                    countP -=5;
                 }
             }
 
@@ -361,17 +364,17 @@ function SetMobileDiv() {
         _div.onclick = function (e) { RedClick(this); };
         switch (t) {
             case 0:
-                $("#" + t).animate({ top: 35 + "%", left: 35 + "%", width: 10 + "%", height: 0, 'padding-bottom': 10 + "%" }, 1000);
+                $("#" + t).animate({ top: 35 + "%", left: 35 + "%", width: 15 + "%", height: 0, 'padding-bottom': 15 + "%" }, 1000);
                 break;
 
             case 1:
-                $("#" + t).animate({ top: 35 + "%", left: 65 + "%", width: 10 + "%", height: 0, 'padding-bottom': 10 + "%" }, 1000);
+                $("#" + t).animate({ top: 35 + "%", left: 65 + "%", width: 15 + "%", height: 0, 'padding-bottom': 15 + "%" }, 1000);
                 break;
             case 2:
-                $("#" + t).animate({ top: 65 + "%", left: 65 + "%", width: 10 + "%", height: 0, 'padding-bottom': 10 + "%" }, 1000);
+                $("#" + t).animate({ top: 65 + "%", left: 65 + "%", width: 15 + "%", height: 0, 'padding-bottom': 15 + "%" }, 1000);
                 break;
             case 3:
-                $("#" + t).animate({ top: 65 + "%", left: 35 + "%", width: 10 + "%", height:0, 'padding-bottom': 10+"%" }, 1000);
+                $("#" + t).animate({ top: 65 + "%", left: 35 + "%", width: 15 + "%", height:0, 'padding-bottom': 15+"%" }, 1000);
                 break;
 
         }
