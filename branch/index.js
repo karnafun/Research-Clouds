@@ -318,8 +318,13 @@ function BackToClusters(target, targets) {
 
 
     for (var i = 0; i < greens.length; i++) {
-        greens[i].parentNode.removeChild(greens[i]);
+        $(greens[i]).animate({ top: 50 + "%", left: 50 + "%", height: 0, width: 6 + "%", 'padding-bottom': 6 + "%", opacity: 1 }, 1000, function () {
+            for (var i = 0; i < greens.length; i++) {
+                greens[i].parentNode.removeChild(greens[i]);
+            }});
+        
     }
+
     $('.purple').show();
     PurpleClick();
     ShowPurple();
