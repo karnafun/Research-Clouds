@@ -18,6 +18,8 @@
 */
 
 
+
+
 /****************************************************************************************************************************
 	Part 1: Drop Data.
 	Droping all Research clouds related tables, views and procedures ordered by foreign keys constraints
@@ -48,7 +50,7 @@ email nvarchar(250) ,
 uHash nvarchar(max) ,
 uSALT nvarchar(max) ,
 summery nvarchar(500),
-unregistered bit not null
+isRegistered bit not null
 )
 go
 
@@ -157,6 +159,10 @@ go
 
 alter table UsersInCluster
 add constraint UsersInCluster_uid_PK primary key ([uId],cId)
+go
+
+alter table UsersInArticle
+add constraint UsersInArticle_uid_PK primary key ([uId],aId)
 go
 
 /****************************************************************************************************************************

@@ -27,6 +27,12 @@ public class Article : RCEntity
 
         db = new DBServices();
     }
+
+    public void UpdateUsers(List<User> authors)
+    {
+        this.users = authors;
+    }
+
     public Article(int id, string title, string link)
     {
 
@@ -34,6 +40,11 @@ public class Article : RCEntity
         this.id = id;
         this.title = title;
         this.link = link;
+    }
+
+    public void UpdateKeywords(List<Keyword> keywords)
+    {
+        this.keywords = keywords;
     }
 
     //Methods
@@ -87,6 +98,10 @@ public class Article : RCEntity
         }
         return db.RemoveEntity(this);
     }
+
+
+ 
+
 
     private void ValidateUsers()
     {

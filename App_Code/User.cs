@@ -24,21 +24,21 @@ public class User : RCEntity
     public string FirstName { get { return fName; } set { fName = value; } }
     public string MiddleName { get { return mName; } set { mName = value; } }
     public string LastName { get { return lName; } set { lName = value; } }
-    public string Name
-    {
-        get
-        {
-            if (!String.IsNullOrWhiteSpace(mName) && mName.Length > 2)
-            {
-                return string.Format("{0} {1} {2}", fName, mName, lName);
-            }
-            else
-            {
-                mName = " ";
-                return string.Format("{0} {1}", fName, lName);
-            }
-        }
-    }
+    //public string Name
+    //{
+    //    get
+    //    {
+    //        if (!String.IsNullOrWhiteSpace(mName) && mName.Length > 2)
+    //        {
+    //            return string.Format("{0} {1} {2}", fName, mName, lName);
+    //        }
+    //        else
+    //        {
+    //            mName = " ";
+    //            return string.Format("{0} {1}", fName, lName);
+    //        }
+    //    }
+    //}
     public string ImagePath { get { return imgPath; } set { imgPath = value; } }
     public string Degree { get { return degree; } set { degree = value; } }
     public bool IsAdmin { get { return administrator; } }
@@ -49,7 +49,7 @@ public class User : RCEntity
     public string Hash { get { return hash; } }
     public string Salt { get { return salt; } }
     public string Password { set { password = value; } }
-    public bool IsRegistered { set { IsRegistered = value; } get { return IsRegistered; } }
+    public bool IsRegistered { set { isRegistered = value; } get { return isRegistered; } }
     public List<Article> Articles
     {
         get
@@ -78,10 +78,31 @@ public class User : RCEntity
         {
             if (affiliations == null)
             {
-                affiliations = db.GetUserAffiliations(id);
+               affiliations = db.GetUserAffiliations(id);
             }
             return affiliations;
         }
+    }
+
+    public User(string fName,string mName, string lName,Article article)
+    {
+        this.fName = fName;
+        if (!string.IsNullOrEmpty(mName)) { this.mName = mName; }        
+        this.lName = lName;
+      //  this.articles.Add()
+        isRegistered = false;
+        BirthDate = DateTime.MaxValue;
+        RegistrationDate= DateTime.MaxValue;
+       // imgPath = "none";
+        //degree = "none";
+        //administrator = false;
+        //email = "";
+        //hash = "none";
+        //salt = "none";
+        //summery = "";
+        
+        //DateTime bdate = reader["birthDate"] != null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
+        //DateTime registrationDate = reader["registrationDate"] != null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
     }
 
     //Constructors:
@@ -114,6 +135,10 @@ public class User : RCEntity
     //Methods
     public void GetFullInfo()
     {
+       // articles = db.GetUserArticles(this.id);
+       // affiliations = db.GetUserAffiliations(this.id);
+
+
         foreach (Article article in Articles) //Get users for each article
         {
             article.GetFullInfo();
@@ -126,7 +151,9 @@ public class User : RCEntity
     public override string ToString()
     {
         string info = "id: " + id + "<br>";
-        info += "Name: " + Name + "<br>";
+        info += "Name: " + FirstName;
+        if (string.IsNullOrEmpty(MiddleName)) { info += " " + MiddleName; }
+        info+=" "+LastName + "<br>"; 
         info += "Image: " + imgPath + "<br>";
         info += "Admin: " + IsAdmin + "<br>";
         info += "Email: " + Email + "<br>";
