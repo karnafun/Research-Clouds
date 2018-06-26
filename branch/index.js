@@ -1,4 +1,4 @@
-User = { Id: 1 };
+User = { Id: 2 };
 LoadUser();
 function LoadUser() {
     try {
@@ -55,7 +55,7 @@ let purple = GetDiv('purple hidden');
 let startX = baseX;
 let startY = baseY;
 let positions = [];
-ConfigurePositions();
+//ConfigurePositions();
 
 function ShowPurple() {
 
@@ -82,7 +82,7 @@ function init() {
             div.setAttribute('class', 'box russian mobileelem');
 
         }
-        div.setAttribute('class', 'box russian elem');
+       // div.setAttribute('class', 'box russian elem');
         //div.innerHTML = "<p>" + User.Clusters[i].Name + "</p>";
         div.id = i;
         div.style.backgroundImage = "url('" + arrClusterImge[i] + "')";
@@ -149,6 +149,14 @@ function RedClick(target) {
 }
 function GreenClick(target) {
 
+    target.onclick = function (e) {
+        GetUserById({ Id: 2 }, function (results) {
+            localStorage.setItem('Researcher', results.d)
+            window.location.replace("../assets/html/ResearcherProfile.html");
+        }, errorCB)
+    };
+
+
 }
 
 function ShowGreens() {
@@ -183,50 +191,6 @@ function AllDivsExcept(target) {
 }
 
 
-
-//function ConfigurePositions() {
-//    startX = baseX;
-//    startY = baseY;
-//    positions_upperLeft = [
-//        { x: startX - 150, y: startY, open: true },
-//        { x: startX - 300, y: startY, open: true },
-//        { x: startX - 450, y: startY, open: true },
-//        { x: startX - 600, y: startY, open: true },
-//        { x: startX, y: startY - 140, open: true },
-//        { x: startX - 150, y: startY - 140, open: true },
-//        { x: startX - 300, y: startY - 130, open: true },
-//        { x: startX - 450, y: startY - 150, open: true },
-//        { x: startX - 600, y: startY - 170, open: true }
-//    ];
-
-//    positions_upperRight = [
-//        { x: startX + 150, y: startY, open: true },
-//        { x: startX + 300, y: startY, open: true },
-//        { x: startX + 450, y: startY, open: true },
-//        { x: startX + 600, y: startY, open: true },
-//        { x: startX, y: startY + 140, open: true },
-//        { x: startX + 150, y: startY - 140, open: true },
-//        { x: startX + 300, y: startY - 130, open: true },
-//        { x: startX + 450, y: startY - 150, open: true },
-//        { x: startX + 600, y: startY - 170, open: true }
-//    ];
-
-//    positions_lowerRight = [
-//        { x: startX, y: startY + 140, open: true },
-//        { x: startX + 150, y: startY + 140, open: true },
-//        { x: startX + 300, y: startY + 130, open: true },
-//        { x: startX + 450, y: startY + 150, open: true },
-//        { x: startX + 600, y: startY + 170, open: true }
-//    ];
-
-//    positions_lowerLeft = [
-//        { x: startX - 150, y: startY + 140, open: true },
-//        { x: startX - 300, y: startY + 130, open: true },
-//        { x: startX - 450, y: startY + 150, open: true },
-//        { x: startX - 600, y: startY + 170, open: true }
-//    ];
-
-//}
 
 function AnimateGreens(up, h, w,ww) {
     if (ww > 480) {
@@ -286,7 +250,7 @@ function AnimateGreens(up, h, w,ww) {
 function GenerateClusters(_id) {
     var clust = User.Clusters[_id];
     greens = [];
-    var counter = 1;
+     counter = 1;
     for (var i = 0; i < clust.Users.length; i++) {
         var div = document.createElement('div');
         div.className = 'green elem';
@@ -295,6 +259,7 @@ function GenerateClusters(_id) {
         div.style.backgroundRepeat = "no-repeat";
         div.style.zIndex = "-2";
         div.id = 'r' + clust.Users[i].Id;
+        GetClickEvent(div);
         greens[greens.length] = div;
         document.getElementById("bd").appendChild(div);
         counter++;
@@ -385,4 +350,9 @@ function SetMobileDiv() {
         }
     }
     mobilebool = false;
+}
+
+function ViewUser(_id) {
+
+
 }
