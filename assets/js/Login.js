@@ -15,7 +15,9 @@ function Login(results) {
     results = JSON.parse(results.d);
     if (results!=null && results.Name!=null) {
         localStorage.setItem('User', JSON.stringify(results))
+        //window.location.replace("../branch/index.html");
         window.location.replace("../html/UserProfile.html");
+
         
 
     } else {

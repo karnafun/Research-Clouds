@@ -352,7 +352,3 @@ function SetMobileDiv() {
     mobilebool = false;
 }
 
-function ViewUser(_id) {
-
-
-}
