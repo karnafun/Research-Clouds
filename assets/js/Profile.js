@@ -1,5 +1,5 @@
 ﻿
-User = {};
+User = {Id: 2};
 EditedUser = {};
 EditingMode = false;
 ClusterClickedId = -1;
@@ -42,10 +42,10 @@ function UpdatePageFromUser() {
     $("#uSummery").html(User.Summery);
 
 
-    BuildArticles();
-    BuildAffiliations();
-    BuildClusters();
-    ToggleEditingTools(false);
+    //BuildArticles();
+    //BuildAffiliations();
+    //BuildClusters();
+    //ToggleEditingTools(false);
 
 }
 
