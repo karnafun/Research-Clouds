@@ -1,37 +1,36 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta charset="utf-8" />
-    <title>Reseach Clouds</title>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Anime JS Fun</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script src="../js/AjaxCalls.js"></script>
-    <script src="../js/CloudsView.js"></script>
+    <!--<script src="../../js/AjaxCalls.js"></script>
+    <script src="../../js/CloudsView.js"></script>-->
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <link href="../css/MainStyle.css" rel="stylesheet" />
+    <link href="../css/index.css" rel="stylesheet" />
     <link href="../css/CloudsView.css" rel="stylesheet" />
     <link href="../css/animate.css" rel="stylesheet" />
 
-
+    <script src="../js/AjaxCalls.js"></script>
+    <!--<script src="../assets/js/CloudsView.js"></script>-->
 </head>
-<body>
-
-
-    <!--------------------------------------Nav bar------------------------------------------------------>
-
+<body id="bd">
     <nav class="navbar navbar-expand-lg russian">
         <div class="container">
             <a class="navbar-brand" href="UserProfile.html">
-                <img src="../img/Screenshot_3_burned2 - Copy.png" height="50" width="50" class="d-none d-md-block" />
+                <img src="../img/Screenshot_3_burned2 - Copy.png" height="50" width="50" /> <!--class="d-none d-md-block"-->
             </a>
             <div class="ml-auto">
                 <button class="navbar-toggler d-lg-none d-md-block BBg" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
@@ -40,7 +39,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav align-items-end">
                     <li class="nav-item">
-                        <a class="aColor" href="index.html">
+                        <a class="aColor" href="CloudsView.html">
                             Clouds view
                         </a>
                     </li>
@@ -49,7 +48,7 @@
                         <ul id="editUl" class="dropdown-menu">
                             <li><a id="editProfile" href="#">Edit profile</a></li>
                             <li><a id="btn_logout" href="#">Logout</a></li>
-                            <li class="nav-item"><a  href="UserProfile.html">My profile</a></li>
+                            <li class="nav-item"><a href="UserProfile.html">My profile</a></li>
 
                         </ul>
                     </li>
@@ -57,51 +56,17 @@
             </div>
         </div>
     </nav>
-    <!--animation-->
-    <div class="container">
-        <center>
-            <center>
-                <h1>Clouds Network</h1>
-            </center>
+    <!--<div class="container">
+        <label id="widthNum" />
+        <label id="Y" />
+        <label id="X" />
 
-            <div class="modal fade" id="uArticleModale" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title">
-                                Clouds network
-                                <button class="close" data-dismiss="modal">&times;</button>
-                            </h3>
+    </div>-->
 
-                        </div>
-                        <div class="modal-body">
-                            <p>Clicking on one of the clusters will show you your network clouds in that cluster</p>
-                            <p><a href="#" data-dismiss="modal">come on give it a try</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--------------------------------------------------------------------->
-            <div id="clusters" class="container row">
 
-            </div>
-            <div></div>
-        </center>
 
-    </div>
-    <footer class=" russian footer">
-        <div class="container ">
-            <center>
-                <span class="text-white">
-                    &copy; Research Clouds
-                </span>
-            </center>
-        </div>
-    </footer>
-    <script type="text/javascript">
-        $('.dropdown-toggle').click(function () {
-            $(this).next('.dropdown-menu').slideToggle(500);
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+    <script src="../js/CloudsView.js"></script>
+    <!--<script src="index.js"></script>-->
 </body>
 </html>

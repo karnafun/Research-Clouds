@@ -1,4 +1,4 @@
-﻿User = {Id : 4};
+﻿User = {};
 try {
 
     User = localStorage.getItem("User");
@@ -198,14 +198,14 @@ function GreenClick(target) {
     //var clust = User.Clusters[target.id];
     
     for (var i = 0; i < greens.length; i++) {
-        if (greens[i].id == target.id) {
+       
             var itemId = parseInt(target.id.substring(1, target.id.length));
             GetUserById({ Id: itemId }, function (results) {
             localStorage.setItem('Researcher', results.d)
             window.location.replace("../html/ResearcherProfile.html");
         }, errorCB)
             break;
-        }
+        
         
     }
 
