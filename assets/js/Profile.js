@@ -1,5 +1,5 @@
 ﻿
-User = {Id: 2};
+User = {};
 EditedUser = {};
 EditingMode = false;
 ClusterClickedId = -1;
@@ -7,7 +7,7 @@ try {
 
     User = localStorage.getItem("User");
     User = JSON.parse(User);
-    var request = { Id: User.Id };
+    var request = { Id: 4 };
 
     //Insert uId, Summery, and uImg, articles
     if (!User.Updated) {
@@ -42,10 +42,10 @@ function UpdatePageFromUser() {
     $("#uSummery").html(User.Summery);
 
 
-    //BuildArticles();
-    //BuildAffiliations();
+    BuildArticles();
+    BuildAffiliations();
     //BuildClusters();
-    //ToggleEditingTools(false);
+    ToggleEditingTools(false);
 
 }
 

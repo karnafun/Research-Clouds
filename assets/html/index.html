@@ -6,26 +6,41 @@
 -->
 <html>
 <head>
-    <title>Read Only by HTML5 UP</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-    <!--------------------------------------------------------------------------------->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Research Clouds</title>
+    <!-------------------------->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <script src="../../assets/js/jquery.min.js"></script>
+
+    <script src="../../assets/js/jquery.scrollzer.min.js"></script>
+    <script src="../../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../../assets/js/skel.min.js"></script>
+    <script src="../../assets/js/util.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-    <script src="../../assets/js/AjaxCalls.js"></script>
-    <script src="../../assets/js/Profile.js"></script>
-
-    <!--------------------------------------------------------------------------------->
-    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="../../assets/js/main.js"></script>
+    <!-- Research Clouds JS -->
+    <script src="../js/AjaxCalls.js"></script>
+    <script src="../js/Profile.js"></script>
+    <!--  Style-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="../../assets/css/MainStyle.css" rel="stylesheet" />
+    <link href="../../assets/css/UserProfile.css" rel="stylesheet" />
+    <link href="../../assets/css/animate.css" rel="stylesheet" />
     <link href="../../assets/css/main.css" rel="stylesheet" />
 
 </head>
 <body>
-
     <!-- Header -->
     <section id="header">
         <header>
@@ -38,8 +53,8 @@
         </header>
         <nav id="nav">
             <ul>
-                <li><a href="#one" class="active">About</a></li>
-                <li><a href="#two">Things I Can Do</a></li>
+                <li><a href="#one" class="active">Articles</a></li>
+                <li><a href="#two">Affiliations</a></li>
                 <li><a href="#three">A Few Accomplishments</a></li>
                 <li><a href="#four">Contact</a></li>
             </ul>
@@ -65,29 +80,18 @@
             <section id="one">
                 <div class="container">
                     <header class="major">
-                        <h2>Read Only</h2>
-                        <p>
-                            Just an incredibly simple responsive site<br />
-                            template freebie by <a href="http://html5up.net">HTML5 UP</a>.
-                        </p>
+                        <h2>Articles</h2>
+
                     </header>
-                    <p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
+                    <ul id="articleList" class="list-unstyled text-left"></ul>
                 </div>
             </section>
 
             <!-- Two -->
             <section id="two">
                 <div class="container">
-                    <h3>Things I Can Do</h3>
-                    <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer lorem ipsum dolor sit amet.</p>
-                    <ul class="feature-icons">
-                        <li class="fa-code">Write all the code</li>
-                        <li class="fa-cubes">Stack small boxes</li>
-                        <li class="fa-book">Read books and stuff</li>
-                        <li class="fa-coffee">Drink much coffee</li>
-                        <li class="fa-bolt">Lightning bolt</li>
-                        <li class="fa-users">Shadow clone technique</li>
-                    </ul>
+                    <h3>Affiliations</h3>
+                    <ul id="affiliationsList" class="feature-icons"></ul>
                 </div>
             </section>
 
@@ -122,8 +126,8 @@
                 </div>
             </section>
 
-            <!-- Four -->
-            <section id="four">
+            <!-- Four Contact me -->
+            <!--<section id="four">
                 <div class="container">
                     <h3>Contact Me</h3>
                     <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
@@ -148,7 +152,7 @@
                         </div>
                     </form>
                 </div>
-            </section>
+            </section>-->
 
         </div>
 
@@ -166,13 +170,7 @@
 
     <!-- Scripts -->
     <!--<script src="assets/js/jquery.min.js"></script>-->
-    <script src="../../assets/js/jquery.scrollzer.min.js"></script>
-    <script src="../../assets/js/jquery.scrolly.min.js"></script>
-    <script src="../../assets/js/skel.min.js"></script>
-    <script src="../../assets/js/util.js"></script>
 
-    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-    <script src="../../assets/js/main.js"></script>
 
 </body>
 </html>
