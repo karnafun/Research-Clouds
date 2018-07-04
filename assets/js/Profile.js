@@ -7,7 +7,7 @@ try {
 
     User = localStorage.getItem("User");
     User = JSON.parse(User);
-    var request = { Id: 4 };
+    var request = { Id: 2 };
 
     //Insert uId, Summery, and uImg, articles
     if (!User.Updated) {
@@ -44,7 +44,7 @@ function UpdatePageFromUser() {
 
     BuildArticles();
     BuildAffiliations();
-    //BuildClusters();
+    BuildClusters();
     ToggleEditingTools(false);
 
 }
@@ -100,9 +100,16 @@ function BuildClusters() {
         /*
         TODO: Build cluster buttons based on value info            
         */
-        resString += '<span onclick="ClusterClick(' + value.Id + ')" class="btn light-russian col-md-3 col-lg-2 col-sm-12 animated fadeInLeft" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
+        resString +=
+            '<li onclick="ClusterClick(' + value.Id + ')" class="fa-code animated fadeInLeft" id="uCluster' + (index + 1) + '">' +
+        value.Name +
+        '<br/>' +
+        '<p>' +
+        'Here will be a short description of the cluster'+
+            '</p>'+
+        '</li>'
     });
-    $("#clusters").html(resString);
+    $("#uclust").html(resString);
 }
 
 function UpdateResearcherArticles(results) {

@@ -2599,16 +2599,16 @@
 
 /* One */
 
-	#one:before {
-		background-image: url("../../images/banner.jpg");
-		background-position: top right;
-		background-repeat: no-repeat;
-		background-size: cover;
-		content: '';
-		display: block;
-		height: 15em;
-		width: 100%;
-	}
+#one:before {
+	background-image: url("../img/banner.jpg");
+	background-position: top right;
+	background-repeat: no-repeat;
+	background-size: cover;
+	content: '';
+	display: block;
+	height: 15em;
+	width: 100%;
+}
 
 /* Footer */
 
@@ -2790,37 +2790,37 @@
 
 		/* Off-Canvas Navigation */
 
-			#titleBar {
-				-moz-backface-visibility: hidden;
-				-webkit-backface-visibility: hidden;
-				-ms-backface-visibility: hidden;
-				backface-visibility: hidden;
-				-moz-transition: -moz-transform 0.5s ease;
-				-webkit-transition: -webkit-transform 0.5s ease;
-				-ms-transition: -ms-transform 0.5s ease;
-				transition: transform 0.5s ease;
-				display: block;
-				height: 44px;
-				left: 0;
-				position: fixed;
-				top: 0;
-				width: 100%;
-				z-index: 10001;
-				background: #222;
-				color: #fff;
-				min-width: 320px;
-			}
+		#titleBar {
+			-moz-backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			-ms-backface-visibility: hidden;
+			backface-visibility: hidden;
+			-moz-transition: -moz-transform 0.5s ease;
+			-webkit-transition: -webkit-transform 0.5s ease;
+			-ms-transition: -ms-transform 0.5s ease;
+			transition: transform 0.5s ease;
+			display: block;
+			height: 44px;
+			left: 0;
+			position: fixed;
+			top: 0;
+			width: 100%;
+			z-index: 10001;
+			background: #4acaa8;
+			color: #fff;
+			min-width: 320px;
+		}
 
-				#titleBar .title {
-					color: #fff;
-					display: block;
-					font-weight: 700;
-					height: 44px;
-					line-height: 44px;
-					padding: 0 1em;
-					width: 100%;
-					text-align: left;
-				}
+			#titleBar .title {
+				color: #4acaa8;
+				display: block;
+				font-weight: 700;
+				height: 44px;
+				line-height: 44px;
+				padding: 0 1em;
+				width: 88px;
+				text-align: left;
+			}
 
 					#titleBar .title a {
 						border: 0;
@@ -3087,4 +3087,9 @@
 				padding: 0;
 			}
 
+	}
+
+	#uclust li:hover{
+		cursor: pointer;
+		color:darkgray;
 	}

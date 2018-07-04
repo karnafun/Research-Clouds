@@ -20,7 +20,7 @@
 			$header = $('#header'),
 			$nav = $('#nav'), $nav_a = $nav.find('a'),
 			$wrapper = $('#wrapper');
-
+        var img = "../img/Screenshot_3_burned2 - Copy.png"
 		// Fix: Placeholder polyfill.
 			$('form').placeholder();
 
@@ -84,9 +84,11 @@
 			// Title Bar.
 				$(
 					'<div id="titleBar">' +
-						'<a href="#header" class="toggle"></a>' +
-						'<span class="title">' + $('#logo').html() + '</span>' +
-					'</div>'
+                    '<a href="#header" class="toggle"></a>' +
+                    '<span class="title">'+
+                    '<img src="' + img + '" class="title" />' +  
+                    '</span>'+
+                    '</div>'
 				)
 					.appendTo($body);
 
