@@ -41,7 +41,6 @@ function UpdatePageFromUser() {
     $("#uImg").attr("src", User.ImagePath);
     $("#uSummery").html(User.Summery);
 
-
     BuildArticles();
     BuildAffiliations();
     BuildClusters();
@@ -49,10 +48,8 @@ function UpdatePageFromUser() {
 
 }
 
-function BuildArticles() {
-    EditingMode = false;
-    ToggleEditingTools(true);
-    $(".fa-edit").show();
+
+function BuildArticles() { 
     var res = "";
     $.each(User.Articles, function (index, value) {
         var usernames = "";
@@ -68,12 +65,12 @@ function BuildArticles() {
 
         }
         res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>"
-        res += "<div onclick='return ArticleClick()'>"
-        res += "<h5><a href='" + value.Link + "'>" + value.Title + "</a></h5>"
+        res += "<div>"
+        res += "<h5 onclick='return ArticleClick()><a href='" + value.Link + "'>" + value.Title + "</a></h5>"
         res += "<br />";
         res += "<p>" + usernames + "</p>";
+        res += "<span onclick='EditArticle(" + value.Id + ")' class='icon fa-edit'></span>";
         res += "</div>";
-        res += "<span onclick='EditArticle(" + value.Id + ")' class='fa fa-edit'></span>";
         res += "</li>"
         
     });
@@ -267,24 +264,25 @@ function CancelChanges() {
     ToggleEditingTools(false);
     UpdatePageFromUser();
 }
-function ToggleEditingTools(toggleOn) {
-    if (toggleOn) {
-        $(".fa-edit").show();
-        $(".fa-check").show();
-        $(".fa-undo").show();
-        $(".fa-check-square").show();
-        $(".fa-times").show();
-        EditingMode = true;
-    } else {
-        $(".fa-edit").hide();
-        $(".fa-check").hide();
-        $(".fa-undo").hide();
-        $(".fa-check-square").hide();
-        $(".fa-times").hide();
-        //$("#file_image").hide(); -- Removed !
-        EditingMode = false;
-    }
-}
+//function ToggleEditingTools(toggleOn) {
+//    toggleOn = true;
+//    if (toggleOn) {
+//        $(".fa-edit").show();
+//        $(".fa-check").show();
+//        $(".fa-undo").show();
+//        $(".fa-check-square").show();
+//        $(".fa-times").show();
+//        EditingMode = true;
+//    } else {
+//        $(".fa-edit").hide();
+//        $(".fa-check").hide();
+//        $(".fa-undo").hide();
+//        $(".fa-check-square").hide();
+//        $(".fa-times").hide();
+//        //$("#file_image").hide(); -- Removed !
+//        EditingMode = false;
+//    }
+//}
 function GetDateObject(myDate) {
     return new Date(parseInt(myDate.substr(6)));
 }
@@ -368,3 +366,7 @@ function PopAlert(type, message) {
     ];
     $('#userProfileCon').prepend(popup.join(''));
 }
+
+//function TestIcon() {
+//    $(".fa-edit").show();
+//}

@@ -12,7 +12,6 @@
     <!-------------------------->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -28,20 +27,21 @@
 
 
     <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-    <script src="../../assets/js/main.js"></script>
+    <script src="../js/main.js"></script>
     <!-- Research Clouds JS -->
     <script src="../js/AjaxCalls.js"></script>
     <script src="../js/Profile.js"></script>
     <script src="../js/CloudsView.js"></script>
     <!--  Style-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />-->
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="../../assets/css/MainStyle.css" rel="stylesheet" />
     <link href="../../assets/css/UserProfile.css" rel="stylesheet" />
     <link href="../../assets/css/animate.css" rel="stylesheet" />
     <link href="../../assets/css/main.css" rel="stylesheet" />
+    <link href="../../assets/css/font-awesome.min.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -52,14 +52,15 @@
             <h1 id="logo"><a id="uID" href="#"></a></h1>
             <p id="uSummery">
                 I got reprogrammed by a rogue AI<br />
-                and now I'm totally cray
+                and now I'm  totally cray
             </p>
+            <span id="editProfile" class="icon fa-edit" onclick="TestIcon()"></span>
         </header>
         <nav id="nav">
             <ul>
                 <li><a href="#one" class="active">Articles</a></li>
                 <li><a href="#two">Affiliations</a></li>
-                <li><a href="#four">Clusters</a></li>
+                <li><a href="#four">Clusters </a></li>
             </ul>
         </nav>
         <footer>
@@ -86,6 +87,7 @@
                     <ul id="articleList" class="list-unstyled text-left"></ul>
                 </div>
             </section>
+            <!--Modal-->
             <div class="modal animated fadeInDown" id="articleModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -114,6 +116,7 @@
                     </div>
                 </div>
             </div>
+            <!--end modal-->
             <!-- Two -->
             <section id="two">
                 <div class="container">
@@ -133,20 +136,17 @@
 
         </div>
 
+    </div>
+
+    <!-- Footer -->
+    <section id="footer">
+        <div class="container">
+            <ul class="copyright">
+                <li>&copy; Karnafun</li>
+                <li>Design: Ilya kolker </li>
+            </ul>
         </div>
-
-        <!-- Footer -->
-        <section id="footer">
-            <div class="container">
-                <ul class="copyright">
-                    <li>&copy; Karnafun</li>
-                    <li>Design: Ilya kolker </li>
-                </ul>
-            </div>
-        </section>
-
-
-
+    </section>
     <!-- Scripts -->
     <!--<script src="assets/js/jquery.min.js"></script>-->
 

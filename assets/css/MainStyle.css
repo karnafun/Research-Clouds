@@ -87,3 +87,10 @@ a {
 	text-align: center;
 	
 }
+.fa-edit{
+	display: none;
+}
+
+li:hover .fa-edit{
+	display:inline-block;
+}
