@@ -4,6 +4,7 @@
 	width: 450px;
 	margin: 100px auto;
 	display: block;
+	z-index: 1;
 }
 
 .form {
