@@ -50,6 +50,9 @@ function UpdatePageFromUser() {
 }
 
 function BuildArticles() {
+    EditingMode = false;
+    ToggleEditingTools(true);
+    $(".fa-edit").show();
     var res = "";
     $.each(User.Articles, function (index, value) {
         var usernames = "";
@@ -65,18 +68,18 @@ function BuildArticles() {
 
         }
         res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>"
-        res += "<div onclick='return ArticleClick()'  class='media-body'>"
+        res += "<div onclick='return ArticleClick()'>"
         res += "<h5><a href='" + value.Link + "'>" + value.Title + "</a></h5>"
         res += "<br />";
         res += "<p>" + usernames + "</p>";
         res += "</div>";
-        res += '<span onclick="EditArticle(' + value.Id + ')" class="fa fa-edit" data-target="#articleModal" data-toggle="modal"></span>';
+        res += "<span onclick='EditArticle(" + value.Id + ")' class='fa fa-edit'></span>";
         res += "</li>"
-
+        
     });
     $("#articleList").empty();
     $("#articleList").append(res);
-
+    
 }
 function BuildAffiliations() {
     var resString = "";
