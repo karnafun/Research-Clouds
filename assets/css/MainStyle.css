@@ -88,9 +88,80 @@ a {
 	
 }
 .fa-edit{
-	display: none;
+	opacity:0;
+	float:right;
+	margin-right:0;
 }
 
 li:hover .fa-edit{
-	display:inline-block;
+	opacity:1;
+	animation: editanime 0.75s;
+}
+li .fa-university {
+	color: #37956f;
+	display:block;
+}
+
+li .fa-graduation-cap {
+	color: #37956f;
+	display: inline-block;
+}
+
+li .fa-cloud {
+	color: #37956f;
+
+}
+ li:hover .fa-cloud{
+	animation: rotatecluster 1s;
+}
+
+
+li:hover .fa-university {
+	animation-name: universityrotate;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+}
+
+li:hover .fa-graduation-cap {
+	animation-name: universityrotate;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+}
+@keyframes editanime {
+	0% {
+		opacity:0;
+	}
+
+	100% {
+		opacity:1;
+	}
+}
+
+@keyframes rotatecluster {
+	0% {
+		left: 0;
+		top:0;
+	}
+
+	50% {
+		left:-100px;
+		top:-50px
+	}
+
+	75%{
+		top:-25px;
+	}
+
+	100%{
+		left:0;
+		top:0;
+	}
+}
+
+@keyframes universityrotate {
+	from {
+		transform: rotate(0deg);
+	}to {
+		transform: rotate(360deg);
+	}
 }

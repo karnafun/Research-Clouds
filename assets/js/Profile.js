@@ -44,7 +44,6 @@ function UpdatePageFromUser() {
     BuildArticles();
     BuildAffiliations();
     BuildClusters();
-    ToggleEditingTools(false);
 
 }
 
@@ -64,14 +63,20 @@ function BuildArticles() {
             }
 
         }
-        res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>"
-        res += "<div>"
-        res += "<h5 onclick='return ArticleClick()><a href='" + value.Link + "'>" + value.Title + "</a></h5>"
-        res += "<br />";
-        res += "<p>" + usernames + "</p>";
-        res += "<span onclick='EditArticle(" + value.Id + ")' class='icon fa-edit'></span>";
-        res += "</div>";
-        res += "</li>"
+        res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>" +
+            "<span class='icon fa-graduation-cap'></span>" +
+            "<div class='media-body'><br/>" +
+            
+                    //"<h5 onclick='return ArticleClick()>" +
+                       "<a onclick='return ArticleClick()' href= '" + value.Link + "'>" +
+                          value.Title +
+                        "</a>" +
+                   // "</h5>"+
+                    "<p>" + usernames + "</p>"+
+            "<span onclick='EditArticle(" + value.Id + ")' class='icon fa-edit' data-toggle='modal' data-target='#articleModal'></span>" +
+            
+                 "</div>"+
+              "</li>";
         
     });
     $("#articleList").empty();
@@ -85,7 +90,9 @@ function BuildAffiliations() {
         TODO:
         Build an html li article using value (it has the users in it )
         */
-        resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div></li>";
+        resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><span class='icon fa-university'></span><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div> " +
+            "<span class='icon fa-edit'><span>"+
+            "</li>";
 
 
     });
@@ -101,7 +108,9 @@ function BuildClusters() {
         TODO: Build cluster buttons based on value info            
         */
         resString +=
-            '<li onclick="ClusterClick(' + value.Id + ')" class="fa-code animated fadeInLeft" id="uCluster' + (index + 1) + '">' +
+            '<li onclick="ClusterClick(' + value.Id + ')"  id="uCluster' + (index + 1) + '">' +
+        '<span class="icon fa-cloud animated fadeInLeft"></span>' +
+        '<br/>' +
         value.Name +
         '<br/>' +
         '<p>' +
@@ -171,7 +180,7 @@ function ArticleClick() {
 
 */
 $(document).ready(function () {
-    ToggleEditingTools(false);
+    //ToggleEditingTools(false);
     ConfigureClickEvents();
     $("#editProfile").on("click", function () {
         $("#editUl").hide();
