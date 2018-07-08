@@ -1302,9 +1302,12 @@ public class DBServices
         {
             for (int i = 0; i < article.Users.Count; i++)
             {
-                User user = GetUserByName(article.Users[i].FirstName,
-                    article.Users[i].MiddleName, article.Users[i].LastName);
+                if (article.Users[i] == null) { continue; }
+                   User user = GetUserByName(article.Users[i].FirstName,
+                                      article.Users[i].MiddleName, article.Users[i].LastName);
 
+               
+              
                 if (user == null)
                 {
                     article.Users[i].IsRegistered = false;
@@ -1317,16 +1320,19 @@ public class DBServices
         }
 
         //Enter the keywords:
-        for (int i = 0; i < article.Keywords.Count; i++)
+        if (article.Keywords!=null)
         {
-            Keyword _keyword = GetKeywordByPhrase(article.Keywords[i].Phrase);
-            if (_keyword==null)
+            for (int i = 0; i < article.Keywords.Count; i++)
             {
-                InsertKeyword(article.Keywords[i]);
-                _keyword = GetKeywordByPhrase(article.Keywords[i].Phrase);
-            }
-            AddKeywordToArticle(_keyword.Id, article.Id);
+                Keyword _keyword = GetKeywordByPhrase(article.Keywords[i].Phrase);
+                if (_keyword == null)
+                {
+                    InsertKeyword(article.Keywords[i]);
+                    _keyword = GetKeywordByPhrase(article.Keywords[i].Phrase);
+                }
+                AddKeywordToArticle(_keyword.Id, article.Id);
 
+            }
         }
 
         return 1;

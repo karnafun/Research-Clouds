@@ -14,12 +14,12 @@ public class ScholarDBServices
     string cmdStr, conStr = WebConfigurationManager.ConnectionStrings["Test2DB"].ConnectionString;
     SqlConnection con;
     SqlCommand cmd;
-    ScholarDBServices SDBS;
+    DBServices db;
     SqlDataReader reader;
     public ScholarDBServices()
     {
         con = new SqlConnection(conStr);
-        SDBS = new ScholarDBServices();
+        db = new DBServices();
         //
         // TODO: Add constructor logic here
         //
@@ -167,7 +167,7 @@ public class ScholarDBServices
     }
     public string SqlScholarUsersToXML()
     {
-        List<ScholarUser> users = SDBS.GetAllScholarUsers();
+        List<ScholarUser> users = GetAllScholarUsers();
         XDocument doc = new XDocument();
         doc.Add(new XElement("ScholarUsers"));
         foreach (var user in users)
@@ -203,5 +203,51 @@ public class ScholarDBServices
         ScholarUser user = new ScholarUser(id, name, affiliation, email, image);
         return user;
     }
+
+
+
+    public void IntegrateUser(int suId)
+    {
+        //get ScholarUser object
+        ScholarUser scholarUser = GetUserById(suId);
+        //Make User object
+        string[] names = scholarUser.Name.Split(' ');
+        User user = new User();
+        if (names.Length==2)
+        {
+            user.FirstName = names[0];
+            user.MiddleName = "";
+            user.LastName = names[1];
+        }else if (names.Length == 3)
+        {
+            user.FirstName = names[0];
+            user.MiddleName = names[1];
+            user.LastName = names[2];
+        }else
+        {
+            LogManager.Report("trying to add scholar user with 1 name", scholarUser);
+            return;
+        }
+        //Insert User Object to db
+        
+        user.ImagePath = scholarUser.Image;
+        user.FixNulls();
+        db.InsertUser(user);
+        //get User uId from db
+        user = db.GetUserByName(user.FirstName,user.MiddleName,user.LastName);
+        //get user publications
+        List<ScholarPublication> publications = GetUserPublications(scholarUser.Id);
+        List<Article> articles = new List<Article>();
+        //insert user articles
+        foreach (ScholarPublication pub in publications)
+        {
+            Article a =  (new Article(0, pub.Title, pub.EPrint));
+            a.UpdateUsers(new List<User>() {user });
+            db.FullArticleInsert(a);
+        }
+
+        return;
+    }
+
 
 }

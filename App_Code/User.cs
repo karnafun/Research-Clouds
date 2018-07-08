@@ -254,5 +254,25 @@ public class User : RCEntity
         return db.RemoveEntity(this);
     }
 
+    public void FixNulls()
+    {
+        //string fName, mName, lName;
+        //string imgPath, degree, hash, salt, email, summery;
+        //string password; //Not in the constructor, only for creating users
+        //bool administrator, isRegistered;
+        //DateTime bdate, registrationDate;
+        //List<Article> articles;
+        //List<Institute> affiliations;
+        //List<Cluster> clusters;
+        if (salt == null) { salt = ""; }
+        if (email == null) { email= ""; }
+        if (hash== null) { hash = ""; }
+        if (summery == null) { summery = ""; }
+        if (degree == null) { degree= ""; }
+        { BirthDate = new DateTime(2018, 1, 1); }
+        { RegistrationDate = new DateTime(2018, 1, 1); }        
+
+    }
+
 
 }

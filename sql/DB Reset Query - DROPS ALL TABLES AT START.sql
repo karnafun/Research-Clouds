@@ -17,9 +17,11 @@
 
 */
 
-
-
-
+--select * from scholarPublications
+--select * from users 
+--select * from articles
+--select * from v_UserArticles where uId = 9
+--select * from UsersInArticle where uId = 9
 /****************************************************************************************************************************
 	Part 1: Drop Data.
 	Droping all Research clouds related tables, views and procedures ordered by foreign keys constraints
@@ -62,7 +64,7 @@ go
 
 create table Articles(
 aId int identity not null,
-title nvarchar(1000) not null,
+title nvarchar(1000)  not null,
 aLink nvarchar(max) not null
 ) 
 go
