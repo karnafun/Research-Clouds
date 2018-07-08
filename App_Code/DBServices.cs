@@ -12,7 +12,7 @@ using System.Web.Configuration;
 /// </summary>
 public class DBServices
 {
-    string connectionString = WebConfigurationManager.ConnectionStrings["Test1DB"].ConnectionString;
+    string connectionString = WebConfigurationManager.ConnectionStrings["Test2DB"].ConnectionString;
     SqlCommand cmd;
     SqlConnection con;
     SqlDataReader reader;
