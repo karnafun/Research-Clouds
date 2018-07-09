@@ -1,9 +1,9 @@
-﻿User = {Id: 2};
+﻿User = {};
 try {
 
     User = localStorage.getItem("User");
     User = JSON.parse(User);
-    var request = { Id: 2 };
+    var request = { Id: User.Id };
 
     //Insert uId, Summery, and uImg, articles
     GetUserForAnimationAjax(request, DisplayClusters, errorCB);
@@ -11,7 +11,7 @@ try {
 } catch (e) {
     RedirectToLogin();
 }
-
+var test = 0;
 $(document).ready(function () {
     $("#btn_logout").click(function () {
         Logout();
@@ -42,8 +42,8 @@ function errorCB(err) {
 }
 
 function DisplayClusters(results) {
-    var nodes = [];
-    var edges = [];
+    var nodesarr = [{ size: 50, id: 0, label: User.Name, shape: "circularImage", image: User.ImagePath }];
+    var edgesarr = [];
     User = JSON.parse(results.d);
     var bootstrapClass = "";
     if (User.Clusters.length > 2) {
@@ -53,41 +53,25 @@ function DisplayClusters(results) {
     }
 
     var res = "";
-    for (var i = 0; i < User.Clusters.length; i++) {
+    for (var i = 1; i <= User.Clusters.length-1; i++) {
         //Cluster Loop
-        var json = { size: 120, id: i, label: "" + User.Clusters[i].Name + "", shape: "circularImage", image: User.ImagePath };
-        nodes.push(json);
+        var json = { size: 50, id: i, label: User.Clusters[i].Name, shape: "circle" };
+        nodesarr.push(json);
             
 
        
 
         // create an array with edges
-        var edgesjson = { from: i, to: i + 1 };
-        edges.push(edgesjson);
+        var edgesjson = { from: 0, to: i };
+        edgesarr.push(edgesjson);
         
 
         // create a network
-        
-        //var _cluster = User.Clusters[i];
 
-    //    res += "<div class='" + bootstrapClass + "'>";
-    //    res += "<div data-toggle='collapse' data-target='#" + _cluster.Id + "'>";
-    //    res += "<h4 class='btn light-russian'>" + _cluster.Name + "</h4>";
-    //    res += "</div>";
-
-    //    res += "<div id='" + _cluster.Id + "' class='collapsible collapse'>"
-    //    for (var j = 0; j < _cluster.Users.length; j++) {
-    //        //User Loop
-    //        var _user = _cluster.Users[j];
-
-           
-    //        res += "<a onclick='ViewUser(" + _user.Id + ")'><div class='animated fadeInLeft' style='border-right: 10px solid #37956f; border-radius:50%;'> <img src='" + _user.ImagePath + "' width='100' height='100' /></div>";
-    //        res += "<h5>" + _user.Name + " </h5></a>";
-           
-    //    }
-    //    res += "</div>";
-    //    res += "</div>";
     }
+    nodes = new vis.DataSet(nodesarr);
+    edges = new vis.DataSet(edgesarr);
+
     var container = document.getElementById('mynetwork');
     var data = {
         nodes: nodes,
@@ -97,13 +81,13 @@ function DisplayClusters(results) {
         physics: {
             enabled: true,
             barnesHut: {
-                avoidOverlap: 1
+                avoidOverlap: 0
 
 
             }
 
-        }
-       
+        },
+      
         
     };
 
@@ -111,15 +95,54 @@ function DisplayClusters(results) {
             color: "#37956f",
 
     }
-    var network = new vis.Network(container, data, options);
-    network.clustering.cluster(options);
-    //$("#clusters").html(res);
-    //$('#uArticleModale').modal('show');
+         network = new vis.Network(container, data, options);
+        //network.fit();
+        network.on("selectNode", function (params) {
+            try {
+                for (var i = 0; i < User.Clusters[params.nodes[0]].Users.length; i++) {
+
+
+                    nodes.add({ size: 50, id: nodes.length, label: User.Clusters[params.nodes[0]].Users[i].Name, shape: "circularImage", image: User.Clusters[params.nodes[0]].Users[i].ImagePath });
+                    edges.add({ from: params.nodes[0], to: edges.length });
+                }
+                
+
+
+                
+            } catch (e) {
+                return null;
+            } 
+            //User.Clusters[params.nodes[0]].Name
+            
+  
+
+
+
+            
+        });
+
     
 }
 
 
+function showanimation() {
+    if (test == 0) {
+        var net = document.getElementById("mynetwork");
+        net.setAttribute('class', 'mynetwork1');
+        var main = document.getElementById("main");
+        main.setAttribute('class', 'main1');
+        test = 1;
+    }
+    else if (test == 1) {
+        var net = document.getElementById("mynetwork");
+        net.setAttribute('class', 'mynetwork2');
+        var main = document.getElementById("main");
+        main.setAttribute('class', 'main2');
+        test = 0;
+        network.clear();
+    }
 
+}
 
 
 function ViewUser(_id) {

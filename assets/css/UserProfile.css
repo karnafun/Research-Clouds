@@ -124,3 +124,11 @@ span{
 a:hover {
 	text-decoration: none;
 }
+.wimg{
+	width:50%;
+}
+
+#wrapper .wimg{
+	margin:0 auto;
+}
+
