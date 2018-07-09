@@ -7,7 +7,7 @@ try {
 
     User = localStorage.getItem("User");
     User = JSON.parse(User);
-    var request = { Id: 2 };
+    var request = { Id: User.Id };
 
     //Insert uId, Summery, and uImg, articles
     if (!User.Updated) {
