@@ -833,6 +833,27 @@ public class DBServices
 
     #endregion
 
+    public int InsertInterest(int uId, string interest)
+    {
+        try
+        {
+            string cmdStr = String.Format("insert into UserScholarInterests values({0},'{1}')", uId, interest);
+            cmd = new SqlCommand(cmdStr, con);
+            con.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+
+            LogManager.Report("Insert Interest failure. interest="+interest+", uId = "+uId+"", ex);
+            return -1;
+        }finally
+        {
+            con.Close();
+        }
+    }
+
+
     #region Insert Methods
     public int InsertUser(User user)
     {

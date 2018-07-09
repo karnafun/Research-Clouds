@@ -199,7 +199,7 @@ public class ScholarDBServices
         string affiliation = reader["affiliation"].ToString();
         string name = reader["name"].ToString();
         string email = reader["email"].ToString();
-        string image = reader["image"].ToString();
+        string image = reader["image"].ToString();        
         ScholarUser user = new ScholarUser(id, name, affiliation, email, image);
         return user;
     }
@@ -246,8 +246,12 @@ public class ScholarDBServices
             db.FullArticleInsert(a);
         }
 
+        //add interests
+        scholarUser.Interests = GetUserInterests(scholarUser.Id);
+        foreach (var item in scholarUser.Interests)
+        {
+            db.InsertInterest(user.Id, item);
+        }
         return;
     }
-
-
 }
