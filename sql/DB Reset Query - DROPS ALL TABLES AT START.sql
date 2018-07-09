@@ -94,6 +94,14 @@ cId int not null
 go
 
 
+
+create table UserScholarInterests(
+[uId] int not null,
+interest nvarchar(250) not null
+)
+go
+
+
 create table KeywordsInArticle(
 aId int not null,
 kId int not null
@@ -145,6 +153,12 @@ go
 alter table AcademicInstitutes
 add constraint AcademicInstitutes_id_PK primary key ([iId])
 go
+
+
+alter table UserScholarInterests
+add constraint UserScholarInterests_uid_PK primary key ([uId],interest)
+go
+
 
 alter table KeywordsInCluster
 add constraint KeywordsInCluster_kid_PK primary key ([kId],cId)

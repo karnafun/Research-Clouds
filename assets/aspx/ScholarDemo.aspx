@@ -11,6 +11,15 @@
     <div>
     
     </div>
+        <asp:Image ID="img" runat="server" />
+        <br />
+        <asp:Label ID="lbl_name" runat="server" Text="Label"></asp:Label>
+        <br />
+        <asp:Label ID="lbl_interests" runat="server" Text="Label"></asp:Label>
+        <br />
+        <div id="div_articles" runat="server"> </div>
+        <br />
+        <div id="div_clusters" runat="server"> </div>
     </form>
 </body>
 </html>
