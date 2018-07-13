@@ -3,7 +3,7 @@ try {
 
     User = localStorage.getItem("User");
     User = JSON.parse(User);
-    var request = { Id: User.Id };
+    var request = { Id: 2 };
 
     //Insert uId, Summery, and uImg, articles
     GetUserForAnimationAjax(request, DisplayClusters, errorCB);
@@ -111,6 +111,7 @@ function DisplayClusters(results) {
                  for (var i = 0; i < nodesarr.length; i++) {
                      if (nodesarr[i].id == params.nodes[0]) {
                          ViewResearcher(nodesarr[i].borderWidthSelected, User.Id);
+                         break;
                      }
                  }
                  
