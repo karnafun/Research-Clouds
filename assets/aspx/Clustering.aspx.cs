@@ -5,8 +5,22 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
+//algorithem ideas:
+//Check if keyword = keyword
+//check if keyword contains keyword
+//split keyword by ' ' and check each sub keyword on its own
+// user dictionary to give scores to keywords (user interest =3, article keyword =2, sub keyword =1 ) - in order to create usfull clusters
+//User dictionary to count users with same keyword so clusters are created only for 3 users or more.
+//Let user add keywords of his own to userInterests if failed to create engouh clusters
+
+//Try running the algorithem on interests vs interests only. then keywords vs keywords only. then if not enough clusters: all vs all.
+
+
+
 public partial class assets_aspx_Clustering : System.Web.UI.Page
 {
+    
     ScholarDBServices SDBS;
     
     protected void Page_Load(object sender, EventArgs e)
