@@ -130,5 +130,17 @@ a:hover {
 
 #wrapper .wimg{
 	margin:0 auto;
+
+
 }
 
+.wimg {
+	width: 50%;
+	margin: 0 auto;
+}
+
+	.wimg img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto
+	}

@@ -189,6 +189,11 @@ $(document).ready(function () {
     $(document).on("click", function () {
         $("#editUl").hide();
     });
+    $('#tool').tooltip('show')
+    $('#tool').on('click', function () {
+        ViewUser(User.Id);
+    });
+    
 });
 
 function EditArticle(_id) {
@@ -376,6 +381,10 @@ function PopAlert(type, message) {
     $('#userProfileCon').prepend(popup.join(''));
 }
 
-//function TestIcon() {
-//    $(".fa-edit").show();
-//}
+function ViewUser(_id) {
+    GetUserById({ Id: _id }, function (results) {
+        localStorage.setItem('User', results.d)
+        window.location.replace("../html/CloudsView.html");
+    }, errorCB)
+
+}

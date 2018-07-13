@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research Clouds</title>
     <!-------------------------->
     <!-- Bootstrap CSS -->
@@ -31,7 +31,6 @@
     <!-- Research Clouds JS -->
     <script src="../js/AjaxCalls.js"></script>
     <script src="../js/Profile.js"></script>
-    <script src="../js/CloudsView.js"></script>
     <!--  Style-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />-->
@@ -39,7 +38,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="../../assets/css/MainStyle.css" rel="stylesheet" />
     <link href="../../assets/css/UserProfile.css" rel="stylesheet" />
-    <link href="../../assets/css/CloudsView.css" rel="stylesheet" />
+    <!--<link href="../../assets/css/CloudsView.css" rel="stylesheet" />-->
     <link href="../../assets/css/animate.css" rel="stylesheet" />
     <link href="../../assets/css/main.css" rel="stylesheet" />
     <link href="../../assets/css/font-awesome.min.css" rel="stylesheet" />
@@ -49,9 +48,7 @@
 
     <!-- Header -->
     <section id="header">
-        <div class="pjwrap">
             <div id="particles-js"></div>
-        </div>
         <header>
             <span class="image avatar"><img id="uImg" src="" alt="" /></span>
             <h1 id="logo"><a id="uID" href="#"></a></h1>
@@ -74,13 +71,12 @@
             </ul>
         </footer>
     </section>
-
     <!-- Wrapper -->
     <div id="wrapper">
         <div class="wimg">
-            <img src="../img/Screenshot_3_burned - Copy.png" onclick="showanimation()" />
+            <img id="tool" data-toggle="tooltip" data-placement="bottom" title="Show My network" src="../img/Screenshot_3_burned - Copy.png"  />
         </div>
-        <div id="mynetwork"></div>
+
         <!-- Main -->
         <div id="main">
 

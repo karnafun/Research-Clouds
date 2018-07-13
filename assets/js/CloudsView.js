@@ -1,9 +1,9 @@
-﻿User = {};
+﻿User = {Id: 1};
 try {
 
     User = localStorage.getItem("User");
     User = JSON.parse(User);
-    var request = { Id: User.Id };
+    var request = { Id: 1 };
 
     //Insert uId, Summery, and uImg, articles
     GetUserForAnimationAjax(request, DisplayClusters, errorCB);
@@ -22,6 +22,9 @@ $(document).ready(function () {
     })
     $(document).on("click", function () {
         $("#editUl").hide();
+    })
+    $('.fa').on('click', function () {
+        ViewUserClouds(User.Id);
     })
 });
 
@@ -53,12 +56,12 @@ function DisplayClusters(results) {
     }
 
     var res = "";
-    for (var i = 1; i <= User.Clusters.length-1; i++) {
+    for (var i = 1; i <= User.Clusters.length; i++) {
         //Cluster Loop
-        var json = { size: 50, id: i, label: User.Clusters[i].Name, shape: "circle" };
+        var json = { size: 50, id: i, label: User.Clusters[i-1].Name, shape: "circle" };
         nodesarr.push(json);
             
-
+        
        
 
         // create an array with edges
@@ -87,7 +90,12 @@ function DisplayClusters(results) {
             }
 
         },
-      
+        edges: {
+            width: 8
+        },
+        nodes: {
+
+        }
         
     };
 
@@ -97,21 +105,22 @@ function DisplayClusters(results) {
     }
          network = new vis.Network(container, data, options);
         //network.fit();
-        network.on("selectNode", function (params) {
-            try {
-                for (var i = 0; i < User.Clusters[params.nodes[0]].Users.length; i++) {
-
-
-                    nodes.add({ size: 50, id: nodes.length, label: User.Clusters[params.nodes[0]].Users[i].Name, shape: "circularImage", image: User.Clusters[params.nodes[0]].Users[i].ImagePath });
-                    edges.add({ from: params.nodes[0], to: edges.length });
-                }
-                
-
-
-                
-            } catch (e) {
-                return null;
-            } 
+         network.on("selectNode", function (params) {
+             if (params.nodes[0] == 0) {
+                 alert("it tickles")
+             }
+             else {
+                 var te = (params.nodes[0]) - 1;
+                 try {
+                     for (var i = 0; i <= User.Clusters[te].Users.length; i++) {
+                         nodes.add({ size: 50, id: nodes.length, label: User.Clusters[te].Users[i].Name, shape: "circularImage", image: User.Clusters[te].Users[i].ImagePath });
+                         edges.add({ from: params.nodes[0], to: edges.length+1 });
+                     }
+                 } catch (e) {
+                     return null;
+                 } 
+             }
+            
             //User.Clusters[params.nodes[0]].Name
             
   
@@ -128,27 +137,34 @@ function DisplayClusters(results) {
 function showanimation() {
     if (test == 0) {
         var net = document.getElementById("mynetwork");
-        net.setAttribute('class', 'mynetwork1');
+        net.setAttribute('class', 'mynetwork1 col-lg-8 col-md-8 col-sm-8');
         var main = document.getElementById("main");
         main.setAttribute('class', 'main1');
         test = 1;
+        
     }
     else if (test == 1) {
         var net = document.getElementById("mynetwork");
-        net.setAttribute('class', 'mynetwork2');
+        net.setAttribute('class', 'mynetwork2 col-lg-8 col-md-8 col-sm-8');
         var main = document.getElementById("main");
         main.setAttribute('class', 'main2');
         test = 0;
-        network.clear();
+        network.destroy();
+        var request = { Id: User.Id }
+        try {
+            GetUserForAnimationAjax(request, DisplayClusters, errorCB);
+        } catch (e) {
+
+        }
     }
 
 }
 
 
-function ViewUser(_id) {
+function ViewUserClouds(_id) {
     GetUserById({ Id: _id }, function (results) {
-        localStorage.setItem('Researcher', results.d)
-        window.location.replace("../html/ResearcherProfile.html");
+        localStorage.setItem('User', results.d)
+        window.location.replace("../html/UserProfile.html");
     }, errorCB)
 
 }
