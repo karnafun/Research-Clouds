@@ -852,7 +852,31 @@ public class DBServices
             con.Close();
         }
     }
+    public List<string> GetUserInterests(int uId)
+    {
+        List<string> interests = new List<string>();
+        string cmdStr = "select * from UserScholarInterests where uId = " + uId;
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            con.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                interests.Add(reader["interest"].ToString());
+            }
+            return interests;
+        }
+        catch (Exception)
+        {
 
+            throw;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
 
     #region Insert Methods
     public int InsertUser(User user)

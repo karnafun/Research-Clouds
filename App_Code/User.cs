@@ -273,6 +273,16 @@ public class User : RCEntity
         { RegistrationDate = new DateTime(2018, 1, 1); }        
 
     }
-
+    public string FullName()
+    {
+        if (!string.IsNullOrWhiteSpace(MiddleName))
+        {
+            return String.Format("{0} {1} {2}", FirstName, MiddleName, LastName);
+        }
+        else
+        {
+            return String.Format("{0} {1}", FirstName, LastName);
+        }
+    }
 
 }
