@@ -1,9 +1,9 @@
-﻿User = {Id: 1};
+﻿User = {};
 try {
 
     User = localStorage.getItem("User");
     User = JSON.parse(User);
-    var request = { Id: 1 };
+    var request = { Id: User.Id };
 
     //Insert uId, Summery, and uImg, articles
     GetUserForAnimationAjax(request, DisplayClusters, errorCB);
@@ -106,20 +106,36 @@ function DisplayClusters(results) {
          network = new vis.Network(container, data, options);
         //network.fit();
          network.on("selectNode", function (params) {
-             if (params.nodes[0] == 0) {
-                 alert("it tickles")
+             var te = (params.nodes[0]) - 1;
+             if (params.nodes[0] > 4) {
+                 for (var i = 0; i < nodesarr.length; i++) {
+                     if (nodesarr[i].id == params.nodes[0]) {
+                         ViewResearcher(nodesarr[i].borderWidthSelected, User.Id);
+                     }
+                 }
+                 
+                 
              }
              else {
-                 var te = (params.nodes[0]) - 1;
-                 try {
-                     for (var i = 0; i <= User.Clusters[te].Users.length; i++) {
-                         nodes.add({ size: 50, id: nodes.length, label: User.Clusters[te].Users[i].Name, shape: "circularImage", image: User.Clusters[te].Users[i].ImagePath });
-                         edges.add({ from: params.nodes[0], to: edges.length+1 });
+                 if (params.nodes[0] == 0) {
+                     alert("it tickles")
+                 }
+                 else {
+                     try {
+                         for (var i = 0; i <= User.Clusters[te].Users.length; i++) {
+                             var notemp = { size: 50, id: nodes.length, label: User.Clusters[te].Users[i].Name, shape: "circularImage", image: User.Clusters[te].Users[i].ImagePath, borderWidthSelected: User.Clusters[te].Users[i].Id };
+                             nodesarr.push(notemp)
+                             nodes.add(notemp);
+                             var edtemp = { from: params.nodes[0], to: edges.length + 1 };
+                             edges.add(edtemp);
+                         }
+                     } catch (e) {
+                         return null;
                      }
-                 } catch (e) {
-                     return null;
-                 } 
+                 }
              }
+
+
             
             //User.Clusters[params.nodes[0]].Name
             
@@ -167,4 +183,16 @@ function ViewUserClouds(_id) {
         window.location.replace("../html/UserProfile.html");
     }, errorCB)
 
+}
+
+function ViewResearcher(_id,uID) {
+    GetUserById({ Id: _id }, function (results) {
+       // allpeople.push(results.d)
+        localStorage.setItem('Researcher', results.d);
+    }, errorCB)
+    GetUserById({ Id: uID }, function (results) {
+        // allpeople.push(results.d)
+        localStorage.setItem('User', results.d);
+    }, errorCB)
+    window.location.replace("../html/ResearcherProfile.html");
 }
