@@ -78,8 +78,6 @@ function BuildArticles() {
             "</a>" +
             // "</h5>"+
             "<p>" + usernames + "</p>" +
-            "<span onclick='EditArticle(" + value.Id + ")' class='icon fa-edit' data-toggle='modal' data-target='#articleModal'></span>" +
-
             "</div>" +
             "</li>";
 
@@ -96,7 +94,6 @@ function BuildAffiliations() {
         Build an html li article using value (it has the users in it )
         */
         resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><span class='icon fa-university'></span><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div> " +
-            "<span class='icon fa-edit'><span>" +
             "</li>";
 
 
@@ -307,9 +304,7 @@ function ConfigureClickEvents() {
     $(".fa-times").click(function () {
         // CancelChanges();
     });
-    $(".fa-edit").click(function (e) {
-        EditField(e);
-    });
+    
 
     $("#articleModal_btn_save").click(function (e) {
         SaveArticle(e);

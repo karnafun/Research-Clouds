@@ -12,6 +12,7 @@ try {
     RedirectToLogin();
 }
 var test = 0;
+var clicked = true;
 $(document).ready(function () {
     $("#btn_logout").click(function () {
         Logout();
@@ -45,7 +46,7 @@ function errorCB(err) {
 }
 
 function DisplayClusters(results) {
-    var nodesarr = [{ size: 50, id: 0, label: User.Name, shape: "circularImage", image: User.ImagePath }];
+    var nodesarr = [{ id: 0, label: User.Name, shape: "circularImage", image: User.ImagePath,size: 50 }];
     var edgesarr = [];
     User = JSON.parse(results.d);
     var bootstrapClass = "";
@@ -58,7 +59,7 @@ function DisplayClusters(results) {
     var res = "";
     for (var i = 1; i <= User.Clusters.length; i++) {
         //Cluster Loop
-        var json = {id: i, label: User.Clusters[i-1].Name, shape: "circle" , size: 75};
+        var json = {id: i, label: User.Clusters[i-1].Name, shape: "circle" , size: 50, group:'clusters'};
         nodesarr.push(json);
             
         
@@ -81,6 +82,9 @@ function DisplayClusters(results) {
         edges: edges,
     };
     var options = {
+        interaction: {
+            hover: true,
+        },
         physics: {
             enabled: true,
             barnesHut: {
@@ -91,10 +95,20 @@ function DisplayClusters(results) {
 
         },
         edges: {
-            width: 8
+            width: 5,
+            length: 125
         },
-        nodes: {
-
+        groups: {
+            clusters: {
+                shape: 'icon',
+                icon: {
+                    face: 'FontAwesome',
+                    code: '\uf0c2',
+                    size: 65,
+                    color: 'white'
+                }
+                 
+            }
         }
         
     };
@@ -104,7 +118,9 @@ function DisplayClusters(results) {
 
     }
          network = new vis.Network(container, data, options);
-        //network.fit();
+         network.on("hoverNode", function (params) {
+             alet("hover");
+         });
          network.on("selectNode", function (params) {
              var te = (params.nodes[0]) - 1;
              if (params.nodes[0] > 4) {
@@ -117,14 +133,14 @@ function DisplayClusters(results) {
                  
                  
              }
-             else {
+             else  {
                  if (params.nodes[0] == 0) {
                      alert("it tickles")
                  }
                  else {
                      try {
                          for (var i = 0; i <= User.Clusters[te].Users.length; i++) {
-                             var notemp = { size: 50, id: nodes.length, label: User.Clusters[te].Users[i].Name, shape: "circularImage", image: User.Clusters[te].Users[i].ImagePath, borderWidthSelected: User.Clusters[te].Users[i].Id };
+                             var notemp = { size: 35, id: nodes.length, label: User.Clusters[te].Users[i].Name, shape: "circularImage", image: User.Clusters[te].Users[i].ImagePath, borderWidthSelected: User.Clusters[te].Users[i].Id };
                              nodesarr.push(notemp)
                              nodes.add(notemp);
                              var edtemp = { from: params.nodes[0], to: edges.length + 1 };
@@ -138,7 +154,6 @@ function DisplayClusters(results) {
 
 
             
-            //User.Clusters[params.nodes[0]].Name
             
   
 
