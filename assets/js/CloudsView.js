@@ -187,18 +187,9 @@ function ViewUserClouds(_id) {
 }
 
 function ViewResearcher(_id) {
-    localStorage.clear();
     GetUserById({ Id: _id }, function (results) {
-       // allpeople.push(results.d)
         localStorage.setItem('Researcher', results.d);
-    }, errorCB)
-    UserView(User.Id);
-}
-
-function UserView(_id) {
-    GetUserById({ Id: _id }, function (results) {
-        // allpeople.push(results.d)
-        localStorage.setItem('User', results.d);
         window.location.replace("../html/ResearcherProfile.html");
+
     }, errorCB)
 }

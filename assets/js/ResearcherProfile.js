@@ -370,7 +370,6 @@ function PopAlert(type, message) {
 
 function ViewUser(_id) {
     GetUserById({ Id: _id }, function (results) {
-        localStorage.setItem('User', results.d)
         window.location.replace("../html/CloudsView.html");
     }, errorCB)
 
