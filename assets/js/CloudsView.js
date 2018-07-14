@@ -66,7 +66,7 @@ function DisplayClusters(results) {
        
 
         // create an array with edges
-        var edgesjson = { from: 0, to: i };
+        var edgesjson = {from: 0, to: i, color: {color:'white'}};
         edgesarr.push(edgesjson);
         
 
@@ -95,7 +95,7 @@ function DisplayClusters(results) {
 
         },
         edges: {
-            width: 5,
+            width: 2,
             length: 125
         },
         groups: {
@@ -107,16 +107,14 @@ function DisplayClusters(results) {
                     size: 65,
                     color: 'white'
                 }
-                 
+
             }
         }
         
+        
     };
 
-        options.nodes = {
-            color: "#37956f",
 
-    }
          network = new vis.Network(container, data, options);
          network.on("hoverNode", function (params) {
              alet("hover");
@@ -143,7 +141,7 @@ function DisplayClusters(results) {
                              var notemp = { size: 35, id: nodes.length, label: User.Clusters[te].Users[i].Name, shape: "circularImage", image: User.Clusters[te].Users[i].ImagePath, borderWidthSelected: User.Clusters[te].Users[i].Id };
                              nodesarr.push(notemp)
                              nodes.add(notemp);
-                             var edtemp = { from: params.nodes[0], to: edges.length + 1 };
+                             var edtemp = {from: params.nodes[0], to: edges.length + 1, color: {color:'white'}};
                              edges.add(edtemp);
                          }
                      } catch (e) {
