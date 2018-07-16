@@ -125,7 +125,7 @@ h4:hover {
 .fa {
 	position:absolute;
 	font-size:100px;
-	margin-left:-50px;
+	margin-left:-100px;
 	left:50%;
 	z-index:10;
 }
@@ -134,3 +134,16 @@ h4:hover {
 		cursor: pointer;
 		color:#f2f2f2;
 	}
+
+
+.fa-sign-out {
+	position: absolute;
+	left: 50%;
+	margin-left:0;
+	font-size: 100px;
+	/*z-index: 10;*/
+}
+
+.fa-sign-out:hover {
+cursor:pointer;
+}

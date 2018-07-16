@@ -191,7 +191,7 @@ $(document).ready(function () {
     $(document).on("click", function () {
         $("#editUl").hide();
     });
-    $('#tool').tooltip('show')
+    $('[data-toggle="tooltip"]').tooltip();
     $('#tool').on('click', function () {
         ViewUser(User.Id);
     });

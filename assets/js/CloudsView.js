@@ -27,6 +27,7 @@ $(document).ready(function () {
     $('.fa').on('click', function () {
         ViewUserClouds(User.Id);
     })
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function Logout() {
