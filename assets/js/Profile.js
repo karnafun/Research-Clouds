@@ -44,8 +44,10 @@ function UpdatePageFromUser() {
     BuildArticles();
     BuildAffiliations();
     BuildClusters();
+    BuildNav();
 
 }
+
 
 
 function BuildArticles() { 
@@ -189,7 +191,7 @@ $(document).ready(function () {
     $(document).on("click", function () {
         $("#editUl").hide();
     });
-    $('#tool').tooltip('show')
+    $('[data-toggle="tooltip"]').tooltip();
     $('#tool').on('click', function () {
         ViewUser(User.Id);
     });
@@ -278,25 +280,7 @@ function CancelChanges() {
     ToggleEditingTools(false);
     UpdatePageFromUser();
 }
-//function ToggleEditingTools(toggleOn) {
-//    toggleOn = true;
-//    if (toggleOn) {
-//        $(".fa-edit").show();
-//        $(".fa-check").show();
-//        $(".fa-undo").show();
-//        $(".fa-check-square").show();
-//        $(".fa-times").show();
-//        EditingMode = true;
-//    } else {
-//        $(".fa-edit").hide();
-//        $(".fa-check").hide();
-//        $(".fa-undo").hide();
-//        $(".fa-check-square").hide();
-//        $(".fa-times").hide();
-//        //$("#file_image").hide(); -- Removed !
-//        EditingMode = false;
-//    }
-//}
+
 function GetDateObject(myDate) {
     return new Date(parseInt(myDate.substr(6)));
 }
