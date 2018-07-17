@@ -17,6 +17,23 @@ public partial class assets_aspx_ScholarDemo : System.Web.UI.Page
        
         db = new DBServices();
         SDBS = new ScholarDBServices();
+
+        List<ScholarUser> scholarUsers = SDBS.GetAllScholarUsers();
+        foreach (ScholarUser scholarUser in scholarUsers)
+        {
+            if (scholarUser.Id==9)
+            {
+                continue;
+            }
+            SDBS.IntegrateUser(scholarUser.Id);
+        }
+
+        // SDBS.IntegrateUser(9);
+
+    }
+
+    public void DataFromIEEE()
+    {
         if (Session["index"] == null)
         {
             index = 8;
@@ -26,14 +43,10 @@ public partial class assets_aspx_ScholarDemo : System.Web.UI.Page
             index = Convert.ToInt32(Session["index"]);
         }
         IEEE ieee = new IEEE();
-       List<string> res = ieee.GetArticleTerms("Dynamic thermal management for high-performance microprocessors");
-        
+        List<string> res = ieee.GetArticleTerms("Dynamic thermal management for high-performance microprocessors");
+
         lbl_name.Text = res.ToString();
         //GET IEEE DATA YA NOOB
-
-
-        // SDBS.IntegrateUser(9);
-
     }
 
     public void ShowUser()

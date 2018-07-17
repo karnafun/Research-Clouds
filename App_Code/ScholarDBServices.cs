@@ -246,6 +246,7 @@ public class ScholarDBServices
             Article a =  (new Article(0, pub.Title, pub.EPrint));
             a.UpdateUsers(new List<User>() {user });
             db.FullArticleInsert(a);
+            pub.Publisher.Contains("IEEE");
         }
 
         //add interests
@@ -254,7 +255,8 @@ public class ScholarDBServices
         {
             db.InsertInterest(user.Id, item);
         }
-        return;
+
+        //return;
     }
 
    
