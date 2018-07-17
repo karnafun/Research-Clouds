@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 public partial class assets_aspx_ScholarDemo : System.Web.UI.Page
 {
@@ -13,6 +14,7 @@ public partial class assets_aspx_ScholarDemo : System.Web.UI.Page
     ScholarDBServices SDBS;
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         db = new DBServices();
         SDBS = new ScholarDBServices();
         if (Session["index"] == null)
@@ -23,9 +25,15 @@ public partial class assets_aspx_ScholarDemo : System.Web.UI.Page
         {
             index = Convert.ToInt32(Session["index"]);
         }
-
-        SDBS.IntegrateUser(9);
+        IEEE ieee = new IEEE();
+       List<string> res = ieee.GetArticleTerms("Dynamic thermal management for high-performance microprocessors");
         
+        lbl_name.Text = res.ToString();
+        //GET IEEE DATA YA NOOB
+
+
+        // SDBS.IntegrateUser(9);
+
     }
 
     public void ShowUser()

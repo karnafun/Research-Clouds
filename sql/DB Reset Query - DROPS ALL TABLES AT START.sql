@@ -16,18 +16,22 @@
 	Part 15: Users-AcademicInstitutes Relationship Data (Soccer DB) 
 
 */
-
---select * from scholarPublications
---select * from users 
---select * from articles
---select * from v_UserArticles where uId = 9
---select * from UsersInArticle where uId = 9
+/*
+select * from scholarPublications
+select * from scholarusers
+select * from scholarInterests
+select * from users 
+select * from UserScholarInterests
+select * from articles
+select * from v_UserArticles where uId = 9
+select * from UsersInArticle where uId = 9
+*/
 /****************************************************************************************************************************
 	Part 1: Drop Data.
 	Droping all Research clouds related tables, views and procedures ordered by foreign keys constraints
 *****************************************************************************************************************************/
 
-drop table Affiliations, UsersInCluster, usersInArticle,KeywordsInCluster,KeywordsInArticle
+drop table Affiliations, UsersInCluster, usersInArticle,KeywordsInCluster,KeywordsInArticle, UserScholarInterests
 drop table users, Clusters, Articles, Keywords, AcademicInstitutes
 drop view [dbo].[v_ArticleKeywords],[dbo].[v_ClusterKeywords],[dbo].[v_InstituteUsers],[dbo].[v_UserAffiliations],[dbo].[v_UserArticles],[dbo].[v_UserClusters]
 drop proc p_deleteUser, p_deleteArticle, p_deleteCluster, p_deleteInstitute,p_deleteKeyword
