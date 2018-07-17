@@ -24,6 +24,21 @@ public class User : RCEntity
     public string FirstName { get { return fName; } set { fName = value; } }
     public string MiddleName { get { return mName; } set { mName = value; } }
     public string LastName { get { return lName; } set { lName = value; } }
+    public string Name
+    {
+        get
+        {
+            if (!String.IsNullOrWhiteSpace(mName) && mName.Length > 2)
+            {
+                return string.Format("{0} {1} {2}", fName, mName, lName);
+            }
+            else
+            {
+                mName = " ";
+                return string.Format("{0} {1}", fName, lName);
+            }
+        }
+    }
     //public string Name
     //{
     //    get
@@ -135,10 +150,18 @@ public class User : RCEntity
     //Methods
     public void GetFullInfo()
     {
-       // articles = db.GetUserArticles(this.id);
-       // affiliations = db.GetUserAffiliations(this.id);
+        // articles = db.GetUserArticles(this.id);
+        // affiliations = db.GetUserAffiliations(this.id);
 
-
+        if (articles!=null && articles.Count>=50)
+        {
+            List<Article> newArticles = new List<Article>();
+            for (int i = 0; i < 50; i++)
+            {
+                newArticles.Add(articles[i]);
+            }
+            this.articles = newArticles;
+        }
         foreach (Article article in Articles) //Get users for each article
         {
             article.GetFullInfo();
@@ -274,5 +297,5 @@ public class User : RCEntity
 
     }
 
-
+    
 }

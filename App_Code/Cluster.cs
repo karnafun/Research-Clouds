@@ -17,7 +17,7 @@ public class Cluster : RCEntity
 
     //Properties:    
     public string Name { get { return name; } set { name = value; } }
-    public List<User> Users { get { return users; } }
+    public List<User> Users { get { return users; } set { users = value; } }
     public List<Keyword> Keywords { get { return keywords; } }
     
 

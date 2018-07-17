@@ -29,7 +29,7 @@ function LoginAjax(request, successCB, failureCB) {
         type: 'POST',        // can be post or get
         dataType: 'json',    // Choosing a JSON datatype
         contentType: 'application/json; charset = utf-8', // of the data received
-        timeout: 5000, // timeout in miliseconds
+        timeout: 50000, // timeout in miliseconds
         success: successCB, // 
         error: failureCB
     })// end of ajax call

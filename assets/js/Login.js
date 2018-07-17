@@ -27,6 +27,6 @@ function Login(results) {
 
 function errorCB(error) {
     console.log(error);
-    alert("Error:" + error.status);
+    alert("Error:" + error.message);
 }
 

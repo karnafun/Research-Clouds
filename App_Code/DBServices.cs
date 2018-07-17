@@ -363,6 +363,37 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+    public Cluster GetClusterByName(string name)
+    {
+        string cmdStr = "select top(1) * from Clusters where cName = @name";
+        con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        cmd.Parameters.AddWithValue("@name", name);
+        try
+        {
+            cmd.Connection.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                return CurrentLineCluster(reader);
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return null;
+
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+
+
     /// <summary>
     /// Gets all keywords in a specific cluster by the cluster id
     /// </summary>
@@ -833,25 +864,6 @@ public class DBServices
 
     #endregion
 
-    public int InsertInterest(int uId, string interest)
-    {
-        try
-        {
-            string cmdStr = String.Format("insert into UserScholarInterests values({0},'{1}')", uId, interest);
-            cmd = new SqlCommand(cmdStr, con);
-            con.Open();
-            return cmd.ExecuteNonQuery();
-        }
-        catch (Exception ex)
-        {
-
-            LogManager.Report("Insert Interest failure. interest="+interest+", uId = "+uId+"", ex);
-            return -1;
-        }finally
-        {
-            con.Close();
-        }
-    }
 
 
     #region Insert Methods
@@ -947,6 +959,27 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+    public int InsertInterest(int uId, string interest)
+    {
+        try
+        {
+            string cmdStr = String.Format("insert into UserScholarInterests values({0},'{1}')", uId, interest);
+            cmd = new SqlCommand(cmdStr, con);
+            con.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+
+            LogManager.Report("Insert Interest failure. interest=" + interest + ", uId = " + uId + "", ex);
+            return -1;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+    //public int InsertArticleKeywords
     #endregion
 
 
@@ -1027,6 +1060,44 @@ public class DBServices
     public int UpdateKeyword(Keyword keyword)
     {
         cmd = KeywordCommand(keyword, false);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+    public int UpdatePassword(int uId, string salt, string hash)
+    {
+       string cmdStr= string.Format("update users set uSALT ='{0}' , uHash ='{1}', isRegistered = 1 where uId={2}", salt, hash, uId);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+    public int UpdateEmail(int uId, string email)
+    {
+        string cmdStr = string.Format("update users set email ='{0}'  where uId={1}", email, uId);
+        cmd = new SqlCommand(cmdStr, con);
         try
         {
             cmd.Connection.Open();
@@ -1303,6 +1374,7 @@ public class DBServices
 
 
 
+
     public int FullArticleInsert(Article article)
     {
         //Get id or create and then get id if the article doesnt exist
@@ -1324,11 +1396,11 @@ public class DBServices
             for (int i = 0; i < article.Users.Count; i++)
             {
                 if (article.Users[i] == null) { continue; }
-                   User user = GetUserByName(article.Users[i].FirstName,
-                                      article.Users[i].MiddleName, article.Users[i].LastName);
+                User user = GetUserByName(article.Users[i].FirstName,
+                                   article.Users[i].MiddleName, article.Users[i].LastName);
 
-               
-              
+
+
                 if (user == null)
                 {
                     article.Users[i].IsRegistered = false;
@@ -1341,7 +1413,7 @@ public class DBServices
         }
 
         //Enter the keywords:
-        if (article.Keywords!=null)
+        if (article.Keywords != null)
         {
             for (int i = 0; i < article.Keywords.Count; i++)
             {
@@ -1360,7 +1432,7 @@ public class DBServices
 
 
     }
-
+    
     private int AddKeywordToArticle(int keywordId, int articleId)
     {
         string cmdStr = "insert into KeywordsInArticle values(" + articleId + "," + keywordId + ")";
@@ -1374,8 +1446,9 @@ public class DBServices
         {
             LogManager.Report("adding keywords to articleId:" + articleId, ex);
             return -1;
-            
-        }finally
+
+        }
+        finally
         {
             con.Close();
         }
@@ -1404,4 +1477,27 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+
+    public int AddUserToCluster(int userId, int clusterId)
+    {
+        string cmdStr = "insert into UsersInCluster values(" + userId + "," + clusterId + ",1 )";
+        SqlCommand cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report("adding user to cluster. userid: " + userId, ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+
 }

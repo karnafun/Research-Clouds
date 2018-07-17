@@ -79,10 +79,10 @@ public static class LogManager
             SmtpServer.Send(mail);
             
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            
-            throw new SystemException();
+
+            return;
         }
     }
 }

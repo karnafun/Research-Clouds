@@ -18,20 +18,31 @@ public partial class assets_aspx_ScholarDemo : System.Web.UI.Page
         db = new DBServices();
         SDBS = new ScholarDBServices();
 
+
+        //IntegrateAllScholarlyUsers();
+       // ClusterCreator.CreateClusters();        
+        foreach (var item in db.GetAllUsers())
+        {
+            if (item.Id >= 6)
+            {
+                string email = item.FirstName.ToLower() + "@ruppin.ac.il";
+                string salt = SHA2.GenerateSALT();
+                string password = "123";
+                string hash = SHA2.GenerateSHA256String(password, salt);
+                db.UpdateEmail(item.Id, email);
+                db.UpdatePassword(item.Id, salt, hash);
+            }
+        }
+        //SDBS.IntegrateUser(9);
+    }
+    public void IntegrateAllScholarlyUsers()
+    {
         List<ScholarUser> scholarUsers = SDBS.GetAllScholarUsers();
         foreach (ScholarUser scholarUser in scholarUsers)
         {
-            if (scholarUser.Id==9)
-            {
-                continue;
-            }
             SDBS.IntegrateUser(scholarUser.Id);
         }
-
-        // SDBS.IntegrateUser(9);
-
     }
-
     public void DataFromIEEE()
     {
         if (Session["index"] == null)
