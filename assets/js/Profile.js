@@ -41,15 +41,14 @@ function UpdatePageFromUser() {
     $("#uImg").attr("src", User.ImagePath);
     $("#uSummery").html(User.Summery);
 
-
     BuildArticles();
     BuildAffiliations();
     BuildClusters();
-    ToggleEditingTools(false);
 
 }
 
-function BuildArticles() {
+
+function BuildArticles() { 
     var res = "";
     $.each(User.Articles, function (index, value) {
         var usernames = "";
@@ -64,19 +63,25 @@ function BuildArticles() {
             }
 
         }
-        res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>"
-        res += "<div onclick='return ArticleClick()'  class='media-body'>"
-        res += "<h5><a href='" + value.Link + "'>" + value.Title + "</a></h5>"
-        res += "<br />";
-        res += "<p>" + usernames + "</p>";
-        res += "</div>";
-        res += '<span onclick="EditArticle(' + value.Id + ')" class="fa fa-edit" data-target="#articleModal" data-toggle="modal"></span>';
-        res += "</li>"
-
+        res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>" +
+            "<span class='icon fa-graduation-cap'></span>" +
+            "<div class='media-body'><br/>" +
+            
+                    //"<h5 onclick='return ArticleClick()>" +
+                       "<a onclick='return ArticleClick()' href= '" + value.Link + "'>" +
+                          value.Title +
+                        "</a>" +
+                   // "</h5>"+
+                    "<p>" + usernames + "</p>"+
+            "<span onclick='EditArticle(" + value.Id + ")' class='icon fa-edit' data-toggle='modal' data-target='#articleModal'></span>" +
+            
+                 "</div>"+
+              "</li>";
+        
     });
     $("#articleList").empty();
     $("#articleList").append(res);
-
+    
 }
 function BuildAffiliations() {
     var resString = "";
@@ -85,7 +90,9 @@ function BuildAffiliations() {
         TODO:
         Build an html li article using value (it has the users in it )
         */
-        resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div></li>";
+        resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><span class='icon fa-university'></span><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div> " +
+            "<span class='icon fa-edit'><span>"+
+            "</li>";
 
 
     });
@@ -100,9 +107,18 @@ function BuildClusters() {
         /*
         TODO: Build cluster buttons based on value info            
         */
-        resString += '<span onclick="ClusterClick(' + value.Id + ')" class="btn light-russian col-md-3 col-lg-2 col-sm-12 animated fadeInLeft" id="uCluster' + (index + 1) + '">' + value.Name + '</span>'
+        resString +=
+            '<li onclick="ClusterClick(' + value.Id + ')"  id="uCluster' + (index + 1) + '">' +
+        '<span class="icon fa-cloud animated fadeInLeft"></span>' +
+        '<br/>' +
+        value.Name +
+        '<br/>' +
+        '<p>' +
+        'Here will be a short description of the cluster'+
+            '</p>'+
+        '</li>'
     });
-    $("#clusters").html(resString);
+    $("#uclust").html(resString);
 }
 
 function UpdateResearcherArticles(results) {
@@ -164,7 +180,7 @@ function ArticleClick() {
 
 */
 $(document).ready(function () {
-    ToggleEditingTools(false);
+    //ToggleEditingTools(false);
     ConfigureClickEvents();
     $("#editProfile").on("click", function () {
         $("#editUl").hide();
@@ -173,6 +189,11 @@ $(document).ready(function () {
     $(document).on("click", function () {
         $("#editUl").hide();
     });
+    $('#tool').tooltip('show')
+    $('#tool').on('click', function () {
+        ViewUser(User.Id);
+    });
+    
 });
 
 function EditArticle(_id) {
@@ -257,24 +278,25 @@ function CancelChanges() {
     ToggleEditingTools(false);
     UpdatePageFromUser();
 }
-function ToggleEditingTools(toggleOn) {
-    if (toggleOn) {
-        $(".fa-edit").show();
-        $(".fa-check").show();
-        $(".fa-undo").show();
-        $(".fa-check-square").show();
-        $(".fa-times").show();
-        EditingMode = true;
-    } else {
-        $(".fa-edit").hide();
-        $(".fa-check").hide();
-        $(".fa-undo").hide();
-        $(".fa-check-square").hide();
-        $(".fa-times").hide();
-        //$("#file_image").hide(); -- Removed !
-        EditingMode = false;
-    }
-}
+//function ToggleEditingTools(toggleOn) {
+//    toggleOn = true;
+//    if (toggleOn) {
+//        $(".fa-edit").show();
+//        $(".fa-check").show();
+//        $(".fa-undo").show();
+//        $(".fa-check-square").show();
+//        $(".fa-times").show();
+//        EditingMode = true;
+//    } else {
+//        $(".fa-edit").hide();
+//        $(".fa-check").hide();
+//        $(".fa-undo").hide();
+//        $(".fa-check-square").hide();
+//        $(".fa-times").hide();
+//        //$("#file_image").hide(); -- Removed !
+//        EditingMode = false;
+//    }
+//}
 function GetDateObject(myDate) {
     return new Date(parseInt(myDate.substr(6)));
 }
@@ -357,4 +379,12 @@ function PopAlert(type, message) {
         '</div>'
     ];
     $('#userProfileCon').prepend(popup.join(''));
+}
+
+function ViewUser(_id) {
+    GetUserById({ Id: _id }, function (results) {
+        localStorage.setItem('User', results.d)
+        window.location.replace("../html/CloudsView.html");
+    }, errorCB)
+
 }

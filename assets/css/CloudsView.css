@@ -39,4 +39,98 @@ h4:hover {
 	border-bottom: 4px solid #00bfb3;
 }
 
+#mynetwork {
+	position:absolute;
+	width:100%;
+	height: 100%;
+	z-index: 5;
+}
+.mynetwork1 {
+	animation: shownetwork 1.6s;
+	animation-fill-mode: forwards;
+}
 
+.mynetwork2 {
+	animation: closenetwork 1.6s;
+	animation-fill-mode: forwards;
+}
+.wimg{
+	width:50%;
+	margin:0 auto;
+}
+
+	.wimg img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto
+	}
+.main1 {
+	animation: moveoutcontent 1.6s;
+	animation-fill-mode: forwards;
+}
+.main2 {
+	animation: contentback 1.6s;
+	animation-fill-mode: forwards;
+}
+
+	@keyframes shownetwork{
+		0% {
+			opacity: 0;
+			
+		}
+
+		100% {
+			opacity: 1;
+			z-index: 1;
+			margin: 0 auto;
+			position: relative;
+		}
+	}
+
+@keyframes closenetwork {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		z-index: -1;
+		margin: 0 auto;
+		position: relative;
+	}
+}
+
+@keyframes moveoutcontent {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		z-index:-1;
+	}
+}
+
+@keyframes contentback {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+		z-index: 1;
+	}
+}
+
+.fa {
+	position:absolute;
+	font-size:100px;
+	margin-left:-50px;
+	left:50%;
+	z-index:10;
+}
+
+	.fa:hover {
+		cursor: pointer;
+		color:#f2f2f2;
+	}
