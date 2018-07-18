@@ -1,4 +1,11 @@
-﻿
+﻿$(document).ready(function () {
+    $(document).on('keypress', function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            document.getElementById("login-btn").click();
+        }
+    });
+})
 
 
 function CheckCredentials() {

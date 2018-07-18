@@ -125,7 +125,7 @@ h4:hover {
 .fa {
 	position:absolute;
 	font-size:100px;
-	margin-left:-50px;
+	margin-left:-100px;
 	left:50%;
 	z-index:10;
 }
@@ -134,3 +134,30 @@ h4:hover {
 		cursor: pointer;
 		color:#f2f2f2;
 	}
+
+
+.fa-sign-out {
+	position: absolute;
+	left: 50%;
+	margin-left:0;
+	font-size: 100px;
+	/*z-index: 10;*/
+}
+
+.fa-sign-out:hover {
+cursor:pointer;
+}
+
+
+/*#particles-js {
+	background-color: #4acaa8;
+	background-image: url("");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 99999999999;
+}*/
