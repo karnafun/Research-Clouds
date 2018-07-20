@@ -145,15 +145,38 @@ a:hover {
 		margin-right: auto
 	}
 
-	#tool:hover{
-		cursor:pointer;
-	}
+#tool:hover {
+	cursor: pointer;
+	box-shadow: 11px 11px 12px -6px rgba(222,222,222,1);
+}
 
-header .fa-sign-out, header .fa-home {
+#tool {
+	box-shadow: 11px 11px 12px 0px rgba(222,222,222,1);
+	border-radius: 50%
+}
+header .fa-home {
 	position: relative;
-	font-size: 55px;
+	font-size: 35px;
 	z-index: 10;
-	padding:20px
+	padding:20px;
+	float:right;
+	margin-top: -50px;
+	margin-right:-45px
+}
+
+footer .fa-sign-out{
+	float:right;
+	cursor:pointer;
+	display:inline-block;
+}
+
+footer span{
+	float:left;
+	cursor:pointer;
+}
+
+footer span:hover{
+	color:white;
 }
 
 

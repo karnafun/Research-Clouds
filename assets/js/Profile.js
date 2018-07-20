@@ -187,6 +187,7 @@ $(document).ready(function () {
     $("#editProfile").on("click", function () {
         $("#editUl").hide();
     })
+    $("#email").attr("title", User.Email)
 
     $(document).on("click", function () {
         $("#editUl").hide();
@@ -195,7 +196,6 @@ $(document).ready(function () {
     $('#tool').on('click', function () {
         ViewUser(User.Id);
     });
-    
 });
 
 function EditArticle(_id) {
