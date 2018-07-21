@@ -124,10 +124,10 @@ h4:hover {
 
 .fa {
 	position:absolute;
-	font-size:100px;
-	margin-left:-100px;
-	left:50%;
+	font-size:55px;
 	z-index:10;
+	margin-left: 20px;
+	margin-top:10px;
 }
 
 	.fa:hover {
@@ -136,17 +136,22 @@ h4:hover {
 	}
 
 
-.fa-sign-out {
+#signout {
 	position: absolute;
-	left: 50%;
-	margin-left:0;
-	font-size: 100px;
-	/*z-index: 10;*/
+	top: 0;
+	right:30px;
+	font-size:28px;
+	z-index: 11;
 }
 
-.fa-sign-out:hover {
+	#signout:hover {
+		color: white;
+		cursor: pointer;
+	}
+
+/*.fa-sign-out:hover {
 cursor:pointer;
-}
+}*/
 
 
 /*#particles-js {

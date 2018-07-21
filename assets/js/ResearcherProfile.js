@@ -187,6 +187,7 @@ $(document).ready(function () {
     $("#editProfile").on("click", function () {
         $("#editUl").hide();
     })
+    $("#email").attr("title", Researcher.Email)
 
     $(document).on("click", function () {
         $("#editUl").hide();
