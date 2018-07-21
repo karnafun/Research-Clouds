@@ -117,9 +117,6 @@ function DisplayClusters(results) {
 
 
          network = new vis.Network(container, data, options);
-         network.on("hoverNode", function (params) {
-             alet("hover");
-         });
          network.on("selectNode", function (params) {
              var te = (params.nodes[0]) - 1;
              if (params.nodes[0] > 4) {
