@@ -41,7 +41,7 @@ try {
             ViewUser(User.Id);
         });
 
-        if (User.Articles == "" || User.Articles == null) {
+        if (User.Articles == null) {
             $('#uArticleModale').modal('show');
         }
         //build the profile
