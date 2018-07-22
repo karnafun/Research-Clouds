@@ -206,7 +206,7 @@ public class DBServices
     /// <returns>All Clusters associated with this user</returns>
     public List<Cluster> GetUserClusters(int uId)
     {
-        string cmdStr = "select * from v_UserClusters where uId = @id";
+        string cmdStr = "select * from v_UserClusters where uId = @id and visible = 1";
         con = new SqlConnection(connectionString);
         cmd = new SqlCommand(cmdStr, con);
         cmd.Parameters.AddWithValue("@id", uId);
@@ -1311,17 +1311,25 @@ public class DBServices
         if (isNewCluster)
         {
             cmdStr.Append("insert into Clusters values");
-            cmdStr.Append("(@name)");
+            cmdStr.Append("(@name,@visible)");
         }
         else
         {
             cmdStr.Append(" update Clusters set ");
-            cmdStr.Append("cName = @name");
+            cmdStr.Append("cName = @name visible = @visible");
             cmdStr.Append(" where cId = @id ");
         }
         _cmd = new SqlCommand(cmdStr.ToString(), con);
         _cmd.Parameters.AddWithValue("@id", cluster.Id);
         _cmd.Parameters.AddWithValue("@name", cluster.Name);
+        if (cluster.visible)
+        {
+            _cmd.Parameters.AddWithValue("@visible", 1);
+        }
+        else
+        {
+            _cmd.Parameters.AddWithValue("@visible", 0);
+        }
 
         return _cmd;
     }

@@ -42,7 +42,7 @@ public static class ClusterCreator
 
 
 
-        //First level: Find out how many users share the same keyword.
+        // Find out how many users share the same keyword.
         List<Cluster> clusters = new List<Cluster>();
         foreach (var item in dict.Keys)
         {
@@ -68,6 +68,38 @@ public static class ClusterCreator
                 //Insert cluster user 
                 db.AddUserToCluster(_user.Id, cluster.Id);
             }
+        }
+        ManageVisibleClusters();
+    }
+    public static void ManageVisibleClusters()
+    {
+        var users = new User().GetAllUsers();
+        foreach (var user in users)
+        {
+            user.GetFullInfo();
+            if (user.Clusters.Count<=4)
+            {
+                continue;
+            }
+        
+            foreach (var item in user.Clusters)
+            {
+                item.GetFullInfo();
+            }
+            user.Clusters.Sort();
+            for (int i = 0; i < user.Clusters.Count; i++)
+            {
+                if (i<4)
+                {
+                    user.Clusters[i].visible = true;
+                }
+                else
+                {
+                    user.Clusters[i].visible = false;
+                }
+                user.Clusters[i].UpdateClusterInDatabase();
+            }
+            
         }
     }
 

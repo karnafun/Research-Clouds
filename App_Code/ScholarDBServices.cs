@@ -26,7 +26,6 @@ public class ScholarDBServices
         // TODO: Add constructor logic here
         //
     }
-
     public ScholarUser GetUserById(int id)
     {
         try
@@ -57,7 +56,6 @@ public class ScholarDBServices
         }
         return null;
     }
-
     public List<ScholarUser> GetAllScholarUsers()
     {
         try
@@ -110,7 +108,6 @@ public class ScholarDBServices
             con.Close();
         }
     }
-
     public ScholarUser GetUserByName(string name)
     {
         try
@@ -141,7 +138,6 @@ public class ScholarDBServices
         }
         return null;
     }
-
     public List<ScholarPublication> GetUserPublications(int userId)
     {
         try
@@ -205,9 +201,6 @@ public class ScholarDBServices
         ScholarUser user = new ScholarUser(id, name, affiliation, email, image);
         return user;
     }
-
-
-
     public void IntegrateUser(int suId)
     {
         //get ScholarUser object

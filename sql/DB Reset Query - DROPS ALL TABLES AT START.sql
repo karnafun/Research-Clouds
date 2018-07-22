@@ -239,11 +239,14 @@ go
 
 create view v_UserClusters
 as
-SELECT        dbo.Users.*, dbo.Clusters.*
+SELECT        dbo.Users.uId, dbo.Users.firstName, dbo.Users.middleName, dbo.Users.lastName, dbo.Users.degree, dbo.Users.imgPath, dbo.Users.birthDate, dbo.Users.registrationDate, dbo.Users.administrator, dbo.Users.email, 
+                         dbo.Users.uHash, dbo.Users.uSALT, dbo.Users.summery, dbo.Users.isRegistered, dbo.Clusters.cId, dbo.Clusters.cName, dbo.UsersInCluster.visible
 FROM            dbo.Users INNER JOIN
                          dbo.UsersInCluster ON dbo.Users.uId = dbo.UsersInCluster.uId INNER JOIN
                          dbo.Clusters ON dbo.UsersInCluster.cId = dbo.Clusters.cId
 go
+
+
 
 
 

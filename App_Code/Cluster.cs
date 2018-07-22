@@ -6,7 +6,7 @@ using System.Web;
 /// <summary>
 /// Summary description for Cluster
 /// </summary>
-public class Cluster : RCEntity
+public class Cluster : RCEntity, IComparable
 {
 
 
@@ -14,12 +14,12 @@ public class Cluster : RCEntity
     string name;
     List<Keyword> keywords;
     List<User> users;
-
+    public bool visible = true;
     //Properties:    
     public string Name { get { return name; } set { name = value; } }
     public List<User> Users { get { return users; } set { users = value; } }
     public List<Keyword> Keywords { get { return keywords; } }
-    
+
 
     //Constructors:
     public Cluster()
@@ -83,4 +83,17 @@ public class Cluster : RCEntity
         return db.RemoveEntity(this);
     }
 
+    public int CompareTo(object obj)
+    {
+        try
+        {
+
+            return (obj as Cluster).users.Count.CompareTo(this.users.Count);
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, obj);
+            return -1;
+        }
+    }
 }
