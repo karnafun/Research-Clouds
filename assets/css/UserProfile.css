@@ -88,7 +88,9 @@ input[type=text] {
         **********************/
 
 
-
+.modal{
+	z-index:6666666666;
+}
 .modal-footer .btn {
     margin-left: 13px;
 }
@@ -179,4 +181,10 @@ footer span:hover{
 	color:white;
 }
 
+#buildProfile_btn{
+	margin-right:13px;
+}
 
+.close{
+	margin-left:-25px;
+}

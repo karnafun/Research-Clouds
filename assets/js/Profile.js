@@ -25,7 +25,31 @@ try {
         UpdatePageFromUser();
     }
 
+    $(document).ready(function () {
+        //ToggleEditingTools(false);
+        ConfigureClickEvents();
+        $("#editProfile").on("click", function () {
+            $("#editUl").hide();
+        })
+        $("#email").attr("title", User.Email)
 
+        $(document).on("click", function () {
+            $("#editUl").hide();
+        });
+        $('[data-toggle="tooltip"]').tooltip();
+        $('#tool').on('click', function () {
+            ViewUser(User.Id);
+        });
+
+        if (User.Articles == "" || User.Articles == null) {
+            $('#uArticleModale').modal('show');
+        }
+        //build the profile
+        $("#buildProfile_btn").on("click", function () {
+            // Here goes the creating profile Function
+            alert("new profile created")
+        });
+    });
 
     //TODO:    
     //Insert Affiliations
@@ -180,22 +204,7 @@ function ArticleClick() {
 /* need to clear  unused functions
 
 */
-$(document).ready(function () {
-    //ToggleEditingTools(false);
-    ConfigureClickEvents();
-    $("#editProfile").on("click", function () {
-        $("#editUl").hide();
-    })
-    $("#email").attr("title", User.Email)
 
-    $(document).on("click", function () {
-        $("#editUl").hide();
-    });
-    $('[data-toggle="tooltip"]').tooltip();
-    $('#tool').on('click', function () {
-        ViewUser(User.Id);
-    });
-});
 
 function EditArticle(_id) {
     $.each(User.Articles, function (index, value) {
