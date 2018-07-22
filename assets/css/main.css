@@ -2711,6 +2711,7 @@
 
 	#titleBar {
 		display: none;
+		
 	}
 
 	@media screen and (max-width: 1024px) {
@@ -2813,13 +2814,13 @@
 		}
 
 			#titleBar .title {
-				color: #4acaa8;
+				color: white;
 				display: block;
 				font-weight: 700;
 				height: 44px;
 				line-height: 44px;
 				padding: 0 1em;
-				width: 88px;
+				width: 300px;
 				text-align: left;
 			}
 
