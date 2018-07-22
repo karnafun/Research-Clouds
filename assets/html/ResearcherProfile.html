@@ -50,10 +50,11 @@
     <section id="header">
         <div id="particles-js"></div>
         <header>
-            <a><span class="fa fa-sign-out" data-toggle="tooltip" data-placement="bottom" title="sign out" onclick="Logout()"></span></a>
             <a href="UserProfile.html"><span class="fa fa-home" data-toggle="tooltip" data-placement="left" title="home"></span></a>
             <span class="image avatar"><img id="uImg" src="" alt="" /></span>
-            <h1 id="logo"><a id="uID" href="#"></a></h1>
+            <center>
+                <h1 id="logo"><a id="uID" href="#"></a></h1>
+            </center>
             <p id="uSummery">
                 I got reprogrammed by a rogue AI<br />
                 and now I'm  totally cray
@@ -69,8 +70,9 @@
         </nav>
         <footer>
             <ul class="icons">
-                <li><a href="#" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+                <li><a id="email" href="#" class="icon fa-envelope" data-toggle="tooltip" data-placement="bottom"><span class="label">email</span></a></li>
             </ul>
+            <span onclick="Logout()">Sign out</span>
         </footer>
     </section>
     <!-- Wrapper -->

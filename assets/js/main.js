@@ -85,8 +85,8 @@
 				$(
 					'<div id="titleBar">' +
                     '<a href="#header" class="toggle"></a>' +
-                    '<span class="title">'+
-                    '<img src="' + img + '" class="title" />' +  
+                    '<span class="title">Research Clouds'+
+
                     '</span>'+
                     '</div>'
 				)

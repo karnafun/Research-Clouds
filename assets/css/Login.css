@@ -1,13 +1,13 @@
-﻿@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+﻿
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 .login-page {
-	width: 450px;
-	margin-top:100px;
-	padding-top:4%;
-	margin-left:-225px;
-	left:50%;
-	position:absolute;
-	z-index:1;
+	max-width: 450px;
+	max-height: 100%;
+	padding: 8% 0 0;
+	top: 10px;
+	margin: auto;
 }
 
 .form {
@@ -15,7 +15,7 @@
 	z-index: 1;
 	background: #ffffff;
 	max-width: 450px;
-	max-height: 520px;
+	margin: 0 auto 100px;
 	padding: 45px;
 	text-align: center;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -65,6 +65,14 @@
 
 
 
+body {
+	background-color: #F8FCF7;
+	font-family: 'Fjalla One', sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+
+
 
 #particles-js {
 	background-color: #4acaa8;
@@ -76,9 +84,9 @@
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	z-index: -1;
+	z-index: 0;
 }
-	/*@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+/*@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 .login-page {
 	width: 450px;
@@ -169,3 +177,6 @@ overflow: hidden;
 z-index:-1;
 }*/
 
+/*.cent{
+		display
+	}*/
