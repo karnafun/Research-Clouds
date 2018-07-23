@@ -189,4 +189,37 @@ public class AjaxServices : System.Web.Services.WebService
 
     }
 
+
+
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // Inserts a user to the database
+    // returns the created user from the database via login
+    //--------------------------------------------------------------------------
+    public string FindUserAutomatically(string userString)
+    {
+        try
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            User user = js.Deserialize<User>(userString);
+            PythonServices py = new PythonServices();
+            py.Run_cmd("InsertUser.py", user.Name);
+            ScholarDBServices sdbs = new ScholarDBServices();
+            ScholarUser sUser = sdbs.GetUserByName(user.Name);
+            sdbs.IntegrateIntoUser(sUser.Id,user.Id);
+            user = user.GetUserById(user.Id);
+            //string res = user.InsertUserToDatabase().ToString();
+            user = user.Relog();
+            return js.Serialize(user);
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return ex.ToString();
+        }
+
+    }
 }

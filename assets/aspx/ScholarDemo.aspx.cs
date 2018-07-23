@@ -36,7 +36,7 @@ public partial class assets_aspx_ScholarDemo : System.Web.UI.Page
         List<ScholarUser> scholarUsers = SDBS.GetAllScholarUsers();
         foreach (ScholarUser scholarUser in scholarUsers)
         {
-            SDBS.IntegrateUser(scholarUser.Id);
+            SDBS.IntegrateNewUser(scholarUser.Id);
         }
     }
     public void DataFromIEEE()

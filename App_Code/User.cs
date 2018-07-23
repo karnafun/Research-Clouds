@@ -99,6 +99,12 @@ public class User : RCEntity
         }
     }
 
+
+    //Constructors:
+    public User()
+    {
+        db = new DBServices();
+    }
     public User(string fName,string mName, string lName,Article article)
     {
         this.fName = fName;
@@ -108,21 +114,6 @@ public class User : RCEntity
         isRegistered = false;
         BirthDate = DateTime.MaxValue;
         RegistrationDate= DateTime.MaxValue;
-       // imgPath = "none";
-        //degree = "none";
-        //administrator = false;
-        //email = "";
-        //hash = "none";
-        //salt = "none";
-        //summery = "";
-        
-        //DateTime bdate = reader["birthDate"] != null ? Convert.ToDateTime(reader["birthDate"]) : DateTime.MinValue;
-        //DateTime registrationDate = reader["registrationDate"] != null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
-    }
-
-    //Constructors:
-    public User()
-    {
         db = new DBServices();
     }
     public User(int id, string fName, string mName, string lName, string imgPath, string degree,
@@ -293,7 +284,12 @@ public class User : RCEntity
         if (summery == null) { summery = ""; }
         if (degree == null) { degree= ""; }
         { BirthDate = new DateTime(2018, 1, 1); }
-        { RegistrationDate = new DateTime(2018, 1, 1); }        
+        { RegistrationDate = new DateTime(2018, 1, 1); }
+        if (imgPath ==null ) { imgPath = " "; }
+        {
+
+        }
+        
 
     }
 
