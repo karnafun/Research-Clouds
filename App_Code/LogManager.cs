@@ -12,7 +12,7 @@ using System.Web;
 /// </summary>
 public static class LogManager
 {
-    private static  NetworkCredential networkCredentials =  new NetworkCredential("researchcloudsdevelopment", "RandomPassword");
+    private static  NetworkCredential networkCredentials =  new NetworkCredential("researchcloudsdevelopment", "ResearchClouds1");
     private static string RCEmailAddress = "researchcloudsdevelopment @gmail.com";
     private static string gmailSmtpAddress = "smtp.gmail.com";
     const string logFilePath = "";
@@ -79,10 +79,10 @@ public static class LogManager
             SmtpServer.Send(mail);
             
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            
-            throw new SystemException();
+
+            return;
         }
     }
 }

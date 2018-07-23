@@ -14,7 +14,7 @@ public class User : RCEntity
     string fName, mName, lName;
     string imgPath, degree, hash, salt, email, summery;
     string password; //Not in the constructor, only for creating users
-    bool administrator;
+    bool administrator,isRegistered;
     DateTime bdate, registrationDate;
     List<Article> articles;
     List<Institute> affiliations;
@@ -39,6 +39,21 @@ public class User : RCEntity
             }
         }
     }
+    //public string Name
+    //{
+    //    get
+    //    {
+    //        if (!String.IsNullOrWhiteSpace(mName) && mName.Length > 2)
+    //        {
+    //            return string.Format("{0} {1} {2}", fName, mName, lName);
+    //        }
+    //        else
+    //        {
+    //            mName = " ";
+    //            return string.Format("{0} {1}", fName, lName);
+    //        }
+    //    }
+    //}
     public string ImagePath { get { return imgPath; } set { imgPath = value; } }
     public string Degree { get { return degree; } set { degree = value; } }
     public bool IsAdmin { get { return administrator; } }
@@ -49,6 +64,7 @@ public class User : RCEntity
     public string Hash { get { return hash; } }
     public string Salt { get { return salt; } }
     public string Password { set { password = value; } }
+    public bool IsRegistered { set { isRegistered = value; } get { return isRegistered; } }
     public List<Article> Articles
     {
         get
@@ -77,20 +93,32 @@ public class User : RCEntity
         {
             if (affiliations == null)
             {
-                affiliations = db.GetUserAffiliations(id);
+               affiliations = db.GetUserAffiliations(id);
             }
             return affiliations;
         }
     }
+
 
     //Constructors:
     public User()
     {
         db = new DBServices();
     }
+    public User(string fName,string mName, string lName,Article article)
+    {
+        this.fName = fName;
+        if (!string.IsNullOrEmpty(mName)) { this.mName = mName; }        
+        this.lName = lName;
+      //  this.articles.Add()
+        isRegistered = false;
+        BirthDate = DateTime.MaxValue;
+        RegistrationDate= DateTime.MaxValue;
+        db = new DBServices();
+    }
     public User(int id, string fName, string mName, string lName, string imgPath, string degree,
         string email, string summery, bool administrator, DateTime bdate, DateTime registrationDate,
-        string hash = null, string salt = null)
+        string hash = null, string salt = null, bool isRegistered = true)
     {
         db = new DBServices();
         this.id = id;
@@ -106,12 +134,25 @@ public class User : RCEntity
         this.registrationDate = registrationDate;
         this.hash = hash;
         this.salt = salt;
+        this.isRegistered = isRegistered;
     }
 
 
     //Methods
     public void GetFullInfo()
     {
+        // articles = db.GetUserArticles(this.id);
+        // affiliations = db.GetUserAffiliations(this.id);
+
+        if (articles!=null && articles.Count>=50)
+        {
+            List<Article> newArticles = new List<Article>();
+            for (int i = 0; i < 50; i++)
+            {
+                newArticles.Add(articles[i]);
+            }
+            this.articles = newArticles;
+        }
         foreach (Article article in Articles) //Get users for each article
         {
             article.GetFullInfo();
@@ -124,7 +165,9 @@ public class User : RCEntity
     public override string ToString()
     {
         string info = "id: " + id + "<br>";
-        info += "Name: " + Name + "<br>";
+        info += "Name: " + FirstName;
+        if (string.IsNullOrEmpty(MiddleName)) { info += " " + MiddleName; }
+        info+=" "+LastName + "<br>"; 
         info += "Image: " + imgPath + "<br>";
         info += "Admin: " + IsAdmin + "<br>";
         info += "Email: " + Email + "<br>";
@@ -225,5 +268,30 @@ public class User : RCEntity
         return db.RemoveEntity(this);
     }
 
+    public void FixNulls()
+    {
+        //string fName, mName, lName;
+        //string imgPath, degree, hash, salt, email, summery;
+        //string password; //Not in the constructor, only for creating users
+        //bool administrator, isRegistered;
+        //DateTime bdate, registrationDate;
+        //List<Article> articles;
+        //List<Institute> affiliations;
+        //List<Cluster> clusters;
+        if (salt == null) { salt = ""; }
+        if (email == null) { email= ""; }
+        if (hash== null) { hash = ""; }
+        if (summery == null) { summery = ""; }
+        if (degree == null) { degree= ""; }
+        { BirthDate = new DateTime(2018, 1, 1); }
+        { RegistrationDate = new DateTime(2018, 1, 1); }
+        if (imgPath ==null ) { imgPath = " "; }
+        {
 
+        }
+        
+
+    }
+
+    
 }

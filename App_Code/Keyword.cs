@@ -55,7 +55,7 @@ public class Keyword :RCEntity
     }
     public Keyword GetKeywordById(int id)
     {
-        return GetKeywordById(id);
+        return db.GetKeywordById(id);
     }
     public int InsertKeywordToDatabase()
     {

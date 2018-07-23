@@ -11,8 +11,8 @@ using System.Web.Configuration;
 /// Summary description for DBServices
 /// </summary>
 public class DBServices
-{    
-    string connectionString = WebConfigurationManager.ConnectionStrings["Test1DB"].ConnectionString;
+{
+    string connectionString = WebConfigurationManager.ConnectionStrings["Test2DB"].ConnectionString;
     SqlCommand cmd;
     SqlConnection con;
     SqlDataReader reader;
@@ -131,6 +131,42 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+
+    public User GetUserByName(string fName, string mName, string lName)
+    {
+        string cmdStr = "select  * from users where firstName=@fName and lastName=@lName ";
+        //if (!string.IsNullOrWhiteSpace(mName)) { cmdStr += " and middleName=@mName"; }
+        con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        cmd.Parameters.AddWithValue("@fName", fName);
+        cmd.Parameters.AddWithValue("@lName", lName);
+        //if (!string.IsNullOrWhiteSpace(mName)) { cmd.Parameters.AddWithValue("@mName", mName); }
+
+        try
+        {
+            cmd.Connection.Open();
+            reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                return CurrentLineUser(reader);
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return null;
+
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+
     /// <summary>
     /// Gets a specific user from the database by email address
     /// </summary>
@@ -170,7 +206,7 @@ public class DBServices
     /// <returns>All Clusters associated with this user</returns>
     public List<Cluster> GetUserClusters(int uId)
     {
-        string cmdStr = "select * from v_UserClusters where uId = @id";
+        string cmdStr = "select * from v_UserClusters where uId = @id and visible = 1";
         con = new SqlConnection(connectionString);
         cmd = new SqlCommand(cmdStr, con);
         cmd.Parameters.AddWithValue("@id", uId);
@@ -181,7 +217,7 @@ public class DBServices
             List<Cluster> clusters = new List<Cluster>();
             while (reader.Read())
             {
-               
+
                 clusters.Add(CurrentLineCluster(reader));
             }
             return clusters;
@@ -249,7 +285,7 @@ public class DBServices
             SqlDataReader reader = cmd.ExecuteReader();
             List<Institute> institutes = new List<Institute>();
             while (reader.Read())
-            {               
+            {
                 institutes.Add(CurrentLineInstitute(reader));
             }
             return institutes;
@@ -327,6 +363,37 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+    public Cluster GetClusterByName(string name)
+    {
+        string cmdStr = "select top(1) * from Clusters where cName = @name";
+        con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        cmd.Parameters.AddWithValue("@name", name);
+        try
+        {
+            cmd.Connection.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                return CurrentLineCluster(reader);
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return null;
+
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+
+
     /// <summary>
     /// Gets all keywords in a specific cluster by the cluster id
     /// </summary>
@@ -345,7 +412,7 @@ public class DBServices
             List<Keyword> keywords = new List<Keyword>();
             while (reader.Read())
             {
-                
+
                 keywords.Add(CurrentLineKeyword(reader));
             }
             return keywords;
@@ -455,6 +522,33 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+    public Article GetArticleByTitle(string title)
+    {
+        string cmdStr = "select top(1) * from Articles where title = @title";
+        con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        cmd.Parameters.AddWithValue("@title", title);
+        try
+        {
+            cmd.Connection.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                return CurrentLineArticle(reader);
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return null;
+
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
     /// <summary>
     /// Gets all the users in this article by article id
     /// </summary>
@@ -536,7 +630,7 @@ public class DBServices
             SqlDataReader reader = cmd.ExecuteReader();
             List<Keyword> keywords = new List<Keyword>();
             while (reader.Read())
-            {                          
+            {
                 keywords.Add(CurrentLineKeyword(reader));
             }
             return keywords;
@@ -582,6 +676,35 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+    public Keyword GetKeywordByPhrase(string phrase)
+    {
+        string cmdStr = "select top(1) * from Keywords where phrase = @phrase";
+        con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        cmd.Parameters.AddWithValue("@phrase", phrase);
+        try
+        {
+            cmd.Connection.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                return CurrentLineKeyword(reader);
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return null;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+
     /// <summary>
     /// Gets all the clusters with a specific keyword using keyword id
     /// </summary>
@@ -600,7 +723,7 @@ public class DBServices
             List<Cluster> clusters = new List<Cluster>();
             while (reader.Read())
             {
-                
+
                 clusters.Add(CurrentLineCluster(reader));
             }
             return clusters;
@@ -631,7 +754,7 @@ public class DBServices
             SqlDataReader reader = cmd.ExecuteReader();
             List<Institute> institutes = new List<Institute>();
             while (reader.Read())
-            {       
+            {
                 institutes.Add(CurrentLineInstitute(reader));
             }
             return institutes;
@@ -694,7 +817,7 @@ public class DBServices
             reader = cmd.ExecuteReader();
             List<User> users = new List<User>();
             while (reader.Read())
-            {                
+            {
                 users.Add(CurrentLineUser(reader));
             }
             return users;
@@ -740,6 +863,8 @@ public class DBServices
     }
 
     #endregion
+
+
 
     #region Insert Methods
     public int InsertUser(User user)
@@ -792,7 +917,8 @@ public class DBServices
         {
             LogManager.Report(ex, cluster);
             return -1;
-        }finally
+        }
+        finally
         {
             cmd.Connection.Close();
         }
@@ -808,8 +934,9 @@ public class DBServices
         catch (Exception ex)
         {
             LogManager.Report(ex, institute);
-            return -1;            
-        }finally
+            return -1;
+        }
+        finally
         {
             cmd.Connection.Close();
         }
@@ -826,11 +953,33 @@ public class DBServices
         {
             LogManager.Report(ex);
             return -1;
-        }finally
+        }
+        finally
         {
             cmd.Connection.Close();
         }
-    }  
+    }
+    public int InsertInterest(int uId, string interest)
+    {
+        try
+        {
+            string cmdStr = String.Format("insert into UserScholarInterests values({0},'{1}')", uId, interest);
+            cmd = new SqlCommand(cmdStr, con);
+            con.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+
+            LogManager.Report("Insert Interest failure. interest=" + interest + ", uId = " + uId + "", ex);
+            return -1;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+    //public int InsertArticleKeywords
     #endregion
 
 
@@ -856,7 +1005,7 @@ public class DBServices
     }
     public int UpdateArticle(Article article)
     {
-        cmd = ArticleCommand(article,false);
+        cmd = ArticleCommand(article, false);
         try
         {
             cmd.Connection.Open();
@@ -866,12 +1015,13 @@ public class DBServices
         {
             LogManager.Report(ex, article);
             return -1;
-        }finally
+        }
+        finally
         {
             cmd.Connection.Close();
         }
     }
-    public int UpdateCluster (Cluster cluster)
+    public int UpdateCluster(Cluster cluster)
     {
         cmd = ClusterCommand(cluster, false);
         try
@@ -883,7 +1033,8 @@ public class DBServices
         {
             LogManager.Report(ex, cluster);
             return -1;
-        }finally
+        }
+        finally
         {
             cmd.Connection.Close();
         }
@@ -924,12 +1075,50 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+    public int UpdatePassword(int uId, string salt, string hash)
+    {
+       string cmdStr= string.Format("update users set uSALT ='{0}' , uHash ='{1}', isRegistered = 1 where uId={2}", salt, hash, uId);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+    public int UpdateEmail(int uId, string email)
+    {
+        string cmdStr = string.Format("update users set email ='{0}'  where uId={1}", email, uId);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
     #endregion
 
     #region Remove Methods
     public int RemoveEntity(RCEntity entity)
     {
-        
+
         string cmdStr = "";
         if (entity is User)
         {
@@ -950,7 +1139,8 @@ public class DBServices
         else if (entity is Keyword)
         {
             cmdStr = "p_deleteKeyword";
-        }else
+        }
+        else
         {
             LogManager.Report("trying to remove an unknown RCEntity", entity);
             return -1;
@@ -973,7 +1163,7 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
-    
+
     #endregion
 
     #region Utility Methods
@@ -989,10 +1179,11 @@ public class DBServices
         DateTime registrationDate = reader["registrationDate"] != null ? Convert.ToDateTime(reader["registrationDate"]) : DateTime.MinValue;
         bool administrator = Convert.ToBoolean(reader["administrator"]);
         string email = reader["email"].ToString();
-        string summery = reader["summery"].ToString();        
+        string summery = reader["summery"].ToString();
         string hash = reader["uHash"].ToString();
         string salt = reader["uSALT"].ToString();
-        return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator,bdate,registrationDate,hash,salt);
+        bool isRegistered = (bool)reader["isRegistered"];
+        return new User(id, fName, mName, lName, imgPath, degree, email, summery, administrator, bdate, registrationDate, hash, salt, isRegistered);
     }
     private Article CurrentLineArticle(SqlDataReader reader)
     {
@@ -1005,7 +1196,7 @@ public class DBServices
     {
         int id = (int)reader["cId"];
         string name = reader["cName"].ToString();
-        return new Cluster(id,name);
+        return new Cluster(id, name);
     }
     private Institute CurrentLineInstitute(SqlDataReader reader)
     {
@@ -1013,12 +1204,12 @@ public class DBServices
         string name = reader["iName"].ToString();
         return new Institute(id, name);
     }
-    private Keyword CurrentLineKeyword(SqlDataReader reader )
+    private Keyword CurrentLineKeyword(SqlDataReader reader)
     {
         int id = (int)reader["kId"];
         string phrase = reader["phrase"].ToString();
         return new Keyword(id, phrase);
-        
+
     }
 
     private SqlCommand UserCommand(User user, bool isNewUser)
@@ -1029,8 +1220,26 @@ public class DBServices
         if (isNewUser)
         {
             cmdStr.Append("insert into users values");
-            cmdStr.Append("(@firstName,@middleName,@lastName,@degree,@imgPath,@birthDate, @registrationDate,");
-            cmdStr.Append("@administrator,@email,@uHash,@uSALT,@summery)");
+            cmdStr.Append("(@firstName,@middleName,@lastName,");
+
+            //if (user.Degree == null)
+            //    cmdStr.Append("null,");
+            //else
+            //    cmdStr.Append("@degree,");
+
+            //if (user.ImagePath == null)
+            //    cmdStr.Append("null,");
+            //else
+            //    cmdStr.Append("@imgPath,");
+
+            //if (user.Email == null)
+            //    cmdStr.Append("null,");
+            //else
+            //    cmdStr.Append("@email,");
+
+
+            cmdStr.Append("@degree,@imgPath,@birthDate, @registrationDate,");
+            cmdStr.Append("@administrator,@email,@uHash,@uSALT,@summery,@isRegistered)");
         }
         else
         {
@@ -1047,7 +1256,7 @@ public class DBServices
             cmdStr.Append("summery = @summery ");
             cmdStr.Append(" where uId = @id ");
         }
-        _cmd = new SqlCommand(cmdStr.ToString(), con);         
+        _cmd = new SqlCommand(cmdStr.ToString(), con);
         _cmd.Parameters.AddWithValue("@firstName", user.FirstName);
         _cmd.Parameters.AddWithValue("@middleName", user.MiddleName); //nullable
         _cmd.Parameters.AddWithValue("@lastName", user.LastName);
@@ -1058,6 +1267,7 @@ public class DBServices
         _cmd.Parameters.AddWithValue("@administrator", user.IsAdmin);
         _cmd.Parameters.AddWithValue("@email", user.Email);
         _cmd.Parameters.AddWithValue("@summery", user.Summery);
+        _cmd.Parameters.AddWithValue("@isRegistered", user.IsRegistered);
         if (isNewUser)
         {
             _cmd.Parameters.AddWithValue("@uHash", user.Hash); //nullable - but i wont allow
@@ -1078,13 +1288,13 @@ public class DBServices
         if (isNewArticle)
         {
             cmdStr.Append("insert into articles values");
-            cmdStr.Append("(@title,@link)");            
+            cmdStr.Append("(@title,@link)");
         }
         else
         {
             cmdStr.Append(" update articles set ");
             cmdStr.Append("title = @title,");
-            cmdStr.Append("aLink= @link");           
+            cmdStr.Append("aLink= @link");
             cmdStr.Append(" where aId = @id ");
         }
         _cmd = new SqlCommand(cmdStr.ToString(), con);
@@ -1101,18 +1311,26 @@ public class DBServices
         if (isNewCluster)
         {
             cmdStr.Append("insert into Clusters values");
-            cmdStr.Append("(@name)");
+            cmdStr.Append("(@name,@visible)");
         }
         else
         {
             cmdStr.Append(" update Clusters set ");
-            cmdStr.Append("cName = @name");
+            cmdStr.Append("cName = @name visible = @visible");
             cmdStr.Append(" where cId = @id ");
         }
         _cmd = new SqlCommand(cmdStr.ToString(), con);
         _cmd.Parameters.AddWithValue("@id", cluster.Id);
         _cmd.Parameters.AddWithValue("@name", cluster.Name);
-        
+        if (cluster.visible)
+        {
+            _cmd.Parameters.AddWithValue("@visible", 1);
+        }
+        else
+        {
+            _cmd.Parameters.AddWithValue("@visible", 0);
+        }
+
         return _cmd;
     }
     private SqlCommand InstituteCommand(Institute institute, bool isNewInstitute)
@@ -1134,7 +1352,7 @@ public class DBServices
         _cmd = new SqlCommand(cmdStr.ToString(), con);
         _cmd.Parameters.AddWithValue("@id", institute.Id);
         _cmd.Parameters.AddWithValue("@name", institute.Name);
-        
+
         return _cmd;
     }
     private SqlCommand KeywordCommand(Keyword keyword, bool isNewKeyword)
@@ -1160,4 +1378,134 @@ public class DBServices
         return _cmd;
     }
     #endregion
+
+
+
+
+
+    public int FullArticleInsert(Article article)
+    {
+        //Get id or create and then get id if the article doesnt exist
+        Article temp = GetArticleByTitle(article.Title);
+        if (temp == null)
+        {
+            InsertArticle(article);
+            article.Id = GetArticleByTitle(article.Title).Id;
+        }
+        else
+        {
+            article.Id = temp.Id;
+        }
+
+        //We got the article Id from the database.
+        //now users.
+        if (article.Users != null)
+        {
+            for (int i = 0; i < article.Users.Count; i++)
+            {
+                if (article.Users[i] == null) { continue; }
+                User user = GetUserByName(article.Users[i].FirstName,
+                                   article.Users[i].MiddleName, article.Users[i].LastName);
+
+
+
+                if (user == null)
+                {
+                    article.Users[i].IsRegistered = false;
+                    InsertUser(article.Users[i]);
+                    user = GetUserByName(article.Users[i].FirstName,
+                    article.Users[i].MiddleName, article.Users[i].LastName);
+                }
+                AddUserToArticle(user.Id, article.Id);
+            }
+        }
+
+        //Enter the keywords:
+        if (article.Keywords != null)
+        {
+            for (int i = 0; i < article.Keywords.Count; i++)
+            {
+                Keyword _keyword = GetKeywordByPhrase(article.Keywords[i].Phrase);
+                if (_keyword == null)
+                {
+                    InsertKeyword(article.Keywords[i]);
+                    _keyword = GetKeywordByPhrase(article.Keywords[i].Phrase);
+                }
+                AddKeywordToArticle(_keyword.Id, article.Id);
+
+            }
+        }
+
+        return 1;
+
+
+    }
+    
+    private int AddKeywordToArticle(int keywordId, int articleId)
+    {
+        string cmdStr = "insert into KeywordsInArticle values(" + articleId + "," + keywordId + ")";
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            con.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report("adding keywords to articleId:" + articleId, ex);
+            return -1;
+
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
+    public int AddUserToArticle(User user, Article article)
+    {
+        return AddUserToArticle(user.Id, article.Id);
+    }
+    public int AddUserToArticle(int userId, int articleId)
+    {
+        string cmdStr = "insert into UsersInArticle values(" + userId + "," + articleId + " )";
+        SqlCommand cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report("adding user to article. userid: " + userId, ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+
+    public int AddUserToCluster(int userId, int clusterId)
+    {
+        string cmdStr = "insert into UsersInCluster values(" + userId + "," + clusterId + ",1 )";
+        SqlCommand cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            cmd.Connection.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report("adding user to cluster. userid: " + userId, ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+
 }
