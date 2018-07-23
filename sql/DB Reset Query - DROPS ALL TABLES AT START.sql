@@ -16,14 +16,22 @@
 	Part 15: Users-AcademicInstitutes Relationship Data (Soccer DB) 
 
 */
-
-
+/*
+select * from scholarPublications
+select * from scholarusers
+select * from scholarInterests
+select * from users 
+select * from UserScholarInterests
+select * from articles
+select * from v_UserArticles where uId = 9
+select * from UsersInArticle where uId = 9
+*/
 /****************************************************************************************************************************
 	Part 1: Drop Data.
 	Droping all Research clouds related tables, views and procedures ordered by foreign keys constraints
 *****************************************************************************************************************************/
 
-drop table Affiliations, UsersInCluster, usersInArticle,KeywordsInCluster,KeywordsInArticle
+drop table Affiliations, UsersInCluster, usersInArticle,KeywordsInCluster,KeywordsInArticle, UserScholarInterests
 drop table users, Clusters, Articles, Keywords, AcademicInstitutes
 drop view [dbo].[v_ArticleKeywords],[dbo].[v_ClusterKeywords],[dbo].[v_InstituteUsers],[dbo].[v_UserAffiliations],[dbo].[v_UserArticles],[dbo].[v_UserClusters]
 drop proc p_deleteUser, p_deleteArticle, p_deleteCluster, p_deleteInstitute,p_deleteKeyword
@@ -39,15 +47,16 @@ create table Users(
 firstName nvarchar(50) not null,
 middleName nvarchar(50) ,
 lastName nvarchar(50) not null,
-degree nvarchar(50) not null,
-imgPath nvarchar(1000) not null,
+degree nvarchar(50) ,
+imgPath nvarchar(1000) ,
 birthDate datetime ,
 registrationDate datetime ,
-administrator bit not null,
-email nvarchar(250) not null,
+administrator bit ,
+email nvarchar(250) ,
 uHash nvarchar(max) ,
 uSALT nvarchar(max) ,
-summery nvarchar(500) 
+summery nvarchar(500),
+isRegistered bit not null
 )
 go
 
@@ -59,7 +68,7 @@ go
 
 create table Articles(
 aId int identity not null,
-title nvarchar(1000) not null,
+title nvarchar(1000)  not null,
 aLink nvarchar(max) not null
 ) 
 go
@@ -85,6 +94,14 @@ iName nvarchar(500) not null
 create table KeywordsInCluster(
 kId int not null,
 cId int not null
+)
+go
+
+
+
+create table UserScholarInterests(
+[uId] int not null,
+interest nvarchar(250) not null
 )
 go
 
@@ -141,6 +158,12 @@ alter table AcademicInstitutes
 add constraint AcademicInstitutes_id_PK primary key ([iId])
 go
 
+
+alter table UserScholarInterests
+add constraint UserScholarInterests_uid_PK primary key ([uId],interest)
+go
+
+
 alter table KeywordsInCluster
 add constraint KeywordsInCluster_kid_PK primary key ([kId],cId)
 go
@@ -156,6 +179,10 @@ go
 
 alter table UsersInCluster
 add constraint UsersInCluster_uid_PK primary key ([uId],cId)
+go
+
+alter table UsersInArticle
+add constraint UsersInArticle_uid_PK primary key ([uId],aId)
 go
 
 /****************************************************************************************************************************
@@ -212,11 +239,14 @@ go
 
 create view v_UserClusters
 as
-SELECT        dbo.Users.*, dbo.Clusters.*
+SELECT        dbo.Users.uId, dbo.Users.firstName, dbo.Users.middleName, dbo.Users.lastName, dbo.Users.degree, dbo.Users.imgPath, dbo.Users.birthDate, dbo.Users.registrationDate, dbo.Users.administrator, dbo.Users.email, 
+                         dbo.Users.uHash, dbo.Users.uSALT, dbo.Users.summery, dbo.Users.isRegistered, dbo.Clusters.cId, dbo.Clusters.cName, dbo.UsersInCluster.visible
 FROM            dbo.Users INNER JOIN
                          dbo.UsersInCluster ON dbo.Users.uId = dbo.UsersInCluster.uId INNER JOIN
                          dbo.Clusters ON dbo.UsersInCluster.cId = dbo.Clusters.cId
 go
+
+
 
 
 
@@ -331,28 +361,28 @@ go
 insert into users values
 ('Lionel', '', 'Messi','Degree','https://cdn.images.express.co.uk/img/dynamic/67/590x/Lionel-Messi-Barcelona-778351.jpg',
 '5-20-1985','3-16-2018',1,'messi@ruppin.ac.il','61A1B1A373DFA2C6515612B1A8A77F83AE28B7E0C5E39816B64D67739019F669','20E6494B4207A90D',
-'Messi is unsumable ! ')
+'Messi is unsumable ! ',1)
 go
 
 insert into users values
 ('Neymar', 'Da Silva', ' Santos','Degree','http://www.whoateallthepies.tv/wp-content/uploads/2013/05/neymar-cry.jpg',
 '5-20-1985','3-16-2018',0,'neymar@ruppin.ac.il','B9383D41E4D70F56E4A2FE34B9F116EA9BBCEE04B4A61E4957D184074CC4EF58','3C3C58961451D04',
-'A Summery About Neymar')
+'A Summery About Neymar',1)
 go
 insert into users values
 ('Oren', '', 'Hazan','Degree','http://www.maariv.co.il/HttpHandlers/ShowImage.ashx?ID=292760',
 '5-20-1985','3-16-2018',0,'hazan@ruppin.ac.il','5E55DE8E9F15CC8373BFD3B1866DDDB55499F66F6E978E7C85BA4D55191477B5','66C26C8D58996B8F',
-'We Dont Think that Oren needs a summery')
+'We Dont Think that Oren needs a summery',1)
 go
 insert into users values
 ('Cristiano', '', 'Ronaldo','Degree','https://secure.i.telegraph.co.uk/multimedia/archive/02479/infant_2479350k.jpg',
 '5-20-1985','3-16-2018',0,'ronaldo@ruppin.ac.il','11CEE9D8C4546E96675E38898B3BFE25A9313D645394AFFCBFACEEE439006972','7EE9BB521CE704BA',
-'this is my summery')
+'this is my summery',1)
 go
 insert into users values
 ('Gareth', '', 'Bale','Degree','http://news.images.itv.com/image/file/1401468/stream_img.jpg',
 '5-20-1985','3-16-2018',0,'bale@ruppin.ac.il','C9EC3C42562081E5439A40A0D9C06630261827C09CE375D5335795548D4004F3','2813B5F0BA1E74',
-'Gareth Bale Summery, Somthing unique and long enough to make your HTML wonder if he is ready for somthing heavy like this.')
+'Gareth Bale Summery, Somthing unique and long enough to make your HTML wonder if he is ready for somthing heavy like this.',1)
 go
 
 
