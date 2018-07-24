@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using System.Web.Services;
+
+
+
 
 /// <summary>
 /// Summary description for AjaxServices
@@ -13,9 +17,10 @@ using System.Web.Services;
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
 [System.Web.Script.Services.ScriptService]
+
 public class AjaxServices : System.Web.Services.WebService
 {
-
+    const string rootPath = @"http://proj.ruppin.ac.il/bgroup62/test2/tar5/";
     public AjaxServices()
     {
 
@@ -297,6 +302,106 @@ public class AjaxServices : System.Web.Services.WebService
             return ex.ToString();
         }
 
+    }
+
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // 
+    //--------------------------------------------------------------------------
+    public string ImageUpload()
+    {
+
+       var uId =  HttpContext.Current.Request.Params["uId"];
+        if (HttpContext.Current.Request.Files.AllKeys.Any())
+        {
+            // Get the uploaded image from the Files collection
+            var httpPostedFile = HttpContext.Current.Request.Files["UploadedFile"];
+            if (httpPostedFile != null)
+            {
+                // Validate the uploaded image(optional)
+                // Get the complete file path
+                var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/images"), uId + ".jpg");                
+                // Save the uploaded file to "UploadedFiles" folder
+                httpPostedFile.SaveAs(fileSavePath);               
+                string viewPath = rootPath + uId + ".jpg";
+                new DBServices().UpdateUserImage(int.Parse(uId), viewPath);
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                return js.Serialize("test string");
+            }
+
+        }
+        return " ";
+       
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // Inserts a user to the database
+    // returns the created user from the database via login
+    //--------------------------------------------------------------------------
+    public string GetUserArticles(string uId)
+    {
+        try
+        {
+            User user = new global::User().GetUserById(int.Parse(uId));
+            foreach (var item in user.Articles)
+            {
+                item.GetFullInfo();
+            }
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            
+            return js.Serialize(user.Articles.ToArray());
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return ex.ToString();
+        }
+
+    }
+
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // 
+    //--------------------------------------------------------------------------
+    public string UpdatePersonalInfo()
+    {
+
+        var uId = HttpContext.Current.Request.Params["uId"];
+        var fName = HttpContext.Current.Request.Params["firstName"];
+        var mName = HttpContext.Current.Request.Params["middleName"];
+        var lName = HttpContext.Current.Request.Params["lastName"];
+        if (HttpContext.Current.Request.Files.AllKeys.Any())
+        {
+            // Get the uploaded image from the Files collection
+            var httpPostedFile = HttpContext.Current.Request.Files["UploadedFile"];
+            if (httpPostedFile != null)
+            {
+                // Validate the uploaded image(optional)
+                // Get the complete file path
+                var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/images"), uId + ".jpg");
+                // Save the uploaded file to "UploadedFiles" folder
+                httpPostedFile.SaveAs(fileSavePath);
+                string viewPath =  rootPath +"/images/"+ uId + ".jpg";
+                new DBServices().UpdateUserImage(int.Parse(uId), viewPath);
+            }
+        }
+        User user = new User().GetUserById(int.Parse(uId));
+        user.GetFullInfo();
+        user.FirstName = fName;
+        user.MiddleName = mName;
+        user.LastName = lName;
+        user.FixNulls();
+        user.UpdateUserInDatabase();
+        return "Done"; 
     }
 
 }

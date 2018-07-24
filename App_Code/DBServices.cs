@@ -1037,6 +1037,27 @@ public class DBServices
 
 
     #region Update Methods
+    public int  UpdateUserImage(int uId, string imgPath)
+    {
+        string cmdStr = string.Format("update users set imgPath = '{0}' where uId = {1}", imgPath, uId);
+        con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            cmd.Connection.Open();
+            int res = cmd.ExecuteNonQuery();
+            return res;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
     public int UpdateUser(User user)
     {
         cmd = UserCommand(user, false);
@@ -1218,7 +1239,7 @@ public class DBServices
     }
 
     #endregion
-
+     
     #region Utility Methods
     private User CurrentLineUser(SqlDataReader reader)
     {
@@ -1535,9 +1556,7 @@ public class DBServices
         {
             cmd.Connection.Close();
         }
-    }
-
-
+    }    
     public int AddUserToCluster(int userId, int clusterId)
     {
         string cmdStr = "insert into UsersInCluster values(" + userId + "," + clusterId + ",1 )";

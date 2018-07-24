@@ -189,3 +189,51 @@ footer span:hover{
 	margin-left:-25px;
 }
 
+#edit-profile-modal{
+	font-size:16px;
+}
+
+/*
+	Loding css
+
+*/
+
+
+.login-page {
+	position: absolute;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	top: 50%;
+	left: 50%;
+	margin-left: -60px;
+	margin-top: -60px;
+	animation: load 2s linear infinite;
+}
+
+.heading {
+margin:10% auto;
+}
+
+.fad {
+	height: 100%;
+	width: 100%;
+	background-color: #ccc;
+	opacity: 0.9;
+	position: fixed;
+	top: 0;
+	z-index: 10;
+	display: none;
+}
+
+@keyframes load {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}

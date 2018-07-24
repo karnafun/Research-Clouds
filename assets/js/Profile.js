@@ -41,19 +41,35 @@ try {
             ViewUser(User.Id);
         });
 
-        if (User.Articles == null) {
+        if (User.Articles.length == 0) {
             $('#uArticleModale').modal('show');
         }
         //build the profile
         $("#buildProfile_btn").on("click", function () {
-            // Here goes the creating profile Function
-            alert("new profile created")
+            try {
+                var request = {
+                    userString: JSON.stringify(User)
+                };
+                FindUserAutomaticallyAjax(request, RefreshUser, errorCB);     //If RefreshUser not working, just past the code itself instead and it'll work             
+            } catch (e) {
+                console.log(e)
+            }
+
+
+        });
+        $("#edit-user-profile").on("click", function () {
+            $("#infoModal_firstName").val(User.FirstName);
+            $("#infoModal_middleName").val(User.MiddleName);
+            $("#infoModal_lastName").val(User.LastName);
+            $("#edit-profile-modal").modal("show");
+        })
+        $("#pencil-user-profile").on("click", function () {
+            $("#loader").attr("style", "display:block");
+        });
+        $("#loader").on("click", function () {
+            $(this).attr("style", "display:none");
         });
     });
-
-    //TODO:    
-    //Insert Affiliations
-    //Insert Clusters
 
 } catch (e) {
     RedirectToLogin();
@@ -68,18 +84,17 @@ function UpdatePageFromUser() {
     BuildArticles();
     BuildAffiliations();
     BuildClusters();
-
 }
 
 
 
-function BuildArticles() { 
+function BuildArticles() {
     var res = "";
     $.each(User.Articles, function (index, value) {
         var usernames = "";
         for (var i = 0; i < value.Users.length; i++) {
             var _name = value.Users[i].Name;
-            if (value.Users[i].Name==undefined) {
+            if (value.Users[i].Name == undefined) {
                 _name = value.Users[i];
             }
             usernames += "<span class='article_user'>" + _name + "</span>";
@@ -91,22 +106,20 @@ function BuildArticles() {
         res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>" +
             "<span class='icon fa-graduation-cap'></span>" +
             "<div class='media-body'><br/>" +
-            
-                    //"<h5 onclick='return ArticleClick()>" +
-                       "<a onclick='return ArticleClick()' href= '" + value.Link + "'>" +
-                          value.Title +
-                        "</a>" +
-                   // "</h5>"+
-                    "<p>" + usernames + "</p>"+
-            "<span onclick='EditArticle(" + value.Id + ")' class='icon fa-edit' data-toggle='modal' data-target='#articleModal'></span>" +
-            
-                 "</div>"+
-              "</li>";
-        
+
+            //"<h5 onclick='return ArticleClick()>" +
+            "<a onclick='return ArticleClick()' href= '" + value.Link + "'>" +
+            value.Title +
+            "</a>" +
+            // "</h5>"+
+            "<p>" + usernames + "</p>" +
+            "</div>" +
+            "</li>";
+
     });
     $("#articleList").empty();
     $("#articleList").append(res);
-    
+
 }
 function BuildAffiliations() {
     var resString = "";
@@ -116,7 +129,7 @@ function BuildAffiliations() {
         Build an html li article using value (it has the users in it )
         */
         resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><span class='icon fa-university'></span><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div> " +
-            "<span class='icon fa-edit'><span>"+
+            "<span class='icon fa-edit'><span>" +
             "</li>";
 
 
@@ -134,14 +147,14 @@ function BuildClusters() {
         */
         resString +=
             '<li onclick="ClusterClick(' + value.Id + ')"  id="uCluster' + (index + 1) + '">' +
-        '<span class="icon fa-cloud animated fadeInLeft"></span>' +
-        '<br/>' +
-        value.Name +
-        '<br/>' +
-        '<p>' +
-        'Here will be a short description of the cluster'+
-            '</p>'+
-        '</li>'
+            '<span class="icon fa-cloud animated fadeInLeft"></span>' +
+            '<br/>' +
+            value.Name +
+            '<br/>' +
+            '<p>' +
+            'Here will be a short description of the cluster' +
+            '</p>' +
+            '</li>'
     });
     $("#uclust").html(resString);
 }
@@ -230,7 +243,7 @@ function EditArticle(_id) {
             var res = "";
             for (var i = 0; i < value.Users.length; i++) {
                 var _name = value.Users[i].Name;
-                if (_name == undefined  ) {
+                if (_name == undefined) {
                     _name = value.Users[i];
                 }
                 res += _name;
@@ -301,7 +314,7 @@ function SaveArticle(e) {
             try {
 
                 _users = _users.split(',');
-                
+
 
 
                 _article.Users = [];
@@ -319,8 +332,10 @@ function SaveArticle(e) {
     if (!exists) {
         ArticleDetails = { Id: -1, Keywords: [], Link: link, Title: title, Users: [User.Name] };
         User.Articles.push(ArticleDetails);
+        //UpdateUserInDatabase();
     }
-    BuildArticles();
+    // BuildArticles();
+    //UpdatePageFromUser();
 
 }
 
@@ -345,7 +360,7 @@ function CancelChanges() {
 }
 
 function GetDateObject(myDate) {
-    return new Date(parseInt(myDate.substr(6)));
+    //return new Date(parseInt(myDate.substr(6)));
 }
 
 
@@ -376,20 +391,54 @@ function ConfigureClickEvents() {
     //    alert("wtf");
     //});
     $('#articleModal_btn_save').unbind('click').click(function (e) {
-        SaveArticle(e);        
+        SaveArticle(e);
     });
 
-    $("#infoModal_btn_save").click(function (e) {
+    $("#infoModal_btn_save").unbind('click').click(function (e) {
         User.FirstName = $("#infoModal_firstName").val();
         User.MiddleName = $("#infoModal_middleName").val();
         User.LastName = $("#infoModal_lastName").val();
         User.Name = User.FirstName + " " + User.MiddleName + " " + User.LastName;
-        var img = $("#infoModal_imagePath").val();
-        if (img != null && img != undefined && img != "") {
-            User.ImagePath = img;
-        }
-        UpdatePageFromUser();
-        UpdateUserInDatabase();
+        var img = $("#infoModal_imagePath")[0].files[0];
+
+        var request = new FormData();
+
+        if (img != null && img != undefined && img != "") { request.append("UploadedFile", img) }
+        request.append("uId", User.Id)
+        request.append("firstName", User.FirstName)
+        request.append("middleName", User.MiddleName)
+        request.append("lastName", User.LastName)
+        UpdatePersonalInfoAjax(request, function (results) {
+           
+            //Get the user again from the server and update the page
+            GetUserById({ Id: User.Id }, function (results) {
+                try {
+                    results = JSON.parse(results.d);
+                    User = results;
+                    EditedUser = $.extend(true, {}, User);
+                    UpdatePageFromUser();
+                    alert("updated?");
+                    //In case of image caching: 
+                    d = new Date();
+                    $("#uImg").attr("src", User.ImagePath+"?"+d.getTime());
+                    
+                    //setTimeout(function () { UpdatePageFromUser();  alert("another check")}, 3000);//Just in case
+                    
+                } catch (e) {
+                    RedirectToLogin();
+                }                
+            })
+
+
+
+        }, errorCB)
+
+        //update articles 
+        //GetUserArticlesAjax({ uId: User.Id }, function (results) {
+        //    results = JSON.parse(results.d);
+        //    User.Articles = results;
+        //    BuildArticles();
+        //}, errorCB)
     });
 
     $("#summeryModal_btn_save").click(function (e) {
@@ -438,4 +487,23 @@ function ViewUser(_id) {
         window.location.replace("../html/CloudsView.html");
     }, errorCB)
 
+}
+
+function UpdateImage() {
+
+}
+
+function RefreshUser(results) {
+    GetUserById({ Id: User.Id }, function (results) {
+        try {
+            results = JSON.parse(results.d);
+            User = results;
+        } catch (e) {
+            RedirectToLogin();
+        }
+
+        EditedUser = $.extend(true, {}, User);
+        UpdatePageFromUser();
+        alert("Done, configured the user");
+    })
 }

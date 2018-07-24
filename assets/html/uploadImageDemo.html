@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- C:\Users\Admin\Desktop\research-clouds\images\6.jpg -->
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/AjaxCalls.js"></script>
+</head>
+<body>
+    <input type="file" id="file" />
+    <button id="btn_submit"> upload file</button>
+    <img src="\images/6.jpg" />
+    <script>
+        $("#btn_submit").on("click", function () {
+            var file = $("#file")[0].files[0]
+          
+            var data = new FormData();
+            data.append("UploadedFile", file)
+            data.append("uId", "50")
+            UploadImageAjax(data, function (e) { alert("worked") },
+                function (err) { alert(err.messageText)})
+         
+        })
+
+     
+
+    </script>
+</body>
+</html>

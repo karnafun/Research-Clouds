@@ -45,17 +45,32 @@
 
 </head>
 <body>
+    <div id="loader" class="fad">
+        <div class="login-page">
+
+        </div>
+        <div class="heading">
+            <center>
+                <h1>We are proccessing your information and building your profile</h1>
+                <h4>It may take a few minutes</h4>
+            </center>
+        </div>
+
+    </div>
     <!-- Header -->
     <section id="header">
 
         <div id="particles-js"></div>
 
         <header>
+            <span id="edit-user-profile" class="fa fa-edit" data-toggle="tooltip" data-placement="left" title="edit"></span>
+            <span id="pencil-user-profile" class="fa fa-pencil" data-toggle="tooltip" data-placement="left" title="load"></span>
+
             <span class="image avatar"><img id="uImg" src="" alt="" /></span>
             <center>
                 <h1 id="logo"><a id="uID" href="#"></a></h1>
             </center>
-                <p id="uSummery">
+            <p id="uSummery">
                 I got reprogrammed by a rogue AI<br />
                 and now I'm  totally cray
             </p>
@@ -74,7 +89,7 @@
     <!-- Wrapper -->
     <div id="wrapper">
         <div class="wimg">
-                <img id="tool" data-toggle="tooltip" data-placement="bottom" title="Show My network" src="../img/Screenshot_3_burned - Copy.png" />
+            <img id="tool" data-toggle="tooltip" data-placement="bottom" title="Show My network" src="../img/Screenshot_3_burned - Copy.png" />
         </div>
 
         <!-- Main -->
@@ -93,7 +108,7 @@
                 </div>
             </section>
             <!--Modal-->
-            <div class="modal animated fadeInDown" id="articleModal" tabindex="-1" role="dialog">
+            <!--<div class="modal animated fadeInDown" id="articleModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -120,7 +135,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!--end modal-->
             <!--MODAL FOR BULDING NEW PROFILE-->
 
@@ -148,6 +163,95 @@
 
 
             <!--END MODAL BUILDING PROFILE-->
+            <!--MODAL edit Profile-->
+
+
+
+
+
+            <div class="modal fade" id="edit-profile-modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>edit profile</h3>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="personal-details-tab" data-toggle="tab" href="#personal" role="tab" aria-controls="personal" aria-selected="true">Personal details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="articles-tab" data-toggle="tab" href="#articles" role="tab" aria-controls="articles" aria-selected="false">Articles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="clusters-tab" data-toggle="tab" href="#clusters" role="tab" aria-controls="clusters" aria-selected="false">Clusters</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="keywords-tab" data-toggle="tab" href="#keywords" role="tab" aria-controls="keywords" aria-selected="false">Keywords</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="personal" role="tabpanel" aria-labelledby="home-tab">
+                                    <form enctype="multipart/form-data" action="/action_page_binary.asp" method="post">
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="First Name" id="infoModal_firstName" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Middle Name" id="infoModal_middleName" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Last Name" id="infoModal_lastName" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="file" class="form-control" placeholder="Middle Name" id="infoModal_imagePath" />
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="infoModal_btn_save" type="submit" data-dismiss="modal" class="btn russian col-xs-6">Save</button>
+                                            <button id="infoModal_btn_cancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div class="tab-pane fade" id="articles" role="tabpanel" aria-labelledby="profile-tab">
+                                    <form>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Article name" id="articleModal_title" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Article Link" id="articleModal_link" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Authors" id="articleModal_authors" />
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="articleModal_btn_save" data-dismiss="modal" class="btn russian col-xs-6">Save</button>
+                                            <button id="articleModal_btn_cancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
+                                            <span id="add-article-form" class="fa fa-plus"></span><!--For adding another article-->
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="clusters" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                                <div class="tab-pane fade" id="keywords" role="tabpanel" aria-labelledby="contact-tab">...</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--END MODAL edit Profile-->
             <!-- Two -->
             <section id="two">
                 <div class="container">
