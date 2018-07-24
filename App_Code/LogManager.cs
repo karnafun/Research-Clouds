@@ -45,7 +45,18 @@ public static class LogManager
             res += "Attached Object Information: \r\n" + _obj.ToString();
         SendEmail(res,"System Report");
     }
-
+    public static void Report(Exception ex,params object[] list)
+    {
+        StackTrace stackTrace = new StackTrace();
+        string res = ex.ToString();
+        res += "\r\n" + ex.Message;
+        res += "\r\n Additional Info:";
+        foreach (var item in list)
+        {
+            res += "\r\n" + item.ToString();
+        }
+        SendEmail(res, "System Report with object list");
+    }
 
     public  static void Logerror1(string _class,string method,  string message)
     {

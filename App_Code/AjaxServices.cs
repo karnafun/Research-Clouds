@@ -196,8 +196,10 @@ public class AjaxServices : System.Web.Services.WebService
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     //--------------------------------------------------------------------------
-    // Inserts a user to the database
-    // returns the created user from the database via login
+    // Gets user information from Google Scholar and adds to scholarly table in DB
+    // adds terms from IEE if any publications from there are found
+    //inserts the information to the user in the database
+    //returns the user with the new data
     //--------------------------------------------------------------------------
     public string FindUserAutomatically(string userString)
     {
@@ -222,4 +224,79 @@ public class AjaxServices : System.Web.Services.WebService
         }
 
     }
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    // Inserts a user to the database
+    // returns the created user from the database via login
+    //--------------------------------------------------------------------------
+    public string UpdateArticle(string uId, string aId, string title, string link, string[] authors)
+    {
+        try
+        {
+            Article article = new Article().GetArticleById(int.Parse(aId));
+            article.Title = title;
+            article.Link = link;
+            article.GetFullInfo();
+            List<User> users = new List<global::User>();
+            for (int i = 0; i < authors.Length; i++)
+            {
+                string[] name = authors[i].Trim().Split(' ');
+                string fName = name[0];
+                string mName = string.Empty;
+                string lName = string.Empty;
+                if (name.Length>2)
+                {
+                    mName = name[1];
+                    lName = name[2];
+                }
+                else if (name.Length==2)
+                {
+                    lName = name[1];
+                }
+                else
+                {
+                    continue;
+                }
+                User author = new DBServices().GetUserByName(fName, mName, lName);
+                if (author==null)
+                {
+                    author = new User(fName, mName, lName, article);                    
+                    author.InsertAuthor();                    
+                    author = new DBServices().GetUserByName(fName, mName, lName);
+                }   
+                users.Add(author);
+            }
+            foreach (var item in article.Users)
+            {
+                if (!users.Contains(item) && item.Id != int.Parse(uId))
+                {
+                    article.RemoveAuthor(item.Id);
+                }
+            }
+            //User user = js.Deserialize<User>(userString); 
+            //string res = user.InsertUserToDatabase().ToString();
+            //user = user.Relog(); 
+            article.UpdateUsers(users);
+            new DBServices().FullArticleInsert(article);
+            User user = new global::User().GetUserById(int.Parse(uId));
+            user.GetFullInfo();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            return js.Serialize(user);
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, "UpdateArticle method in Ajax Services",
+                "aId="+aId,
+                "uId="+uId,
+                "uId=" + uId,
+                "title=" + title,
+                "link= " + link);
+            return ex.ToString();
+        }
+
+    }
+
 }

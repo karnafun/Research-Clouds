@@ -260,11 +260,50 @@ function SaveArticle(e) {
     for (var i = 0; i < User.Articles.length; i++) {
         var _article = User.Articles[i];
         if (_article.Id == articleId) {
-
             _article.Title = title;
             _article.Link = link;
-            try {
+            if (!String.prototype.includes) {
+                String.prototype.includes = function (search, start) {
+                    'use strict';
+                    if (typeof start !== 'number') {
+                        start = 0;
+                    }
+
+                    if (start + search.length > this.length) {
+                        return false;
+                    } else {
+                        return this.indexOf(search, start) !== -1;
+                    }
+                };
+            }
+
+            if (_users.includes(',')) {
                 _users = _users.split(',');
+            } else {
+                _users = [_users, '']
+            }
+            //New ajax:
+
+            var request = {
+                uId: User.Id,
+                aId: _article.Id,
+                title: _article.Title,
+                link: _article.Link,
+                authors: _users
+            }
+            UpdateArticleAjax(request, function (results) {
+                User = JSON.parse(results.d);
+                localStorage.setItem('User', results.d)
+                BuildArticles();
+            }, errorCB)
+
+            return;
+            try {
+
+                _users = _users.split(',');
+                
+
+
                 _article.Users = [];
                 for (var j = 0; j < _users.length; j++) {
                     _article.Users.push(_users[j]);
@@ -332,8 +371,12 @@ function ConfigureClickEvents() {
         EditField(e);
     });
 
-    $("#articleModal_btn_save").click(function (e) {
-        SaveArticle(e);
+    //$("#articleModal_btn_save").click(function (e) {
+    //    SaveArticle(e);
+    //    alert("wtf");
+    //});
+    $('#articleModal_btn_save').unbind('click').click(function (e) {
+        SaveArticle(e);        
     });
 
     $("#infoModal_btn_save").click(function (e) {

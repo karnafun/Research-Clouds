@@ -110,6 +110,7 @@ public class User : RCEntity
         this.fName = fName;
         if (!string.IsNullOrEmpty(mName)) { this.mName = mName; }        
         this.lName = lName;
+        articles = new List<Article>() { article };
       //  this.articles.Add()
         isRegistered = false;
         BirthDate = DateTime.MaxValue;
@@ -235,7 +236,12 @@ public class User : RCEntity
         {
             registrationDate = DateTime.Now;
         }
-        return db.InsertUser(this);
+        int rowsEffected = db.InsertUser(this);
+        foreach (var item in Articles)
+        {
+            db.FullArticleInsert(item);
+        }
+        return rowsEffected;
     }
     public int UpdateUserInDatabase()
     {
@@ -286,12 +292,25 @@ public class User : RCEntity
         { BirthDate = new DateTime(2018, 1, 1); }
         { RegistrationDate = new DateTime(2018, 1, 1); }
         if (imgPath ==null ) { imgPath = " "; }
-        {
-
-        }
+      
         
 
     }
+
+    public void InsertAuthor()
+    {
+        
+        if (this.articles==null)
+        {
+            return;
+        }
+        this.FixNulls();
+        this.IsRegistered = false;
+        db.InsertAuthor(this);
+
+    }
+
+    
 
     
 }

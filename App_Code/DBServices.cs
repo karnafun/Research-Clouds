@@ -98,6 +98,27 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+    internal void RemoveAuthorFromArticle(int authorId, int articleId)
+    {
+        string cmdStr = "delete from UsersInArticle where uId=" + authorId + " and aId =" + articleId;        
+        SqlConnection con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            cmd.Connection.Open();
+            cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex,"Remove author from article.","author id = "+authorId, "article Id = ",articleId);            
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
     /// <summary>
     /// Gets a specific user from the database by the user id
     /// </summary>
@@ -887,6 +908,38 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+    public int InsertAuthor(User user)
+    {
+        con = new SqlConnection(connectionString);
+        cmd = UserCommand(user, true);
+        cmd.Parameters["@isRegistered"].Value = false;
+        cmd.Parameters["@email"].Value = cmd.Parameters["@firstName"].Value+"@authors.com";
+        cmd.Parameters["@imgPath"].Value = false;
+        cmd.Parameters["@uHash"].Value = " ";
+        cmd.Parameters["@uSALT"].Value = " ";
+
+        if (cmd.Parameters["@middleName"].Value == null)
+        {
+            cmd.Parameters["@middleName"].Value = " ";
+        }
+
+            try
+        {
+            cmd.Connection.Open();
+            int res = cmd.ExecuteNonQuery();
+            return res;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
     public int InsertArticle(Article article)
     {
         cmd = ArticleCommand(article, true);
@@ -1077,7 +1130,7 @@ public class DBServices
     }
     public int UpdatePassword(int uId, string salt, string hash)
     {
-       string cmdStr= string.Format("update users set uSALT ='{0}' , uHash ='{1}', isRegistered = 1 where uId={2}", salt, hash, uId);
+        string cmdStr = string.Format("update users set uSALT ='{0}' , uHash ='{1}', isRegistered = 1 where uId={2}", salt, hash, uId);
         cmd = new SqlCommand(cmdStr, con);
         try
         {
@@ -1407,12 +1460,10 @@ public class DBServices
                 User user = GetUserByName(article.Users[i].FirstName,
                                    article.Users[i].MiddleName, article.Users[i].LastName);
 
-
-
                 if (user == null)
                 {
                     article.Users[i].IsRegistered = false;
-                    InsertUser(article.Users[i]);
+                    InsertAuthor(article.Users[i]);
                     user = GetUserByName(article.Users[i].FirstName,
                     article.Users[i].MiddleName, article.Users[i].LastName);
                 }
@@ -1440,7 +1491,7 @@ public class DBServices
 
 
     }
-    
+
     private int AddKeywordToArticle(int keywordId, int articleId)
     {
         string cmdStr = "insert into KeywordsInArticle values(" + articleId + "," + keywordId + ")";
