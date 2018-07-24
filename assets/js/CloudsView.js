@@ -118,44 +118,48 @@ function DisplayClusters(results) {
 
          network = new vis.Network(container, data, options);
          network.on("selectNode", function (params) {
-             var te = (params.nodes[0]) - 1;
-             if (params.nodes[0] > 4) {
-                 for (var i = 0; i < nodesarr.length; i++) {
-                     if (nodesarr[i].id == params.nodes[0]) {
-                         ViewResearcher(nodesarr[i].borderWidthSelected);
-                         break;
-                     }
-                 }
-                 
-                 
+             var click = network.getConnectedNodes(String(params.nodes[0]), 'to');
+             console.log(click);
+             if (params.nodes[0] == 0) {
+                 alert("it tickles")
              }
-             else  {
-                 if (params.nodes[0] == 0) {
-                     alert("it tickles")
+             else {
+                 if (click.length == 0) {
+                     var te = (params.nodes[0]) - 1;
+                     if (params.nodes[0] > 4) {
+                         for (var i = 0; i < nodesarr.length; i++) {
+                             if (nodesarr[i].id == params.nodes[0]) {
+                                 ViewResearcher(nodesarr[i].borderWidthSelected);
+                                 break;
+                             }
+                         }
+
+
+                     }
+                     else {
+
+                         console.log(params.nodes);
+                         try {
+                             for (var i = 0; i <= User.Clusters[te].Users.length; i++) {
+                                 var notemp = { size: 35, id: nodes.length, label: User.Clusters[te].Users[i].Name, shape: "circularImage", image: User.Clusters[te].Users[i].ImagePath, borderWidthSelected: User.Clusters[te].Users[i].Id };
+                                 nodesarr.push(notemp)
+                                 nodes.add(notemp);
+                                 var edtemp = { id: edges.length +1, from: params.nodes[0], to: edges.length + 1, color: { color: 'white' } };
+                                 edges.add(edtemp);
+                             }
+                         } catch (e) {
+                             return null;
+                         }
+
+                     }
                  }
                  else {
-                     try {
-                         for (var i = 0; i <= User.Clusters[te].Users.length; i++) {
-                             var notemp = { size: 35, id: nodes.length, label: User.Clusters[te].Users[i].Name, shape: "circularImage", image: User.Clusters[te].Users[i].ImagePath, borderWidthSelected: User.Clusters[te].Users[i].Id };
-                             nodesarr.push(notemp)
-                             nodes.add(notemp);
-                             var edtemp = {from: params.nodes[0], to: edges.length + 1, color: {color:'white'}};
-                             edges.add(edtemp);
-                         }
-                     } catch (e) {
-                         return null;
+                     for (var i = 0; i < click.length; i++) {
+                         nodes.remove({id: click[i] });
+                         edges.remove({ id: params.edges[i] ,from: params.nodes[0], to: click[i]});
                      }
                  }
              }
-
-
-            
-            
-  
-
-
-
-            
         });
 
     
