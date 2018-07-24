@@ -270,27 +270,7 @@ public class ScholarDBServices
     {
         //get ScholarUser object
         ScholarUser scholarUser = GetUserById(suId);
-        //Make User object
-        string[] names = scholarUser.Name.Split(' ');
         User user = new User().GetUserById(uId);
-        if (names.Length == 2)
-        {
-            user.FirstName = names[0];
-            user.MiddleName = "";
-            user.LastName = names[1];
-        }
-        else if (names.Length == 3)
-        {
-            user.FirstName = names[0];
-            user.MiddleName = names[1];
-            user.LastName = names[2];
-        }
-        else
-        {
-            LogManager.Report("trying to add scholar user with 1 name", scholarUser);
-            return;
-        }
-        //Insert User Object to db
 
         user.ImagePath = scholarUser.Image;
         user.FixNulls();
@@ -309,13 +289,22 @@ public class ScholarDBServices
             a.UpdateUsers(new List<User>() { user });
             if (pub.Publisher.Contains("IEEE"))
             {
-                List<string> terms = new IEEE().GetArticleTerms(pub.Title);
-                List<Keyword> articleKeywords = new List<Keyword>();
-                foreach (var item in terms)
+                try
                 {
-                    articleKeywords.Add(new Keyword(0, item));
+                    List<string> terms = new IEEE().GetArticleTerms(pub.Title);
+                    List<Keyword> articleKeywords = new List<Keyword>();
+                    foreach (var item in terms)
+                    {
+                        articleKeywords.Add(new Keyword(0, item));
+                    }
+                    a.UpdateKeywords(articleKeywords);
                 }
-                a.UpdateKeywords(articleKeywords);
+                catch (Exception ex)
+                {
+
+                    continue;
+                }
+              
 
             }
             db.FullArticleInsert(a);
@@ -328,9 +317,43 @@ public class ScholarDBServices
             db.InsertInterest(user.Id, item);
         }
 
+        Institute scholarInstitute = GetEmailAffiliation(scholarUser.Email);
+        Institute emailInstitute= GetEmailAffiliation(user.Email);
+        List<Institute> institutes = new List<Institute>() { scholarInstitute };
+        if (emailInstitute!=scholarInstitute)
+        {
+            institutes.Add(emailInstitute);
+        }
+        user.UpdateAffiliations(institutes);        
         //return;
     }
 
+    private Institute GetEmailAffiliation(string email)
+    {
+        string instName = string.Empty;
+        if (email.Contains("campus.haifa"))
+        {
+            instName = "University of Haifa";
+        }
+        else if (email.Contains("ruppin."))
+        {
+            instName = "Ruppin Academic Center";
+        }
+        else if (email.Contains("harvard."))
+        {
+            instName = "Harvard University";
+        }
+
+
+        Institute institute = new Institute().GetInstituteByName(instName);
+        if (institute == null)
+        {
+            institute = new Institute(-1, instName);
+            institute.InsertInstituteToDatabase();
+            institute = institute.GetInstituteByName(institute.Name);
+        }
+        return institute;
+    }
 
     public void RemoveScholarUser(int id)
     {

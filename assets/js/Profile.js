@@ -48,9 +48,23 @@ try {
         $("#buildProfile_btn").on("click", function () {
             try {
               var  request = {
-                    userString: JSON.stringify(User)
-                } ;
-                FindUserAutomatically(request, UpdatePageFromUser, errorCB);
+                  name: User.Name,
+                  email: User.Email
+                } ;            
+              FindUserAutomaticallyAjax(request, function (results) {
+                  GetUserById({ Id: User.Id }, function (results) {
+                      try {
+                          results = JSON.parse(results.d);
+                      } catch (e) {
+                          RedirectToLogin();
+                      }
+                      User = results;
+                      EditedUser = $.extend(true, {}, User);
+                      UpdatePageFromUser();
+                      alert("Done, configured the user");
+                  }, errorCB);
+              }, errorCB);              
+             // FindUserAutomaticallyAjax({}, function () { }, function () { });              
             } catch (e) {
                 console.log(e)
             }
@@ -71,12 +85,23 @@ try {
     RedirectToLogin();
 }
 
-
+function UpdatePageFromUserWithAlert() {
+    GetUserById(request, function (results) {
+        try {
+            results = JSON.parse(results.d);
+        } catch (e) {
+            RedirectToLogin();
+        }
+        User = results;
+        EditedUser = $.extend(true, {}, User);
+        UpdatePageFromUser();
+        alert("Done, configured the user");
+    }, errorCB);
+}
 function UpdatePageFromUser() {
     $("#uID").html(User.Name);
     $("#uImg").attr("src", User.ImagePath);
     $("#uSummery").html(User.Summery);
-
     BuildArticles();
     BuildAffiliations();
     BuildClusters();

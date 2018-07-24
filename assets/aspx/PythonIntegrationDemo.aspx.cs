@@ -9,13 +9,13 @@ public partial class assets_aspx_PythonIntegrationDemo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //// PythonServices py = new PythonServices();
+         PythonServices py = new PythonServices();
         //User user = new global::User("amit", " ", "rechavi", null);
         //user.Email = "amit@ruppin.ac.il";
         //user.FixNulls();
         //user.InsertUserToDatabase();
         //user = user.GetUserByEmail("amit@ruppin.ac.il");
-        //user.GetFullInfo();        
+        //user.GetFullInfo();
         ////div_res.InnerText =  py.GetPath();
         ////div_res.InnerHtml = py.Run_cmd("InsertUser.py", "Noga alon");
         //PythonServices py = new PythonServices();
@@ -28,7 +28,9 @@ public partial class assets_aspx_PythonIntegrationDemo : System.Web.UI.Page
         //user = user.Relog();
 
 
-        var test = new DBServices().GetUserByEmail("amit@ruppin.ac.il");
-        new Utilities().DeleteAmit();
+        //var test = new DBServices().GetUserByEmail("amit@ruppin.ac.il");
+        //new Utilities().DeleteAmit();
+        py.Run_cmd("InsertUser.py", "amit rechavi");
+       
     }
 }
