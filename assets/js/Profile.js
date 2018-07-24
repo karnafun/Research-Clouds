@@ -60,9 +60,16 @@ try {
         $("#edit-user-profile").on("click", function () {
             $("#edit-profile-modal").modal("show");
         })
-
+        $("#pencil-user-profile").on("click", function () {
+            $("#loader").attr("style", "display:block");
+        });
+        $("#loader").on("click", function () {
+            $(this).attr("style", "display:none");
+        });
     });
 
+
+    
     //TODO:    
     //Insert Affiliations
     //Insert Clusters
