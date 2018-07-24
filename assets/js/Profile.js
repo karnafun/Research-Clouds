@@ -41,14 +41,40 @@ try {
             ViewUser(User.Id);
         });
 
-        if (User.Articles == null) {
+        if (User.Articles.length == 0) {
             $('#uArticleModale').modal('show');
         }
         //build the profile
         $("#buildProfile_btn").on("click", function () {
-            // Here goes the creating profile Function
-            alert("new profile created")
+            try {
+              var  request = {
+                  name: User.Name,
+                  email: User.Email
+                } ;            
+              FindUserAutomaticallyAjax(request, function (results) {
+                  GetUserById({ Id: User.Id }, function (results) {
+                      try {
+                          results = JSON.parse(results.d);
+                      } catch (e) {
+                          RedirectToLogin();
+                      }
+                      User = results;
+                      EditedUser = $.extend(true, {}, User);
+                      UpdatePageFromUser();
+                      alert("Done, configured the user");
+                  }, errorCB);
+              }, errorCB);              
+             // FindUserAutomaticallyAjax({}, function () { }, function () { });              
+            } catch (e) {
+                console.log(e)
+            }
+            
+            
         });
+        $("#edit-user-profile").on("click", function () {
+            $("#edit-profile-modal").modal("show");
+        })
+
     });
 
     //TODO:    
@@ -59,16 +85,26 @@ try {
     RedirectToLogin();
 }
 
-
+function UpdatePageFromUserWithAlert() {
+    GetUserById(request, function (results) {
+        try {
+            results = JSON.parse(results.d);
+        } catch (e) {
+            RedirectToLogin();
+        }
+        User = results;
+        EditedUser = $.extend(true, {}, User);
+        UpdatePageFromUser();
+        alert("Done, configured the user");
+    }, errorCB);
+}
 function UpdatePageFromUser() {
     $("#uID").html(User.Name);
     $("#uImg").attr("src", User.ImagePath);
     $("#uSummery").html(User.Summery);
-
     BuildArticles();
     BuildAffiliations();
     BuildClusters();
-
 }
 
 
@@ -97,9 +133,7 @@ function BuildArticles() {
                           value.Title +
                         "</a>" +
                    // "</h5>"+
-                    "<p>" + usernames + "</p>"+
-            "<span onclick='EditArticle(" + value.Id + ")' class='icon fa-edit' data-toggle='modal' data-target='#articleModal'></span>" +
-            
+                    "<p>" + usernames + "</p>"+           
                  "</div>"+
               "</li>";
         
@@ -280,9 +314,11 @@ function SaveArticle(e) {
     if (!exists) {
         ArticleDetails = { Id: -1, Keywords: [], Link: link, Title: title, Users: [User.Name] };
         User.Articles.push(ArticleDetails);
+        //UpdateUserInDatabase();
     }
-    BuildArticles();
-
+   // BuildArticles();
+    //UpdatePageFromUser();
+    
 }
 
 function SaveChanges() {
@@ -306,7 +342,7 @@ function CancelChanges() {
 }
 
 function GetDateObject(myDate) {
-    return new Date(parseInt(myDate.substr(6)));
+    //return new Date(parseInt(myDate.substr(6)));
 }
 
 

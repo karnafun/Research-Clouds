@@ -23,6 +23,7 @@ public class IEEE
     {
         using (var client = new WebClient())
         {
+            
             title = title.Replace(' ', '+');
             string query = api_path + "articles?article_title=" + title + "&apikey=" + api_key+ "&format=xml";
             var responseString = client.DownloadString(query);

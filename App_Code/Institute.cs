@@ -86,4 +86,8 @@ public class Institute :RCEntity
         return db.RemoveEntity(this);
     }
 
+    internal Institute GetInstituteByName(string email)
+    {
+        return db.GetInstituteByName(email);
+    }
 }
