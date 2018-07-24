@@ -485,6 +485,8 @@ insert into Clusters values('Fatigue Development')
 
 insert into AcademicInstitutes values ('Ruppin Academic Center')
 insert into AcademicInstitutes values ('Camp Nou')
+insert into AcademicInstitutes values ('Harvard University')
+insert into AcademicInstitutes values ('University of Haifa')
 
 
 

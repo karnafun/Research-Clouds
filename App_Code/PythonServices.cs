@@ -18,7 +18,7 @@ public class PythonServices
 
     public string GetPath()
     {
-        return HttpContext.Current.Server.MapPath(".") +"\\..\\python";
+        return HttpContext.Current.Server.MapPath(".") +"\\assets\\python";
     }
     public string PathConfiguration()
     {
