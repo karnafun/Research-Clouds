@@ -331,4 +331,31 @@ public class ScholarDBServices
         //return;
     }
 
+
+    public void RemoveScholarUser(int id)
+    {
+        string cmdStr = "delete from scholarInterests where suId = " + id;
+        SqlCommand cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+            cmdStr = "delete from scholarPublications where suId = " + id;
+            cmd.ExecuteNonQuery();
+            cmdStr = "delete from scholarUsers where suId = " + id;
+            cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+
+            throw ex;
+        }
+        finally
+        {
+            con.Close();
+        }
+
+    }
+
 }
