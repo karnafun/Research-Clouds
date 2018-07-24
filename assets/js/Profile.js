@@ -41,14 +41,26 @@ try {
             ViewUser(User.Id);
         });
 
-        if (User.Articles == null) {
+        if (User.Articles.length == 0) {
             $('#uArticleModale').modal('show');
         }
         //build the profile
         $("#buildProfile_btn").on("click", function () {
-            // Here goes the creating profile Function
-            alert("new profile created")
+            try {
+              var  request = {
+                    userString: JSON.stringify(User)
+                } ;
+                FindUserAutomatically(request, UpdatePageFromUser, errorCB);
+            } catch (e) {
+                console.log(e)
+            }
+            
+            
         });
+        $("#edit-user-profile").on("click", function () {
+            $("#edit-profile-modal").modal("show");
+        })
+
     });
 
     //TODO:    
@@ -68,7 +80,6 @@ function UpdatePageFromUser() {
     BuildArticles();
     BuildAffiliations();
     BuildClusters();
-
 }
 
 
@@ -97,9 +108,7 @@ function BuildArticles() {
                           value.Title +
                         "</a>" +
                    // "</h5>"+
-                    "<p>" + usernames + "</p>"+
-            "<span onclick='EditArticle(" + value.Id + ")' class='icon fa-edit' data-toggle='modal' data-target='#articleModal'></span>" +
-            
+                    "<p>" + usernames + "</p>"+           
                  "</div>"+
               "</li>";
         
@@ -280,9 +289,11 @@ function SaveArticle(e) {
     if (!exists) {
         ArticleDetails = { Id: -1, Keywords: [], Link: link, Title: title, Users: [User.Name] };
         User.Articles.push(ArticleDetails);
+        //UpdateUserInDatabase();
     }
-    BuildArticles();
-
+   // BuildArticles();
+    //UpdatePageFromUser();
+    
 }
 
 function SaveChanges() {
@@ -306,7 +317,7 @@ function CancelChanges() {
 }
 
 function GetDateObject(myDate) {
-    return new Date(parseInt(myDate.substr(6)));
+    //return new Date(parseInt(myDate.substr(6)));
 }
 
 
