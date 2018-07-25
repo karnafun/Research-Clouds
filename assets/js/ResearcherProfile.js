@@ -370,3 +370,7 @@ function ViewUser(_id) {
     }, errorCB)
 
 }
+
+function RefreshUser() {
+
+}

@@ -98,6 +98,7 @@ public static class ClusterCreator
                     user.Clusters[i].visible = false;
                 }
                 user.Clusters[i].UpdateClusterInDatabase();
+                user.Clusters[i].UpdateVisiblity(user.Id);
             }
             
         }

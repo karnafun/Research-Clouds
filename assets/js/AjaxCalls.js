@@ -30,8 +30,8 @@ function GetUserById(request, successCB, failureCB) {
         contentType: 'application/json; charset = utf-8', // of the data received
         timeout: 5000, // timeout in miliseconds
         success: successCB, // 
-        error: failureCB 
-        })// end of ajax call
+        error: failureCB
+    })// end of ajax call
 }
 
 
@@ -153,4 +153,81 @@ function InsertUserAjax(request, successCB, failureCB) {
     })// end of ajax call
 }
 
+
+function UpdateArticleAjax(request, successCB, failureCB) {
+
+    dataString = JSON.stringify(request);
+    $.ajax({ // ajax call starts
+        url: '../../AjaxServices.asmx/UpdateArticle',   // JQuery call to the server side method
+        data: dataString,    // the parameters sent to the server
+        type: 'POST',        // can be post or get
+        dataType: 'json',    // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8', // of the data received
+        timeout: 10000, // timeout in miliseconds
+        success: successCB, // 
+        error: failureCB
+    })
+}
+
+function FindUserAutomaticallyAjax(request, successCB, failureCB) {
+
+    dataString = JSON.stringify(request);
+    $.ajax({ // ajax call starts
+        url: '../../AjaxServices.asmx/FindUserAutomatically',   // JQuery call to the server side method
+        data: dataString,    // the parameters sent to the server
+        type: 'POST',        // can be post or get
+        dataType: 'json',    // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8', // of the data received
+        timeout: 500000, // timeout in miliseconds
+        success: successCB, // 
+        error: failureCB
+    })// end of ajax call
+}
+
+function UploadImageAjax(request, successCB, failureCB) {
+   
+    $.ajax({ // ajax call starts
+        type: "POST",
+        url: '../../AjaxServices.asmx/ImageUpload',
+        contentType: false,
+        processData: false,
+        dataType: 'json',    // Choosing a JSON datatype
+        data: request,
+        success: successCB, // 
+        error: failureCB
+    })// end of ajax call
+
+   
+}
+
+function UpdatePersonalInfoAjax(request, successCB, failureCB) {
+
+    $.ajax({ // ajax call starts
+        type: "POST",
+        url: '../../AjaxServices.asmx/UpdatePersonalInfo',
+        contentType: false,
+        processData: false,
+       // dataType: 'json',    // Choosing a JSON datatype
+        data: request,
+        success: successCB, // 
+        error: failureCB
+    })// end of ajax call
+
+
+}
+
+function GetUserArticlesAjax(request, successCB, failureCB) {
+
+    dataString = JSON.stringify(request);
+    $.ajax({ // ajax call starts
+        url: '../../AjaxServices.asmx/GetUserArticles',   // JQuery call to the server side method
+        data: dataString,    // the parameters sent to the server
+        type: 'POST',        // can be post or get
+        dataType: 'json',    // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8', // of the data received
+        timeout: 50000, // timeout in miliseconds
+        success: successCB, // 
+        error: failureCB
+    })// end of ajax call
+}
 

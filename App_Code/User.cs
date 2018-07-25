@@ -110,6 +110,7 @@ public class User : RCEntity
         this.fName = fName;
         if (!string.IsNullOrEmpty(mName)) { this.mName = mName; }        
         this.lName = lName;
+        articles = new List<Article>() { article };
       //  this.articles.Add()
         isRegistered = false;
         BirthDate = DateTime.MaxValue;
@@ -204,10 +205,11 @@ public class User : RCEntity
     {
 
         User _user = _id > 0 ? GetUserById(_id) : this; //If i get an ID, i return results for that id. else, i give results for this user
-        _user.clusters = _user.Clusters; //Gets clusters from db if this.clusters==null
+        _user.clusters = _user.Clusters; //Gets clusters from db if this.clusters==null        
         foreach (Cluster cluster in _user.clusters)
         {
             cluster.GetFullInfo(); //filling cluster with users and keywords
+
         }
 
         if (_id < 0)
@@ -235,7 +237,12 @@ public class User : RCEntity
         {
             registrationDate = DateTime.Now;
         }
-        return db.InsertUser(this);
+        int rowsEffected = db.InsertUser(this);
+        foreach (var item in Articles)
+        {
+            db.FullArticleInsert(item);
+        }
+        return rowsEffected;
     }
     public int UpdateUserInDatabase()
     {
@@ -302,12 +309,38 @@ public class User : RCEntity
         { BirthDate = new DateTime(2018, 1, 1); }
         { RegistrationDate = new DateTime(2018, 1, 1); }
         if (imgPath ==null ) { imgPath = " "; }
-        {
-
-        }
+      
         
 
     }
 
-    
+    public void InsertAuthor()
+    {
+        
+        if (this.articles==null)
+        {
+            return;
+        }
+        this.FixNulls();
+        this.IsRegistered = false;
+        db.InsertAuthor(this);
+
+    }
+
+    public int UpdateAffiliations(List<Institute> _affiliations)
+    {
+        foreach (var item in _affiliations)
+        {
+            if (!this.Affiliations.Contains(item))
+            {
+                this.affiliations.Add(item);
+            }
+        }
+        int rowseffected = 0;
+        foreach (var item in this.Affiliations)
+        {
+            rowseffected += db.InsertUserAffiliation(id, item.Id);
+        }
+        return rowseffected;
+    }
 }

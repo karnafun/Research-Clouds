@@ -99,7 +99,10 @@ public class Article : RCEntity
         return db.RemoveEntity(this);
     }
 
-
+    public void RemoveAuthor(int authorId)
+    {
+         db.RemoveAuthorFromArticle(authorId, id);
+    }
  
 
 

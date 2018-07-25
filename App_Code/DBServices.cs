@@ -98,6 +98,82 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+    public int UpdateClusterVisibility(Cluster cluster, int uId)
+    {
+        int visible;
+        if (cluster.visible)
+        {
+            visible = 1;
+        }
+        else
+        {
+            visible = 0;
+        }
+        string cmdStr = string.Format(" update UsersInCluster set visible = {0} where cId ={1} and uId = {2} ", visible, cluster.Id,uId);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            con.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, "Update visiblility failed.", "cluster id: " + cluster.Id, "command: " + cmdStr);
+            return -1;
+        }finally
+        {
+            con.Close();
+        }
+    }
+
+    public Institute GetInstituteByName(string name)
+    {
+        string cmdStr = "select top(1) * from [AcademicInstitutes] where iName = @name";
+        con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        cmd.Parameters.AddWithValue("@name", name);
+        try
+        {
+            cmd.Connection.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                return CurrentLineInstitute(reader);
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return null;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
+    internal void RemoveAuthorFromArticle(int authorId, int articleId)
+    {
+        string cmdStr = "delete from UsersInArticle where uId=" + authorId + " and aId =" + articleId;        
+        SqlConnection con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            cmd.Connection.Open();
+            cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex,"Remove author from article.","author id = "+authorId, "article Id = ",articleId);            
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
     /// <summary>
     /// Gets a specific user from the database by the user id
     /// </summary>
@@ -352,6 +428,28 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+    public int InsertUserAffiliation(int uId, int iId)
+    {
+        string cmdStr = string.Format("insert into Affiliations values({0},{1})", uId, iId);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            con.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+
+            LogManager.Report(ex, "command: " + cmdStr);
+            return -1;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
     /// <summary>
     /// Gets a cluster by the cluster id
     /// </summary>
@@ -933,6 +1031,38 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+    public int InsertAuthor(User user)
+    {
+        con = new SqlConnection(connectionString);
+        cmd = UserCommand(user, true);
+        cmd.Parameters["@isRegistered"].Value = false;
+        cmd.Parameters["@email"].Value = cmd.Parameters["@firstName"].Value+"@authors.com";
+        cmd.Parameters["@imgPath"].Value = false;
+        cmd.Parameters["@uHash"].Value = " ";
+        cmd.Parameters["@uSALT"].Value = " ";
+
+        if (cmd.Parameters["@middleName"].Value == null)
+        {
+            cmd.Parameters["@middleName"].Value = " ";
+        }
+
+            try
+        {
+            cmd.Connection.Open();
+            int res = cmd.ExecuteNonQuery();
+            return res;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
     public int InsertArticle(Article article)
     {
         cmd = ArticleCommand(article, true);
@@ -1030,6 +1160,27 @@ public class DBServices
 
 
     #region Update Methods
+    public int  UpdateUserImage(int uId, string imgPath)
+    {
+        string cmdStr = string.Format("update users set imgPath = '{0}' where uId = {1}", imgPath, uId);
+        con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            cmd.Connection.Open();
+            int res = cmd.ExecuteNonQuery();
+            return res;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return -1;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
     public int UpdateUser(User user)
     {
         cmd = UserCommand(user, false);
@@ -1077,7 +1228,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            LogManager.Report(ex, cluster);
+            LogManager.Report(ex, "cluster name: " +cluster.ToString(),"sql command: " +cmd.CommandText, "cluster id: " +cluster.Id,"visible: "+cluster.visible);
             return -1;
         }
         finally
@@ -1123,7 +1274,7 @@ public class DBServices
     }
     public int UpdatePassword(int uId, string salt, string hash)
     {
-       string cmdStr= string.Format("update users set uSALT ='{0}' , uHash ='{1}', isRegistered = 1 where uId={2}", salt, hash, uId);
+        string cmdStr = string.Format("update users set uSALT ='{0}' , uHash ='{1}', isRegistered = 1 where uId={2}", salt, hash, uId);
         cmd = new SqlCommand(cmdStr, con);
         try
         {
@@ -1211,7 +1362,7 @@ public class DBServices
     }
 
     #endregion
-
+     
     #region Utility Methods
     private User CurrentLineUser(SqlDataReader reader)
     {
@@ -1357,25 +1508,17 @@ public class DBServices
         if (isNewCluster)
         {
             cmdStr.Append("insert into Clusters values");
-            cmdStr.Append("(@name,@visible)");
+            cmdStr.Append("(@name)");
         }
         else
         {
             cmdStr.Append(" update Clusters set ");
-            cmdStr.Append("cName = @name visible = @visible");
+            cmdStr.Append("cName = @name ");
             cmdStr.Append(" where cId = @id ");
         }
         _cmd = new SqlCommand(cmdStr.ToString(), con);
         _cmd.Parameters.AddWithValue("@id", cluster.Id);
-        _cmd.Parameters.AddWithValue("@name", cluster.Name);
-        if (cluster.visible)
-        {
-            _cmd.Parameters.AddWithValue("@visible", 1);
-        }
-        else
-        {
-            _cmd.Parameters.AddWithValue("@visible", 0);
-        }
+        _cmd.Parameters.AddWithValue("@name", cluster.Name);       
 
         return _cmd;
     }
@@ -1453,12 +1596,10 @@ public class DBServices
                 User user = GetUserByName(article.Users[i].FirstName,
                                    article.Users[i].MiddleName, article.Users[i].LastName);
 
-
-
                 if (user == null)
                 {
                     article.Users[i].IsRegistered = false;
-                    InsertUser(article.Users[i]);
+                    InsertAuthor(article.Users[i]);
                     user = GetUserByName(article.Users[i].FirstName,
                     article.Users[i].MiddleName, article.Users[i].LastName);
                 }
@@ -1486,7 +1627,7 @@ public class DBServices
 
 
     }
-    
+
     private int AddKeywordToArticle(int keywordId, int articleId)
     {
         string cmdStr = "insert into KeywordsInArticle values(" + articleId + "," + keywordId + ")";
@@ -1530,9 +1671,7 @@ public class DBServices
         {
             cmd.Connection.Close();
         }
-    }
-
-
+    }    
     public int AddUserToCluster(int userId, int clusterId)
     {
         string cmdStr = "insert into UsersInCluster values(" + userId + "," + clusterId + ",1 )";

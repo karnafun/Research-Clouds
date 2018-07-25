@@ -96,4 +96,9 @@ public class Cluster : RCEntity, IComparable
             return -1;
         }
     }
+
+    public int UpdateVisiblity(int uId)
+    {
+        return db.UpdateClusterVisibility(this, uId);
+    }
 }

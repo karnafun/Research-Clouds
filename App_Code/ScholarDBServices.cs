@@ -264,8 +264,6 @@ public class ScholarDBServices
         //return;
     }
 
-
-
     public void IntegrateIntoUser(int suId, int uId)
     {
         //get ScholarUser object
@@ -298,13 +296,15 @@ public class ScholarDBServices
                         articleKeywords.Add(new Keyword(0, item));
                     }
                     a.UpdateKeywords(articleKeywords);
+
                 }
                 catch (Exception ex)
                 {
 
                     continue;
                 }
-              
+
+
 
             }
             db.FullArticleInsert(a);
@@ -318,13 +318,14 @@ public class ScholarDBServices
         }
 
         Institute scholarInstitute = GetEmailAffiliation(scholarUser.Email);
-        Institute emailInstitute= GetEmailAffiliation(user.Email);
+        Institute emailInstitute = GetEmailAffiliation(user.Email);
         List<Institute> institutes = new List<Institute>() { scholarInstitute };
-        if (emailInstitute!=scholarInstitute)
+        if (emailInstitute != scholarInstitute)
         {
             institutes.Add(emailInstitute);
         }
-        user.UpdateAffiliations(institutes);        
+        user.UpdateAffiliations(institutes);
+
         //return;
     }
 
@@ -380,5 +381,6 @@ public class ScholarDBServices
         }
 
     }
+
 
 }

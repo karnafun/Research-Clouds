@@ -46,40 +46,47 @@ try {
         }
         //build the profile
         $("#buildProfile_btn").on("click", function () {
+
             try {
-              var  request = {
-                  name: User.Name,
-                  email: User.Email
-                } ;            
-              FindUserAutomaticallyAjax(request, function (results) {
-                  GetUserById({ Id: User.Id }, function (results) {
-                      try {
-                          results = JSON.parse(results.d);
-                      } catch (e) {
-                          RedirectToLogin();
-                      }
-                      User = results;
-                      EditedUser = $.extend(true, {}, User);
-                      UpdatePageFromUser();
-                      alert("Done, configured the user");
-                  }, errorCB);
-              }, errorCB);              
-             // FindUserAutomaticallyAjax({}, function () { }, function () { });              
+<<<<<<< HEAD
+                $("#loader").attr("style", "display:block");
+                User.BirthDate = GetDateObject(User.BirthDate);
+                User.RegistrationDate = GetDateObject(User.RegistrationDate);
+                var request = {
+                    userString: JSON.stringify(User)
+                };
+                FindUserAutomaticallyAjax(request, function (results) {
+                    GetUserById({ Id: User.Id }, function (results) {
+                        try {
+                            results = JSON.parse(results.d);
+                            User = results;
+                            EditedUser = $.extend(true, {}, User);
+                            UpdatePageFromUser();
+                        } catch (e) {
+                            RedirectToLogin();
+                        }
+
+                        //alert("Done, configured the user");
+                        $("#loader").attr("style", "display:none");
+                    })
+                }, errorCB);     //If RefreshUser not working, just past the code itself instead and it'll work             
             } catch (e) {
                 console.log(e)
+                $(this).attr("style", "display:none");
+
             }
-            
-            
+
+
         });
         $("#edit-user-profile").on("click", function () {
+            $("#infoModal_firstName").val(User.FirstName);
+            $("#infoModal_middleName").val(User.MiddleName);
+            $("#infoModal_lastName").val(User.LastName);
             $("#edit-profile-modal").modal("show");
         })
-
+       
+       
     });
-
-    //TODO:    
-    //Insert Affiliations
-    //Insert Clusters
 
 } catch (e) {
     RedirectToLogin();
@@ -109,13 +116,13 @@ function UpdatePageFromUser() {
 
 
 
-function BuildArticles() { 
+function BuildArticles() {
     var res = "";
     $.each(User.Articles, function (index, value) {
         var usernames = "";
         for (var i = 0; i < value.Users.length; i++) {
             var _name = value.Users[i].Name;
-            if (value.Users[i].Name==undefined) {
+            if (value.Users[i].Name == undefined) {
                 _name = value.Users[i];
             }
             usernames += "<span class='article_user'>" + _name + "</span>";
@@ -127,20 +134,20 @@ function BuildArticles() {
         res += "<li class='media animated fadeInLeft' style='border-bottom:2px solid #F8FCF7'>" +
             "<span class='icon fa-graduation-cap'></span>" +
             "<div class='media-body'><br/>" +
-            
-                    //"<h5 onclick='return ArticleClick()>" +
-                       "<a onclick='return ArticleClick()' href= '" + value.Link + "'>" +
-                          value.Title +
-                        "</a>" +
-                   // "</h5>"+
-                    "<p>" + usernames + "</p>"+           
-                 "</div>"+
-              "</li>";
-        
+
+            //"<h5 onclick='return ArticleClick()>" +
+            "<a onclick='return ArticleClick()' href= '" + value.Link + "'>" +
+            value.Title +
+            "</a>" +
+            // "</h5>"+
+            "<p>" + usernames + "</p>" +
+            "</div>" +
+            "</li>";
+
     });
     $("#articleList").empty();
     $("#articleList").append(res);
-    
+
 }
 function BuildAffiliations() {
     var resString = "";
@@ -149,9 +156,9 @@ function BuildAffiliations() {
         TODO:
         Build an html li article using value (it has the users in it )
         */
-        resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><span class='icon fa-university'></span><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div> " +
-            "<span class='icon fa-edit'><span>"+
-            "</li>";
+        resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><span class='icon fa-university'></span><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div> "
+            + "</li>";
+            
 
 
     });
@@ -168,14 +175,12 @@ function BuildClusters() {
         */
         resString +=
             '<li onclick="ClusterClick(' + value.Id + ')"  id="uCluster' + (index + 1) + '">' +
-        '<span class="icon fa-cloud animated fadeInLeft"></span>' +
-        '<br/>' +
-        value.Name +
-        '<br/>' +
-        '<p>' +
-        'Here will be a short description of the cluster'+
-            '</p>'+
-        '</li>'
+            '<span class="icon fa-cloud animated fadeInLeft"></span>' +
+            '<br/>' +
+            value.Name +
+            '<br/>' +
+            
+            '</li>'
     });
     $("#uclust").html(resString);
 }
@@ -264,7 +269,7 @@ function EditArticle(_id) {
             var res = "";
             for (var i = 0; i < value.Users.length; i++) {
                 var _name = value.Users[i].Name;
-                if (_name == undefined  ) {
+                if (_name == undefined) {
                     _name = value.Users[i];
                 }
                 res += _name;
@@ -294,11 +299,50 @@ function SaveArticle(e) {
     for (var i = 0; i < User.Articles.length; i++) {
         var _article = User.Articles[i];
         if (_article.Id == articleId) {
-
             _article.Title = title;
             _article.Link = link;
-            try {
+            if (!String.prototype.includes) {
+                String.prototype.includes = function (search, start) {
+                    'use strict';
+                    if (typeof start !== 'number') {
+                        start = 0;
+                    }
+
+                    if (start + search.length > this.length) {
+                        return false;
+                    } else {
+                        return this.indexOf(search, start) !== -1;
+                    }
+                };
+            }
+
+            if (_users.includes(',')) {
                 _users = _users.split(',');
+            } else {
+                _users = [_users, '']
+            }
+            //New ajax:
+
+            var request = {
+                uId: User.Id,
+                aId: _article.Id,
+                title: _article.Title,
+                link: _article.Link,
+                authors: _users
+            }
+            UpdateArticleAjax(request, function (results) {
+                User = JSON.parse(results.d);
+                localStorage.setItem('User', results.d)
+                BuildArticles();
+            }, errorCB)
+
+            return;
+            try {
+
+                _users = _users.split(',');
+
+
+
                 _article.Users = [];
                 for (var j = 0; j < _users.length; j++) {
                     _article.Users.push(_users[j]);
@@ -316,12 +360,13 @@ function SaveArticle(e) {
         User.Articles.push(ArticleDetails);
         //UpdateUserInDatabase();
     }
-   // BuildArticles();
+    // BuildArticles();
     //UpdatePageFromUser();
-    
+
 }
 
 function SaveChanges() {
+    $("#loader").attr("style", "display:block");
     EditedUser.BirthDate = GetDateObject(EditedUser.BirthDate);
     EditedUser.RegistrationDate = GetDateObject(EditedUser.RegistrationDate);
     request = {
@@ -329,11 +374,17 @@ function SaveChanges() {
     };
     UpdateUserAjax(request, function (results) {
         if (results.d > 1) {
-            alert("User Updated Successfully");
+            // alert("User Updated Successfully");
+            $("#loader").attr("style", "display:none");
         } else {
             alert(results.d + " rows effected");
+            $("#loader").attr("style", "display:none");
         }
-    }, errorCB);
+    }, function (err) {
+        $("#loader").attr("style", "display:none");
+        errorCB(err);
+
+    });
 
 }
 function CancelChanges() {
@@ -368,21 +419,64 @@ function ConfigureClickEvents() {
         EditField(e);
     });
 
-    $("#articleModal_btn_save").click(function (e) {
+    //$("#articleModal_btn_save").click(function (e) {
+    //    SaveArticle(e);
+    //    alert("wtf");
+    //});
+    $('#articleModal_btn_save').unbind('click').click(function (e) {
         SaveArticle(e);
     });
 
-    $("#infoModal_btn_save").click(function (e) {
+    $("#infoModal_btn_save").unbind('click').click(function (e) {
+        $("#loader").attr("style", "display:block");
         User.FirstName = $("#infoModal_firstName").val();
         User.MiddleName = $("#infoModal_middleName").val();
         User.LastName = $("#infoModal_lastName").val();
         User.Name = User.FirstName + " " + User.MiddleName + " " + User.LastName;
-        var img = $("#infoModal_imagePath").val();
-        if (img != null && img != undefined && img != "") {
-            User.ImagePath = img;
-        }
-        UpdatePageFromUser();
-        UpdateUserInDatabase();
+        var img = $("#infoModal_imagePath")[0].files[0];
+
+        var request = new FormData();
+
+        if (img != null && img != undefined && img != "") { request.append("UploadedFile", img) }
+        request.append("uId", User.Id)
+        request.append("firstName", User.FirstName)
+        request.append("middleName", User.MiddleName)
+        request.append("lastName", User.LastName)
+        UpdatePersonalInfoAjax(request, function (results) {
+
+            //Get the user again from the server and update the page
+            GetUserById({ Id: User.Id }, function (results) {
+                try {
+                    results = JSON.parse(results.d);
+                    User = results;
+                    EditedUser = $.extend(true, {}, User);
+                    UpdatePageFromUser();
+                    //alert("updated?");
+                    $("#loader").attr("style", "display:none");
+                    //In case of image caching: 
+                    d = new Date();
+                    $("#uImg").attr("src", User.ImagePath + "?" + d.getTime());
+
+                    //setTimeout(function () { UpdatePageFromUser();  alert("another check")}, 3000);//Just in case
+
+                } catch (e) {
+                    RedirectToLogin();
+                }
+            })
+
+
+
+        }, function (err) {
+            $("#loader").attr("style", "display:none");
+            errorCB(err)
+        })
+
+        //update articles 
+        //GetUserArticlesAjax({ uId: User.Id }, function (results) {
+        //    results = JSON.parse(results.d);
+        //    User.Articles = results;
+        //    BuildArticles();
+        //}, errorCB)
     });
 
     $("#summeryModal_btn_save").click(function (e) {
@@ -431,4 +525,23 @@ function ViewUser(_id) {
         window.location.replace("../html/CloudsView.html");
     }, errorCB)
 
+}
+
+function UpdateImage() {
+
+}
+
+function RefreshUser(results) {
+    GetUserById({ Id: User.Id }, function (results) {
+        try {
+            results = JSON.parse(results.d);
+            User = results;
+        } catch (e) {
+            RedirectToLogin();
+        }
+
+        EditedUser = $.extend(true, {}, User);
+        UpdatePageFromUser();
+        alert("Done, configured the user");
+    })
 }
