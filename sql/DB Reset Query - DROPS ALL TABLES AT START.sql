@@ -83,7 +83,7 @@ go
 
 create table AcademicInstitutes (
 iId int identity not null,
-iName nvarchar(500) not null
+iName nvarchar(500) not null unique
 )
 
 

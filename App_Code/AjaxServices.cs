@@ -41,6 +41,7 @@ public class AjaxServices : System.Web.Services.WebService
         {            
             JavaScriptSerializer js = new JavaScriptSerializer();
             user.GetFullInfo();
+            user.LimitArticles(15);
             return js.Serialize(user);    
         }
         catch (Exception ex)
@@ -258,9 +259,17 @@ public class AjaxServices : System.Web.Services.WebService
         try
         {
             Article article = new Article().GetArticleById(int.Parse(aId));
-            article.Title = title;
-            article.Link = link;
-            article.GetFullInfo();
+            if (article ==null)
+            {
+                article = new Article(-1, title, link);
+            }
+            else
+            {
+
+                article.Title = title;
+                article.Link = link;
+                article.GetFullInfo();
+            }
             List<User> users = new List<global::User>();
             for (int i = 0; i < authors.Length; i++)
             {
@@ -287,20 +296,40 @@ public class AjaxServices : System.Web.Services.WebService
                     author = new User(fName, mName, lName, article);                    
                     author.InsertAuthor();                    
                     author = new DBServices().GetUserByName(fName, mName, lName);
+                   
                 }   
                 users.Add(author);
             }
-            foreach (var item in article.Users)
+            if (article.Id!=-1)
             {
-                if (!users.Contains(item) && item.Id != int.Parse(uId))
+                foreach (var item in article.Users)
                 {
-                    article.RemoveAuthor(item.Id);
+                    if (!users.Contains(item) && item.Id != int.Parse(uId))
+                    {
+                        article.RemoveAuthor(item.Id);
+                    }
                 }
             }
+
+
+
             //User user = js.Deserialize<User>(userString); 
             //string res = user.InsertUserToDatabase().ToString();
             //user = user.Relog(); 
+            bool userIsAuthor = false;
+            foreach (var item in users)
+            {
+                if (item.Id == int.Parse(uId))
+                {
+                    userIsAuthor = true;
+                }
+            }
+            if (!userIsAuthor)
+            {
+                users.Add(new global::User().GetUserById(int.Parse(uId)));
+            }
             article.UpdateUsers(users);
+            
             new DBServices().FullArticleInsert(article);
             User user = new global::User().GetUserById(int.Parse(uId));
             user.GetFullInfo();
@@ -419,5 +448,63 @@ public class AjaxServices : System.Web.Services.WebService
         user.UpdateUserInDatabase();
         return "Done"; 
     }
+
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    //--------------------------------------------------------------------------
+    //
+    //--------------------------------------------------------------------------
+    public string GetAllAffiliations()
+    {
+        List<Institute> affiliations = new Institute().GetAllInstitutes();        
+        try
+        {
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            return js.Serialize(affiliations);
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, affiliations);
+            return null;
+        }
+
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string AddAffiliation(string uId, string affiliationName)
+    {
+        User user = new global::User().GetUserById(int.Parse(uId));
+        Institute institute = new Institute().GetInstituteByName(affiliationName);
+        if (!user.Affiliations.Contains(institute))
+        {
+            new DBServices().InsertUserAffiliation(user.Id, institute.Id);             
+        }
+        return "";
+    }
+
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string RemoveAffiliation(string uId, string affiliationName)
+    {
+        User user = new global::User().GetUserById(int.Parse(uId));
+        Institute institute = new Institute().GetInstituteByName(affiliationName);
+
+        foreach (var item in user.Affiliations)
+        {
+            if (item.Id==institute.Id)
+            {
+                new DBServices().RemoveUserAffiliation(user.Id, institute.Id);
+                return "";
+            }
+        }       
+              
+        return "";
+    }
+
+
 
 }

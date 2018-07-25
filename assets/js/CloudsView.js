@@ -1,4 +1,7 @@
-﻿User = {};
+﻿IdentityUser = 1;
+IdentityEdge = 1;
+
+User = {};
 try {
 
     User = localStorage.getItem("User");
@@ -43,7 +46,7 @@ function RedirectToLogin() {
 }
 
 function errorCB(err) {
-    console.log(err.responseText);
+    console.log(err);
 }
 
 function DisplayClusters(results) {
@@ -60,14 +63,14 @@ function DisplayClusters(results) {
     var res = "";
     for (var i = 1; i <= User.Clusters.length; i++) {
         //Cluster Loop
-        var json = {id: i, label: User.Clusters[i-1].Name, shape: "circle" , size: 50, group:'clusters'};
+        var json = { id: IdentityUser++, label: User.Clusters[i-1].Name, shape: "circle" , size: 50, group:'clusters'};
         nodesarr.push(json);
             
         
        
 
         // create an array with edges
-        var edgesjson = {from: 0, to: i, color: {color:'white'}};
+        var edgesjson = { id: IdentityEdge++, from: 0, to: IdentityUser-1, color: {color:'white'}};
         edgesarr.push(edgesjson);
         
 
@@ -115,10 +118,11 @@ function DisplayClusters(results) {
         
     };
 
-
+    
          network = new vis.Network(container, data, options);
          network.on("selectNode", function (params) {
              var click = network.getConnectedNodes(String(params.nodes[0]), 'to');
+             console.log(params);
              console.log(click);
              if (params.nodes[0] == 0) {
                  alert("it tickles")
@@ -138,13 +142,14 @@ function DisplayClusters(results) {
                      }
                      else {
 
-                         console.log(params.nodes);
+                         //console.log(params.nodes);
                          try {
                              for (var i = 0; i <= User.Clusters[te].Users.length; i++) {
-                                 var notemp = { size: 35, id: nodes.length, label: User.Clusters[te].Users[i].Name, shape: "circularImage", image: User.Clusters[te].Users[i].ImagePath, borderWidthSelected: User.Clusters[te].Users[i].Id };
+                                 if (User.Clusters[te].Users[i] == null) { continue;}
+                                 var notemp = { size: 35, id: IdentityUser++, label: User.Clusters[te].Users[i].Name, shape: "circularImage", image: User.Clusters[te].Users[i].ImagePath, borderWidthSelected: User.Clusters[te].Users[i].Id };
                                  nodesarr.push(notemp)
                                  nodes.add(notemp);
-                                 var edtemp = { id: edges.length +1, from: params.nodes[0], to: edges.length + 1, color: { color: 'white' } };
+                                 var edtemp = { id: IdentityEdge, from: params.nodes[0], to: IdentityEdge++, color: { color: 'white' } };
                                  edges.add(edtemp);
                              }
                          } catch (e) {
@@ -156,10 +161,14 @@ function DisplayClusters(results) {
                  else {
                      for (var i = 0; i < click.length; i++) {
                          nodes.remove({id: click[i] });
-                         edges.remove({ id: params.edges[i] ,from: params.nodes[0], to: click[i]});
+                         //edges.remove({ id: params.edges[i] ,from: params.nodes[0], to: click[i]});
                      }
                  }
              }
+             setTimeout(function () {
+                 network.selectEdges([])
+                 //alert("unfocuesd")
+             }, 250)
         });
 
     
@@ -206,5 +215,8 @@ function ViewResearcher(_id) {
         localStorage.setItem('Researcher', results.d);
         window.location.replace("../html/ResearcherProfile.html");
 
-    }, errorCB)
+    }, function (error) {
+
+        alert(error);
+        })
 }

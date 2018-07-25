@@ -28,7 +28,7 @@ function GetUserById(request, successCB, failureCB) {
         type: 'POST',        // can be post or get
         dataType: 'json',    // Choosing a JSON datatype
         contentType: 'application/json; charset = utf-8', // of the data received
-        timeout: 5000, // timeout in miliseconds
+        timeout: 80000, // timeout in miliseconds
         success: successCB, // 
         error: failureCB
     })// end of ajax call
@@ -231,3 +231,56 @@ function GetUserArticlesAjax(request, successCB, failureCB) {
     })// end of ajax call
 }
 
+
+function GetAllAffiliationsAjax(successCB, failureCB) {
+
+    // dataString = JSON.stringify(request);
+    $.ajax({ // ajax call starts
+        url: '../../AjaxServices.asmx/GetAllAffiliations',   // JQuery call to the server side method
+        // data: dataString,    // the parameters sent to the server
+        type: 'POST',        // can be post or get
+        dataType: 'json',    // Choosing a JSON datatype
+        contentType: 'application/json; charset = utf-8', // of the data received
+        timeout: 50000, // timeout in miliseconds
+        success: successCB, // 
+        error: failureCB
+    })// end of ajax call
+
+  
+}
+
+
+
+
+
+
+    function AddAffiliationAjax(request, successCB, failureCB) {
+
+        dataString = JSON.stringify(request);
+        $.ajax({ // ajax call starts
+            url: '../../AjaxServices.asmx/AddAffiliation',   // JQuery call to the server side method
+            data: dataString,    // the parameters sent to the server
+            type: 'POST',        // can be post or get
+            dataType: 'json',    // Choosing a JSON datatype
+            contentType: 'application/json; charset = utf-8', // of the data received
+            timeout: 50000, // timeout in miliseconds
+            success: successCB, // 
+            error: failureCB
+        })// end of ajax call
+    }
+
+
+    function RemoveAffiliationAjax(request, successCB, failureCB) {
+
+        dataString = JSON.stringify(request);
+        $.ajax({ // ajax call starts
+            url: '../../AjaxServices.asmx/RemoveAffiliation',   // JQuery call to the server side method
+            data: dataString,    // the parameters sent to the server
+            type: 'POST',        // can be post or get
+            dataType: 'json',    // Choosing a JSON datatype
+            contentType: 'application/json; charset = utf-8', // of the data received
+            timeout: 50000, // timeout in miliseconds
+            success: successCB, // 
+            error: failureCB
+        })// end of ajax call
+    }

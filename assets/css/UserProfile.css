@@ -149,7 +149,7 @@ a:hover {
 
 #tool:hover {
 	cursor: pointer;
-	box-shadow: 11px 11px 12px -6px rgba(222,222,222,1);
+    box-shadow: 11px 11px 12px -6px rgba(222,222,222,1);
 }
 
 #tool {
@@ -240,4 +240,21 @@ margin:10% auto;
 
 #edit-user-profile {
     float:right;
+}
+
+/*#tool{
+    animation:shake 2s ;
+}*/
+
+.logoAnimation{
+    animation:shake 2s ;
+}
+@keyframes shake {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(45deg);
+    }
 }

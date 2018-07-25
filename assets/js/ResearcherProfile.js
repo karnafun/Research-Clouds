@@ -9,6 +9,7 @@ ClusterClickedId = -1;
 
 
 try {
+  
     User = localStorage.getItem("User");
     User = JSON.parse(User);
     Researcher = localStorage.getItem("Researcher");
@@ -26,9 +27,11 @@ try {
             Researcher = results;
             EditedUser = $.extend(true, {}, Researcher);
             UpdatePageFromUser();
+            $("#loader").attr("style", "display:none");
         }, errorCB);
     } else {
         UpdatePageFromUser();
+        $("#loader").attr("style", "display:none");
     }
 
 
@@ -131,7 +134,8 @@ function UpdateResearcherArticles(results) {
 }
 
 function errorCB(error) {
-    alert("Error: " + error.responseText);
+    consloe.log("Error: " + error.responseText);
+    $("#loader").attr("style", "display:none");
 }
 
 function Logout() {
@@ -182,6 +186,7 @@ function ArticleClick() {
 
 */
 $(document).ready(function () {
+    $("#loader").attr("style", "display:block");
     //ToggleEditingTools(false);
     ConfigureClickEvents();
     $("#editProfile").on("click", function () {
@@ -221,46 +226,46 @@ function EditArticle(_id) {
     $("#articleModal_articleId").val(_id);
 }
 
-function SaveArticle(e) {
+//function SaveArticle(e) {
 
-    var title = $("#articleModal_title").val();
-    var link = $("#articleModal_link").val();
-    var _users = $("#articleModal_authors").val();
+//    var title = $("#articleModal_title").val();
+//    var link = $("#articleModal_link").val();
+//    var _users = $("#articleModal_authors").val();
 
-    if (title == '' || link == '' || _users == '') {
-        PopAlert('Error', 'You MUST fill all relevant field to update an article');
-        return null;
-    }
+//    if (title == '' || link == '' || _users == '') {
+//        PopAlert('Error', 'You MUST fill all relevant field to update an article');
+//        return null;
+//    }
 
-    var articleId = $("#articleModal_articleId").val();
-    var exists = false;
-    for (var i = 0; i < Researcher.Articles.length; i++) {
-        var _article = Researcher.Articles[i];
-        if (_article.Id == articleId) {
+//    var articleId = $("#articleModal_articleId").val();
+//    var exists = false;
+//    for (var i = 0; i < Researcher.Articles.length; i++) {
+//        var _article = Researcher.Articles[i];
+//        if (_article.Id == articleId) {
 
-            _article.Title = title;
-            _article.Link = link;
-            try {
-                _users = _users.split(',');
-                _article.Users = [];
-                for (var j = 0; j < _users.length; j++) {
-                    _article.Users.push(_users[j]);
-                }
-            } catch (e) {
-                _article.Users = [];
-                _article.Users.push(_users);
-                console.log("tried to split with , the variable: " + _users);
-            }
-            exists = true;
-        }
-    }
-    if (!exists) {
-        ArticleDetails = { Id: -1, Keywords: [], Link: link, Title: title, Users: [Researcher.Name] };
-        Researcher.Articles.push(ArticleDetails);
-    }
-    BuildArticles();
+//            _article.Title = title;
+//            _article.Link = link;
+//            try {
+//                _users = _users.split(',');
+//                _article.Users = [];
+//                for (var j = 0; j < _users.length; j++) {
+//                    _article.Users.push(_users[j]);
+//                }
+//            } catch (e) {
+//                _article.Users = [];
+//                _article.Users.push(_users);
+//                console.log("tried to split with , the variable: " + _users);
+//            }
+//            exists = true;
+//        }
+//    }
+//    if (!exists) {
+//        ArticleDetails = { Id: -1, Keywords: [], Link: link, Title: title, Users: [Researcher.Name] };
+//        Researcher.Articles.push(ArticleDetails);
+//    }
+//    BuildArticles();
 
-}
+//}
 
 function SaveChanges() {
     EditedUser.BirthDate = GetDateObject(EditedUser.BirthDate);
@@ -365,8 +370,10 @@ function PopAlert(type, message) {
 }
 
 function ViewUser(_id) {
+    $("#loader").attr("style", "display:block");
     GetUserById({ Id: _id }, function (results) {
         window.location.replace("../html/CloudsView.html");
+        $("#loader").attr("style", "display:none");
     }, errorCB)
 
 }
