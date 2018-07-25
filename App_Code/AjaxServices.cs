@@ -20,7 +20,7 @@ using System.Web.Services;
 
 public class AjaxServices : System.Web.Services.WebService
 {
-    const string rootPath = @"http://proj.ruppin.ac.il/bgroup62/test2/tar5/";
+    const string rootPath = @"http://proj.ruppin.ac.il/bgroup62/prod/";
     public AjaxServices()
     {
 

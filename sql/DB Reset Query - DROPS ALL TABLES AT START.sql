@@ -369,6 +369,7 @@ END
 CLOSE MY_CURSOR
 DEALLOCATE MY_CURSOR
 delete from UserScholarInterests where uId = @userId
+delete from affiliations where uId = @userId
 delete from users where uId = @userId
 go
 
