@@ -48,12 +48,14 @@ try {
         $("#buildProfile_btn").on("click", function () {
 
             try {
-<<<<<<< HEAD
+
                 $("#loader").attr("style", "display:block");
                 User.BirthDate = GetDateObject(User.BirthDate);
                 User.RegistrationDate = GetDateObject(User.RegistrationDate);
+                var name = User.FirstName + ' ' + User.LastName;
                 var request = {
-                    userString: JSON.stringify(User)
+                    name: name,
+                    email:User.Email
                 };
                 FindUserAutomaticallyAjax(request, function (results) {
                     GetUserById({ Id: User.Id }, function (results) {

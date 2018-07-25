@@ -230,13 +230,7 @@ public class AjaxServices : System.Web.Services.WebService
             //string res = user.InsertUserToDatabase().ToString();
             user = user.Relog();
             JavaScriptSerializer js = new JavaScriptSerializer();
-            return js.Serialize(user);
-
-
-
-
-
-
+            return js.Serialize(user);        
 
             // PythonServices py = new PythonServices();
           //  User user = new global::User("amit", " ", "rechavi", null);
@@ -248,10 +242,7 @@ public class AjaxServices : System.Web.Services.WebService
             LogManager.Report(ex);
             return ex.ToString();
         }
-        finally
-        {
-
-        }
+        
 
     }
 
@@ -399,7 +390,7 @@ public class AjaxServices : System.Web.Services.WebService
     //--------------------------------------------------------------------------
     public string UpdatePersonalInfo()
     {
-
+        
         var uId = HttpContext.Current.Request.Params["uId"];
         var fName = HttpContext.Current.Request.Params["firstName"];
         var mName = HttpContext.Current.Request.Params["middleName"];
