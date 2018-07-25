@@ -262,7 +262,7 @@ public class User : RCEntity
         }
         if (articles !=null)
             foreach (Article article in articles)
-                article.UpdateArticleInDatabase();
+                article.UpdateArticleInDatabase();        
         return db.UpdateUser(this);
     }
     public int RemoveUserFromDatabase()
@@ -275,6 +275,22 @@ public class User : RCEntity
         return db.RemoveEntity(this);
     }
 
+    public int UpdateAffiliations(List<Institute> _affiliations)
+    {
+        foreach (var item in _affiliations)
+        {
+            if (!this.Affiliations.Contains(item))
+            {
+                this.affiliations.Add(item);
+            }
+        }
+        int rowseffected = 0;
+        foreach (var item in this.Affiliations)
+        {
+            rowseffected+= db.InsertUserAffiliation(id, item.Id);
+        }
+        return rowseffected;
+    }
     public void FixNulls()
     {
         //string fName, mName, lName;

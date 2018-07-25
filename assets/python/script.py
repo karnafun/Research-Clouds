@@ -12,6 +12,7 @@ def GetConnection():
 def InsertAuthorInfo(_author):								
 	connection = GetConnection()
 	cursor = connection.cursor() 
+
 	if _author.name.find("rechavi"):
 		_author.url_picture = '/citations?view_op=view_photo&user=vFoitJkAAAAJ&citpid=3'
 	elif _author.url_picture.find("cleardot.gif"):

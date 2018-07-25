@@ -34,7 +34,9 @@ select * from UsersInArticle where uId = 9
 drop table Affiliations, UsersInCluster, usersInArticle,KeywordsInCluster,KeywordsInArticle, UserScholarInterests
 drop table users, Clusters, Articles, Keywords, AcademicInstitutes
 drop view [dbo].[v_ArticleKeywords],[dbo].[v_ClusterKeywords],[dbo].[v_InstituteUsers],[dbo].[v_UserAffiliations],[dbo].[v_UserArticles],[dbo].[v_UserClusters]
+
 drop proc p_deleteUser, p_deleteArticle, p_deleteCluster, p_deleteInstitute,p_deleteKeyword,p_deleteUserFull
+
 
 /****************************************************************************************************************************
 	Part 2: Tables
@@ -345,6 +347,7 @@ delete  from KeywordsInArticle where kId = @id
 delete  from Keywords where kId = @id
 go
 
+
 create proc p_deleteUserFull 
 @userId int
 as
@@ -372,6 +375,7 @@ delete from UserScholarInterests where uId = @userId
 delete from affiliations where uId = @userId
 delete from users where uId = @userId
 go
+
 
 
 

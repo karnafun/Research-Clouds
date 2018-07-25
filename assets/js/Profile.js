@@ -48,6 +48,7 @@ try {
         $("#buildProfile_btn").on("click", function () {
 
             try {
+<<<<<<< HEAD
                 $("#loader").attr("style", "display:block");
                 User.BirthDate = GetDateObject(User.BirthDate);
                 User.RegistrationDate = GetDateObject(User.RegistrationDate);
@@ -72,6 +73,7 @@ try {
             } catch (e) {
                 console.log(e)
                 $(this).attr("style", "display:none");
+
             }
 
 
@@ -90,12 +92,23 @@ try {
     RedirectToLogin();
 }
 
-
+function UpdatePageFromUserWithAlert() {
+    GetUserById(request, function (results) {
+        try {
+            results = JSON.parse(results.d);
+        } catch (e) {
+            RedirectToLogin();
+        }
+        User = results;
+        EditedUser = $.extend(true, {}, User);
+        UpdatePageFromUser();
+        alert("Done, configured the user");
+    }, errorCB);
+}
 function UpdatePageFromUser() {
     $("#uID").html(User.Name);
     $("#uImg").attr("src", User.ImagePath);
     $("#uSummery").html(User.Summery);
-
     BuildArticles();
     BuildAffiliations();
     BuildClusters();
