@@ -99,6 +99,34 @@ public class DBServices
         }
     }
 
+    public int UpdateClusterVisibility(Cluster cluster, int uId)
+    {
+        int visible;
+        if (cluster.visible)
+        {
+            visible = 1;
+        }
+        else
+        {
+            visible = 0;
+        }
+        string cmdStr = string.Format(" update UsersInCluster set visible = {0} where cId ={1} and uId = {2} ", visible, cluster.Id,uId);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            con.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, "Update visiblility failed.", "cluster id: " + cluster.Id, "command: " + cmdStr);
+            return -1;
+        }finally
+        {
+            con.Close();
+        }
+    }
+
     public Institute GetInstituteByName(string name)
     {
         string cmdStr = "select top(1) * from [AcademicInstitutes] where iName = @name";
@@ -1154,7 +1182,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            LogManager.Report(ex, cluster);
+            LogManager.Report(ex, "cluster name: " +cluster.ToString(),"sql command: " +cmd.CommandText, "cluster id: " +cluster.Id,"visible: "+cluster.visible);
             return -1;
         }
         finally
@@ -1434,25 +1462,17 @@ public class DBServices
         if (isNewCluster)
         {
             cmdStr.Append("insert into Clusters values");
-            cmdStr.Append("(@name,@visible)");
+            cmdStr.Append("(@name)");
         }
         else
         {
             cmdStr.Append(" update Clusters set ");
-            cmdStr.Append("cName = @name visible = @visible");
+            cmdStr.Append("cName = @name ");
             cmdStr.Append(" where cId = @id ");
         }
         _cmd = new SqlCommand(cmdStr.ToString(), con);
         _cmd.Parameters.AddWithValue("@id", cluster.Id);
-        _cmd.Parameters.AddWithValue("@name", cluster.Name);
-        if (cluster.visible)
-        {
-            _cmd.Parameters.AddWithValue("@visible", 1);
-        }
-        else
-        {
-            _cmd.Parameters.AddWithValue("@visible", 0);
-        }
+        _cmd.Parameters.AddWithValue("@name", cluster.Name);       
 
         return _cmd;
     }

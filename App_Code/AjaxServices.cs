@@ -159,6 +159,7 @@ public class AjaxServices : System.Web.Services.WebService
         try
         {
             JavaScriptSerializer js = new JavaScriptSerializer();
+            
             return js.Serialize(user);
         }
         catch (Exception ex)

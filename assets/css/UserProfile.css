@@ -237,3 +237,7 @@ margin:10% auto;
 		transform: rotate(360deg);
 	}
 }
+
+#edit-user-profile {
+    float:right;
+}

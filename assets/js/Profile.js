@@ -82,12 +82,8 @@ try {
             $("#infoModal_lastName").val(User.LastName);
             $("#edit-profile-modal").modal("show");
         })
-        $("#pencil-user-profile").on("click", function () {
-            $("#loader").attr("style", "display:block");
-        });
-        $("#loader").on("click", function () {
-            $("#loader").attr("style", "display:none");
-        });
+       
+       
     });
 
 } catch (e) {
@@ -147,9 +143,9 @@ function BuildAffiliations() {
         TODO:
         Build an html li article using value (it has the users in it )
         */
-        resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><span class='icon fa-university'></span><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div> " +
-            "<span class='icon fa-edit'><span>" +
-            "</li>";
+        resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><span class='icon fa-university'></span><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div> "
+            + "</li>";
+            
 
 
     });
@@ -170,9 +166,7 @@ function BuildClusters() {
             '<br/>' +
             value.Name +
             '<br/>' +
-            '<p>' +
-            'Here will be a short description of the cluster' +
-            '</p>' +
+            
             '</li>'
     });
     $("#uclust").html(resString);

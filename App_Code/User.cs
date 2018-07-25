@@ -205,10 +205,11 @@ public class User : RCEntity
     {
 
         User _user = _id > 0 ? GetUserById(_id) : this; //If i get an ID, i return results for that id. else, i give results for this user
-        _user.clusters = _user.Clusters; //Gets clusters from db if this.clusters==null
+        _user.clusters = _user.Clusters; //Gets clusters from db if this.clusters==null        
         foreach (Cluster cluster in _user.clusters)
         {
             cluster.GetFullInfo(); //filling cluster with users and keywords
+
         }
 
         if (_id < 0)
