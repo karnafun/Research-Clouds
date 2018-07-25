@@ -46,13 +46,32 @@ try {
         }
         //build the profile
         $("#buildProfile_btn").on("click", function () {
+
             try {
+                $("#loader").attr("style", "display:block");
+                User.BirthDate = GetDateObject(User.BirthDate);
+                User.RegistrationDate = GetDateObject(User.RegistrationDate);
                 var request = {
                     userString: JSON.stringify(User)
                 };
-                FindUserAutomaticallyAjax(request, RefreshUser, errorCB);     //If RefreshUser not working, just past the code itself instead and it'll work             
+                FindUserAutomaticallyAjax(request, function (results) {
+                    GetUserById({ Id: User.Id }, function (results) {
+                        try {
+                            results = JSON.parse(results.d);
+                            User = results;
+                            EditedUser = $.extend(true, {}, User);
+                            UpdatePageFromUser();
+                        } catch (e) {
+                            RedirectToLogin();
+                        }
+
+                        //alert("Done, configured the user");
+                        $("#loader").attr("style", "display:none");
+                    })
+                }, errorCB);     //If RefreshUser not working, just past the code itself instead and it'll work             
             } catch (e) {
                 console.log(e)
+                $(this).attr("style", "display:none");
             }
 
 
@@ -67,7 +86,7 @@ try {
             $("#loader").attr("style", "display:block");
         });
         $("#loader").on("click", function () {
-            $(this).attr("style", "display:none");
+            $("#loader").attr("style", "display:none");
         });
     });
 
@@ -340,6 +359,7 @@ function SaveArticle(e) {
 }
 
 function SaveChanges() {
+    $("#loader").attr("style", "display:block");
     EditedUser.BirthDate = GetDateObject(EditedUser.BirthDate);
     EditedUser.RegistrationDate = GetDateObject(EditedUser.RegistrationDate);
     request = {
@@ -347,11 +367,17 @@ function SaveChanges() {
     };
     UpdateUserAjax(request, function (results) {
         if (results.d > 1) {
-            alert("User Updated Successfully");
+            // alert("User Updated Successfully");
+            $("#loader").attr("style", "display:none");
         } else {
             alert(results.d + " rows effected");
+            $("#loader").attr("style", "display:none");
         }
-    }, errorCB);
+    }, function (err) {
+        $("#loader").attr("style", "display:none");
+        errorCB(err);
+
+    });
 
 }
 function CancelChanges() {
@@ -395,6 +421,7 @@ function ConfigureClickEvents() {
     });
 
     $("#infoModal_btn_save").unbind('click').click(function (e) {
+        $("#loader").attr("style", "display:block");
         User.FirstName = $("#infoModal_firstName").val();
         User.MiddleName = $("#infoModal_middleName").val();
         User.LastName = $("#infoModal_lastName").val();
@@ -409,7 +436,7 @@ function ConfigureClickEvents() {
         request.append("middleName", User.MiddleName)
         request.append("lastName", User.LastName)
         UpdatePersonalInfoAjax(request, function (results) {
-           
+
             //Get the user again from the server and update the page
             GetUserById({ Id: User.Id }, function (results) {
                 try {
@@ -417,21 +444,25 @@ function ConfigureClickEvents() {
                     User = results;
                     EditedUser = $.extend(true, {}, User);
                     UpdatePageFromUser();
-                    alert("updated?");
+                    //alert("updated?");
+                    $("#loader").attr("style", "display:none");
                     //In case of image caching: 
                     d = new Date();
-                    $("#uImg").attr("src", User.ImagePath+"?"+d.getTime());
-                    
+                    $("#uImg").attr("src", User.ImagePath + "?" + d.getTime());
+
                     //setTimeout(function () { UpdatePageFromUser();  alert("another check")}, 3000);//Just in case
-                    
+
                 } catch (e) {
                     RedirectToLogin();
-                }                
+                }
             })
 
 
 
-        }, errorCB)
+        }, function (err) {
+            $("#loader").attr("style", "display:none");
+            errorCB(err)
+        })
 
         //update articles 
         //GetUserArticlesAjax({ uId: User.Id }, function (results) {

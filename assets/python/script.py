@@ -12,6 +12,10 @@ def GetConnection():
 def InsertAuthorInfo(_author):								
 	connection = GetConnection()
 	cursor = connection.cursor() 
+	if _author.name.find("rechavi"):
+		_author.url_picture = '/citations?view_op=view_photo&user=vFoitJkAAAAJ&citpid=3'
+	elif _author.url_picture.find("cleardot.gif"):
+			_author.url_picture = '/citations/images/avatar_scholar_128.png'
 	SQLCommand = ("insert into scholarUsers values('%s','%s','%s','%s')" % (_author.name,_author.affiliation,_author.email,"https://scholar.google.co.il"+_author.url_picture))
 	cursor.execute(SQLCommand)
 	connection.commit()

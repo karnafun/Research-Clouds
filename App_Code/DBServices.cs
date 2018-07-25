@@ -99,6 +99,33 @@ public class DBServices
         }
     }
 
+    public Institute GetInstituteByName(string name)
+    {
+        string cmdStr = "select top(1) * from [AcademicInstitutes] where iName = @name";
+        con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        cmd.Parameters.AddWithValue("@name", name);
+        try
+        {
+            cmd.Connection.Open();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                return CurrentLineInstitute(reader);
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex);
+            return null;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
     internal void RemoveAuthorFromArticle(int authorId, int articleId)
     {
         string cmdStr = "delete from UsersInArticle where uId=" + authorId + " and aId =" + articleId;        
@@ -352,6 +379,28 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+    public int InsertUserAffiliation(int uId, int iId)
+    {
+        string cmdStr = string.Format("insert into Affiliations values({0},{1})", uId, iId);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            con.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+
+            LogManager.Report(ex, "command: " + cmdStr);
+            return -1;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
     /// <summary>
     /// Gets a cluster by the cluster id
     /// </summary>

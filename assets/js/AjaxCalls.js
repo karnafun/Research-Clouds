@@ -154,7 +154,7 @@ function UpdateArticleAjax(request, successCB, failureCB) {
     })
 }
 
-function FindUserAutomatically(request, successCB, failureCB) {
+function FindUserAutomaticallyAjax(request, successCB, failureCB) {
 
     dataString = JSON.stringify(request);
     $.ajax({ // ajax call starts
@@ -163,7 +163,7 @@ function FindUserAutomatically(request, successCB, failureCB) {
         type: 'POST',        // can be post or get
         dataType: 'json',    // Choosing a JSON datatype
         contentType: 'application/json; charset = utf-8', // of the data received
-        timeout: 50000, // timeout in miliseconds
+        timeout: 500000, // timeout in miliseconds
         success: successCB, // 
         error: failureCB
     })// end of ajax call

@@ -264,33 +264,11 @@ public class ScholarDBServices
         //return;
     }
 
-
-
     public void IntegrateIntoUser(int suId, int uId)
     {
         //get ScholarUser object
         ScholarUser scholarUser = GetUserById(suId);
-        //Make User object
-        string[] names = scholarUser.Name.Split(' ');
         User user = new User().GetUserById(uId);
-        if (names.Length == 2)
-        {
-            user.FirstName = names[0];
-            user.MiddleName = "";
-            user.LastName = names[1];
-        }
-        else if (names.Length == 3)
-        {
-            user.FirstName = names[0];
-            user.MiddleName = names[1];
-            user.LastName = names[2];
-        }
-        else
-        {
-            LogManager.Report("trying to add scholar user with 1 name", scholarUser);
-            return;
-        }
-        //Insert User Object to db
 
         user.ImagePath = scholarUser.Image;
         user.FixNulls();
@@ -309,13 +287,22 @@ public class ScholarDBServices
             a.UpdateUsers(new List<User>() { user });
             if (pub.Publisher.Contains("IEEE"))
             {
-                List<string> terms = new IEEE().GetArticleTerms(pub.Title);
-                List<Keyword> articleKeywords = new List<Keyword>();
-                foreach (var item in terms)
+                try
                 {
-                    articleKeywords.Add(new Keyword(0, item));
+                    List<string> terms = new IEEE().GetArticleTerms(pub.Title);
+                    List<Keyword> articleKeywords = new List<Keyword>();
+                    foreach (var item in terms)
+                    {
+                        articleKeywords.Add(new Keyword(0, item));
+                    }
+                    a.UpdateKeywords(articleKeywords);
                 }
-                a.UpdateKeywords(articleKeywords);
+                catch (Exception ex)
+                {
+
+                    continue;
+                }
+
 
             }
             db.FullArticleInsert(a);
@@ -328,7 +315,134 @@ public class ScholarDBServices
             db.InsertInterest(user.Id, item);
         }
 
+        Institute scholarInstitute = GetEmailAffiliation(scholarUser.Email);
+        Institute emailInstitute = GetEmailAffiliation(user.Email);
+        List<Institute> institutes = new List<Institute>() { scholarInstitute };
+        if (emailInstitute != scholarInstitute)
+        {
+            institutes.Add(emailInstitute);
+        }
+        user.UpdateAffiliations(institutes);
         //return;
     }
+
+    private Institute GetEmailAffiliation(string email)
+    {
+        string instName = string.Empty;
+        if (email.Contains("campus.haifa"))
+        {
+            instName = "University of Haifa";
+        }
+        else if (email.Contains("ruppin."))
+        {
+            instName = "Ruppin Academic Center";
+        }
+        else if (email.Contains("harvard."))
+        {
+            instName = "Harvard University";
+        }
+
+
+        Institute institute = new Institute().GetInstituteByName(instName);
+        if (institute == null)
+        {
+            institute = new Institute(-1, instName);
+            institute.InsertInstituteToDatabase();
+            institute = institute.GetInstituteByName(institute.Name);
+        }
+        return institute;
+    }
+
+    public void RemoveScholarUser(int id)
+    {
+        string cmdStr = "delete from scholarInterests where suId = " + id;
+        SqlCommand cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+            cmdStr = "delete from scholarPublications where suId = " + id;
+            cmd.ExecuteNonQuery();
+            cmdStr = "delete from scholarUsers where suId = " + id;
+            cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+
+            throw ex;
+        }
+        finally
+        {
+            con.Close();
+        }
+
+    }
+
+    //public void IntegrateIntoUser(int suId, int uId)
+    //{
+    //    //get ScholarUser object
+    //    ScholarUser scholarUser = GetUserById(suId);
+    //    //Make User object
+    //    string[] names = scholarUser.Name.Split(' ');
+    //    User user = new User().GetUserById(uId);
+    //    if (names.Length == 2)
+    //    {
+    //        user.FirstName = names[0];
+    //        user.MiddleName = "";
+    //        user.LastName = names[1];
+    //    }
+    //    else if (names.Length == 3)
+    //    {
+    //        user.FirstName = names[0];
+    //        user.MiddleName = names[1];
+    //        user.LastName = names[2];
+    //    }
+    //    else
+    //    {
+    //        LogManager.Report("trying to add scholar user with 1 name", scholarUser);
+    //        return;
+    //    }
+    //    //Insert User Object to db
+
+    //    user.ImagePath = scholarUser.Image;
+    //    user.FixNulls();
+    //    //user.Id = uId;
+    //    db.UpdateUser(user);
+    //    //db.InsertUser(user);
+    //    //get User uId from db
+    //    user = db.GetUserByName(user.FirstName, user.MiddleName, user.LastName);
+    //    //get user publications
+    //    List<ScholarPublication> publications = GetUserPublications(scholarUser.Id);
+    //    List<Article> articles = new List<Article>();
+    //    //insert user articles
+    //    foreach (ScholarPublication pub in publications)
+    //    {
+    //        Article a = (new Article(0, pub.Title, pub.EPrint));
+    //        a.UpdateUsers(new List<User>() { user });
+    //        if (pub.Publisher.Contains("IEEE"))
+    //        {
+    //            List<string> terms = new IEEE().GetArticleTerms(pub.Title);
+    //            if (terms == null) { continue; }
+    //            List<Keyword> articleKeywords = new List<Keyword>();
+    //            foreach (var item in terms)
+    //            {
+    //                articleKeywords.Add(new Keyword(0, item));
+    //            }
+    //            a.UpdateKeywords(articleKeywords);
+
+    //        }
+    //        db.FullArticleInsert(a);
+    //    }
+
+    //    //add interests
+    //    scholarUser.Interests = GetUserInterests(scholarUser.Id);
+    //    foreach (var item in scholarUser.Interests)
+    //    {
+    //        db.InsertInterest(user.Id, item);
+    //    }
+
+    //    //return;
+    //}
 
 }

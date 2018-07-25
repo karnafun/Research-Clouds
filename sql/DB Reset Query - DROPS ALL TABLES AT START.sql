@@ -34,7 +34,7 @@ select * from UsersInArticle where uId = 9
 drop table Affiliations, UsersInCluster, usersInArticle,KeywordsInCluster,KeywordsInArticle, UserScholarInterests
 drop table users, Clusters, Articles, Keywords, AcademicInstitutes
 drop view [dbo].[v_ArticleKeywords],[dbo].[v_ClusterKeywords],[dbo].[v_InstituteUsers],[dbo].[v_UserAffiliations],[dbo].[v_UserArticles],[dbo].[v_UserClusters]
-drop proc p_deleteUser, p_deleteArticle, p_deleteCluster, p_deleteInstitute,p_deleteKeyword
+drop proc p_deleteUser, p_deleteArticle, p_deleteCluster, p_deleteInstitute,p_deleteKeyword,p_deleteUserFull
 
 /****************************************************************************************************************************
 	Part 2: Tables
@@ -345,6 +345,32 @@ delete  from KeywordsInArticle where kId = @id
 delete  from Keywords where kId = @id
 go
 
+create proc p_deleteUserFull 
+@userId int
+as
+DECLARE @aId int
+DECLARE MY_CURSOR CURSOR 
+  LOCAL STATIC READ_ONLY FORWARD_ONLY
+FOR 
+SELECT DISTINCT aId
+FROM UsersInArticle where uId = @userId
+
+OPEN MY_CURSOR
+FETCH NEXT FROM MY_CURSOR INTO @aId
+WHILE @@FETCH_STATUS = 0
+BEGIN 
+    --Do something with Id here
+	delete from UsersInArticle where aId = @aId
+	delete from KeywordsInArticle where aId = @aId
+	delete from articles where aId = @aId
+    PRINT @aId
+    FETCH NEXT FROM MY_CURSOR INTO @aId
+END
+CLOSE MY_CURSOR
+DEALLOCATE MY_CURSOR
+delete from UserScholarInterests where uId = @userId
+delete from users where uId = @userId
+go
 
 
 

@@ -310,7 +310,20 @@ public class User : RCEntity
 
     }
 
-    
-
-    
+    public int UpdateAffiliations(List<Institute> _affiliations)
+    {
+        foreach (var item in _affiliations)
+        {
+            if (!this.Affiliations.Contains(item))
+            {
+                this.affiliations.Add(item);
+            }
+        }
+        int rowseffected = 0;
+        foreach (var item in this.Affiliations)
+        {
+            rowseffected += db.InsertUserAffiliation(id, item.Id);
+        }
+        return rowseffected;
+    }
 }
