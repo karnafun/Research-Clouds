@@ -46,7 +46,7 @@ function RedirectToLogin() {
 }
 
 function errorCB(err) {
-    console.log(err.responseText);
+    console.log(err);
 }
 
 function DisplayClusters(results) {
@@ -215,5 +215,8 @@ function ViewResearcher(_id) {
         localStorage.setItem('Researcher', results.d);
         window.location.replace("../html/ResearcherProfile.html");
 
-    }, errorCB)
+    }, function (error) {
+
+        alert(error);
+        })
 }

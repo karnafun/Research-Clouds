@@ -1,8 +1,10 @@
 ﻿
+CurrentAffiliations = {};
 User = {};
 EditedUser = {};
 EditingMode = false;
 ClusterClickedId = -1;
+
 try {
 
     User = localStorage.getItem("User");
@@ -20,12 +22,23 @@ try {
             User = results;
             EditedUser = $.extend(true, {}, User);
             UpdatePageFromUser();
+            setTimeout(function () {
+                startAnimation('shake 2s ', '.wimg');
+            }, 1500);
+            
+           
+            $("#loader").attr("style", "display:none");
         }, errorCB);
     } else {
         UpdatePageFromUser();
+        $("#loader").attr("style", "display:none");
     }
 
     $(document).ready(function () {
+        $("#loader").attr("style", "display:block");
+
+        
+       // ConfigureLogoShakeTimer();
         //ToggleEditingTools(false);
         ConfigureClickEvents();
         $("#editProfile").on("click", function () {
@@ -55,7 +68,7 @@ try {
                 var name = User.FirstName + ' ' + User.LastName;
                 var request = {
                     name: name,
-                    email:User.Email
+                    email: User.Email
                 };
                 FindUserAutomaticallyAjax(request, function (results) {
                     GetUserById({ Id: User.Id }, function (results) {
@@ -86,8 +99,8 @@ try {
             $("#infoModal_lastName").val(User.LastName);
             $("#edit-profile-modal").modal("show");
         })
-       
-       
+
+
     });
 
 } catch (e) {
@@ -160,7 +173,7 @@ function BuildAffiliations() {
         */
         resString += " <li class='media animated fadeInRight' style='border-bottom:2px solid #F8FCF7'><span class='icon fa-university'></span><div class='media-body'><h5><a href='#'>" + value.Name + "</a></h5><br /></div> "
             + "</li>";
-            
+
 
 
     });
@@ -181,7 +194,7 @@ function BuildClusters() {
             '<br/>' +
             value.Name +
             '<br/>' +
-            
+
             '</li>'
     });
     $("#uclust").html(resString);
@@ -196,6 +209,7 @@ function UpdateResearcherArticles(results) {
 
 function errorCB(error) {
     alert("Error: " + error.responseText);
+    $("#loader").attr("style", "display:none");
 }
 
 function Logout() {
@@ -296,72 +310,54 @@ function SaveArticle(e) {
         return null;
     }
 
-    var articleId = $("#articleModal_articleId").val();
-    var exists = false;
+    var articleId = -1;
+
     for (var i = 0; i < User.Articles.length; i++) {
         var _article = User.Articles[i];
         if (_article.Id == articleId) {
-            _article.Title = title;
-            _article.Link = link;
-            if (!String.prototype.includes) {
-                String.prototype.includes = function (search, start) {
-                    'use strict';
-                    if (typeof start !== 'number') {
-                        start = 0;
-                    }
-
-                    if (start + search.length > this.length) {
-                        return false;
-                    } else {
-                        return this.indexOf(search, start) !== -1;
-                    }
-                };
-            }
-
-            if (_users.includes(',')) {
-                _users = _users.split(',');
-            } else {
-                _users = [_users, '']
-            }
-            //New ajax:
-
-            var request = {
-                uId: User.Id,
-                aId: _article.Id,
-                title: _article.Title,
-                link: _article.Link,
-                authors: _users
-            }
-            UpdateArticleAjax(request, function (results) {
-                User = JSON.parse(results.d);
-                localStorage.setItem('User', results.d)
-                BuildArticles();
-            }, errorCB)
-
-            return;
-            try {
-
-                _users = _users.split(',');
-
-
-
-                _article.Users = [];
-                for (var j = 0; j < _users.length; j++) {
-                    _article.Users.push(_users[j]);
-                }
-            } catch (e) {
-                _article.Users = [];
-                _article.Users.push(_users);
-                console.log("tried to split with , the variable: " + _users);
-            }
-            exists = true;
+            articleId = _article.Id;
         }
     }
-    if (!exists) {
-        ArticleDetails = { Id: -1, Keywords: [], Link: link, Title: title, Users: [User.Name] };
-        User.Articles.push(ArticleDetails);
-        //UpdateUserInDatabase();
+
+    _article.Title = title;
+    _article.Link = link;
+    if (!String.prototype.includes) {
+        String.prototype.includes = function (search, start) {
+            'use strict';
+            if (typeof start !== 'number') {
+                start = 0;
+            }
+
+            if (start + search.length > this.length) {
+                return false;
+            } else {
+                return this.indexOf(search, start) !== -1;
+            }
+        };
     }
+
+    if (_users.includes(',')) {
+        _users = _users.split(',');
+    } else {
+        _users = [_users, '']
+    }
+    //New ajax:
+
+    var request = {
+        uId: User.Id,
+        aId: articleId,
+        title: _article.Title,
+        link: _article.Link,
+        authors: _users
+    }
+
+    UpdateArticleAjax(request, function (results) {
+        User = JSON.parse(results.d);
+        localStorage.setItem('User', results.d)
+        BuildArticles();
+    }, errorCB)
+
+
     // BuildArticles();
     //UpdatePageFromUser();
 
@@ -428,6 +424,10 @@ function ConfigureClickEvents() {
     $('#articleModal_btn_save').unbind('click').click(function (e) {
         SaveArticle(e);
     });
+    $('#affiliationsModal_btn_done').unbind('click').click(function (e) {
+
+    });
+
 
     $("#infoModal_btn_save").unbind('click').click(function (e) {
         $("#loader").attr("style", "display:block");
@@ -487,6 +487,69 @@ function ConfigureClickEvents() {
         UpdateUserInDatabase();
     });
 
+    $("#affiliations-tab").unbind('click').click(function (e) {
+        GetAllAffiliationsAjax(function (results) {
+            try {
+                ////clear select
+                var select = document.getElementById("select_affiliations");
+                var length = select.options.length;
+
+                for (i = 0; i < length; i++) {
+                    $('#select_affiliations').children('option').remove();
+                }
+
+                //$("#select_affiliations").clear();
+                results = JSON.parse(results.d);
+
+                for (var i = 0; i < results.length; i++) {
+                    var option = document.createElement("option");
+                    option.text = results[i].Name;
+                    $("#select_affiliations").append(option)
+                }
+            } catch (e) {
+
+            }
+
+        }, errorCB)
+    })
+    $("#btn_add_affiliation").unbind('click').click(function (e) {
+        //var select = $("#select_affiliations")
+        //var affiliationName = select.option[select.selectedIndex].text;
+
+
+        var e = document.getElementById("select_affiliations");
+        var affiliationName = e.options[e.selectedIndex].text;
+        var request = {
+            uId: User.Id,
+            affiliationName: affiliationName
+        }
+        AddAffiliationAjax(request, function (results) {
+            alert("added");
+        }, errorCB)
+
+
+        return false;
+    })
+    $("#btn_remove_affiliation").unbind('click').click(function (e) {
+        var e = document.getElementById("select_affiliations");
+        var affiliationName = e.options[e.selectedIndex].text;
+        var request = {
+            uId: User.Id,
+            affiliationName: affiliationName
+        }
+        RemoveAffiliationAjax(request, function (results) {
+            //var affiliationName = e.options[e.selectedIndex].text;
+            //for (var i = 0; i < User.Affiliations.length; i++) {
+            //    if (User.Affiliations[i] !=null && User.Affiliations[i].Name == affiliationName) {
+            //        User.Affiliations[i] = null;
+            //    }
+            //}
+            //UpdatePageFromUser();
+            alert("removed");
+        }, errorCB)
+        return false;
+    })
+
 }
 
 function EditField(e) {
@@ -522,10 +585,11 @@ function PopAlert(type, message) {
 }
 
 function ViewUser(_id) {
-    GetUserById({ Id: _id }, function (results) {
-        localStorage.setItem('User', results.d)
-        window.location.replace("../html/CloudsView.html");
-    }, errorCB)
+    window.location.replace("../html/CloudsView.html");
+    //GetUserById({ Id: _id }, function (results) {
+    //    window.location.replace("../html/CloudsView.html");
+    //    localStorage.setItem('User', results.d)
+    //}, errorCB)
 
 }
 
@@ -546,4 +610,27 @@ function RefreshUser(results) {
         UpdatePageFromUser();
         alert("Done, configured the user");
     })
+}
+
+
+
+function startAnimation(animationProprierties, targetElementClass) {
+    var targetElement = $(targetElementClass)
+    targetElement.css('animation', animationProprierties);
+    targetElement.on('animationend webkitAnimationEnd oanimationend MSAnimationEnd', function () {
+        targetElement.css('animation', '');
+        targetElement.off();
+    });
+}
+function ConfigureLogoShakeTimer() {
+
+
+
+    //setInterval(function () {
+    //    $("#tool").removeClass("logoAnimation");
+    //    $("#tool").addClass("logoAnimation")        
+    //}, 5000);
+    // $("#div_logo").effect("shake", { times: 4 }, 1000);
+
+
 }

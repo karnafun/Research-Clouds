@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <link href="../css/Register.css" rel="stylesheet" />
-
+    <link href="../css/animate.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -28,8 +28,8 @@
     <div id="particles-js">
 
     </div>
-    <div class="login-page">
-        <div class="form">
+    <div class="login-page ">
+        <div class="form animated fadeInDown">
             <img src="../img/Screenshot_3_burned.png" />
             <h4>Research Clouds</h4>
             <form class="register-form">
@@ -38,6 +38,7 @@
                 <input id="txt_email" type="text" placeholder="Email Address" />
                 <input id="txt_password" type="password" placeholder="Password" />
                 <input id="txt_confirmPassword" type="password" placeholder="Confirm Password" />
+                <p id="p_error"></p>
                 <button id="btn_submit" type="button">create</button>
                 <p class="message">Already registered? <a href="../html/Login.html">Sign In</a></p>
             </form>

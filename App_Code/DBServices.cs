@@ -398,6 +398,29 @@ public class DBServices
         }
     }
 
+
+
+    public int RemoveUserAffiliation(int uId, int iId)
+    {
+        string cmdStr = string.Format("delete from Affiliations where uId = {0} and iId = {1}", uId, iId);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+            con.Open();
+            return cmd.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+
+            LogManager.Report(ex, "command: " + cmdStr, "method: DeleteUserAffiliation");
+            return -1;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
+
     /// <summary>
     /// Gets all the clusters from the database
     /// </summary>

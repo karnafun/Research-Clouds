@@ -9,7 +9,14 @@
 
 
 function CheckCredentials() {
-    var t = $("#title");
+    if ($("#username").val().trim() == "" || $("#username").val().trim().length <=3 ) {
+        $("#p_error").text("Enter Email Address");
+        return;
+    }
+    if ($("#password").val() == "") {
+        $("#p_error").text("Enter Password");
+        return;
+    }
     var request = {
         email: $("#username").val(),
         password: $("#password").val()
@@ -22,18 +29,16 @@ function Login(results) {
     results = JSON.parse(results.d);
     if (results!=null && results.Name!=null) {
         localStorage.setItem('User', JSON.stringify(results))
-        window.location.replace("../html/UserProfile.html");
-        
-
+        window.location.replace("../html/UserProfile.html");        
     } else {
         // TODO: Implement login fail logic
-        alert("Failed");
+        $("#p_error").text("Invalid Username or Password");
     }
     
 }
 
 function errorCB(error) {
     console.log(error);
-    alert("Error:" + error.message);
+    $("#p_error").text("Connection Error");
 }
 

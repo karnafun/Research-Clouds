@@ -14,7 +14,7 @@ public class User : RCEntity
     string fName, mName, lName;
     string imgPath, degree, hash, salt, email, summery;
     string password; //Not in the constructor, only for creating users
-    bool administrator,isRegistered;
+    bool administrator, isRegistered;
     DateTime bdate, registrationDate;
     List<Article> articles;
     List<Institute> affiliations;
@@ -39,6 +39,23 @@ public class User : RCEntity
             }
         }
     }
+
+    public void LimitArticles(int max)
+    {
+        List<Article> _articles = new List<Article>();
+        foreach (var item in this.Articles)
+        {
+            if (_articles.Count >= max) { break; }
+
+            item.GetFullInfo();
+            _articles.Add(item);
+        }
+
+        this.articles = _articles;
+    }
+
+
+
     //public string Name
     //{
     //    get
@@ -93,7 +110,7 @@ public class User : RCEntity
         {
             if (affiliations == null)
             {
-               affiliations = db.GetUserAffiliations(id);
+                affiliations = db.GetUserAffiliations(id);
             }
             return affiliations;
         }
@@ -105,16 +122,16 @@ public class User : RCEntity
     {
         db = new DBServices();
     }
-    public User(string fName,string mName, string lName,Article article)
+    public User(string fName, string mName, string lName, Article article)
     {
         this.fName = fName;
-        if (!string.IsNullOrEmpty(mName)) { this.mName = mName; }        
+        if (!string.IsNullOrEmpty(mName)) { this.mName = mName; }
         this.lName = lName;
         articles = new List<Article>() { article };
-      //  this.articles.Add()
+        //  this.articles.Add()
         isRegistered = false;
         BirthDate = DateTime.MaxValue;
-        RegistrationDate= DateTime.MaxValue;
+        RegistrationDate = DateTime.MaxValue;
         db = new DBServices();
     }
     public User(int id, string fName, string mName, string lName, string imgPath, string degree,
@@ -145,7 +162,7 @@ public class User : RCEntity
         // articles = db.GetUserArticles(this.id);
         // affiliations = db.GetUserAffiliations(this.id);
 
-        if (articles!=null && articles.Count>=50)
+        if (articles != null && articles.Count >= 50)
         {
             List<Article> newArticles = new List<Article>();
             for (int i = 0; i < 50; i++)
@@ -168,7 +185,7 @@ public class User : RCEntity
         string info = "id: " + id + "<br>";
         info += "Name: " + FirstName;
         if (string.IsNullOrEmpty(MiddleName)) { info += " " + MiddleName; }
-        info+=" "+LastName + "<br>"; 
+        info += " " + LastName + "<br>";
         info += "Image: " + imgPath + "<br>";
         info += "Admin: " + IsAdmin + "<br>";
         info += "Email: " + Email + "<br>";
@@ -219,6 +236,7 @@ public class User : RCEntity
         return _user.clusters;
 
     }
+
     public int InsertUserToDatabase()
     {
         registrationDate = DateTime.Now;
@@ -260,9 +278,9 @@ public class User : RCEntity
         {
             registrationDate = DateTime.Now;
         }
-        if (articles !=null)
+        if (articles != null)
             foreach (Article article in articles)
-                article.UpdateArticleInDatabase();        
+                article.UpdateArticleInDatabase();
         return db.UpdateUser(this);
     }
     public int RemoveUserFromDatabase()
@@ -287,7 +305,7 @@ public class User : RCEntity
         int rowseffected = 0;
         foreach (var item in this.Affiliations)
         {
-            rowseffected+= db.InsertUserAffiliation(id, item.Id);
+            rowseffected += db.InsertUserAffiliation(id, item.Id);
         }
         return rowseffected;
     }
@@ -302,22 +320,22 @@ public class User : RCEntity
         //List<Institute> affiliations;
         //List<Cluster> clusters;
         if (salt == null) { salt = ""; }
-        if (email == null) { email= ""; }
-        if (hash== null) { hash = ""; }
+        if (email == null) { email = ""; }
+        if (hash == null) { hash = ""; }
         if (summery == null) { summery = ""; }
-        if (degree == null) { degree= ""; }
+        if (degree == null) { degree = ""; }
         { BirthDate = new DateTime(2018, 1, 1); }
         { RegistrationDate = new DateTime(2018, 1, 1); }
-        if (imgPath ==null ) { imgPath = " "; }
-      
-        
+        if (imgPath == null) { imgPath = " "; }
+
+
 
     }
 
     public void InsertAuthor()
     {
-        
-        if (this.articles==null)
+
+        if (this.articles == null)
         {
             return;
         }

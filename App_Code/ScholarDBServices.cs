@@ -347,7 +347,7 @@ public class ScholarDBServices
 
 
         Institute institute = new Institute().GetInstituteByName(instName);
-        if (institute == null)
+        if (institute == null && instName.Length>2)
         {
             institute = new Institute(-1, instName);
             institute.InsertInstituteToDatabase();
