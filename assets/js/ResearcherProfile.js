@@ -117,10 +117,7 @@ function BuildClusters() {
             '<span class="icon fa-cloud animated fadeInLeft"></span>' +
             '<br/>' +
             value.Name +
-            '<br/>' +
-            '<p>' +
-            'Here will be a short description of the cluster' +
-            '</p>' +
+            '<br/>' +           
             '</li>'
     });
     $("#uclust").html(resString);
