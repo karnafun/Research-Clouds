@@ -110,7 +110,7 @@ public class DBServices
         {
             visible = 0;
         }
-        string cmdStr = string.Format(" update UsersInCluster set visible = {0} where cId ={1} and uId = {2} ", visible, cluster.Id,uId);
+        string cmdStr = string.Format(" update UsersInCluster set visible = {0} where cId ={1} and uId = {2} ", visible, cluster.Id, uId);
         cmd = new SqlCommand(cmdStr, con);
         try
         {
@@ -121,7 +121,8 @@ public class DBServices
         {
             LogManager.Report(ex, "Update visiblility failed.", "cluster id: " + cluster.Id, "command: " + cmdStr);
             return -1;
-        }finally
+        }
+        finally
         {
             con.Close();
         }
@@ -156,7 +157,7 @@ public class DBServices
 
     internal void RemoveAuthorFromArticle(int authorId, int articleId)
     {
-        string cmdStr = "delete from UsersInArticle where uId=" + authorId + " and aId =" + articleId;        
+        string cmdStr = "delete from UsersInArticle where uId=" + authorId + " and aId =" + articleId;
         SqlConnection con = new SqlConnection(connectionString);
         cmd = new SqlCommand(cmdStr, con);
         try
@@ -166,7 +167,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            LogManager.Report(ex,"Remove author from article.","author id = "+authorId, "article Id = ",articleId);            
+            LogManager.Report(ex, "Remove author from article.", "author id = " + authorId, "article Id = ", articleId);
         }
         finally
         {
@@ -390,9 +391,10 @@ public class DBServices
         catch (Exception ex)
         {
 
-            LogManager.Report(ex, "command: " +cmdStr);
+            LogManager.Report(ex, "command: " + cmdStr);
             return -1;
-        }finally
+        }
+        finally
         {
             con.Close();
         }
@@ -1060,7 +1062,7 @@ public class DBServices
         con = new SqlConnection(connectionString);
         cmd = UserCommand(user, true);
         cmd.Parameters["@isRegistered"].Value = false;
-        cmd.Parameters["@email"].Value = cmd.Parameters["@firstName"].Value+"@authors.com";
+        cmd.Parameters["@email"].Value = cmd.Parameters["@firstName"].Value + "@authors.com";
         cmd.Parameters["@imgPath"].Value = false;
         cmd.Parameters["@uHash"].Value = " ";
         cmd.Parameters["@uSALT"].Value = " ";
@@ -1070,7 +1072,7 @@ public class DBServices
             cmd.Parameters["@middleName"].Value = " ";
         }
 
-            try
+        try
         {
             cmd.Connection.Open();
             int res = cmd.ExecuteNonQuery();
@@ -1183,7 +1185,7 @@ public class DBServices
 
 
     #region Update Methods
-    public int  UpdateUserImage(int uId, string imgPath)
+    public int UpdateUserImage(int uId, string imgPath)
     {
         string cmdStr = string.Format("update users set imgPath = '{0}' where uId = {1}", imgPath, uId);
         con = new SqlConnection(connectionString);
@@ -1251,7 +1253,7 @@ public class DBServices
         }
         catch (Exception ex)
         {
-            LogManager.Report(ex, "cluster name: " +cluster.ToString(),"sql command: " +cmd.CommandText, "cluster id: " +cluster.Id,"visible: "+cluster.visible);
+            LogManager.Report(ex, "cluster name: " + cluster.ToString(), "sql command: " + cmd.CommandText, "cluster id: " + cluster.Id, "visible: " + cluster.visible);
             return -1;
         }
         finally
@@ -1385,7 +1387,7 @@ public class DBServices
     }
 
     #endregion
-     
+
     #region Utility Methods
     private User CurrentLineUser(SqlDataReader reader)
     {
@@ -1541,7 +1543,7 @@ public class DBServices
         }
         _cmd = new SqlCommand(cmdStr.ToString(), con);
         _cmd.Parameters.AddWithValue("@id", cluster.Id);
-        _cmd.Parameters.AddWithValue("@name", cluster.Name);       
+        _cmd.Parameters.AddWithValue("@name", cluster.Name);
 
         return _cmd;
     }
@@ -1591,7 +1593,28 @@ public class DBServices
     }
     #endregion
 
+    public int UsersWithAffiliation(int iId)
+    {
+        string cmdStr = "select count(uId) from affiliations where iId = " + iId;
+        try
+        {
+            cmd = new SqlCommand(cmdStr, con);
+            con.Open();
+            reader = cmd.ExecuteReader();
+            reader.Read();
+                return Convert.ToInt32(reader[0]);                        
+        }
+        catch (Exception ex)
+        {
 
+            LogManager.Report(ex, "UsersWithAffiliations method. institute id =" + iId, "cmdStr = " + cmdStr);
+            return -1;
+        }
+        finally
+        {
+            con.Close();
+        }
+    }
 
 
 
@@ -1694,7 +1717,7 @@ public class DBServices
         {
             cmd.Connection.Close();
         }
-    }    
+    }
     public int AddUserToCluster(int userId, int clusterId)
     {
         string cmdStr = "insert into UsersInCluster values(" + userId + "," + clusterId + ",1 )";

@@ -326,6 +326,15 @@ public class ScholarDBServices
         }
         user.UpdateAffiliations(institutes);
 
+
+
+        foreach (var institute in user.Affiliations)
+        {
+            if (db.UsersWithAffiliation(institute.Id)>3)
+            {
+                ClusterCreator.CreateClusters(institute);
+            }
+        }
         //return;
     }
 

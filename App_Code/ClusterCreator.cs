@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public static class ClusterCreator
 {
-    public static void CreateClusters()
+    public static void CreateClusters(Institute inputInstitute)
     {
         DBServices db = new DBServices();
         List<User> allUsers = new User().GetAllUsers();
@@ -19,7 +19,19 @@ public static class ClusterCreator
         }
         foreach (User _user in allUsers)
         {
+            bool relevant = false;
             _user.GetFullInfo();
+            foreach (var institute in _user.Affiliations)
+            {
+                if (institute.Id==inputInstitute.Id)
+                {
+                    relevant = true;
+                }
+            }
+            if (!relevant)
+            {
+                continue;
+            }
             foreach (Article _article in _user.Articles)
             {
                 foreach (Keyword _keyword in _article.Keywords)

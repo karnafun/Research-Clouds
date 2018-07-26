@@ -8,10 +8,7 @@ using System.Web.UI.WebControls;
 public partial class assets_aspx_PythonIntegrationDemo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
-    {
-
-        ClusterCreator.ManageVisibleClusters();
-      
-
+    {       
+        ClusterCreator.ManageVisibleClusters();      
     }
 }
