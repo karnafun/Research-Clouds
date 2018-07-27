@@ -40,6 +40,11 @@ public class User : RCEntity
         }
     }
 
+    public List<string> GetInterests()
+    {
+        return db.GetUserInterests(id);
+    }
+
     public void LimitArticles(int max)
     {
         List<Article> _articles = new List<Article>();

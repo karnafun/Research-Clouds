@@ -67,6 +67,35 @@ public class DBServices
             cmd.Connection.Close();
         }
     }
+
+    public List<string> GetUserInterests(int id)
+    {
+        string cmdStr = "select * from UserScholarInterests where uId  = "+id;
+        SqlConnection con = new SqlConnection(connectionString);
+        cmd = new SqlCommand(cmdStr, con);
+        try
+        {
+
+            cmd.Connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<string> interests = new List<string>();
+            while (reader.Read())
+            {
+                interests.Add(reader["interest"].ToString());
+            }
+            return interests;
+        }
+        catch (Exception ex)
+        {
+            LogManager.Report(ex, cmdStr);
+            return null;
+        }
+        finally
+        {
+            cmd.Connection.Close();
+        }
+    }
+
     /// <summary>
     /// Gets all users from the database 
     /// </summary>
