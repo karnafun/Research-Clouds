@@ -7,13 +7,40 @@ using System.Web.UI.WebControls;
 
 public partial class assets_aspx_DeveloperPanel : System.Web.UI.Page
 {
+    Institute adminInstitute;
     protected void Page_Load(object sender, EventArgs e)
     {
-        FillPersonalInfo(new User().GetUserByEmail("margo@ruppin.ac.il").Id);
-        FillArticle(new User().GetUserByEmail("margo@ruppin.ac.il").Id);
+         adminInstitute = new Institute().GetInstituteById(3);
+        FillUserList();
+        //FillPersonalInfo(new User().GetUserByEmail("margo@ruppin.ac.il").Id);
+        //FillArticle(new User().GetUserByEmail("margo@ruppin.ac.il").Id);
+
     }
 
-    private void FillArticle(int id)
+    private void FillUserList()
+    {
+        var users = new User().GetAllUsers();
+        List<User> instituteUsers = new List<global::User>();
+        foreach (var user in users)
+        {
+            foreach (var institute in user.Affiliations)
+            {
+                if (institute.Id == adminInstitute.Id)
+                {
+                    instituteUsers.Add(user);
+                }
+            }
+        }
+
+        foreach (var user in instituteUsers)
+        {
+            ddl_users.Items.Add(new ListItem(user.Name, user.Id.ToString()));
+        }
+        
+        
+    }
+
+    private void FillArticlesAndKeywords(int id)
     {
         User user = new global::User().GetUserById(id);
         List<Keyword> userKeywords = new List<Keyword>();
@@ -26,7 +53,7 @@ public partial class assets_aspx_DeveloperPanel : System.Web.UI.Page
             {
                 userKeywords.Add(keyword);
             }
-            articleString += string.Format("Title: {0}", item.Title);
+            articleString += string.Format("{0}  </br>", item.Title);
         }
         div_articles.InnerHtml = articleString;
         var keywordsString = "User Keywords: </br>";
@@ -70,5 +97,12 @@ public partial class assets_aspx_DeveloperPanel : System.Web.UI.Page
             lbl_interests.ForeColor = System.Drawing.Color.Red;
         }
 
+    }
+
+    protected void Ddl_users_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int uId = int.Parse(ddl_users.SelectedItem.Value);
+        FillPersonalInfo(uId);
+        FillArticlesAndKeywords(uId);
     }
 }

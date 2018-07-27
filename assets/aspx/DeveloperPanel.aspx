@@ -10,10 +10,11 @@
     <form id="form1" runat="server">
         <div>
             <div runat="server" id="div_controls">
-                <asp:DropDownList runat="server" ID="ddl_users"></asp:DropDownList>
+                <asp:DropDownList runat="server" ID="ddl_users" AutoPostBack="true" OnTextChanged="Ddl_users_SelectedIndexChanged"></asp:DropDownList>
             </div>
             <div runat="server" id="div_info">
                 <asp:Image runat="server" ID="img_user" />
+                <br />
                 <asp:Label runat="server" ID="lbl_name"></asp:Label>
                 <br />
                 <asp:Label runat="server" ID="lbl_email"></asp:Label>
