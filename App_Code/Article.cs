@@ -101,9 +101,9 @@ public class Article : RCEntity
 
     public void RemoveAuthor(int authorId)
     {
-         db.RemoveAuthorFromArticle(authorId, id);
+        db.RemoveAuthorFromArticle(authorId, id);
     }
- 
+
 
 
     private void ValidateUsers()
@@ -116,5 +116,10 @@ public class Article : RCEntity
 
             }
         }
+    }
+
+    public Article GetArticleByTitle(string title)
+    {
+        return db.GetArticleByTitle(title);
     }
 }

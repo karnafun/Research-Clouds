@@ -78,12 +78,15 @@
         </footer>
     </section>
     <!-- Wrapper -->
+    <!--<div id="div_
+        s"> </div>-->
     <div id="wrapper">
         <div id="div_logo" class="wimg">
             <img id="tool" data-toggle="tooltip" data-placement="bottom" title="Show My network" src="../img/Screenshot_3_burned - Copy.png" />
         </div>
         <!-- Main -->
         <div id="main">
+            
             <!-- One -->
             <section id="one">
                 <div class="container">
@@ -93,36 +96,7 @@
                     <ul id="articleList" class="list-unstyled text-left"></ul>
                 </div>
             </section>
-            <!--Modal-->
-            <!--<div class="modal animated fadeInDown" id="articleModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title"> Add Article </h4>
-                            <p id="articleModal_articleId" hidden>-1</p>
-                            <button class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Article name" id="articleModal_title" />
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Article Link" id="articleModal_link" />
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Authors" id="articleModal_authors" />
-                                </div>
-                                <div class="modal-footer">
-                                    <button id="articleModal_btn_save" data-dismiss="modal" class="btn russian col-xs-6">Save</button>
-                                    <button id="articleModal_btn_cancel" data-dismiss="modal" class="btn russian col-xs-6">Cancel</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-            <!--end modal-->
+           
             <!--MODAL FOR BULDING NEW PROFILE-->
 
             <div class="modal fade" id="uArticleModale" tabindex="-1" role="dialog">
@@ -159,11 +133,15 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" id="personal-details-tab" data-toggle="tab" href="#personal" role="tab" aria-controls="personal" aria-selected="true">Personal details</a>
                                 </li>
-                                <li  class="nav-item" >
-                                    <a class="nav-link" id="articles-tab" data-toggle="tab" href="#articles" role="tab" aria-controls="articles" aria-selected="false">Articles</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="articles-tab" data-toggle="tab" href="#articles" role="tab" aria-controls="articles" aria-selected="false">Add Article</a>                                    
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" id="remove_article-tab" data-toggle="tab" href="#remove_articles" role="tab" aria-controls="remove_article" aria-selected="false">Remove Article</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="affiliations-tab" data-toggle="tab" href="#affiliations" role="tab" aria-controls="affiliations" aria-selected="false">affiliations</a>
+                                    <a class="nav-link" id="affiliations-tab" data-toggle="tab" href="#affiliations" role="tab" aria-controls="affiliations" aria-selected="false">Affiliations</a>
                                 </li>
                                 <!--<li class="nav-item">
                                     <a class="nav-link" id="keywords-tab" data-toggle="tab" href="#keywords" role="tab" aria-controls="keywords" aria-selected="false">Keywords</a>
@@ -207,13 +185,32 @@
                                         </div>
                                     </form>
                                 </div>
+
+                                <!-- remove Article Modal -->
+                                <div class="tab-pane fade" id="remove_articles" role="tabpanel" aria-labelledby="profile-tab">
+                                    <form>
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <!--<input class="form-control"  placeholder="Authors" id="articleModal_authors" />-->
+                                                <select class="form-control" id="select_articles"></select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">                                            
+                                            <button id="btn_remove_article" data-dismiss="modal" class="btn btn-danger col-xs-6">Remove</button>
+                                        </div>
+                                        <button id="removeArticleModal_btn_done" data-dismiss="modal" class="btn russian col-xs-6" style="float:left">Done</button>
+                                    </form>
+                                </div>
+                                <!--  End Remove Article Modal-->
+
+
                                 <div class="tab-pane fade" id="affiliations" role="tabpanel" aria-labelledby="contact-tab">
                                     <form>
-                                        <div class="form-group">    
+                                        <div class="form-group">
                                             <div class="form-group">
                                                 <!--<input class="form-control"  placeholder="Authors" id="articleModal_authors" />-->
                                                 <select class="form-control" id="select_affiliations"></select>
-                                                
+
                                             </div>
 
                                             <!--<input class="form-control" placeholder="Article name" id="articleModal_title" />
@@ -229,7 +226,7 @@
                                             <button id="btn_add_affiliation" data-dismiss="modal" class="btn btn-info col-xs-6">Add</button>
                                             <button id="btn_remove_affiliation" data-dismiss="modal" class="btn btn-danger col-xs-6">Remove</button>
 
-                                            
+
                                         </div>
                                         <button id="affiliationsModal_btn_done" data-dismiss="modal" class="btn russian col-xs-6" style="float:left">Done</button>
                                     </form>

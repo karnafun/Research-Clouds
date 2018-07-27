@@ -8,7 +8,7 @@ ClusterClickedId = -1;
 try {
 
     User = localStorage.getItem("User");
-    User = JSON.parse(User);
+    User = JSON.parse(User);      
     var request = { Id: User.Id };
 
     //Insert uId, Summery, and uImg, articles
@@ -25,20 +25,21 @@ try {
             setTimeout(function () {
                 startAnimation('shake 2s ', '.wimg');
             }, 1500);
-            
-           
+
+
             $("#loader").attr("style", "display:none");
         }, errorCB);
     } else {
         UpdatePageFromUser();
         $("#loader").attr("style", "display:none");
+      
     }
 
     $(document).ready(function () {
         $("#loader").attr("style", "display:block");
 
-        
-       // ConfigureLogoShakeTimer();
+
+        // ConfigureLogoShakeTimer();
         //ToggleEditingTools(false);
         ConfigureClickEvents();
         $("#editProfile").on("click", function () {
@@ -117,7 +118,7 @@ function UpdatePageFromUserWithAlert() {
         User = results;
         EditedUser = $.extend(true, {}, User);
         UpdatePageFromUser();
-        alert("Done, configured the user");
+       // alert("Done, configured the user");
     }, errorCB);
 }
 function UpdatePageFromUser() {
@@ -208,7 +209,7 @@ function UpdateResearcherArticles(results) {
 }
 
 function errorCB(error) {
-    alert("Error: " + error.responseText);
+    console.log("Error: " + error.responseText)
     $("#loader").attr("style", "display:none");
 }
 
@@ -375,7 +376,7 @@ function SaveChanges() {
             // alert("User Updated Successfully");
             $("#loader").attr("style", "display:none");
         } else {
-            alert(results.d + " rows effected");
+          //  alert(results.d + " rows effected");
             $("#loader").attr("style", "display:none");
         }
     }, function (err) {
@@ -417,10 +418,7 @@ function ConfigureClickEvents() {
         EditField(e);
     });
 
-    //$("#articleModal_btn_save").click(function (e) {
-    //    SaveArticle(e);
-    //    alert("wtf");
-    //});
+
     $('#articleModal_btn_save').unbind('click').click(function (e) {
         SaveArticle(e);
     });
@@ -524,7 +522,7 @@ function ConfigureClickEvents() {
             affiliationName: affiliationName
         }
         AddAffiliationAjax(request, function (results) {
-            alert("added");
+            //alert("added");
         }, errorCB)
 
 
@@ -538,15 +536,33 @@ function ConfigureClickEvents() {
             affiliationName: affiliationName
         }
         RemoveAffiliationAjax(request, function (results) {
-            //var affiliationName = e.options[e.selectedIndex].text;
-            //for (var i = 0; i < User.Affiliations.length; i++) {
-            //    if (User.Affiliations[i] !=null && User.Affiliations[i].Name == affiliationName) {
-            //        User.Affiliations[i] = null;
-            //    }
-            //}
-            //UpdatePageFromUser();
-            alert("removed");
         }, errorCB)
+        return false;
+    })
+
+
+    $("#remove_article-tab").unbind('click').click(function (e) {
+      UpdateArticleSelect()
+    })
+
+    $("#btn_remove_article").unbind('click').click(function (e) {
+        var e = document.getElementById("select_articles");
+        var title = e.options[e.selectedIndex].text;
+        var request = {
+            uId: User.Id,
+            title: title
+        }
+        RemoveArticleAjax(request, function (results) {
+            UpdateArticleSelect();
+        }, errorCB)
+        var newArticles = [];
+        for (var i = 0; i < User.Articles.length; i++) {
+            if (User.Articles[i].Title != title) {
+                newArticles[i]=User.Articles[i];
+            }
+        }
+        User.Articles = newArticles;
+        UpdatePageFromUser();
         return false;
     })
 
@@ -608,7 +624,7 @@ function RefreshUser(results) {
 
         EditedUser = $.extend(true, {}, User);
         UpdatePageFromUser();
-        alert("Done, configured the user");
+       // alert("Done, configured the user");
     })
 }
 
@@ -633,4 +649,42 @@ function ConfigureLogoShakeTimer() {
     // $("#div_logo").effect("shake", { times: 4 }, 1000);
 
 
+}
+
+
+
+//function BootstrapAlert(typeText, bodyText) {
+//    var res = ' <div class="alert alert-warning alert-dismissible fade show" role="alert">'
+//    res += ' <strong>' + typeText + '</strong>' + bodyText;
+//    res += '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+//    res += '<span aria-hidden="true">&times;</span>';
+//    res += '</button> </div>'
+//    $('#div_alerts').html(res);
+//}
+
+function UpdateArticleSelect(){
+    var request = { uId: User.Id };
+    GetUserArticlesAjax(request, function (results) {
+        try {
+            ////clear select
+            var select = document.getElementById("select_articles");
+            var length = select.options.length;
+
+            for (i = 0; i < length; i++) {
+                $('#select_articles').children('option').remove();
+            }
+
+            //$("#select_affiliations").clear();
+            results = JSON.parse(results.d);
+
+            for (var i = 0; i < results.length; i++) {
+                var option = document.createElement("option");
+                option.text = results[i].Title;
+                $("#select_articles").append(option)
+            }
+        } catch (e) {
+
+        }
+
+    }, errorCB)
 }

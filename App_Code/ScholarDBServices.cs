@@ -319,7 +319,11 @@ public class ScholarDBServices
 
         Institute scholarInstitute = GetEmailAffiliation(scholarUser.Email);
         Institute emailInstitute = GetEmailAffiliation(user.Email);
-        List<Institute> institutes = new List<Institute>() { scholarInstitute };
+        List<Institute> institutes = new List<Institute>();
+        if (scholarInstitute!=null)
+        {
+            institutes.Add(scholarInstitute);
+        }
         if (emailInstitute != scholarInstitute)
         {
             institutes.Add(emailInstitute);
@@ -352,6 +356,10 @@ public class ScholarDBServices
         else if (email.Contains("harvard."))
         {
             instName = "Harvard University";
+        }
+        else
+        {
+            return null;
         }
 
 

@@ -400,7 +400,7 @@ public class AjaxServices : System.Web.Services.WebService
 
             JavaScriptSerializer js = new JavaScriptSerializer();
             
-            return js.Serialize(user.Articles.ToArray());
+            return js.Serialize(user.Articles);
         }
         catch (Exception ex)
         {
@@ -506,5 +506,19 @@ public class AjaxServices : System.Web.Services.WebService
     }
 
 
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string RemoveArticle(string uId, string title)
+    {
+        Article article = new Article().GetArticleByTitle(title);        
+        article.RemoveAuthor(int.Parse(uId));
 
+        //Check if no one is attache to article -> remove from database 
+        article.GetFullInfo();
+        if (article.Users!=null && article.Users.Count<1)
+        {
+            article.DeleteArticleFromDatabase();
+        }
+        return "";
+    }
 }

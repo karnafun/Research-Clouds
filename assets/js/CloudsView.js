@@ -125,7 +125,7 @@ function DisplayClusters(results) {
              console.log(params);
              console.log(click);
              if (params.nodes[0] == 0) {
-                 alert("it tickles")
+               // alert("it tickles")
              }
              else {
                  if (click.length == 0) {
@@ -217,6 +217,6 @@ function ViewResearcher(_id) {
 
     }, function (error) {
 
-        alert(error);
+       // alert(error);
         })
 }

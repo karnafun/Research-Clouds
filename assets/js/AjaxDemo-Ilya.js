@@ -37,7 +37,7 @@ $(document).ready(function () {
 function UserUpdated(results) {
     var effected = results.d;
     if (effected<0) {
-        alert(effected + " Rows Effected");
+       // alert(effected + " Rows Effected");
         return;
     }
     GetUserById({ Id: User.Id }, FillUserInformation, errorCB);

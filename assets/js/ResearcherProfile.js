@@ -272,9 +272,9 @@ function SaveChanges() {
     };
     UpdateUserAjax(request, function (results) {
         if (results.d > 1) {
-            alert("User Updated Successfully");
+            consloe.log("User Updated Successfully");
         } else {
-            alert(results.d + " rows effected");
+            consloe.log(results.d + " rows effected");
         }
     }, errorCB);
 

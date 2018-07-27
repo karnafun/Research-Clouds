@@ -35,7 +35,7 @@
         check[0].onclick = function (e) {
             $(edit[0]).show();
             $(this).hide();
-            alert(file.value);
+            consloe.log(file.value);
             //var tmppath = URL.createObjectURL(event.target.file[0]);
             // userimg.setAttribute("src", String(x));
         }

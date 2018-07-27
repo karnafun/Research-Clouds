@@ -18,8 +18,8 @@
             var data = new FormData();
             data.append("UploadedFile", file)
             data.append("uId", "50")
-            UploadImageAjax(data, function (e) { alert("worked") },
-                function (err) { alert(err.messageText)})
+            UploadImageAjax(data, function (e) { consloe.log("image updated") },
+                function (err) { consloe.log(err.messageText)})
          
         })
 

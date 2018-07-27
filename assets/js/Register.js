@@ -18,10 +18,10 @@ function RegisterUser() {
                 localStorage.setItem('User', JSON.stringify(results));
                 window.location.replace("../html/UserProfile.html");
             } else {
-                alert("No rows effected, user was not created");
+                consloe.log("No rows effected, user was not created");
             }
         }, function (error) {
-            alert("Error callback:" + error.responseText)
+            consloe.log("Error callback:" + error.responseText)
         });
     }
 
